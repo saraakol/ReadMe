@@ -1,0 +1,83 @@
+div.header{
+    background-color: orange;
+    text-align: center;
+    margin-bottom: -16px;
+}
+
+div.loggingLinks{
+    padding-top: 20px;
+    padding-right: 20px;
+    float:right;
+}
+div.header img{
+    margin-top: 40px;
+    width:200px;
+    height:200px;
+}
+div.header ul.jezicak{
+    text-align:left;
+    list-style: none;
+    margin-left: -40px;
+}
+div.header ul.jezicak li a{
+    color:black;
+    text-decoration: none;
+}
+div.header ul.jezicak li{
+    background-color: lightgray;
+    margin-right: 10px;
+    padding: 10px;
+    padding-bottom:0;
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+    border: 1px black solid;
+    display: inline;
+    
+}
+
+
+html,body{
+    height:100%;
+    width:100%;
+    margin: 0;
+}
+div.content{
+    padding-top: 20px;
+    height:100%;
+    background-color:rgb(165, 185, 90);
+    
+}
+div.content div.selects{
+    padding-left: 20px;
+}
+hr{
+    margin: 0;
+    border:2px blue solid;
+    margin-left: 0;
+}
+div.content select{
+    width:100px;
+}
+div.content div.book{
+    border-top: 2px blue solid;
+    padding-left:40px;
+    padding-top:20px;
+    padding-bottom: 20px;
+    display: flex;
+    align-items: center;
+        
+    
+}
+div.content div.book img{
+    height:100px;
+    width:50px;
+    float:left;
+    margin-right: 30px;
+    
+    
+}
+div.content div.book div.floated{
+    float:left;
+    vertical-align: middle;
+    padding:70px 0;
+}
