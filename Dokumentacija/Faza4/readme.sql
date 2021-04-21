@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Apr 21, 2021 at 11:34 AM
+-- Generation Time: Apr 21, 2021 at 01:49 PM
 -- Server version: 5.7.31
 -- PHP Version: 7.3.21
 
@@ -90,7 +90,7 @@ DROP TABLE IF EXISTS `rate`;
 CREATE TABLE IF NOT EXISTS `rate` (
   `IdU` int(11) NOT NULL,
   `IdB` int(11) NOT NULL,
-  `Rate` int(11) NOT NULL,
+  `Rate` float NOT NULL,
   PRIMARY KEY (`IdU`,`IdB`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
