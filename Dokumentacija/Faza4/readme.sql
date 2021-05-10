@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3308
--- Generation Time: May 10, 2021 at 08:29 PM
+-- Generation Time: May 10, 2021 at 08:42 PM
 -- Server version: 5.7.31
 -- PHP Version: 7.3.21
 
@@ -34,10 +34,18 @@ CREATE TABLE IF NOT EXISTS `book` (
   `IdB` int(11) NOT NULL AUTO_INCREMENT,
   `Name` varchar(64) COLLATE utf8_unicode_ci NOT NULL,
   `Authors` varchar(256) COLLATE utf8_unicode_ci NOT NULL,
-  `Description` varchar(512) COLLATE utf8_unicode_ci NOT NULL,
+  `Description` varchar(1024) COLLATE utf8_unicode_ci NOT NULL,
   `Image` varchar(256) COLLATE utf8_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`IdB`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `book`
+--
+
+INSERT INTO `book` (`IdB`, `Name`, `Authors`, `Description`, `Image`) VALUES
+(1, 'Harry Potter and the Philosopher\'s stone', 'J.K. Rowling', 'Harry Potter has never even heard of Hogwarts when the letters start dropping on the doormat at number four, Privet Drive. Addressed in green ink on yellowish parchment with a purple seal, they are swiftly confiscated by his grisly aunt and uncle. Then, on Harry\'s eleventh birthday, a great beetle-eyed giant of a man called Rubeus Hagrid bursts in with some astonishing news: Harry Potter is a wizard, and he has a place at Hogwarts School of Witchcraft and Wizardry. An incredible adventure is about to begin!', NULL),
+(2, 'The Master and Margarita', 'Mikhail Bulgakov', 'One hot spring, the devil arrives in Moscow, accompanied by a retinue that includes a beautiful naked witch and an immense talking black cat with a fondness for chess and vodka. The visitors quickly wreak havoc in a city that refuses to believe in either God or Satan. But they also bring peace to two unhappy Muscovites: one is the Master, a writer pilloried for daring to write a novel about Christ and Pontius Pilate; the other is Margarita, who loves the Master so deeply that she is willing literally to go to hell for him. What ensues is a novel of inexhaustible energy, humor, and philosophical depth, a work whose nuances emerge for the first time in Diana Burgin\'s and Katherine Tiernan O\'Connor\'s splendid English version.', NULL);
 
 -- --------------------------------------------------------
 
