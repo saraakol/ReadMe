@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3308
--- Generation Time: Apr 24, 2021 at 09:42 AM
+-- Generation Time: May 10, 2021 at 08:29 PM
 -- Server version: 5.7.31
 -- PHP Version: 7.3.21
 
@@ -34,7 +34,7 @@ CREATE TABLE IF NOT EXISTS `book` (
   `IdB` int(11) NOT NULL AUTO_INCREMENT,
   `Name` varchar(64) COLLATE utf8_unicode_ci NOT NULL,
   `Authors` varchar(256) COLLATE utf8_unicode_ci NOT NULL,
-  `Description` varchar(256) COLLATE utf8_unicode_ci NOT NULL,
+  `Description` varchar(512) COLLATE utf8_unicode_ci NOT NULL,
   `Image` varchar(256) COLLATE utf8_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`IdB`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
@@ -142,7 +142,15 @@ CREATE TABLE IF NOT EXISTS `user` (
   `PersonalGoal` int(11) DEFAULT NULL,
   PRIMARY KEY (`IdU`),
   UNIQUE KEY `Username` (`Username`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `user`
+--
+
+INSERT INTO `user` (`IdU`, `Username`, `Password`, `FirstName`, `LastName`, `Email`, `Image`, `Type`, `Status`, `PersonalGoal`) VALUES
+(1, 'andrejjokic', 'andrej123', 'Andrej', 'Jokic', 'andrejjokic00@gmail.com', NULL, 'administrator', 'registered', NULL),
+(2, 'nikolakrstic', 'nikola123', 'Nikola', 'Krstic', 'nikolakrstic99@gmail.com', NULL, 'administrator', 'registered', NULL);
 
 -- --------------------------------------------------------
 
