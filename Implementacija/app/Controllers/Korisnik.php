@@ -7,7 +7,7 @@ namespace App\Controllers;
  * 
  *  @version 1.0
  */
-class Gost extends BaseController
+class Korisnik extends BaseController
 {
     /*
      * Funkcija prikaz - sluzi za prikazivanje stranice sa nepromenljivim(header,footer) i promenljivim delovima ( sredisnji deo stranice koji se razlikuje
@@ -17,8 +17,8 @@ class Gost extends BaseController
      * @param string[] $data String[]
      */
     protected function prikaz($page, $data) {
-        $data['controller'] = 'Gost';
-        echo view('Sablon/header_gost');
+        $data['controller'] = 'Korisnik';
+        echo view('Sablon/header_korisnik');
         echo view("Stranice/$page", $data);
         echo view('Sablon/footer');
     }
