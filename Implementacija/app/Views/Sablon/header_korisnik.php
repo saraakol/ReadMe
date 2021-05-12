@@ -24,8 +24,8 @@
         <div class="row">
             <div class="col-12">
                 <div class="header">           
-                    <div class="loggingLinks">
-                        <a href="login.html"><button>Login</button></a> &nbsp; &nbsp; <a href="register.html"><button>Register</button></a>
+                    <div class="col-md-12">
+                        <a href="Book.html"><button class="logoutbutton">Logout</button></a>
                     </div>
                     <img src="/img/logo.png" alt="Logo">
                     <br>&nbsp;
