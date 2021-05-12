@@ -1,5 +1,10 @@
+.natpis {
+	background: linear-gradient(to bottom, #ffeedf , white);
+	margin-bottom: -16px;
+}
+
 div.header{
-    background: linear-gradient(to bottom, #ffeedf , white);
+    background: #ffeedf;
     /*background-color: #ffeedf; /*FFE5CC*/
     
     margin-bottom: -16px;

@@ -23,12 +23,12 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col-12">
-                <div class="header">
-            
+                <div class="header">           
                     <div class="loggingLinks">
                         <a href="login.html"><button>Login</button></a> &nbsp; &nbsp; <a href="register.html"><button>Register</button></a>
                     </div>
                     <img src="/img/logo.png" alt="Logo">
-                </div>
+                    <br>&nbsp;
+		</div>
             </div>
-        </div>
+	</div>
