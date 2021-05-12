@@ -3,11 +3,11 @@
 namespace App\Controllers;
 
 /*
- * Klasa Korisnik - implementira metode kontrolera koji sluzi za funkcionalnosti Korisnika(privilegovanog i registrovanog)
+ * Klasa Administrator - implementira metode kontrolera koji sluzi za funkcionalnosti Administratora
  * 
  *  @version 1.0
  */
-class Korisnik extends BaseController
+class Administrator extends BaseController
 {
     /*
      * Funkcija prikaz - sluzi za prikazivanje stranice sa nepromenljivim(header,footer) i promenljivim delovima ( sredisnji deo stranice koji se razlikuje
@@ -17,7 +17,7 @@ class Korisnik extends BaseController
      * @param string[] $data String[]
      */
     protected function prikaz($page, $data) {
-        $data['controller'] = 'Korisnik';
+        $data['controller'] = 'Administrator';
         echo view('Sablon/header_korisnik');
         echo view("Stranice/$page", $data);
         echo view('Sablon/footer');
@@ -30,3 +30,4 @@ class Korisnik extends BaseController
         $this->prikaz('Pocetna', []);
     }
 }
+
