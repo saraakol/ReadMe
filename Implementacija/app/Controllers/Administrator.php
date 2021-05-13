@@ -2,6 +2,8 @@
 
 namespace App\Controllers;
 
+use App\Models\UserModel;
+
 /*
  * Klasa Administrator - implementira metode kontrolera koji sluzi za funkcionalnosti Administratora
  * 
@@ -35,7 +37,10 @@ class Administrator extends BaseController
      *  @author Andrej Jokic 18/0247
      */
     public function registracije() {
-        $this->prikaz('Registracije', []);
+        //$this->prikaz('Registracije', []);
+        $userModel = new UserModel();
+        $registracije = $userModel->dohvatiRegistracije();
+        $this->prikaz('Registracije', ['registracije'=>$registracije]);
     }
     
 }
