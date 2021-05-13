@@ -17,7 +17,8 @@
                     </div>
                     <div class='col-lg-5 col-md-1' style='background-color: #ffeedf;'>&nbsp;</div>
                     <div class='col-lg-4 col-md-5' style='background-color: #ffeedf;text-align: center;padding-bottom: 1vh;' >
-                        <button>Accept</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<button>Decline</button>       
+                        <button>Accept</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <button>Decline</button>       
                     </div>
                     <br>
                 </div>

@@ -33,10 +33,10 @@ class Administrator extends BaseController
     }
     
     /*
-     * Funkcija registracije - sluzi za prikazivanje svih zahteva korisnika za registrovanje
+     * Funkcija prikaziRegistracije() - sluzi za prikazivanje svih zahteva korisnika za registrovanje
      *  @author Andrej Jokic 18/0247
      */
-    public function registracije() {
+    public function prikaziRegistracije() {
         //$this->prikaz('Registracije', []);
         $userModel = new UserModel();
         $registracije = $userModel->dohvatiRegistracije();
