@@ -2,6 +2,8 @@
 
 namespace App\Controllers;
 
+use App\Models\UserModel;
+
 /*
  * Klasa Administrator - implementira metode kontrolera koji sluzi za funkcionalnosti Administratora
  * 
@@ -31,12 +33,37 @@ class Administrator extends BaseController
     }
     
     /*
-     * Funkcija registracije - sluzi za prikazivanje svih zahteva korisnika za registrovanje
-     *  @author Andrej Jokic 18/0247
+     * Funkcija prikaziRegistracije() - sluzi za prikazivanje svih zahteva korisnika za registrovanje
+     * @author Andrej Jokic 18/0247
      */
-    public function registracije() {
-        $this->prikaz('Registracije', []);
+    public function prikaziRegistracije() {
+        //$this->prikaz('Registracije', []);
+        $userModel = new UserModel();
+        $registracije = $userModel->dohvatiRegistracije();
+        $this->prikaz('Registracije', ['registracije'=>$registracije]);
+    }
+   
+    /*
+     * Funkcija potvrdiRegistraciju() - sluzi za prihvatanje registracije korisnika, nakon cega korisnik postaje registrovan
+     * @author Andrej Jokic 18/0247
+     */
+    public function potvrdiRegistraciju() {
+        $data['username'] = $this->request->getVar('username');
+        $data['status'] = 'registered';
+        $userModel = new UserModel();
+        $userModel->postaviStatus($data);
+        return redirect()->to(site_url('Administrator/prikaziRegistracije'));
     }
     
+    /*
+     * Funkcija odbijRegistraciju() - sluzi za odbijanje registracije korisnika, nakon cega korisnik ostaje gost sistema
+     * @author Andrej Jokic 18/0247
+     */
+    public function odbijRegistraciju() {
+        $userModel = new UserModel();
+        $userModel->izbrisiKorisnika($this->request->getVar('username'));
+        return redirect()->to(site_url('Administrator/prikaziRegistracije'));
+    }
+        
 }
 

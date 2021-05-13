@@ -52,7 +52,7 @@
                             <a class="nav-link" href="MyBooks.html">My Books &nbsp;&nbsp;</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="registrations.html">Registrations &nbsp;&nbsp;</a>
+                            <?= anchor("Administrator/prikaziRegistracije", "Registrations", ['class'=>'nav-link']) ?> &nbsp;&nbsp;
                         </li>
                         <li class="nav-item">
                             <a class="nav-link " href="reports.html">Reports &nbsp;&nbsp;</a>
