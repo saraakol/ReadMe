@@ -32,3 +32,16 @@
 		</div>
             </div>
 	</div>
+        <div class="row">
+            <div class="col-12">
+		<div class="natpis">
+                    <p class="naslov"> ReadMe</p>
+                    <p class="ispodnaslova"> Gateway to Getaway</p>
+		</div>
+            </div>
+	</div>
+        <div class="row">  
+            <div class="col gradient">
+                <br>&nbsp;<br>&nbsp;<br>&nbsp;
+            </div>
+        </div>

@@ -18,7 +18,7 @@ class Administrator extends BaseController
      */
     protected function prikaz($page, $data) {
         $data['controller'] = 'Administrator';
-        echo view('Sablon/header_korisnik');
+        echo view('Sablon/header_administrator');
         echo view("Stranice/$page", $data);
         echo view('Sablon/footer');
     }
@@ -29,5 +29,14 @@ class Administrator extends BaseController
     public function index() {
         $this->prikaz('Pocetna', []);
     }
+    
+    /*
+     * Funkcija registracije - sluzi za prikazivanje svih zahteva korisnika za registrovanje
+     *  @author Andrej Jokic 18/0247
+     */
+    public function registracije() {
+        $this->prikaz('Registracije', []);
+    }
+    
 }
 

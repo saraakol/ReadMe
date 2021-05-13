@@ -51,6 +51,18 @@
                         <li class="nav-item">
                             <a class="nav-link" href="MyBooks.html">My Books &nbsp;&nbsp;</a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="registrations.html">Registrations &nbsp;&nbsp;</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link " href="reports.html">Reports &nbsp;&nbsp;</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="upgrades.html">Upgrade &nbsp;&nbsp;</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="AddBook.html">Add Book &nbsp;&nbsp;</a>
+                        </li>
                     </ul>
                 </nav>
                 <br>&nbsp;
