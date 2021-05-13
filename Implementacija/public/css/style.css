@@ -289,7 +289,7 @@ outline: none;
     outline: none;  
   }
 
-  .buttons button{
+  .buttons button, .buttons input[type=submit] {
     width: 90px;
     height: 30px;
     font-size: 15px;
@@ -300,7 +300,9 @@ outline: none;
     
     outline: none;  
   }
-  
 
+  .buttons form {
+      display: inline;
+  }
 
 
