@@ -49,4 +49,86 @@ class Rate
     private $idb;
 
 
+
+    /**
+     * Get idr.
+     *
+     * @return int
+     */
+    public function getIdr()
+    {
+        return $this->idr;
+    }
+
+    /**
+     * Set rate.
+     *
+     * @param float $rate
+     *
+     * @return Rate
+     */
+    public function setRate($rate)
+    {
+        $this->rate = $rate;
+
+        return $this;
+    }
+
+    /**
+     * Get rate.
+     *
+     * @return float
+     */
+    public function getRate()
+    {
+        return $this->rate;
+    }
+
+    /**
+     * Set idu.
+     *
+     * @param \App\Models\Entities\User|null $idu
+     *
+     * @return Rate
+     */
+    public function setIdu(\App\Models\Entities\User $idu = null)
+    {
+        $this->idu = $idu;
+
+        return $this;
+    }
+
+    /**
+     * Get idu.
+     *
+     * @return \App\Models\Entities\User|null
+     */
+    public function getIdu()
+    {
+        return $this->idu;
+    }
+
+    /**
+     * Set idb.
+     *
+     * @param \App\Models\Entities\Book|null $idb
+     *
+     * @return Rate
+     */
+    public function setIdb(\App\Models\Entities\Book $idb = null)
+    {
+        $this->idb = $idb;
+
+        return $this;
+    }
+
+    /**
+     * Get idb.
+     *
+     * @return \App\Models\Entities\Book|null
+     */
+    public function getIdb()
+    {
+        return $this->idb;
+    }
 }

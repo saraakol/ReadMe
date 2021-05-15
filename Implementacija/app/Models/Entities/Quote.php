@@ -49,4 +49,86 @@ class Quote
     private $idb;
 
 
+
+    /**
+     * Get idq.
+     *
+     * @return int
+     */
+    public function getIdq()
+    {
+        return $this->idq;
+    }
+
+    /**
+     * Set text.
+     *
+     * @param string $text
+     *
+     * @return Quote
+     */
+    public function setText($text)
+    {
+        $this->text = $text;
+
+        return $this;
+    }
+
+    /**
+     * Get text.
+     *
+     * @return string
+     */
+    public function getText()
+    {
+        return $this->text;
+    }
+
+    /**
+     * Set idu.
+     *
+     * @param \App\Models\Entities\User|null $idu
+     *
+     * @return Quote
+     */
+    public function setIdu(\App\Models\Entities\User $idu = null)
+    {
+        $this->idu = $idu;
+
+        return $this;
+    }
+
+    /**
+     * Get idu.
+     *
+     * @return \App\Models\Entities\User|null
+     */
+    public function getIdu()
+    {
+        return $this->idu;
+    }
+
+    /**
+     * Set idb.
+     *
+     * @param \App\Models\Entities\Book|null $idb
+     *
+     * @return Quote
+     */
+    public function setIdb(\App\Models\Entities\Book $idb = null)
+    {
+        $this->idb = $idb;
+
+        return $this;
+    }
+
+    /**
+     * Get idb.
+     *
+     * @return \App\Models\Entities\Book|null
+     */
+    public function getIdb()
+    {
+        return $this->idb;
+    }
 }
