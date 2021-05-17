@@ -2,8 +2,6 @@
 
 namespace App\Controllers;
 
-use App\Models\UserModel;
-
 /*
  * Klasa Administrator - implementira metode kontrolera koji sluzi za funkcionalnosti Administratora
  * 
@@ -37,9 +35,7 @@ class Administrator extends BaseController
      * @author Andrej Jokic 18/0247
      */
     public function prikaziRegistracije() {
-        //$this->prikaz('Registracije', []);
-        $userModel = new UserModel();
-        $registracije = $userModel->dohvatiRegistracije();
+        $registracije = $this->doctrine->em->getRepository('App\Models\Entities\User')->findBy(['status'=>'pending']);
         $this->prikaz('Registracije', ['registracije'=>$registracije]);
     }
    
@@ -48,10 +44,14 @@ class Administrator extends BaseController
      * @author Andrej Jokic 18/0247
      */
     public function potvrdiRegistraciju() {
-        $data['username'] = $this->request->getVar('username');
-        $data['status'] = 'registered';
-        $userModel = new UserModel();
-        $userModel->postaviStatus($data);
+//        $data['username'] = $this->request->getVar('username');
+//        $data['status'] = 'registered';
+//        $userModel = new UserModel();
+//        $userModel->postaviStatus($data);
+//        return redirect()->to(site_url('Administrator/prikaziRegistracije'));
+        $user = $this->doctrine->em->getRepository('App\Models\Entities\User')->findOneBy(['username'=>$this->request->getVar('username')]);
+        $user->setStatus('registered');
+        $this->doctrine->em->flush();
         return redirect()->to(site_url('Administrator/prikaziRegistracije'));
     }
     
@@ -60,8 +60,12 @@ class Administrator extends BaseController
      * @author Andrej Jokic 18/0247
      */
     public function odbijRegistraciju() {
-        $userModel = new UserModel();
-        $userModel->izbrisiKorisnika($this->request->getVar('username'));
+//        $userModel = new UserModel();
+//        $userModel->izbrisiKorisnika($this->request->getVar('username'));
+//        return redirect()->to(site_url('Administrator/prikaziRegistracije'));
+        $user = $this->doctrine->em->getRepository('App\Models\Entities\User')->findOneBy(['username'=>$this->request->getVar('username')]);
+        $this->doctrine->em->remove($user);
+        $this->doctrine->em->flush();
         return redirect()->to(site_url('Administrator/prikaziRegistracije'));
     }
         
