@@ -20,7 +20,8 @@ SET time_zone = "+00:00";
 --
 -- Database: `readme`
 --
-
+CREATE DATABASE IF NOT EXISTS `readme` DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci;
+USE `readme`;
 -- --------------------------------------------------------
 
 --
