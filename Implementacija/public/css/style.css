@@ -9,7 +9,7 @@ div.header{
     
     margin-bottom: -16px;
 }
-div.header button{ 
+div.header button,div.header input[type="submit"]{ 
     
 width: 65px;
 height: 38px;
@@ -75,6 +75,7 @@ html,body{
     margin: 0;
     
 }
+
 div.content{
     padding-top: 20px;
     height:100%;
@@ -161,7 +162,7 @@ border: none;
 /*                  LOGIN                           */
 
 .login{
-    background-image: url(sketch-vintage-books-seamless-pattern_53562-9593.jpg);
+    background-image: url(../img/sketch-vintage-books-seamless-pattern_53562-9593.jpg);
 }
 .loginrow2{
     text-align: center;
@@ -182,7 +183,7 @@ border: none;
 
 /*                  REGISTER                           */
 
-.loginrow2 button{
+.loginrow2 button, .loginrow2 input[type="button"], .loginrow2 input[type="submit"]{
 width: 120px;
 height: 38px;
 outline: none;
@@ -190,6 +191,25 @@ background: #cfb997;
 box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 border-radius: 1000px;
 border: none;
+
+}
+.loginrow2 .custom-file-upload
+{
+
+height: 38px;
+outline: none;
+background: #cfb997;
+box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+border-radius: 1000px;
+border: none;
+padding:5px;
+padding-left:20px;
+padding-right:20px;
+padding-bottom:0px;
+cursor:pointer;
+}
+input[type="file"] {
+    display: none;
 }
 
 /*                  MY BOOKS                           */
@@ -289,7 +309,7 @@ outline: none;
     outline: none;  
   }
 
-  .buttons button, .buttons input[type=submit] {
+  .buttons button,input[type="submit"] {
     width: 90px;
     height: 30px;
     font-size: 15px;

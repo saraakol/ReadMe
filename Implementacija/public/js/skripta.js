@@ -54,3 +54,14 @@ function kliknutalistagenre() {
     }
 }
 
+$('#file-upload').change(function() {
+  var i = $(this).prev('label').clone();
+  console.log("aaa");
+  var file = $('#file-upload')[0].files[0].name;
+  $(this).prev('label').text(file);
+});
+
+document.querySelector("#file-upload").onchange = function(){
+    console.log("aaa");
+  document.querySelector("#file-name").textContent = this.files[0].name;
+}
