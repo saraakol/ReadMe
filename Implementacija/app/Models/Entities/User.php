@@ -8,7 +8,8 @@ use Doctrine\ORM\Mapping as ORM;
  * User
  *
  * @ORM\Table(name="user", uniqueConstraints={@ORM\UniqueConstraint(name="Username", columns={"Username"})})
- * @ORM\Entity
+ * 
+ * @ORM\Entity(repositoryClass="App\Models\Repositories\UserRepository")
  */
 class User
 {
