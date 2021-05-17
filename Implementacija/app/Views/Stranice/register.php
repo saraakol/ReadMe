@@ -17,7 +17,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.9.1/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-    
+
     
     <script src="js/skripta.js"></script>
     
@@ -54,6 +54,7 @@
                 ?>
                 </font>
                 <form name="register" action="<?=site_url("Gost/registerSubmit")?>" method="POST" enctype="multipart/form-data">
+
                     <input type="text" name="firstname" placeholder="First Name">
                     
                     &nbsp;
@@ -66,11 +67,13 @@
                     <input type="password" name="password" placeholder="password">
                     &nbsp;
                     <input type="password" name="repeatpassword" placeholder="repeat password">
+
                     <br><br>
 <!--                    <label for="img" class="custom-file-upload">
                          <i class="fa fa-cloud-upload"></i> Upload Image
                     </label>
                     <input type="file" id="img" name="img" accept="image/*">-->
+
                     <label for="file-upload" class="custom-file-upload">
                         <i class="fa fa-cloud-upload"></i> Upload Image
                       </label>
@@ -78,6 +81,7 @@
   
                     <br><br>
                     <input type="submit" value="Continue"></input>
+
                     
                     &nbsp;
                     <a href="../Gost/index"><input type="button" value="Cancel"></input></a>

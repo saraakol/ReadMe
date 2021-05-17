@@ -41,6 +41,7 @@ class Gost extends BaseController
         //$this->prikaz("register",["poruka"=>$poruka]);
 
     }
+
     /*
      * funkcija za prikaz stranice za log inovanje
      * Andrej Veselinovic 2018/0221
@@ -85,6 +86,7 @@ class Gost extends BaseController
      * funkcija za potvrdu zahteva za registraciju novog korisnika
      * Andrej Veselinovic 2018/0221
      */
+
     public function registerSubmit()
     {
         
@@ -97,7 +99,7 @@ class Gost extends BaseController
         }
         if($this->request->getVar("password")!==$this->request->getVar("repeatpassword"))
         {
-            
+
             return $this->register(["errors"=>["Passwords dont match"]]);
         }
         
@@ -132,5 +134,5 @@ class Gost extends BaseController
 //        redirect()->to(site_url("Gost/index")); 
         return $this->index();
     }
-    
+
 }
