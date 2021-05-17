@@ -25,7 +25,7 @@
             <div class="col-12">
                 <div class="header">           
                     <div class="col-md-12">
-                        <a href="Book.html"><button class="logoutbutton">Logout</button></a>
+                        <a href="/Administrator/logout"><button class="logoutbutton">Logout</button></a>
                     </div>
                     <img src="/img/logo.png" alt="Logo">
                     <br>&nbsp;
@@ -61,7 +61,7 @@
                             <a class="nav-link" href="upgrades.html">Upgrade &nbsp;&nbsp;</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="AddBook.html">Add Book &nbsp;&nbsp;</a>
+                            <a class="nav-link" href="/Administrator/addBook">Add Book &nbsp;&nbsp;</a>
                         </li>
                     </ul>
                 </nav>
