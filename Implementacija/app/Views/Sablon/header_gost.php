@@ -25,7 +25,9 @@
             <div class="col-12">
                 <div class="header">           
                     <div class="loggingLinks">
-                        <a href="login.html"><button>Login</button></a> &nbsp; &nbsp;
+
+                        <a href="/Gost/login"><button>Login</button></a> &nbsp; &nbsp;
+
 <!--                        <form name="login" method="GET" action="<?=site_url("Gost/register")?>">
                             <input type="submit" value="Register">
                         </form>-->

@@ -41,7 +41,52 @@ class Gost extends BaseController
         //$this->prikaz("register",["poruka"=>$poruka]);
 
     }
-    
+
+    /*
+     * funkcija za prikaz stranice za log inovanje
+     * Andrej Veselinovic 2018/0221
+     */
+    public function login($poruka=null)
+    {
+
+
+        $data['controller'] = 'Gost';
+        //echo view('Sablon/header_gost');
+        echo view("Stranice/login", ["poruka"=>$poruka]);
+        //$this->prikaz("register",["poruka"=>$poruka]);
+    }
+    /*
+     * funkcija za potvrdu zahteva za log inovanje
+     * Andrej Veselinovic 2018/0221
+     */
+    public function loginSubmit()
+    {
+        if(!$this->validate(['username'=>'required',"password"=>"required"]))
+        {
+            return $this->login(["errors"=>$this->validator->getErrors()]);
+        }
+        $user=$this->doctrine->em->getRepository(Entities\User::class)->findBy(array("username"=>$this->request->getVar("username")))[0];
+
+        if($user==null)
+            return $this->login(["errors"=>["User with given username and password doesnt exist"]]);
+        if($user->getPassword()!==$this->request->getVar("password"))
+            return $this->login(["errors"=>["User with given username and password doesnt exist"]]);
+        if($user->getStatus()!=="registered")
+            return $this->login(["errors"=>["User with given username and password doesnt exist"]]);
+        $this->session->set("korisnik",$user);
+        
+        if($user->getType()==="administrator")
+            return redirect()->to(site_url("Administrator"));
+        else if($user->getType()==="privileged_user")
+            return redirect()->to(site_url("Privilegovani"));
+        else
+            return redirect()->to(site_url("Korisnik"));
+    }
+    /*
+     * funkcija za potvrdu zahteva za registraciju novog korisnika
+     * Andrej Veselinovic 2018/0221
+     */
+
     public function registerSubmit()
     {
         
@@ -54,7 +99,7 @@ class Gost extends BaseController
         }
         if($this->request->getVar("password")!==$this->request->getVar("repeatpassword"))
         {
-            $_SERVER["REQUEST_URI"]="../register";
+
             return $this->register(["errors"=>["Passwords dont match"]]);
         }
         
@@ -89,4 +134,5 @@ class Gost extends BaseController
 //        redirect()->to(site_url("Gost/index")); 
         return $this->index();
     }
+
 }
