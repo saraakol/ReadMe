@@ -55,7 +55,7 @@
                             <?= anchor("Administrator/prikaziRegistracije", "Registrations", ['class'=>'nav-link']) ?> &nbsp;&nbsp;
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link " href="reports.html">Reports &nbsp;&nbsp;</a>
+                            <?= anchor("Administrator/prikaziPrijave", "Reports", ['class'=>'nav-link']) ?> &nbsp;&nbsp;
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="upgrades.html">Upgrade &nbsp;&nbsp;</a>
