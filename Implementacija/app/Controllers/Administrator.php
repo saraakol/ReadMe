@@ -34,6 +34,15 @@ class Administrator extends BaseController
     }
     
     /*
+     * Funkcija prikaziProfil() - Prikazuje profil korisnika
+     * @author Andrej Jokic 18/0247
+     */
+    public function prikaziProfil() {
+        $user = $this->session->get("korisnik");
+        $this->prikaz('Profil', ['korisnik'=>$user]);
+    }
+    
+    /*
      * Funkcija prikaziRegistracije() - sluzi za dohvatanje svih korisnika koji su poslali zahtev za registraciju
      * @author Andrej Jokic 18/0247
      */

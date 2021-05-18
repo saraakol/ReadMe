@@ -1,4 +1,3 @@
-
 function kliknutalistawant() {
     let checkBox = document.getElementById("wantlist");
 
