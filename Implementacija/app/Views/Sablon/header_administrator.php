@@ -58,7 +58,7 @@
                             <?= anchor("Administrator/prikaziPrijave", "Reports", ['class'=>'nav-link']) ?> &nbsp;&nbsp;
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="upgrades.html">Upgrade &nbsp;&nbsp;</a>
+                            <?= anchor("Administrator/prikaziUnapredjenja", "Upgrades", ['class'=>'nav-link']) ?> &nbsp;&nbsp;
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="/Administrator/addBook">Add Book &nbsp;&nbsp;</a>

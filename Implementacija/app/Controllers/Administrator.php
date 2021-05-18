@@ -100,7 +100,27 @@ class Administrator extends BaseController
      * @author Andrej Jokic 18/0247
      */
     public function prikaziUnapredjenja() {
-        
+        $korisnici = $this->doctrine->em->getRepository(Entities\User::class)->dohvatiKandidateZaUnapredjenje();
+        $this->prikaz('Zahtevi', ['korisnici'=>$korisnici, 'zahtev'=>'Upgrades']);
+    }
+    
+    /*
+     * Funkcija acceptUpgrades() - sluzi za unapredjivanje korisnika u privilegovanog
+     * @author Andrej Jokic 18/0247
+     */
+    public function acceptUpgrades() {
+        $user = $this->doctrine->em->getRepository(Entities\User::class)->findOneBy(['username'=>$this->request->getVar('username')]);
+        $user->setType('privileged_user');
+        $this->doctrine->em->flush();
+        return redirect()->to(site_url('Administrator/prikaziUnapredjenja')); 
+    }
+    
+        /*
+     * Funkcija acceptUpgrades() - sluzi za unapredjivanje korisnika u privilegovanog
+     * @author Andrej Jokic 18/0247
+     */
+    public function declineUpgrades() {
+        return redirect()->to(site_url('Administrator/prikaziUnapredjenja')); 
     }
     
     /*

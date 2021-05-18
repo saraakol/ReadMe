@@ -103,15 +103,20 @@ class User
     private $genres;
 
     /**
+     * @var \Doctrine\Common\Collections\Collection
+     *
+     * @ORM\OneToMany(targetEntity="App\Models\Entities\Userbooks", mappedBy="idu", orphanRemoval=true)
+     */
+    private $books;    
+    
+    /**
      * Constructor
      */
     public function __construct()
     {
         $this->genres = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->books = new \Doctrine\Common\Collections\ArrayCollection();
     }
-
-
-    
 
     /**
      * Get idu.
@@ -373,5 +378,49 @@ class User
     public function getGenres()
     {
         return $this->genres;
+    }
+    
+    /**
+     * Add books.
+     *
+     * @param \App\Models\Entities\Userbooks $book
+     *
+     * @return User
+     */
+    public function addBooks(\App\Models\Entities\Userbooks $book)
+    {
+        if (!$this->books->contains($book)) {
+            $this->books[] = $book;
+            $book->setIdu($this);
+        }
+        return $this;
+    }
+
+    /**
+     * Remove books.
+     *
+     * @param \App\Models\Entities\Userbooks $book
+     *
+     * @return boolean TRUE if this collection contained the specified element, FALSE otherwise.
+     */
+    public function removeBooks(\App\Models\Entities\Userbooks $book)
+    {
+        if ($this->books->contains($book)) {
+            if ($book->getIdu() == $this) {
+                $book->setIdu(null);
+            }
+            return $this->books->removeElement($book);
+        }
+        return false;
+    }
+
+    /**
+     * Get books.
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getBooks()
+    {
+        return $this->books;
     }
 }
