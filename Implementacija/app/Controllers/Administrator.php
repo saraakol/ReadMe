@@ -96,6 +96,14 @@ class Administrator extends BaseController
     }
     
     /*
+     * Funkcija prikaziUnapredjenja() - sluzi za dohvatanje svih korisnika koji su procitali vise od 100 knjiga i kandidati su za unapredjenje
+     * @author Andrej Jokic 18/0247
+     */
+    public function prikaziUnapredjenja() {
+        
+    }
+    
+    /*
      * funkcija za log outovanje sa sistema
      * Andrej Veselinovic 2018/0221
      */
