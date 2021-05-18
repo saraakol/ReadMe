@@ -34,44 +34,67 @@ class Administrator extends BaseController
     }
     
     /*
-     * Funkcija prikaziRegistracije() - sluzi za prikazivanje svih zahteva korisnika za registrovanje
+     * Funkcija prikaziRegistracije() - sluzi za dohvatanje svih korisnika koji su poslali zahtev za registraciju
      * @author Andrej Jokic 18/0247
      */
     public function prikaziRegistracije() {
-        $registracije = $this->doctrine->em->getRepository('\App\Models\Entities\User')->findBy(['status'=>'pending']);
-        $this->prikaz('Registracije', ['registracije'=>$registracije]);
+        $korisnici = $this->doctrine->em->getRepository(Entities\User::class)->findBy(['status'=>'pending']);
+        $this->prikaz('Zahtevi', ['korisnici'=>$korisnici, 'zahtev'=>'Registrations']);
     }
    
     /*
-     * Funkcija potvrdiRegistraciju() - sluzi za prihvatanje registracije korisnika, nakon cega korisnik postaje registrovan
+     * Funkcija acceptRegistrations() - sluzi za prihvatanje registracije korisnika, nakon cega korisnik postaje registrovan
      * @author Andrej Jokic 18/0247
      */
-    public function potvrdiRegistraciju() {
-//        $data['username'] = $this->request->getVar('username');
-//        $data['status'] = 'registered';
-//        $userModel = new UserModel();
-//        $userModel->postaviStatus($data);
-//        return redirect()->to(site_url('Administrator/prikaziRegistracije'));
-        $user = $this->doctrine->em->getRepository('\App\Models\Entities\User')->findOneBy(['username'=>$this->request->getVar('username')]);
+    public function acceptRegistrations() {
+        $user = $this->doctrine->em->getRepository(Entities\User::class)->findOneBy(['username'=>$this->request->getVar('username')]);
         $user->setStatus('registered');
         $this->doctrine->em->flush();
         return redirect()->to(site_url('Administrator/prikaziRegistracije'));
     }
     
     /*
-     * Funkcija odbijRegistraciju() - sluzi za odbijanje registracije korisnika, nakon cega korisnik ostaje gost sistema
-     * @author Andrej Jokic 18/0247 hahaha
+     * Funkcija declineRegistrations() - sluzi za odbijanje registracije korisnika, nakon cega korisnik ostaje gost sistema
+     * @author Andrej Jokic 18/0247
      */
-    public function odbijRegistraciju() {
-//        $userModel = new UserModel();
-//        $userModel->izbrisiKorisnika($this->request->getVar('username'));
-//        return redirect()->to(site_url('Administrator/prikaziRegistracije'));
-        $user = $this->doctrine->em->getRepository('\App\Models\Entities\User')->findOneBy(['username'=>$this->request->getVar('username')]);
+    public function declineRegistrations() {
+        $user = $this->doctrine->em->getRepository(Entities\User::class)->findOneBy(['username'=>$this->request->getVar('username')]);
         $this->doctrine->em->remove($user);
         $this->doctrine->em->flush();
         return redirect()->to(site_url('Administrator/prikaziRegistracije'));
     }
-        
+    
+    /*
+     * Funkcija prikaziPrijave() - sluzi za dohvatanje svih korisnika koji su prijavljeni od strane drugog korisnika 
+     * @author Andrej Jokic 18/0247
+     */
+    public function prikaziPrijave() {
+        $korisnici = $this->doctrine->em->getRepository(Entities\User::class)->findBy(['status'=>'reported']);
+        $this->prikaz('Zahtevi', ['korisnici'=>$korisnici, 'zahtev'=>'Reports']);
+    }
+      
+    /*
+     * Funkcija acceptReports() - sluzi za prihvatanje prijave korisnika, nakon cega se korisnik brise iz sistem
+     * @author Andrej Jokic 18/0247
+     */
+    public function acceptReports() {
+        $user = $this->doctrine->em->getRepository(Entities\User::class)->findOneBy(['username'=>$this->request->getVar('username')]);
+        $this->doctrine->em->remove($user);
+        $this->doctrine->em->flush();
+        return redirect()->to(site_url('Administrator/prikaziPrijave'));
+    }
+    
+    /*
+     * Funkcija declineReports() - sluzi za odbijanje prijave korisnika, nakon cega se tip korisnika u sistemu ne menja
+     * @author Andrej Jokic 18/0247
+     */
+    public function declineReports() {
+        $user = $this->doctrine->em->getRepository(Entities\User::class)->findOneBy(['username'=>$this->request->getVar('username')]);
+        $user->setStatus('registered');
+        $this->doctrine->em->flush();
+        return redirect()->to(site_url('Administrator/prikaziPrijave'));
+    }
+    
     /*
      * funkcija za log outovanje sa sistema
      * Andrej Veselinovic 2018/0221
