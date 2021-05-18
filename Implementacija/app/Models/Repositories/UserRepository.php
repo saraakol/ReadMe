@@ -33,5 +33,5 @@ class UserRepository extends EntityRepository{
             'brojKnjiga' => 1
         ]);
         return $query->getResult();
-    }
+    }   
 }

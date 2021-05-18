@@ -24,7 +24,7 @@ div.header{
     
     margin-bottom: -16px;
 }
-div.header button,div.header input[type="submit"]{ 
+div.header button,div.header input[type="submit"] { 
     
 width: 65px;
 height: 38px;
@@ -324,7 +324,7 @@ outline: none;
     outline: none;  
   }
 
-  .buttons button,input[type="submit"] {
+  .buttons button,input[type="submit"], #prekiniCilj {
     width: 90px;
     height: 30px;
     font-size: 15px;
