@@ -21,8 +21,9 @@
                 <!-- Ovde cu dodati ajax za prikaz pretplacenih i dodavanje/brisanje zanrova -->
                 <button>Add genre</button>
             </div>
-            <div class="col-sm-4 col-md-6 cilj">
-                <?php 
+            <?php 
+                if ($controller == 'Administrator' || $controller == 'Privilegovani') {
+                    echo '<div class="col-sm-4 col-md-6 cilj">';
                     if ($korisnik->getPersonalGoal() == null) {
                         echo "<button id='dodajCiljDugme'>Add Goal</button>";
                         echo "<div id='unosCilja'>";
@@ -36,9 +37,20 @@
                         echo "</div>";
                     } else {
                         //Progress bar
-                        echo "Progress bar to be...";
+                        echo "<h2 id='brojProcitanihCilj'></h2>";
+                        echo "<div class='break-column'></div>";
+                        echo "<div class='progress'>";
+                        //Ajax ce popuniti progress bar informacijama
+                        echo "  <input id='progressUsername' type='hidden' value='" . $korisnik->getUsername() . "'>";
+                        echo "  <input id='progressPersonalGoal' type='hidden' value='" . $korisnik->getPersonalGoal() . "'>";
+                        echo "  <div id='progressBarDiv' class='progress-bar progress-bar-striped bg-danger progress-bar-animated'>";
+                        echo "      <b id='progressBarText'></b>";
+                        echo "  </div>";
+                        echo "</div>";
                     }
-                ?>
+                    echo '</div>';                              
+                }
+            ?>
             </div>
         </div>
 

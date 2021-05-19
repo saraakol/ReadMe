@@ -1,7 +1,18 @@
 .cilj {
     display: flex;
+    flex-wrap: wrap;
     justify-content: center;
     align-items: center;
+}
+
+.cilj .progress {
+    width: 50%;
+}
+
+.break-column {
+  flex-basis: 100%;
+  width: 0;
+  height: 0;
 }
 
 .natpis .col-sm-4 {
