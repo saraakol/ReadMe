@@ -38,7 +38,7 @@ class Administrator extends BaseController
      * @author Andrej Jokic 18/0247
      */
     public function prikaziProfil() {
-        $user = $this->session->get("korisnik");
+        $user = $this->doctrine->em->getRepository(Entities\User::class)->findOneBy(['idu'=>$this->session->get("korisnik")->getIdu()]);
         $this->prikaz('Profil', ['korisnik'=>$user]);
     }
     

@@ -10,12 +10,12 @@ class KorisnikFilter implements FilterInterface
 {
     public function before(RequestInterface $request, $arguments = null)
     {
-        $session=session();
-        $korisnik=$session->get("korisnik");
-        if($korisnik==null)
-            return redirect()->to(site_url("Gost"));
-        if($korisnik->getType()=="administrator")
-            return redirect()->to(site_url("Administrator"));
+//        $session=session();
+//        $korisnik=$session->get("korisnik");
+//        if($korisnik==null)
+//            return redirect()->to(site_url("Gost"));
+//        if($korisnik->getType()=="administrator")
+//            return redirect()->to(site_url("Administrator"));
     }
 
     public function after(RequestInterface $request, ResponseInterface $response, $arguments = null)

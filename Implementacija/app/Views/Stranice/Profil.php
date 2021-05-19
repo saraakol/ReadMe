@@ -21,15 +21,36 @@
                 <!-- Ovde cu dodati ajax za prikaz pretplacenih i dodavanje/brisanje zanrova -->
                 <button>Add genre</button>
             </div>
-            <div class="col-sm-4 col-md-6 cilj">
-                <button>Add Goal</button>
-               <!-- <p><font style="font-size: 20px;">You have read 19 out of 35 books</font></p>
-                <div style="width: 100%;" align="center">
-                <div class="progress" style="width: 40%; height: 12%;" >
-                    <div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width:40%;">
-                      40%
-                    </div>
-                </div></div>-->
+            <?php 
+                if ($controller == 'Administrator' || $controller == 'Privilegovani') {
+                    echo '<div class="col-sm-4 col-md-6 cilj">';
+                    if ($korisnik->getPersonalGoal() == null) {
+                        echo "<button id='dodajCiljDugme'>Add Goal</button>";
+                        echo "<div id='unosCilja'>";
+                        echo "  <h3>Insert goal:</h3>";
+                        echo "  <form name='dodajCilj' method='get' action='" . site_url("$controller/dodajCilj") . "'>";
+                        echo "      <input type='hidden' name='username' value='" . $korisnik->getUsername() . "'>";
+                        echo "      <input type='number' name='brojKnjiga'><br><br>";
+                        echo "      <input type='submit' name='dodajCilj' value='Accept'>";
+                        echo "      <input type='button' id='prekiniCilj' value='Cancel'>";
+                        echo "  </form>";
+                        echo "</div>";
+                    } else {
+                        //Progress bar
+                        echo "<h2 id='brojProcitanihCilj'></h2>";
+                        echo "<div class='break-column'></div>";
+                        echo "<div class='progress'>";
+                        //Ajax ce popuniti progress bar informacijama
+                        echo "  <input id='progressUsername' type='hidden' value='" . $korisnik->getUsername() . "'>";
+                        echo "  <input id='progressPersonalGoal' type='hidden' value='" . $korisnik->getPersonalGoal() . "'>";
+                        echo "  <div id='progressBarDiv' class='progress-bar progress-bar-striped bg-danger progress-bar-animated'>";
+                        echo "      <b id='progressBarText'></b>";
+                        echo "  </div>";
+                        echo "</div>";
+                    }
+                    echo '</div>';                              
+                }
+            ?>
             </div>
         </div>
 

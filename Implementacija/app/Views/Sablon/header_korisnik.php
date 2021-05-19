@@ -46,7 +46,7 @@
                             <a class="nav-link" href="#">Browse &nbsp;&nbsp;</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="MyBooks.html">My Profile &nbsp;&nbsp;</a>
+                            <?= anchor("Administrator/prikaziProfil", "My Profile", ['class'=>'nav-link']) ?> &nbsp;&nbsp;
                         </li>
                     </ul>
                 </nav>

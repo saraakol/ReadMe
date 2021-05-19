@@ -30,7 +30,23 @@ class UserRepository extends EntityRepository{
             'tipKorisnika' => 'regular_user',
             'statusKorisnika' => 'registered',
             'tipKnjige' => 'read',
-            'brojKnjiga' => 1
+            'brojKnjiga' => 10
+        ]);
+        return $query->getResult();
+    }
+    
+    /*
+     * Funkcija dohvatiBrojProcitanihKnjiga() - sluzi za dohvatanje broja knjiga koje je procitao korisnik 
+     * @author Andrej Jokic 18/0247
+     */
+    public function dohvatiBrojProcitanihKnjiga($idu) {
+        $dql = "SELECT COUNT(b.idb) FROM App\Models\Entities\User u JOIN u.books b"
+                . " WHERE u.idu=:idu AND b.type=:tipKnjige"
+                . " GROUP BY u.idu";
+        $query = $this->getEntityManager()->createQuery($dql);
+        $query->setParameters([
+            'idu' => $idu,
+            'tipKnjige' => 'read'
         ]);
         return $query->getResult();
     }
