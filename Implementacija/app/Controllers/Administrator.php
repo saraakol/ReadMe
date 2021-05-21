@@ -43,6 +43,17 @@ class Administrator extends BaseController
     }
     
     /*
+     * Funkcija dodajCilj() - Dodaje licni cilj korisniku
+     * @author Andrej Jokic 18-0247
+     */
+    function dodajCilj() {
+        $user = $this->doctrine->em->getRepository(Entities\User::class)->findOneBy(['username'=>$this->request->getVar('username')]);
+        $user->setPersonalGoal($this->request->getVar('brojKnjiga'));
+        $this->doctrine->em->flush();
+        return redirect()->to(site_url('Administrator/prikaziProfil'));
+    }
+    
+    /*
      * Funkcija prikaziRegistracije() - sluzi za dohvatanje svih korisnika koji su poslali zahtev za registraciju
      * @author Andrej Jokic 18/0247
      */

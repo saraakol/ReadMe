@@ -48,15 +48,4 @@ class BaseController extends Controller
                 $this->session = session();
                 $this->doctrine= \Config\Services::doctrine();
 	}
-        
-        /*
-         * Funkcija dodajCilj() - Dodaje licni cilj korisniku
-         * @author Andrej Jokic 18-0247
-         */
-        function dodajCilj() {
-            $user = $this->doctrine->em->getRepository(Entities\User::class)->findOneBy(['username'=>$this->request->getVar('username')]);
-            $user->setPersonalGoal($this->request->getVar('brojKnjiga'));
-            $this->doctrine->em->flush();
-            return redirect()->to(site_url('Administrator/prikaziProfil'));
-        }
 }

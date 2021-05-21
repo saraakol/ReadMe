@@ -1,16 +1,4 @@
 <?php
-/*
-use App\Models\Entities;
-
-$doctrine= \App\Config\Services::doctrine();
-$username = $_GET['username'];
-
-$user = $doctrine->em->getRepository(Entities\User::class)->findOneBy(['username'=>$username]);
-$readNumber = $doctrine->em->getRepository(Entities\User::class)->dohvatiBrojProcitanihKnjiga($user->getIdu());
-$percentage = 100 * $readNumber / $user->getPersonalGoal();
-
-echo "$percentage";
- */
 
 $username = $_GET['username'];
 
