@@ -1,32 +1,78 @@
-.cilj {
+.flex-centrirano {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
     align-items: center;
-}
-
-.cilj .progress {
-    width: 50%;
-}
-
-.break-column {
-  flex-basis: 100%;
-  width: 0;
-  height: 0;
-}
-
-.natpis .col-sm-4 {
-    padding: 30px;
     text-align: center;
 }
 
+#dodajZanrLista, #ukloniZanrLista {
+    background-color: #FFCCCC;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border: 2px #99004C solid;
+}
+
+.mojiZanrovi button, .mojiZanrovi input[type=submit], .mojiZanrovi input[type=button] {
+    width: 150px !important;
+}
+
+.padding-small {
+    padding: 10px;
+}
+
+.flex-levo {
+    display: flex;
+    flex-wrap: wrap;
+}
+.margin-medium {
+    margin: 35px;
+}
+
+.margin-big {
+    margin: 50px;
+}
+
+.break-row {
+    flex-basis: 100%;
+    height: 0px;
+}
+
+.cilj {
+    width: 80%;
+    margin: 40px;
+}
+
+.cilj input[type=number] {
+    background-color: #FFCCCC;
+}
+
+#dodajCiljDugme, #prekiniCilj, #acceptCilj {
+    width: 100px !important;
+    margin-left: 20px;
+    margin-right: 20px;
+}
+
+.profil {
+    background-color: #ffeedf;
+    color: #99004C;
+}
+
+.profil img {
+    width: 60%;
+}
+
+.buttons a:hover {
+    color: #99004C;
+}
+
 .natpis img {
-    width: 70%;
+    width: 60%;
 }
 
 .natpis {
-	background: linear-gradient(to bottom, #ffeedf , white);
-	margin-bottom: -16px;
+    background: linear-gradient(to bottom, #ffeedf , white);
+    margin-bottom: -16px;
+    color: #99004C;
 }
 
 div.header{
@@ -35,7 +81,7 @@ div.header{
     
     margin-bottom: -16px;
 }
-div.header button,div.header input[type="submit"] { 
+div.header button,div.header input[type="submit"], .mojiZanrovi button, .mojiZanrovi input[type=submit], .mojiZanrovi input[type=button], #dodajCiljDugme, #prekiniCilj, #acceptCilj { 
     
 width: 65px;
 height: 38px;
@@ -335,7 +381,7 @@ outline: none;
     outline: none;  
   }
 
-  .buttons button,input[type="submit"], #prekiniCilj {
+  .buttons button,input[type="submit"] {
     width: 90px;
     height: 30px;
     font-size: 15px;

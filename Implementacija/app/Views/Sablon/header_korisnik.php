@@ -15,6 +15,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.9.1/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="/js/skripta1.js"></script>
 </head>
 <body>
     <div class="container-fluid">
@@ -46,7 +47,14 @@
                             <a class="nav-link" href="#">Browse &nbsp;&nbsp;</a>
                         </li>
                         <li class="nav-item">
-                            <?= anchor("Administrator/prikaziProfil", "My Profile", ['class'=>'nav-link']) ?> &nbsp;&nbsp;
+                            <?php 
+                            if (session()->get("korisnik")->getType() == 'regular_user') {
+                                echo anchor("Korisnik/prikaziProfil", "My Profile", ['class'=>'nav-link']);
+                            } else {
+                                echo anchor("Privilegovani/prikaziProfil", "My Profile", ['class'=>'nav-link']);
+                            }
+                            ?>
+                            &nbsp;&nbsp;
                         </li>
                     </ul>
                 </nav>

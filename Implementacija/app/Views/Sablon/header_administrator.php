@@ -44,7 +44,7 @@
                 <nav class="navbar navbar-expand-sm justify-content-center"">
                     <ul class="navbar-nav">
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Browse &nbsp;&nbsp;</a>
+                            <?= anchor("Administrator/", "Browse", ['class'=>'nav-link']) ?> &nbsp;&nbsp;
                         </li>
                         <li class="nav-item">
                             <?= anchor("Administrator/prikaziProfil", "My Profile", ['class'=>'nav-link']) ?> &nbsp;&nbsp;

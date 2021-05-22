@@ -2,6 +2,8 @@
 
 namespace App\Controllers;
 
+use App\Models\Entities;
+
 /*
  * Klasa Korisnik - implementira metode kontrolera koji sluzi za funkcionalnosti Korisnika(privilegovanog i registrovanog)
  * 
@@ -33,5 +35,46 @@ class Korisnik extends BaseController
     {
         $this->session->destroy();
         return redirect()->to(site_url("/"));
+    }
+    
+    /*
+     * Funkcija dodajPretplatu() - Sluzi za dodavanje pretplate korisnika na odredjeni zanr
+     * @author Andrej Jokic 18/0247
+     */
+    function dodajPretplatu() {
+        $user = $this->doctrine->em->getRepository(Entities\User::class)->findOneBy(["idu"=>$this->request->getVar('idU')]);
+        $selected = $this->request->getVar('list'); //Id zanra
+        $genre = $this->doctrine->em->getRepository(Entities\Genre::class)->findOneBy(['idg'=>$selected]);
+        
+        $user->addGenre($genre);     //Owner strana asocijacije
+        
+        $this->doctrine->em->flush();
+        
+        return redirect()->to(site_url('Korisnik/prikaziProfil'));
+    }
+    
+    /*
+     * Funkcija ukloniPretplatu() - Sluzi za uklanjanje pretplate korisnika na odredjeni zanr
+     * @author Andrej Jokic 18/0247
+     */
+    function ukloniPretplatu() {
+        $user = $this->doctrine->em->getRepository(Entities\User::class)->findOneBy(["idu"=>$this->request->getVar('idU')]);
+        $selected = $this->request->getVar('list'); //Id zanra
+        $genre = $this->doctrine->em->getRepository(Entities\Genre::class)->findOneBy(['idg'=>$selected]);
+        
+        $user->removeGenre($genre);     //Owner strana asocijacije
+        
+        $this->doctrine->em->flush();
+        
+        return redirect()->to(site_url('Korisnik/prikaziProfil'));
+    }
+    
+    /*
+     * Funkcija prikaziProfil() - Prikazuje p rofil korisnika
+     * @author Andrej Jokic 18/0247
+     */
+    public function prikaziProfil() {
+        $user = $this->doctrine->em->getRepository(Entities\User::class)->findOneBy(["idu"=>session()->get("korisnik")->getIdu()]);
+        $this->prikaz('Profil', ['korisnik'=>$user]);
     }
 }

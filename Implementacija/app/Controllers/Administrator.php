@@ -2,7 +2,6 @@
 
 namespace App\Controllers;
 
-
 use App\Models\Entities;
 
 /*
@@ -34,12 +33,59 @@ class Administrator extends BaseController
     }
     
     /*
-     * Funkcija prikaziProfil() - Prikazuje profil korisnika
+     * Funkcija dodajPretplatu() - Sluzi za dodavanje pretplate korisnika na odredjeni zanr
+     * @author Andrej Jokic 18/0247
+     */
+    function dodajPretplatu() {
+        $user = $this->doctrine->em->getRepository(Entities\User::class)->findOneBy(["idu"=>$this->request->getVar('idU')]);
+        $selected = $this->request->getVar('list'); //Id zanra
+        $genre = $this->doctrine->em->getRepository(Entities\Genre::class)->findOneBy(['idg'=>$selected]);
+        
+        $user->addGenre($genre);     //Owner strana asocijacije
+        
+        $this->doctrine->em->flush();
+        
+        return redirect()->to(site_url('Administrator/prikaziProfil'));
+    }
+    
+    /*
+     * Funkcija ukloniPretplatu() - Sluzi za uklanjanje pretplate korisnika na odredjeni zanr
+     * @author Andrej Jokic 18/0247
+     */
+    function ukloniPretplatu() {
+        $user = $this->doctrine->em->getRepository(Entities\User::class)->findOneBy(["idu"=>$this->request->getVar('idU')]);
+        $selected = $this->request->getVar('list'); //Id zanra
+        $genre = $this->doctrine->em->getRepository(Entities\Genre::class)->findOneBy(['idg'=>$selected]);
+        
+        $user->removeGenre($genre);     //Owner strana asocijacije
+        
+        $this->doctrine->em->flush();
+        
+        return redirect()->to(site_url('Administrator/prikaziProfil'));
+    }
+    
+    /*
+     * Funkcija prikaziProfil() - Prikazuje p rofil korisnika
      * @author Andrej Jokic 18/0247
      */
     public function prikaziProfil() {
-        $user = $this->doctrine->em->getRepository(Entities\User::class)->findOneBy(['idu'=>$this->session->get("korisnik")->getIdu()]);
+        $user = $this->doctrine->em->getRepository(Entities\User::class)->findOneBy(["idu"=>session()->get("korisnik")->getIdu()]);
         $this->prikaz('Profil', ['korisnik'=>$user]);
+    }
+    
+    /*
+     * Funkcija dodajCilj() - Dodaje licni cilj korisniku
+     * @author Andrej Jokic 18-0247
+     */
+    function dodajCilj() {
+        if ($this->request->getVar('brojKnjiga') <= 0) {
+            return redirect()->to(site_url('Administrator/prikaziProfil'));
+        }
+      
+        $user = $this->doctrine->em->getRepository(Entities\User::class)->findOneBy(["username"=>$this->request->getVar('username')]);
+        $user->setPersonalGoal($this->request->getVar('brojKnjiga'));
+        $this->doctrine->em->flush();
+        return redirect()->to(site_url('Administrator/prikaziProfil'));
     }
     
     /*
