@@ -61,6 +61,10 @@
     width: 60%;
 }
 
+.buttons a:hover {
+    color: #99004C;
+}
+
 .natpis img {
     width: 60%;
 }

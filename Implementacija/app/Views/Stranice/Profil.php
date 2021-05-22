@@ -65,7 +65,7 @@
                         <input class="margin-medium" type="submit" name="dodajZanr" value="Confirm">
                         <input class="prekiniZanr margin-medium" type="button" value="Cancel">
                     </form>
-                    <form id="ukloniZanrForma" class="flex-centrirano" name="ukloniZanr" method="get" action="">
+                    <form id="ukloniZanrForma" class="flex-centrirano" name="ukloniZanr" method="get" action=" <?= site_url("$controller/ukloniPretplatu"); ?>">
                         <select name="list" id="ukloniZanrLista">
                             <option value="disabled" selected disabled>Select genre</option>
                         </select>

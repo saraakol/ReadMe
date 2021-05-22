@@ -2,7 +2,6 @@
 
 namespace App\Controllers;
 
-
 use App\Models\Entities;
 
 /*
@@ -38,12 +37,27 @@ class Administrator extends BaseController
      * @author Andrej Jokic 18/0247
      */
     function dodajPretplatu() {
-        $user = session()->get('korisnik');
+        $user = $this->doctrine->em->getRepository(Entities\User::class)->findOneBy(["idu"=>$this->request->getVar('idU')]);
         $selected = $this->request->getVar('list'); //Id zanra
         $genre = $this->doctrine->em->getRepository(Entities\Genre::class)->findOneBy(['idg'=>$selected]);
         
         $user->addGenre($genre);     //Owner strana asocijacije
-        $genre->addUser($user);      //Nije neophodno
+        
+        $this->doctrine->em->flush();
+        
+        return redirect()->to(site_url('Administrator/prikaziProfil'));
+    }
+    
+    /*
+     * Funkcija ukloniPretplatu() - Sluzi za uklanjanje pretplate korisnika na odredjeni zanr
+     * @author Andrej Jokic 18/0247
+     */
+    function ukloniPretplatu() {
+        $user = $this->doctrine->em->getRepository(Entities\User::class)->findOneBy(["idu"=>$this->request->getVar('idU')]);
+        $selected = $this->request->getVar('list'); //Id zanra
+        $genre = $this->doctrine->em->getRepository(Entities\Genre::class)->findOneBy(['idg'=>$selected]);
+        
+        $user->removeGenre($genre);     //Owner strana asocijacije
         
         $this->doctrine->em->flush();
         
@@ -55,7 +69,7 @@ class Administrator extends BaseController
      * @author Andrej Jokic 18/0247
      */
     public function prikaziProfil() {
-        $user = session()->get("korisnik");
+        $user = $this->doctrine->em->getRepository(Entities\User::class)->findOneBy(["idu"=>session()->get("korisnik")->getIdu()]);
         $this->prikaz('Profil', ['korisnik'=>$user]);
     }
     
@@ -68,7 +82,7 @@ class Administrator extends BaseController
             return redirect()->to(site_url('Administrator/prikaziProfil'));
         }
       
-        $user = session()->get("korisnik");
+        $user = $this->doctrine->em->getRepository(Entities\User::class)->findOneBy(["username"=>$this->request->getVar('username')]);
         $user->setPersonalGoal($this->request->getVar('brojKnjiga'));
         $this->doctrine->em->flush();
         return redirect()->to(site_url('Administrator/prikaziProfil'));
