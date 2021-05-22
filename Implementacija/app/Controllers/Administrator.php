@@ -34,11 +34,28 @@ class Administrator extends BaseController
     }
     
     /*
-     * Funkcija prikaziProfil() - Prikazuje profil korisnika
+     * Funkcija dodajPretplatu() - Sluzi za dodavanje pretplate korisnika na odredjeni zanr
+     * @author Andrej Jokic 18/0247
+     */
+    function dodajPretplatu() {
+        $user = session()->get('korisnik');
+        $selected = $this->request->getVar('list'); //Id zanra
+        $genre = $this->doctrine->em->getRepository(Entities\Genre::class)->findOneBy(['idg'=>$selected]);
+        
+        $user->addGenre($genre);     //Owner strana asocijacije
+        $genre->addUser($user);      //Nije neophodno
+        
+        $this->doctrine->em->flush();
+        
+        return redirect()->to(site_url('Administrator/prikaziProfil'));
+    }
+    
+    /*
+     * Funkcija prikaziProfil() - Prikazuje p rofil korisnika
      * @author Andrej Jokic 18/0247
      */
     public function prikaziProfil() {
-        $user = $this->doctrine->em->getRepository(Entities\User::class)->findOneBy(['idu'=>$this->session->get("korisnik")->getIdu()]);
+        $user = session()->get("korisnik");
         $this->prikaz('Profil', ['korisnik'=>$user]);
     }
     
@@ -47,7 +64,11 @@ class Administrator extends BaseController
      * @author Andrej Jokic 18-0247
      */
     function dodajCilj() {
-        $user = $this->doctrine->em->getRepository(Entities\User::class)->findOneBy(['username'=>$this->request->getVar('username')]);
+        if ($this->request->getVar('brojKnjiga') <= 0) {
+            return redirect()->to(site_url('Administrator/prikaziProfil'));
+        }
+      
+        $user = session()->get("korisnik");
         $user->setPersonalGoal($this->request->getVar('brojKnjiga'));
         $this->doctrine->em->flush();
         return redirect()->to(site_url('Administrator/prikaziProfil'));

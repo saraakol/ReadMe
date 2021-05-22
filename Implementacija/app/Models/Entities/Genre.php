@@ -150,10 +150,8 @@ class Genre
     public function addUser(\App\Models\Entities\User $user)
     {
         if(!$this->users->contains($user)){
-            
-        
-        $this->users[] = $user;
-        $user->addGenre($this);
+            $this->users[] = $user;
+            $user->addGenre($this);
         }
         return $this;
     }
