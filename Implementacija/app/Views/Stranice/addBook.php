@@ -88,7 +88,7 @@
                 <br><br>
                 <input type="submit" value="Add">
                 &nbsp;
-                <a href="../Administrator/index"><input type="button" value="Cancel"></input>
+                <a href="../Korisnik/index"><input type="button" value="Cancel"></input>
                 <br>&nbsp;<br>&nbsp;
                 </form>
             </div>

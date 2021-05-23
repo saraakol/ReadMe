@@ -17,12 +17,12 @@
             echo "  </div>";
             echo "  <div class='col-lg-5 col-md-1' style='background-color: #ffeedf;'>&nbsp;</div>";
             echo "  <div class='col-lg-4 col-md-5' style='background-color: #ffeedf;text-align: center;padding-bottom: 1vh;'>";
-            echo "      <form name='potvrdiRegistraciju' method='get' action='" . site_url("$controller/accept" . "$zahtev") . "'>";
+            echo "      <form name='potvrdiRegistraciju' method='get' action='" . site_url("Administrator/accept" . "$zahtev") . "'>";
             echo "          <input type='hidden' name='username' value='" . $korisnik->getUsername() . "'>";
             echo "          <input type='submit' name='potvrdiRegistraciju' value='Accept'>";
             echo "      </form>";
             echo "      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;";
-            echo "      <form name='odbijRegistraciju' method='get' action='" . site_url("$controller/decline" . "$zahtev") . "'>";
+            echo "      <form name='odbijRegistraciju' method='get' action='" . site_url("Administrator/decline" . "$zahtev") . "'>";
             echo "          <input type='hidden' name='username' value='" . $korisnik->getUsername() . "'>";
             echo "          <input type='submit' name='odbijRegistraciju' value='Decline'>";
             echo "      </form>";            

@@ -75,12 +75,14 @@ class Gost extends BaseController
             return $this->login(["errors"=>["User with given username and password doesnt exist"]]);
         $this->session->set("korisnik",$user);
         
-        if($user->getType()==="administrator")
-            return redirect()->to(site_url("Administrator"));
-        else if($user->getType()==="privileged_user")
-            return redirect()->to(site_url("Privilegovani"));
-        else
-            return redirect()->to(site_url("Korisnik"));
+//        if($user->getType()==="administrator")
+//            return redirect()->to(site_url("Administrator"));
+//        else if($user->getType()==="privileged_user")
+//            return redirect()->to(site_url("Privilegovani"));
+//        else
+//            return redirect()->to(site_url("Korisnik"));
+        
+        return redirect()->to(site_url("Korisnik"));
     }
     /*
      * funkcija za potvrdu zahteva za registraciju novog korisnika
