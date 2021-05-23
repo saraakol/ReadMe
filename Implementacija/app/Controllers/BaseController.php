@@ -47,5 +47,21 @@ class BaseController extends Controller
 		// E.g.: $this->session = \Config\Services::session();
                 $this->session = session();
                 $this->doctrine= \Config\Services::doctrine();
-	}
+        }
+        
+        /*
+         * Funkcija prikaz - sluzi za prikazivanje stranice sa nepromenljivim(header,footer) i promenljivim delovima ( sredisnji deo stranice koji se razlikuje
+         * u zavistnosti od trenutne pozicije korisnika na sajtu)
+         * 
+         * @param string $page String
+         * @param string[] $data String[]
+         */
+        protected function prikaz($page, $data) {
+            //$data['controller'] = 'Korisnik';
+            $data['user_type'] = session()->get("korisnik")->getType();
+            echo view('Sablon/header_korisnik');
+            echo view("Stranice/$page", $data);
+            echo view('Sablon/footer');
+        }
+        
 }

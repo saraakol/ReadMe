@@ -44,18 +44,19 @@
                 <nav class="navbar navbar-expand-sm justify-content-center"">
                     <ul class="navbar-nav">
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Browse &nbsp;&nbsp;</a>
+                            <?= anchor("Korisnik/", "Browse", ['class'=>'nav-link']) ?> &nbsp;&nbsp;
                         </li>
                         <li class="nav-item">
-                            <?php 
-                            if (session()->get("korisnik")->getType() == 'regular_user') {
-                                echo anchor("Korisnik/prikaziProfil", "My Profile", ['class'=>'nav-link']);
-                            } else {
-                                echo anchor("Privilegovani/prikaziProfil", "My Profile", ['class'=>'nav-link']);
-                            }
-                            ?>
-                            &nbsp;&nbsp;
+                            <?= anchor("Korisnik/prikaziProfil", "My Profile", ['class'=>'nav-link']) ?> &nbsp;&nbsp;
                         </li>
+                        <?php
+                        if (session()->get("korisnik")->getType() == 'administrator') {
+                            echo anchor("Administrator/prikaziRegistracije", "Registrations", ['class'=>'nav-link']) . "&nbsp;&nbsp;";
+                            echo anchor("Administrator/prikaziPrijave", "Reports", ['class'=>'nav-link']) . "&nbsp;&nbsp;";
+                            echo anchor("Administrator/prikaziUnapredjenja", "Upgrades", ['class'=>'nav-link']) .  "&nbsp;&nbsp;";
+                            echo '<a class="nav-link" href="/Administrator/addBook">Add Book &nbsp;&nbsp;</a>';
+                        }
+                        ?>
                     </ul>
                 </nav>
                 <br>&nbsp;

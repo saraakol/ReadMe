@@ -23,7 +23,7 @@
             <div class="col-12">
                 <div class="header">           
                     <div class="col-md-12">
-                        <a href="/Administrator/logout"><button class="logoutbutton">Logout</button></a>
+                        <a href="/Korisnik/logout"><button class="logoutbutton">Logout</button></a>
                     </div>
                     <img src="/img/logo.png" alt="Logo">
                     <br>&nbsp;
@@ -38,16 +38,16 @@
 		</div>
             </div>
 	</div>
-         <div class="row">
+        <div class="row">
             <div class="col-12">
                 <br>&nbsp;<br>&nbsp;<br>&nbsp;
                 <nav class="navbar navbar-expand-sm justify-content-center"">
                     <ul class="navbar-nav">
                         <li class="nav-item">
-                            <?= anchor("Administrator/", "Browse", ['class'=>'nav-link']) ?> &nbsp;&nbsp;
+                            <?= anchor("Korisnik/", "Browse", ['class'=>'nav-link']) ?> &nbsp;&nbsp;
                         </li>
                         <li class="nav-item">
-                            <?= anchor("Administrator/prikaziProfil", "My Profile", ['class'=>'nav-link']) ?> &nbsp;&nbsp;
+                            <?= anchor("Korisnik/prikaziProfil", "My Profile", ['class'=>'nav-link']) ?> &nbsp;&nbsp;
                         </li>
                         <li class="nav-item">
                             <?= anchor("Administrator/prikaziRegistracije", "Registrations", ['class'=>'nav-link']) ?> &nbsp;&nbsp;

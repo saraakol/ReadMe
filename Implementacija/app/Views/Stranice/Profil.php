@@ -3,7 +3,13 @@
 
         <div class="row profil">
             <div class="col-4 flex-centrirano">
-                <img src="\img\drazen.jpg" class="img-thumbnail" alt="No photo">
+                <?php 
+                if ($korisnik->getImage() == null) {
+                    echo '<img src="\images\users\no_photo.jpg" class="img-thumbnail" alt="No photo">';
+                } else {
+                    echo '<img src="\images\users\\' . $korisnik->getIdu() . '.jpg" class="img-thumbnail" alt="No photo">';
+                }
+                ?>
             </div>
             <div class="col-4 flex-centrirano">
                 <h1><?= $korisnik->getFirstname() . " " . $korisnik->getLastname(); ?></h1>
@@ -24,12 +30,12 @@
             <div class="col-4 flex-centrirano">
                 <div class="cilj">
                     <?php 
-                    if ($controller == 'Administrator' || $controller == 'Privilegovani') {
+                    if ($user_type == 'administrator' || $user_type == 'privileged_user') {
                         if ($korisnik->getPersonalGoal() == null) {
                             echo "<button id='dodajCiljDugme'>Add Goal</button>";
                             echo "<div id='unosCilja'>";
                             echo "  <h3>Insert goal:</h3>";
-                            echo "  <form name='dodajCilj' method='get' action='" . site_url("$controller/dodajCilj") . "'>";
+                            echo "  <form name='dodajCilj' method='get' action='" . site_url("Privilegovani/dodajCilj") . "'>";
                             echo "      <input type='hidden' name='username' value='" . $korisnik->getUsername() . "'>";
                             echo "      <input type='number' name='brojKnjiga'><br><br>";
                             echo "      <input type='submit' id='acceptCilj' name='dodajCilj' value='Accept'>";
@@ -56,7 +62,7 @@
                 <div class="mojiZanrovi flex-centrirano">
                     <button class="margin-medium" id="dodajZanrDugme">Add genre</button>
                     <button class="margin-medium" id="ukloniZanrDugme">Remove genre</button>
-                    <form id="dodajZanrForma" class="flex-centrirano" name="dodajZanr" method="get" action="<?= site_url("$controller/dodajPretplatu"); ?>">
+                    <form id="dodajZanrForma" class="flex-centrirano" name="dodajZanr" method="get" action="<?= site_url("Korisnik/dodajPretplatu"); ?>">
                         <select name="list" id="dodajZanrLista">
                             <option value="disabled" selected disabled>Select genre</option>
                         </select>
@@ -65,7 +71,7 @@
                         <input class="margin-medium" type="submit" name="dodajZanr" value="Confirm">
                         <input class="prekiniZanr margin-medium" type="button" value="Cancel">
                     </form>
-                    <form id="ukloniZanrForma" class="flex-centrirano" name="ukloniZanr" method="get" action=" <?= site_url("$controller/ukloniPretplatu"); ?>">
+                    <form id="ukloniZanrForma" class="flex-centrirano" name="ukloniZanr" method="get" action=" <?= site_url("Korisnik/ukloniPretplatu"); ?>">
                         <select name="list" id="ukloniZanrLista">
                             <option value="disabled" selected disabled>Select genre</option>
                         </select>
