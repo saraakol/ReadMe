@@ -24,10 +24,14 @@ class Gost extends BaseController
     }
     
      /*
-     * Funkcija index - pocetna stranica za gosta
+     * /*
+     * funkcija za prikaz pocetne stranice
+     * Sara Kolarevic 2018/0388
      */
+     
     public function index() {
-        $this->prikaz('Pocetna', []);
+         $books = $this->doctrine->em->getRepository(Entities\Book::class)->findAll();
+         $this->prikaz('Pocetna', ['knjige'=>$books]);
     }
     
     /*
@@ -136,5 +140,13 @@ class Gost extends BaseController
 //        redirect()->to(site_url("Gost/index")); 
         return $this->index();
     }
-
+    /*
+     * /*
+     * funkcija za prikaz knjige
+     * Sara Kolarevic 2018/0388
+     */
+    public function prikaziKnjigu($id){
+        $book=$this->doctrine->em->getRepository(Entities\Book::class)->find($id);
+        $this->prikaz('Knjiga', ['knjiga'=>$book]);
+    }
 }

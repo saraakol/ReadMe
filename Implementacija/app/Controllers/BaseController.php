@@ -63,5 +63,8 @@ class BaseController extends Controller
             echo view("Stranice/$page", $data);
             echo view('Sablon/footer');
         }
-        
+        public function prikaziKnjigu($id){
+        $book=$this->doctrine->em->getRepository(Entities\Book::class)->find($id);
+        $this->prikaz('Knjiga', ['knjiga'=>$book]);
+    }
 }

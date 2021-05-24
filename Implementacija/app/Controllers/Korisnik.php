@@ -11,11 +11,21 @@ use App\Models\Entities;
  */
 class Korisnik extends BaseController
 {   
+    
+     protected function prikaz($page, $data) {
+        $data['controller'] = 'Korisnik';
+        echo view('Sablon/header_korisnik');
+        echo view("Stranice/$page", $data);
+        echo view('Sablon/footer');
+    }
      /*
-     * Funkcija index - pocetna stranica za gosta
+     * 
+     * funkcija za prikaz pocetne stranice
+     * Sara Kolarevic 2018/0388
      */
     public function index() {
-        $this->prikaz('Pocetna', []);
+        $books = $this->doctrine->em->getRepository(Entities\Book::class)->findAll();
+         $this->prikaz('Pocetna', ['knjige'=>$books]);
     }
     
     public function logout()
@@ -64,4 +74,14 @@ class Korisnik extends BaseController
         $user = $this->doctrine->em->getRepository(Entities\User::class)->findOneBy(["idu"=>session()->get("korisnik")->getIdu()]);
         $this->prikaz('Profil', ['korisnik'=>$user]);
     }
+    /*
+     * 
+     * funkcija za prikaz knjige
+     * Sara Kolarevic 2018/0388
+     */
+    public function prikaziKnjigu($id){
+        $book=$this->doctrine->em->getRepository(Entities\Book::class)->find($id);
+        $this->prikaz('Knjiga', ['knjiga'=>$book]);
+    }
+    
 }

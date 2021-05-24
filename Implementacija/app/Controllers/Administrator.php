@@ -156,5 +156,14 @@ class Administrator extends BaseController
 
         return $this->index();
     }
+    /*
+     * 
+     * funkcija za prikaz knjige
+     * Sara Kolarevic 2018/0388
+     */
+    public function prikaziKnjigu($id){
+        $book=$this->doctrine->em->getRepository(Entities\Book::class)->find($id);
+        $this->prikaz('Knjiga', ['knjiga'=>$book]);
+    }
 }
 
