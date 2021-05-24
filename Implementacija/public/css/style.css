@@ -127,7 +127,9 @@ div.header img{
     height:50px;
 }
 
-
+.naopackegradient{
+    background: linear-gradient(to bottom, #ffeedf , white);
+}
 .newreleases{
     text-align: center;
     font-size: 6vh;

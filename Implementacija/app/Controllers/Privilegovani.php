@@ -25,5 +25,14 @@ class Privilegovani extends BaseController
         $this->doctrine->em->flush();
         return redirect()->to(site_url('Korisnik/prikaziProfil'));
     }
+    /*
+     * 
+     * funkcija za prikaz knjige
+     * Sara Kolarevic 2018/0388
+     */
+    public function prikaziKnjigu($id){
+        $book=$this->doctrine->em->getRepository(Entities\Book::class)->find($id);
+        $this->prikaz('Knjiga', ['knjiga'=>$book]);
+    }
 }
 
