@@ -105,9 +105,16 @@ class User
     /**
      * @var \Doctrine\Common\Collections\Collection
      *
-     * @ORM\OneToMany(targetEntity="App\Models\Entities\Userbooks", mappedBy="idu", orphanRemoval=true)
+     * @ORM\OneToMany(targetEntity="App\Models\Entities\Userbooks", mappedBy="IdU", orphanRemoval=true)
      */
     private $books;    
+    
+    /**
+     * @var \Doctrine\Common\Collections\Collection
+     *
+     * @ORM\OneToMany(targetEntity="App\Models\Entities\Review", mappedBy="user")
+     */
+    private $reviews;
     
     /**
      * Constructor
@@ -116,6 +123,7 @@ class User
     {
         $this->genres = new \Doctrine\Common\Collections\ArrayCollection();
         $this->books = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->reviews=new \Doctrine\Common\Collections\ArrayCollection();
     }
 
     /**
@@ -422,5 +430,67 @@ class User
     public function getBooks()
     {
         return $this->books;
+    }
+
+    /**
+     * Add book.
+     *
+     * @param \App\Models\Entities\Userbooks $book
+     *
+     * @return User
+     */
+    public function addBook(\App\Models\Entities\Userbooks $book)
+    {
+        $this->books[] = $book;
+
+        return $this;
+    }
+
+    /**
+     * Remove book.
+     *
+     * @param \App\Models\Entities\Userbooks $book
+     *
+     * @return boolean TRUE if this collection contained the specified element, FALSE otherwise.
+     */
+    public function removeBook(\App\Models\Entities\Userbooks $book)
+    {
+        return $this->books->removeElement($book);
+    }
+
+    /**
+     * Add review.
+     *
+     * @param \App\Models\Entities\Review $review
+     *
+     * @return User
+     */
+    public function addReview(\App\Models\Entities\Review $review)
+    {
+        $this->reviews[] = $review;
+
+        return $this;
+    }
+
+    /**
+     * Remove review.
+     *
+     * @param \App\Models\Entities\Review $review
+     *
+     * @return boolean TRUE if this collection contained the specified element, FALSE otherwise.
+     */
+    public function removeReview(\App\Models\Entities\Review $review)
+    {
+        return $this->reviews->removeElement($review);
+    }
+
+    /**
+     * Get reviews.
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getReviews()
+    {
+        return $this->reviews;
     }
 }

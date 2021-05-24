@@ -11,6 +11,13 @@ use App\Models\Entities;
  */
 class Administrator extends BaseController
 {   
+    
+    /*
+     * Funkcija index - pocetna stranica za gosta
+     */
+    public function index() {
+        $this->prikaz('Pocetna', []);
+    }
     /*
      * Funkcija prikaziRegistracije() - sluzi za dohvatanje svih korisnika koji su poslali zahtev za registraciju
      * @author Andrej Jokic 18/0247
@@ -140,6 +147,9 @@ class Administrator extends BaseController
             $book->addGenre($genre);
             
         }
+        if(isset($_FILES["img"])){
+            $book->setImage("yes");
+        }
         $this->doctrine->em->persist($book);
         
         $this->doctrine->em->flush();
@@ -154,7 +164,7 @@ class Administrator extends BaseController
         }
         echo "<script>alert('Successfully created new book');</script>";
 
-        return $this->index();
+        return redirect()->to("/Korisnik");
     }
     /*
      * 
