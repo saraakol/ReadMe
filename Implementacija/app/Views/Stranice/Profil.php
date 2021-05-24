@@ -82,6 +82,56 @@
                     </form>
                 </div>
             </div>
+            
+            <div class="row">
+                <div class="col" style="background-color: #ffeedf">
+                    <h3>My books</h3>
+                    <br>
+                    
+                    <p style="font-size: 4vh;">All <input type="checkbox" name="" id="alllist" onclick="kliknutalisaall()" checked></p>                <!--dinamicki dodati i broj knjiga--> 
+                    <?php
+                    foreach ($all as $item) {
+                        echo '<figure class="figuree">';
+                        echo '<img src="'.$item->getIdu()->getImage().'" style="height: 20vh; width: 18; margin-left: 3vh;">';
+                        echo '<figcaption style="margin-top: 2vh;padding-right: 2vh;">'.$item->getIdb()->getName().'</figcaption>';
+                        echo '</figure>';
+                    }
+                    ?>
+                    
+                     <br>
+                <p style="font-size: 4vh;">Read <input type="checkbox" name="" id="readlist" onclick="kliknutalistaread()"></p>                <!--dinamicki dodati i broj knjiga--> 
+                <div class="readlist" style="display: none;">
+                    <?php
+                    foreach ($read as $item) {
+                        echo '<figure class="figuree">';
+                        echo '<img src="'.$item->getIdu()->getImage().'" style="height: 20vh; width: 18; margin-left: 3vh;">';
+                        echo '<figcaption style="margin-top: 2vh;padding-right: 2vh;">'.$item->getIdb()->getName().'</figcaption>';
+                        echo '</figure>';
+                    }
+                    ?>
+                </div>
+                  
+                  
+                <br>
+                <p style="font-size: 4vh;">Want to read <input type="checkbox"  name="" id="wantlist" onclick="kliknutalistawant()"></p>                <!--dinamicki dodati i broj knjiga--> 
+                <div class="wantlist" style="display: none;">
+                    
+                    <?php
+                    foreach ($wantToRead as $item) {
+                        echo '<figure class="figuree">';
+                        echo '<img src="'.$item->getIdu()->getImage().'" style="height: 20vh; width: 18; margin-left: 3vh;">';
+                        echo '<figcaption style="margin-top: 2vh;padding-right: 2vh;">'.$item->getIdb()->getName().'</figcaption>';
+                        echo '</figure>';
+                    }
+                    ?>
+                  
+                </div>
+                        
+                </div>
+                
+                
+             
+            </div>
         </div>
         
 

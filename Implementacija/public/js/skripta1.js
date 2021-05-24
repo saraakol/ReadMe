@@ -90,3 +90,36 @@ $(document).ready(function() {
         });
     });
 });
+
+function kliknutalistawant() {
+    let checkBox = document.getElementById("wantlist");
+
+    
+    if (checkBox.checked == false) {
+        $(".wantlist").hide();
+    } else {
+        $(".wantlist").show();
+    }
+}
+
+function kliknutalisaall() {
+    let checkBox = document.getElementById("alllist");
+
+    
+    if (checkBox.checked == false) {
+        $(".alllist").hide();
+    } else {
+        $(".alllist").show();
+    }
+}
+
+function kliknutalistaread() {
+    let checkBox = document.getElementById("readlist");
+
+    
+    if (checkBox.checked == false) {
+        $(".readlist").hide();
+    } else {
+        $(".readlist").show();
+    }
+}
