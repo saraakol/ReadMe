@@ -42,7 +42,7 @@
                     echo '<div class="col-lg-4 col-md-12 col-sm-12 ratearea" style="text-align: center;">';
                     echo "  <form name='formazaciljkomentare' method='' action=''>";
                     echo "<br><p class='rate' name='rate'><font style='font-size: 15px;'>Rate</font></p>";
-                    echo "<p class='review' name='review'><font style='font-size: 15px;'>Add review</font></p>";
+                    echo "<p class='review' name='review'><font style='font-size: 15px;'><a href='/{$controller}/addReview'>Add review</a></font></p>";
                     if($controller == 'Administrator' || $controller == 'Privilegovani') {
                     echo " <p class='quote' name='quote'><font style='font-size: 15px;'>Add quote</font></p>";
                     }

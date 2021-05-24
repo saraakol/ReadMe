@@ -66,13 +66,22 @@ class Book
      */
     private $genres;
 
+    
+    /**
+     * @var \Doctrine\Common\Collections\Collection
+     *
+     * @ORM\OneToMany(targetEntity="App\Models\Entities\Review", mappedBy="book")
+     */
+    private $reviews;
+    
+    
     /**
      * Constructor
      */
     public function __construct()
     {
         $this->genres = new \Doctrine\Common\Collections\ArrayCollection();
-        
+        $this->reviews = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
 
@@ -217,5 +226,41 @@ class Book
     public function getGenres()
     {
         return $this->genres;
+    }
+
+    /**
+     * Add review.
+     *
+     * @param \App\Models\Entities\Review $review
+     *
+     * @return Book
+     */
+    public function addReview(\App\Models\Entities\Review $review)
+    {
+        $this->reviews[] = $review;
+
+        return $this;
+    }
+
+    /**
+     * Remove review.
+     *
+     * @param \App\Models\Entities\Review $review
+     *
+     * @return boolean TRUE if this collection contained the specified element, FALSE otherwise.
+     */
+    public function removeReview(\App\Models\Entities\Review $review)
+    {
+        return $this->reviews->removeElement($review);
+    }
+
+    /**
+     * Get reviews.
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getReviews()
+    {
+        return $this->reviews;
     }
 }
