@@ -270,7 +270,13 @@ class Book
     {
         return $this->reviews;
     }
-    
+    /**
+     * Add quote.
+     *
+     * @param \App\Models\Entities\Quote $quote
+     *
+     * @return Book
+     */
     public function addQuote(\App\Models\Entities\Quote $quote)
     {
         $this->quotes[] = $quote;
@@ -291,7 +297,7 @@ class Book
     }
 
     /**
-     * Get reviews.
+     * Get quotes.
      *
      * @return \Doctrine\Common\Collections\Collection
      */

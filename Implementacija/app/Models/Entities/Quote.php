@@ -28,16 +28,7 @@ class Quote
      */
     private $text;
 
-    /**
-     * @var \App\Models\Entities\User
-     *
-     * @ORM\ManyToOne(targetEntity="App\Models\Entities\User")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="IdU", referencedColumnName="IdU")
-     * })
-     */
-    private $idu;
-
+    
     
     /**
      * @var \App\Models\Entities\User
@@ -54,16 +45,7 @@ class Quote
      * @ORM\JoinColumn(name="IdB",referencedColumnName="IdB")
      */
     private $book;
-    /**
-     * @var \App\Models\Entities\Book
-     *
-     * @ORM\ManyToOne(targetEntity="App\Models\Entities\Book")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="IdB", referencedColumnName="IdB")
-     * })
-     */
-    private $idb;
-
+    
 
 
     /**
