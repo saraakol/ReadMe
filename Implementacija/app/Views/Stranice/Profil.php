@@ -88,24 +88,27 @@
                     <h3>My books</h3>
                     <br>
                     
-                    <p style="font-size: 4vh;">All <input type="checkbox" name="" id="alllist" onclick="kliknutalisaall()" checked></p>                <!--dinamicki dodati i broj knjiga--> 
+                <p style="font-size: 4vh;">All <input type="checkbox" name="" id="alllist" onclick="kliknutalisaall()" checked></p>                <!--dinamicki dodati i broj knjiga--> 
+                <div class="alllist">
                     <?php
                     foreach ($all as $item) {
                         echo '<figure class="figuree">';
-                        echo '<img src="'.$item->getIdu()->getImage().'" style="height: 20vh; width: 18; margin-left: 3vh;">';
-                        echo '<figcaption style="margin-top: 2vh;padding-right: 2vh;">'.$item->getIdb()->getName().'</figcaption>';
+                        echo anchor("$controller/prikaziKnjigu/".$item->getIdb()->getIdb()."","<img src='". $item->getIdb()->getImage() .
+                                "' style=' width: 200px; margin-left: 3vh;'>");
+                        echo anchor("$controller/prikaziKnjigu/".$item->getIdb()->getIdb()."","<figcaption style='margin-top: 2vh;padding-right:2vh;'>".$item->getIdb()->getName()."</figcaption>");
                         echo '</figure>';
                     }
                     ?>
-                    
+                </div>
                      <br>
                 <p style="font-size: 4vh;">Read <input type="checkbox" name="" id="readlist" onclick="kliknutalistaread()"></p>                <!--dinamicki dodati i broj knjiga--> 
                 <div class="readlist" style="display: none;">
                     <?php
                     foreach ($read as $item) {
                         echo '<figure class="figuree">';
-                        echo '<img src="'.$item->getIdu()->getImage().'" style="height: 20vh; width: 18; margin-left: 3vh;">';
-                        echo '<figcaption style="margin-top: 2vh;padding-right: 2vh;">'.$item->getIdb()->getName().'</figcaption>';
+                        echo anchor("$controller/prikaziKnjigu/".$item->getIdb()->getIdb()."","<img src='". $item->getIdb()->getImage() .
+                                "' style=' width: 200px; margin-left: 3vh;'>");
+                        echo anchor("$controller/prikaziKnjigu/".$item->getIdb()->getIdb()."","<figcaption style='margin-top: 2vh;padding-right:2vh;'>".$item->getIdb()->getName()."</figcaption>");
                         echo '</figure>';
                     }
                     ?>
@@ -119,10 +122,11 @@
                     <?php
                     foreach ($wantToRead as $item) {
                         echo '<figure class="figuree">';
-                        echo '<img src="'.$item->getIdu()->getImage().'" style="height: 20vh; width: 18; margin-left: 3vh;">';
-                        echo '<figcaption style="margin-top: 2vh;padding-right: 2vh;">'.$item->getIdb()->getName().'</figcaption>';
-                        echo '</figure>';
-                    }
+                        echo anchor("$controller/prikaziKnjigu/".$item->getIdb()->getIdb()."","<img src='". $item->getIdb()->getImage() .
+                                "' style=' width: 200px; margin-left: 3vh;'>");
+                        echo anchor("$controller/prikaziKnjigu/".$item->getIdb()->getIdb()."","<figcaption style='margin-top: 2vh;padding-right:2vh;'>".$item->getIdb()->getName()."</figcaption>");
+                        echo '</figure>'; 
+                    }   
                     ?>
                   
                 </div>
@@ -131,6 +135,7 @@
                 
                 
              
+                
             </div>
         </div>
         

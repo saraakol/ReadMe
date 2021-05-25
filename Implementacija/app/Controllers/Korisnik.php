@@ -9,84 +9,142 @@ use App\Models\Entities;
  * 
  *  @version 1.0
  */
-class Korisnik extends BaseController
-{   
-    
-     protected function prikaz($page, $data) {
+
+class Korisnik extends BaseController {
+
+    protected function prikaz($page, $data) {
         $data['controller'] = 'Korisnik';
         echo view('Sablon/header_korisnik');
         echo view("Stranice/$page", $data);
         echo view('Sablon/footer');
     }
-     /*
+
+    /*
      * 
      * funkcija za prikaz pocetne stranice
      * Sara Kolarevic 2018/0388
      */
+
     public function index() {
         $books = $this->doctrine->em->getRepository(Entities\Book::class)->findAll();
-         $this->prikaz('Pocetna', ['knjige'=>$books]);
+        $this->prikaz('Pocetna', ['knjige' => $books]);
     }
-    
-    public function logout()
-    {
+
+    public function logout() {
         $this->session->destroy();
         return redirect()->to(site_url("/"));
     }
-    
+
     /*
      * Funkcija dodajPretplatu() - Sluzi za dodavanje pretplate korisnika na odredjeni zanr
      * @author Andrej Jokic 18/0247
      */
+
     function dodajPretplatu() {
-        $user = $this->doctrine->em->getRepository(Entities\User::class)->findOneBy(["idu"=>$this->request->getVar('idU')]);
+        $user = $this->doctrine->em->getRepository(Entities\User::class)->findOneBy(["idu" => $this->request->getVar('idU')]);
         $selected = $this->request->getVar('list'); //Id zanra
-        $genre = $this->doctrine->em->getRepository(Entities\Genre::class)->findOneBy(['idg'=>$selected]);
-        
+        $genre = $this->doctrine->em->getRepository(Entities\Genre::class)->findOneBy(['idg' => $selected]);
+
         $user->addGenre($genre);     //Owner strana asocijacije
-        
+
         $this->doctrine->em->flush();
-        
+
         return redirect()->to(site_url('Korisnik/prikaziProfil'));
     }
-    
+
     /*
      * Funkcija ukloniPretplatu() - Sluzi za uklanjanje pretplate korisnika na odredjeni zanr
      * @author Andrej Jokic 18/0247
      */
+
     function ukloniPretplatu() {
-        $user = $this->doctrine->em->getRepository(Entities\User::class)->findOneBy(["idu"=>$this->request->getVar('idU')]);
+        $user = $this->doctrine->em->getRepository(Entities\User::class)->findOneBy(["idu" => $this->request->getVar('idU')]);
         $selected = $this->request->getVar('list'); //Id zanra
-        $genre = $this->doctrine->em->getRepository(Entities\Genre::class)->findOneBy(['idg'=>$selected]);
-        
+        $genre = $this->doctrine->em->getRepository(Entities\Genre::class)->findOneBy(['idg' => $selected]);
+
         $user->removeGenre($genre);     //Owner strana asocijacije
-        
+
         $this->doctrine->em->flush();
-        
+
         return redirect()->to(site_url('Korisnik/prikaziProfil'));
     }
-    
+
     /*
      * Funkcija prikaziProfil() - Prikazuje p rofil korisnika
-     * @author Andrej Jokic 18/0247
+     * @author Andrej Jokic 18/0247,Nikola Krstic 18/0546
      */
+
     public function prikaziProfil() {
-        $user = $this->doctrine->em->getRepository(Entities\User::class)->findOneBy(["idu"=>session()->get("korisnik")->getIdu()]);
-        //$all = $this->doctrine->em->getRepository(Entities\Userbooks::class)->findBy(array('idu'=>$user.getIdU()));//???
-        $all =          $this->doctrine->em->getRepository(Entities\Userbooks::class)->dohvatiSve($user->getIdu());
-        $read =         $this->doctrine->em->getRepository(Entities\Userbooks::class)->dohvatiProcitane($user->getIdu());
-        $wantToRead =   $this->doctrine->em->getRepository(Entities\Userbooks::class)->dohvatiWantToRead($user->getIdu());
-        
-        $this->prikaz('Profil', ['korisnik'=>$user,'all'=>$all,'read'=>$read,'wantToRead'=>$wantToRead]);
+        $user = $this->doctrine->em->getRepository(Entities\User::class)->findOneBy(["idu" => session()->get("korisnik")->getIdu()]);
+        $all = $this->doctrine->em->getRepository(Entities\Userbooks::class)->dohvatiSve($user->getIdu());
+        $read = $this->doctrine->em->getRepository(Entities\Userbooks::class)->dohvatiProcitane($user->getIdu());
+        $wantToRead = $this->doctrine->em->getRepository(Entities\Userbooks::class)->dohvatiWantToRead($user->getIdu());
+
+        $this->prikaz('Profil', ['korisnik' => $user, 'all' => $all, 'read' => $read, 'wantToRead' => $wantToRead]);
     }
+
     /*
      * 
      * funkcija za prikaz knjige
      * Sara Kolarevic 2018/0388
      */
-    public function prikaziKnjigu($id){
-        $book=$this->doctrine->em->getRepository(Entities\Book::class)->find($id);
-        $this->prikaz('Knjiga', ['knjiga'=>$book]);
+
+    public function prikaziKnjigu($id) {
+        $book = $this->doctrine->em->getRepository(Entities\Book::class)->find($id);
+        $user = $this->doctrine->em->getRepository(Entities\User::class)->findOneBy(["idu" => session()->get("korisnik")->getIdu()]);
+        $this->prikaz('Knjiga', ['knjiga' => $book,'korisnik' => $user]);
+    }
+
+    /*
+     * Funkicja za dodavanje na Want to read listu
+     * @author Nikola Krstic 18/0546
+     */
+
+    public function dodajNaWantListu() {
+        $user = $this->doctrine->em->getRepository(Entities\User::class)->findOneBy(["idu" => session()->get("korisnik")->getIdu()]);
+        $book = $this->doctrine->em->getRepository(Entities\Book::class)->findOneBy(["idb" => $this->request->getVar('idb')]);
+        
+        $userbook = new Entities\Userbooks();
+        $userbook->setType("want-to-read");
+        $userbook->setIdb($book);
+        $userbook->setIdu($user);
+        
+        
+        $user->addBooks($userbook);
+        $this->doctrine->em->persist($userbook);
+        $this->doctrine->em->persist($user);
+        $this->doctrine->em->persist($book);
+        $this->doctrine->em->flush();
+        return $this->prikaz('Knjiga', ['knjiga' => $book]);
     }
     
+    /*
+     * Funkcija za dodavanje na All listu
+     * Nikola Krstic 18/0546
+     */
+
+    public function dodajNaReadListu() {
+        $user = $this->doctrine->em->getRepository(Entities\User::class)->findOneBy(["idu" => session()->get("korisnik")->getIdu()]);
+        $book = $this->doctrine->em->getRepository(Entities\Book::class)->findOneBy(["idb" => $this->request->getVar('idb')]);
+        
+        #foreach($user->getBooks() as $userbooktmp){
+           # if($userbooktmp->getIdb()->getIdb()==$book->getIdb()){
+            #    if($userbooktmp->getType()=="want-to-read"){
+             #       $this->doctrine->em->remove($userbooktmp);
+              #  }
+            #}
+        #}
+        $userbook = new Entities\Userbooks();
+        $userbook->setType("read");
+        $userbook->setIdb($book);
+        $userbook->setIdu($user);
+        
+        
+        $user->addBooks($userbook);
+        $this->doctrine->em->persist($userbook);
+        $this->doctrine->em->persist($user);
+        $this->doctrine->em->persist($book);
+        $this->doctrine->em->flush();
+        return $this->prikaz('Knjiga', ['knjiga' => $book]);
+    }
 }
