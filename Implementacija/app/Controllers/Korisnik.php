@@ -153,7 +153,7 @@ class Korisnik extends BaseController {
 
 
 
-
+     /*
      * Funkcija za dodavanje na All listu
      * Nikola Krstic 18/0546
      */
