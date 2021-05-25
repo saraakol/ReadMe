@@ -75,7 +75,7 @@ class Gost extends BaseController
             return $this->login(["errors"=>["User with given username and password doesnt exist"]]);
         if($user->getPassword()!==$this->request->getVar("password"))
             return $this->login(["errors"=>["User with given username and password doesnt exist"]]);
-        if($user->getStatus()!=="registered")
+        if($user->getStatus()==="pending")
             return $this->login(["errors"=>["User with given username and password doesnt exist"]]);
         $this->session->set("korisnik",$user);
         
@@ -117,7 +117,9 @@ class Gost extends BaseController
         $user->setUsername($this->request->getVar("username"));
         $user->setStatus("pending");
         $user->setType("regular_user");
-        
+        if(isset($_FILES["img"])){
+            $user->setImage("yes");
+        }
         try{
         $this->doctrine->em->persist($user);
         
