@@ -120,6 +120,7 @@ class Korisnik extends BaseController {
     
     /*
 
+
      * Funkcija za dodavanje na All listu
      * Nikola Krstic 18/0546
      */
@@ -149,48 +150,41 @@ class Korisnik extends BaseController {
         return $this->prikaz('Knjiga', ['knjiga' => $book]);
     }
 
-     * komentarisanje knjige
-     * Andrej Veselinovic 2018/0221
+
+
+
+
+     * Funkcija za dodavanje na All listu
+     * Nikola Krstic 18/0546
      */
-    public function addReview($poruka=null){
-        $referer=$_SERVER['HTTP_REFERER'];
-        echo view("Stranice/Review", ["poruka"=>$poruka,"referer"=>$referer,"controller"=>"korisnik"]);
+
+    public function dodajNaReadListu() {
+        $user = $this->doctrine->em->getRepository(Entities\User::class)->findOneBy(["idu" => session()->get("korisnik")->getIdu()]);
+        $book = $this->doctrine->em->getRepository(Entities\Book::class)->findOneBy(["idb" => $this->request->getVar('idb')]);
         
-    }
-    /*
-     * potvrdnjivanje komentarisanja knjige
-     * Andrej Veselinovic 2018/0221
-     */
-    public function registerAddReview(){
-//        $user=$this->session->get("korisnik");
-        $user=$this->doctrine->em->getRepository(\App\Models\Entities\User::class)->find($this->session->get("korisnik")->getIdu());
-        $referer=$this->request->getVar("hiddenBook");
-        $text=$this->request->getVar("review");
-        $args=explode("/",$referer);
-        $bookId=intval($args[count($args)-1]);
-        $book=$this->doctrine->em->getRepository(\App\Models\Entities\Book::class)->find($bookId);
-        $review=new \App\Models\Entities\Review();
-        $review->setBook($book);
-        $review->setUser($user);
-        $review->setText($text);
-        $user->addReview($review);
-        $book->addReview($review);
-//        echo $review->getBook()->getIdb();
-//        echo $review->getUser()->getIdu();
-//        echo $review->getText();
-//        echo count($args);
-        $this->doctrine->em->persist($review);      
+        #foreach($user->getBooks() as $userbooktmp){
+           # if($userbooktmp->getIdb()->getIdb()==$book->getIdb()){
+            #    if($userbooktmp->getType()=="want-to-read"){
+             #       $this->doctrine->em->remove($userbooktmp);
+              #  }
+            #}
+        #}
+        $userbook = new Entities\Userbooks();
+        $userbook->setType("read");
+        $userbook->setIdb($book);
+        $userbook->setIdu($user);
+        
+        
+        $user->addBooks($userbook);
+        $this->doctrine->em->persist($userbook);
+        $this->doctrine->em->persist($user);
+        $this->doctrine->em->persist($book);
         $this->doctrine->em->flush();
-        $path="";
-        for($i=3;$i<count($args);$i++)
-        {   
-            
-            $path=$path."/".$args[$i];
-        }
-
-        return redirect()->to(site_url($path));
-
+        return $this->prikaz('Knjiga', ['knjiga' => $book]);
     }
+	
+  
+
     
 
 
