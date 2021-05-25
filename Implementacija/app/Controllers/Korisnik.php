@@ -90,6 +90,7 @@ class Korisnik extends BaseController
     }
     
     /*
+
      * komentarisanje knjige
      * Andrej Veselinovic 2018/0221
      */
@@ -132,5 +133,38 @@ class Korisnik extends BaseController
         return redirect()->to(site_url($path));
 
     }
+
+
+     * Funkcija za dodavanje na All listu
+     * Nikola Krstic 18/0546
+     */
+
+    public function dodajNaReadListu() {
+        $user = $this->doctrine->em->getRepository(Entities\User::class)->findOneBy(["idu" => session()->get("korisnik")->getIdu()]);
+        $book = $this->doctrine->em->getRepository(Entities\Book::class)->findOneBy(["idb" => $this->request->getVar('idb')]);
+        
+        #foreach($user->getBooks() as $userbooktmp){
+           # if($userbooktmp->getIdb()->getIdb()==$book->getIdb()){
+            #    if($userbooktmp->getType()=="want-to-read"){
+             #       $this->doctrine->em->remove($userbooktmp);
+              #  }
+            #}
+        #}
+        $userbook = new Entities\Userbooks();
+        $userbook->setType("read");
+        $userbook->setIdb($book);
+        $userbook->setIdu($user);
+        
+        
+        $user->addBooks($userbook);
+        $this->doctrine->em->persist($userbook);
+        $this->doctrine->em->persist($user);
+        $this->doctrine->em->persist($book);
+        $this->doctrine->em->flush();
+        return $this->prikaz('Knjiga', ['knjiga' => $book]);
+    }
+	
+  
+
     
 }
