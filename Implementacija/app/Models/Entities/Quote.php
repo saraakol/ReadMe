@@ -38,6 +38,22 @@ class Quote
      */
     private $idu;
 
+    
+    /**
+     * @var \App\Models\Entities\User
+     *
+     * @ORM\ManyToOne(targetEntity="App\Models\Entities\User",inversedBy="quotes")
+     * @ORM\JoinColumn(name="IdU",referencedColumnName="IdU")
+     */
+    private $user;
+
+    /**
+     * @var \App\Models\Entities\Book
+     *
+     * @ORM\ManyToOne(targetEntity="App\Models\Entities\Book",inversedBy="quotes")
+     * @ORM\JoinColumn(name="IdB",referencedColumnName="IdB")
+     */
+    private $book;
     /**
      * @var \App\Models\Entities\Book
      *
@@ -130,5 +146,45 @@ class Quote
     public function getIdb()
     {
         return $this->idb;
+    }
+    public function setUser(\App\Models\Entities\User $user = null)
+    {
+        $this->user = $user;
+
+        return $this;
+    }
+
+    /**
+     * Get user.
+     *
+     * @return \App\Models\Entities\User|null
+     */
+    public function getUser()
+    {
+        return $this->user;
+    }
+
+    /**
+     * Set book.
+     *
+     * @param \App\Models\Entities\Book|null $book
+     *
+     * @return Review
+     */
+    public function setBook(\App\Models\Entities\Book $book = null)
+    {
+        $this->book = $book;
+
+        return $this;
+    }
+
+    /**
+     * Get book.
+     *
+     * @return \App\Models\Entities\Book|null
+     */
+    public function getBook()
+    {
+        return $this->book;
     }
 }

@@ -73,8 +73,12 @@ class Book
      * @ORM\OneToMany(targetEntity="App\Models\Entities\Review", mappedBy="book")
      */
     private $reviews;
-    
-    
+     /**
+     * @var \Doctrine\Common\Collections\Collection
+     *
+     * @ORM\OneToMany(targetEntity="App\Models\Entities\Quote", mappedBy="book")
+     */
+    private $quotes;
     /**
      * Constructor
      */
@@ -82,9 +86,12 @@ class Book
     {
         $this->genres = new \Doctrine\Common\Collections\ArrayCollection();
         $this->reviews = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->quotes = new \Doctrine\Common\Collections\ArrayCollection();
     }
+ 
 
-
+    
+  
 
     /**
      * Get idb.
@@ -262,5 +269,34 @@ class Book
     public function getReviews()
     {
         return $this->reviews;
+    }
+    
+    public function addQuote(\App\Models\Entities\Quote $quote)
+    {
+        $this->quotes[] = $quote;
+
+        return $this;
+    }
+
+    /**
+     * Remove quote.
+     *
+     * @param \App\Models\Entities\Quote $quote
+     *
+     * @return boolean TRUE if this collection contained the specified element, FALSE otherwise.
+     */
+    public function removeQuote(\App\Models\Entities\Quote $quote)
+    {
+        return $this->quotes->removeElement($quote);
+    }
+
+    /**
+     * Get reviews.
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getQuotes()
+    {
+        return $this->quotes;
     }
 }
