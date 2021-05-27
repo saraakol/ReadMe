@@ -45,6 +45,8 @@ class Privilegovani extends BaseController
             $user->setStatus('reported');
             $this->doctrine->em->flush();   
         }
+        
+        return redirect()->to($_SERVER['HTTP_REFERER']);
     }
 }
 

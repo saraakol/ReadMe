@@ -89,6 +89,12 @@ $(document).ready(function() {
             }
         });
     });
+    
+    //Kada se pritisne prijava korisnika, dugme se disabluje
+    $(".prijavaKorisnika").click(function () {
+        $(this).html("Reported");
+        $(this).prop("disabled", true);
+    });
 });
 
 function kliknutalistawant() {

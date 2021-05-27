@@ -1,3 +1,26 @@
+.komentari {
+    padding: 40px;
+}
+
+.komentari .prijavaKorisnika {
+    margin-left: 100px;
+    color: #99004C;
+    font-size: 20px;
+}
+
+.komentari h4 {
+    display: inline;
+}
+
+.komentari .komentar {
+    width: 70%;
+}
+
+.komentari img {
+    width: 70px;
+    height: 70px;
+}
+
 .flex-centrirano {
     display: flex;
     flex-wrap: wrap;

@@ -107,6 +107,32 @@
         </div>
 
         <div class="row">
+            <div class="col komentari">
+                <h1>Reviews:</h1>
+                <hr><br>
+                <?php 
+                foreach ($komentari as $komentar) {
+                    echo '<div class="media">';
+                    if ($komentar->getUser()->getImage() == null) {
+                        echo '<img src="\images\users\no_photo.jpg" class="mr-3" alt="No photo">';
+                    } else {
+                        echo '<img src="\images\users\\' . $komentar->getUser()->getIdu() . '.jpg" class="mr-3" alt="No photo">';
+                    }
+                    echo '  <div class="media-body">';
+                    echo '      <h4 class="mt-0">' . $komentar->getUser()->getUsername() . '</h4>';
+                    if ($user_type == 'privileged_user' || $user_type == 'administrator') {
+                        echo    anchor("Privilegovani/prijaviKorisnika/{$komentar->getUser()->getIdu()}", "Report user", ['class'=>'prijavaKorisnika']);
+                    }
+                    echo '      <p class="komentar">' . $komentar->getText() . '</p>';
+                    echo '  </div>';
+                    echo '</div>';
+                    echo '<br>';
+                }
+                ?>
+            </div>
+        </div>
+
+        <div class="row">
             <div class="col gradient"><br>&nbsp;</div>
         </div>
 
