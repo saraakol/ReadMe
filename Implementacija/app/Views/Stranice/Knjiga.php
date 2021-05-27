@@ -121,7 +121,8 @@
                     echo '  <div class="media-body">';
                     echo '      <h4 class="mt-0">' . $komentar->getUser()->getUsername() . '</h4>';
                     if ($user_type == 'privileged_user' || $user_type == 'administrator') {
-                        echo    anchor("Privilegovani/prijaviKorisnika/{$komentar->getUser()->getIdu()}", "Report user", ['class'=>'prijavaKorisnika']);
+                        //echo    anchor("Privilegovani/prijaviKorisnika/{$komentar->getUser()->getIdu()}", "Report user", ['class'=>'prijavaKorisnika']);
+                        echo "  <button class='prijavaKorisnika' value='" . site_url("Privilegovani/prijaviKorisnika/" . $komentar->getUser()->getIdu()) . "'>Report user</button>";
                     }
                     echo '      <p class="komentar">' . $komentar->getText() . '</p>';
                     echo '  </div>';
