@@ -432,7 +432,7 @@ class User
         return $this->books;
     }
 
-    /**
+        /**
      * Add book.
      *
      * @param \App\Models\Entities\Userbooks $book

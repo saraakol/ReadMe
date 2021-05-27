@@ -46,5 +46,4 @@ class UserbooksRepository extends EntityRepository{
         ]);
         return $query->getResult();
     }
-    
 }
