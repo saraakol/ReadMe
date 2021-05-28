@@ -95,10 +95,10 @@ class Korisnik extends BaseController {
      * Sara Kolarevic 2018/0388
      */
 
-    public function prikaziKnjigu($id) {
-        $book = $this->doctrine->em->getRepository(Entities\Book::class)->find($id);
+     public function prikaziKnjigu($id){
+        $book=$this->doctrine->em->getRepository(Entities\Book::class)->find($id);
         $user = $this->doctrine->em->getRepository(Entities\User::class)->findOneBy(["idu" => session()->get("korisnik")->getIdu()]);
-        $this->prikaz('Knjiga', ['knjiga' => $book,'korisnik' => $user, 'komentari' => $book->getReviews()]);
+        $this->prikaz('Knjiga', ['knjiga'=>$book, 'komentari' => $book->getReviews(),'korisnik' => $user,'citati' => $book->getQuotes()]);
     }
     
     /*

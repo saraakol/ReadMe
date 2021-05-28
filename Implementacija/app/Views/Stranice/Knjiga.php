@@ -116,10 +116,64 @@
             <br>&nbsp;
             <div class="col-lg-3">&nbsp;</div>
         </div>
-
+<div class="row"><div class="col " style="margin-left: 15px ;"><h1 id="prikazireviews">Reviews</h1> </div> </div>
+<div class="row" id="prikazkomentara">
+            <div class="col komentari">
+                
+                <hr><br>
+                <?php 
+                foreach ($komentari as $komentar) {
+                    echo '<div class="media">';
+                    if ($komentar->getUser()->getImage() == null) {
+                        echo '<img src="\images\users\no_photo.jpg" class="mr-3" alt="No photo">';
+                    } else {
+                        echo '<img src="\images\users\\' . $komentar->getUser()->getIdu() . '.jpg" class="mr-3" alt="No photo">';
+                    }
+                    echo '  <div class="media-body">';
+                    echo '      <h4 class="mt-0">' . $komentar->getUser()->getUsername() . '</h4>';
+                    if ($user_type == 'privileged_user' || $user_type == 'administrator') {
+                        //echo    anchor("Privilegovani/prijaviKorisnika/{$komentar->getUser()->getIdu()}", "Report user", ['class'=>'prijavaKorisnika']);
+                        echo "  <button class='prijavaKorisnika' value='" . site_url("Privilegovani/prijaviKorisnika/" . $komentar->getUser()->getIdu()) . "'>Report user</button>";
+                    }
+                    echo '      <p class="komentar">' . $komentar->getText() . '</p>';
+                    echo '  </div>';
+                    echo '</div>';
+                    echo '<br>';
+                }
+                ?>
+            </div>
+        </div>
+<div class="row"><div class="col " style="margin-left: 15px ;" >  <h1 id="prikaziquotes">Quotes</h1> </div> </div>
+        <div class="row" id="prikazcitata">
+          
+            <div class="col komentari">
+                
+                <hr><br>
+                <?php 
+                foreach ($citati as $citat) {
+                    echo '<div class="media">';
+                    if ($citat->getUser()->getImage() == null) {
+                        echo '<img src="\images\users\no_photo.jpg" class="mr-3" alt="No photo">';
+                    } else {
+                        echo '<img src="\images\users\\' . $citat->getUser()->getIdu() . '.jpg" class="mr-3" alt="No photo">';
+                    }
+                    echo '  <div class="media-body">';
+                    echo '      <h4 class="mt-0">' . $citat->getUser()->getUsername() . '</h4>';
+                    if ($user_type == 'privileged_user' || $user_type == 'administrator') {
+                        echo "  <button class='prijavaKorisnika' value='" . site_url("Privilegovani/prijaviKorisnika/" . $citat->getUser()->getIdu()) . "'>Report user</button>";
+                    }
+                    echo '      <p class="komentar">' . $citat->getText() . '</p>';
+                    echo '  </div>';
+                    echo '</div>';
+                    echo '<br>';
+                }
+                ?>
+            </div>
+        </div>
         <div class="row">
             <div class="col gradient"><br>&nbsp;</div>
         </div>
+
 
 
 
