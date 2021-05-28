@@ -149,8 +149,7 @@ class Gost extends BaseController
      */
     public function prikaziKnjigu($id){
         $book=$this->doctrine->em->getRepository(Entities\Book::class)->find($id);
-        $user = $this->doctrine->em->getRepository(Entities\User::class)->findOneBy(["idu" => session()->get("korisnik")->getIdu()]);
-        $this->prikaz('Knjiga', ['knjiga'=>$book, 'komentari' => $book->getReviews(),'korisnik' => $user]);
+        $this->prikaz('Knjiga', ['knjiga'=>$book, 'komentari' => $book->getReviews()]);
     }
     
     /*
