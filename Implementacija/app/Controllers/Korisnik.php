@@ -112,8 +112,8 @@ class Korisnik extends BaseController
           $quote->setBook($book);
           $quote->setUser($user);
           $quote->setText($text);
-       // $user->addQuote($quote);
-         // $book->addQuote($quote);
+        $user->addQuote($quote);
+          $book->addQuote($quote);
           $this->doctrine->em->persist($quote);      
           $this->doctrine->em->flush();
           $path="";

@@ -118,7 +118,7 @@ class User
      /**
      * @var \Doctrine\Common\Collections\Collection
      *
-     * @ORM\OneToMany(targetEntity="App\Models\Entities\Quote", mappedBy="book")
+     * @ORM\OneToMany(targetEntity="App\Models\Entities\Quote", mappedBy="user")
      */
     private $quotes;
     /**
@@ -504,7 +504,7 @@ class User
      *
      * @param \App\Models\Entities\Quote $quote
      *
-     * @return Book
+     * @return User
      */
     public function addQuote(\App\Models\Entities\Quote $quote)
     {

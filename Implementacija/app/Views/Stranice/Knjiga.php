@@ -43,7 +43,7 @@
                     echo "  <form name='formazaciljkomentare' method='' action=''>";
                     echo "<br><p class='rate' name='rate'><font style='font-size: 15px;'>Rate</font></p>";
                     echo "<p class='review' name='review'><font style='font-size: 15px;'><a href='/{$controller}/addReview'>Add review</a></font></p>";
-                    if(true) { //$controller == 'Administrator' || $controller == 'Privilegovani'
+                    if($controller == 'Administrator' || $controller == 'Privilegovani') { 
                     echo " <p class='quote' name='quote'><font style='font-size: 15px;'><a href='/{$controller}/addQuote'>Add quote</a></font></p>";
                     }
                     echo "  </form>";

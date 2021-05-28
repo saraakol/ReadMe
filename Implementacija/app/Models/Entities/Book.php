@@ -301,7 +301,7 @@ class Book
      *
      * @return \Doctrine\Common\Collections\Collection
      */
-    public function getQuotes()
+   public function getQuotes()
     {
         return $this->quotes;
     }

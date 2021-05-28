@@ -129,6 +129,13 @@ class Quote
     {
         return $this->idb;
     }
+    /**
+     * Set user.
+     *
+     * @param \App\Models\Entities\User|null $user
+     *
+     * @return Quote
+     */
     public function setUser(\App\Models\Entities\User $user = null)
     {
         $this->user = $user;
@@ -146,12 +153,14 @@ class Quote
         return $this->user;
     }
 
+    
+    
     /**
      * Set book.
      *
      * @param \App\Models\Entities\Book|null $book
      *
-     * @return Review
+     * @return Quote
      */
     public function setBook(\App\Models\Entities\Book $book = null)
     {
