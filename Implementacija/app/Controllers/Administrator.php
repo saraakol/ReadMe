@@ -173,7 +173,8 @@ class Administrator extends BaseController
      */
      public function prikaziKnjigu($id){
         $book=$this->doctrine->em->getRepository(Entities\Book::class)->find($id);
-        $this->prikaz('Knjiga', ['knjiga'=>$book, 'komentari' => $book->getReviews()]);
+        $user = $this->doctrine->em->getRepository(Entities\User::class)->findOneBy(["idu" => session()->get("korisnik")->getIdu()]);
+        $this->prikaz('Knjiga', ['knjiga'=>$book, 'komentari' => $book->getReviews(),'korisnik' => $user]);
     }
 }
 

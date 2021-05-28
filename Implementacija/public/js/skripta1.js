@@ -111,3 +111,14 @@ function kliknutalistaread() {
         $(".readlist").show();
     }
 }
+
+function kliknutalistasubscribed(){
+    let checkBox = document.getElementById("subscribedlist");
+
+    
+    if (checkBox.checked == false) {
+        $(".subscribe").hide();
+    } else {
+        $(".subscribe").show();
+    }
+}
