@@ -11,18 +11,14 @@ $(document).ready(function() {
         $("#dodajCiljDugme").show();
     });
     
-    //Preko ajax-a dohvatamo podatke iz baze o procitanim knjigama korisnika i popunjavamo progress bar
+    //Popunjavamo progress bar kada se stranica ucita
     $(".progress").ready(function() {
-        let username = $("#progressUsername").val();
         let personalGoal = $("#progressPersonalGoal").val();
-        $.ajax({
-            type: "GET",
-            url: "\\php\\personalGoal.php?username=" + username
-        }).done(function(result) {
-            $("#brojProcitanihCilj").prepend(result + "/" + personalGoal + " books read!");
-            $("#progressBarDiv").css("width", Math.floor((result * 100) / personalGoal) + "%");
-            $("#progressBarText").append(Math.floor((result * 100) / personalGoal) + "%");
-        });
+        let read = $(this).find("input[type=hidden]").val();
+
+        $("#brojProcitanihCilj").prepend(read + "/" + personalGoal + " books read!");
+        $("#progressBarDiv").css("width", Math.floor((read * 100) / personalGoal) + "%");
+        $("#progressBarText").append(Math.floor((read * 100) / personalGoal) + "%");
     });
     
     //Na pocetku su zabranjena dugmad za dodavanje/uklanjane zanrova jer nije selektovan ni jedan zanr
@@ -102,7 +98,20 @@ $(document).ready(function() {
         }).done(function(result) {
             button.html("Reported");
         });
-        
+    });
+    
+    //Kada administrator prihvati zahtev, dugme se disabluje i nakon obrade zahteva, zahtev se uklanja
+    $(".acceptZahtev, .declineZahtev").click(function() {
+        $(this).prop("disabled", true);
+        $(this).val("Processing..");
+        let url = $(this).parent().find("input[type=hidden]").val();
+        let thisOne = $(this);
+        $.ajax({
+            type: "GET",
+            url: url
+        }).done(function(result) {
+            $(thisOne).parent().parent().parent().remove();
+        });
     });
 });
 

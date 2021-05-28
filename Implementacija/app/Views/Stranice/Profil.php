@@ -40,14 +40,14 @@
                             echo "      <input type='number' name='brojKnjiga'><br><br>";
                             echo "      <input type='submit' id='acceptCilj' name='dodajCilj' value='Accept'>";
                             echo "      <input type='button' id='prekiniCilj' value='Cancel'>";
-                            echo "  </form>";
+                            echo "  </form>";                            
                             echo "</div>";
                         } else {
                             //Progress bar
                             echo "<h2 id='brojProcitanihCilj'></h2>";
-                            echo "<div class='break-row'></div>";
+                            echo "<div id='breakCilj' class='break-row'></div>";
                             echo "<div class='progress'>";
-                            //Ajax ce popuniti progress bar informacijama
+                            echo "  <input type='hidden' value='" . $brProcitanih . "'>";
                             echo "  <input id='progressUsername' type='hidden' value='" . $korisnik->getUsername() . "'>";
                             echo "  <input id='progressPersonalGoal' type='hidden' value='" . $korisnik->getPersonalGoal() . "'>";
                             echo "  <div id='progressBarDiv' class='progress-bar progress-bar-striped bg-danger progress-bar-animated'>";
