@@ -147,10 +147,9 @@ class Gost extends BaseController
      * funkcija za prikaz knjige
      * Sara Kolarevic 2018/0388
      */
-    public function prikaziKnjigu($id){
+   public function prikaziKnjigu($id){
         $book=$this->doctrine->em->getRepository(Entities\Book::class)->find($id);
-        
-        $this->prikaz('Knjiga', ['knjiga'=>$book, 'komentari' => $book->getReviews()]);
+        $this->prikaz('Knjiga', ['knjiga'=>$book, 'komentari' => $book->getReviews(),'citati' => $book->getQuotes()]);
     }
     
     /*
