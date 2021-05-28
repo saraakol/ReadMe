@@ -97,55 +97,94 @@
                 <div class="col" style="background-color: #ffeedf">
                     <h3>My books</h3>
                     <br>
+
+                    <br>
+                    <p style="font-size: 4vh;">All (<?= sizeof($all);?>)<input type="checkbox" id="alllist" onclick="kliknutalisaall()" checked></p>
+                    <div class="alllist">
+                        <?php
+                        foreach ($all as $item) {
+                            echo '<figure class="figuree">';
+                            echo anchor("$controller/prikaziKnjigu/".$item->getIdb()->getIdb()."","<img src='/images/books/". $item->getIdb()->getIdb() .
+                                    ".jpg' style=' width: 200px; margin-left: 3vh;'>");
+                            echo anchor("$controller/prikaziKnjigu/".$item->getIdb()->getIdb()."","<figcaption style='margin-top: 2vh;padding-right:2vh;'>".$item->getIdb()->getName()."</figcaption>");
+                            echo '</figure>';
+                        }
+                        ?>
+                    </div>
+
+                    <br>
+                    <p style="font-size: 4vh;">Read (<?= sizeof($read);?>)<input type="checkbox" id="readlist" onclick="kliknutalistaread()"></p>
+                    <div class="readlist" style="display: none;">
+                        <?php
+                        foreach ($read as $item) {
+                            echo '<figure class="figuree">';
+                            echo anchor("$controller/prikaziKnjigu/".$item->getIdb()->getIdb()."","<img src='/images/books/". $item->getIdb()->getIdb() .
+                                    ".jpg' style=' width: 200px; margin-left: 3vh;'>");
+                            echo anchor("$controller/prikaziKnjigu/".$item->getIdb()->getIdb()."","<figcaption style='margin-top: 2vh;padding-right:2vh;'>".$item->getIdb()->getName()."</figcaption>");
+                            echo '</figure>';
+                        }
+                        ?>
+                    </div>
+
+
+                    <br>
+                    <p style="font-size: 4vh;">Want to read (<?= sizeof($wantToRead);?>)<input type="checkbox" id="wantlist" onclick="kliknutalistawant()"></p> 
+                    <div class="wantlist" style="display: none;">
+
+                        <?php
+                        foreach ($wantToRead as $item) {
+                            echo '<figure class="figuree">';
+                            echo anchor("$controller/prikaziKnjigu/".$item->getIdb()->getIdb()."","<img src='/images/books/". $item->getIdb()->getIdb() .
+                                    ".jpg' style=' width: 200px; margin-left: 3vh;'>");
+                            echo anchor("$controller/prikaziKnjigu/".$item->getIdb()->getIdb()."","<figcaption style='margin-top: 2vh;padding-right:2vh;'>".$item->getIdb()->getName()."</figcaption>");
+                            echo '</figure>'; 
+                        }   
+                        ?>
+                    </div>
                     
-                <p style="font-size: 4vh;">All <input type="checkbox" name="" id="alllist" onclick="kliknutalisaall()" checked></p>                <!--dinamicki dodati i broj knjiga--> 
-                <div class="alllist">
-                    <?php
-                    foreach ($all as $item) {
-                        echo '<figure class="figuree">';
-                        echo anchor("$controller/prikaziKnjigu/".$item->getIdb()->getIdb()."","<img src='". $item->getIdb()->getImage() .
-                                "' style=' width: 200px; margin-left: 3vh;'>");
-                        echo anchor("$controller/prikaziKnjigu/".$item->getIdb()->getIdb()."","<figcaption style='margin-top: 2vh;padding-right:2vh;'>".$item->getIdb()->getName()."</figcaption>");
-                        echo '</figure>';
-                    }
-                    ?>
-                </div>
-                     <br>
-                <p style="font-size: 4vh;">Read <input type="checkbox" name="" id="readlist" onclick="kliknutalistaread()"></p>                <!--dinamicki dodati i broj knjiga--> 
-                <div class="readlist" style="display: none;">
-                    <?php
-                    foreach ($read as $item) {
-                        echo '<figure class="figuree">';
-                        echo anchor("$controller/prikaziKnjigu/".$item->getIdb()->getIdb()."","<img src='". $item->getIdb()->getImage() .
-                                "' style=' width: 200px; margin-left: 3vh;'>");
-                        echo anchor("$controller/prikaziKnjigu/".$item->getIdb()->getIdb()."","<figcaption style='margin-top: 2vh;padding-right:2vh;'>".$item->getIdb()->getName()."</figcaption>");
-                        echo '</figure>';
-                    }
-                    ?>
-                </div>
-                  
-                  
-                <br>
-                <p style="font-size: 4vh;">Want to read <input type="checkbox"  name="" id="wantlist" onclick="kliknutalistawant()"></p>                <!--dinamicki dodati i broj knjiga--> 
-                <div class="wantlist" style="display: none;">
-                    
-                    <?php
-                    foreach ($wantToRead as $item) {
-                        echo '<figure class="figuree">';
-                        echo anchor("$controller/prikaziKnjigu/".$item->getIdb()->getIdb()."","<img src='". $item->getIdb()->getImage() .
-                                "' style=' width: 200px; margin-left: 3vh;'>");
-                        echo anchor("$controller/prikaziKnjigu/".$item->getIdb()->getIdb()."","<figcaption style='margin-top: 2vh;padding-right:2vh;'>".$item->getIdb()->getName()."</figcaption>");
-                        echo '</figure>'; 
-                    }   
-                    ?>
-                  
-                </div>
-                        
-                </div>
-                
-                
-             
-                
+                    <p style="font-size: 4vh;">Subscribed genres <input type="checkbox" id="subscribedlist" onclick="kliknutalistasubscribed()"></p>
+                    <div class="subscribe" style="display: none;">
+
+                        <?php
+                        $flag=false;
+                        $zanroviKorisnika = $korisnik->getGenres();                                                         //pretplaceni zanrovi korisnika
+                        /*
+                        foreach ($knjige as $knjiga) {
+                            $zanroviKnjige = $knjiga->getGenres();
+                            //$presek=array_intersect($zanroviKnjige,$zanroviKorisnika);
+                            
+                            //$arr3 = array_uintersect($zanroviKorisnika, $zanroviKnjige, function($a, $b) {
+                                //return strcmp($a->getName(), $b->getName());
+                            //});
+                             
+                            
+                            
+                            //if(sizeof($arr3)>0){
+                                echo '<figure class="figuree">';
+                                echo anchor("$controller/prikaziKnjigu/".$knjiga->getIdb()."","<img src='/images/books/". $knjiga->getIdb().".jpg' style=' width: 200px; margin-left: 3vh;'>");
+                                echo anchor("$controller/prikaziKnjigu/".$knjiga->getIdb()."","<figcaption style='margin-top: 2vh;padding-right:2vh;'>".$knjiga->getName()."</figcaption>");
+                                echo '</figure>';
+                            //}
+                            
+                            foreach($zanroviKnjige as $zanrKnjige){
+                                foreach ($zanroviKorisnika as $zanrKorisnika){
+                                    if($zanrKnjige->getName()==$zanrKorisnika->getName()){
+                                        echo '<figure class="figuree">';
+                                        echo anchor("$controller/prikaziKnjigu/".$knjiga->getIdb()."","<img src='/images/books/". $knjiga->getIdb().".jpg' style=' width: 200px; margin-left: 3vh;'>");
+                                        echo anchor("$controller/prikaziKnjigu/".$knjiga->getIdb()."","<figcaption style='margin-top: 2vh;padding-right:2vh;'>".$knjiga->getName()."</figcaption>");
+                                        echo '</figure>';
+                                        $flag=true;
+                                    }
+                                }
+                            }
+                            
+                             
+                        }   
+                         * 
+                         */
+                        ?>
+                    </div>
+                </div>   
             </div>
         </div>
         

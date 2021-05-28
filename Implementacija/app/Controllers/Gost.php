@@ -149,7 +149,63 @@ class Gost extends BaseController
      */
     public function prikaziKnjigu($id){
         $book=$this->doctrine->em->getRepository(Entities\Book::class)->find($id);
-        $this->prikaz('Knjiga', ['knjiga'=>$book, 'komentari' => $book->getReviews()]);
+        $user = $this->doctrine->em->getRepository(Entities\User::class)->findOneBy(["idu" => session()->get("korisnik")->getIdu()]);
+        $this->prikaz('Knjiga', ['knjiga'=>$book, 'komentari' => $book->getReviews(),'korisnik' => $user]);
+    }
+    
+    /*
+     * funkcija za filtriranje
+     * Nikola Krstic 18/0546
+     */
+    
+    public function filter(){
+        //$knjige = $this->session->get("knjige");//pocetni niz knjiga
+        $knjige = $this->doctrine->em->getRepository(Entities\Book::class)->findAll();
+
+
+        if(isset($_POST['submit']))
+            $selected = $_POST['filter']; 
+
+
+        $noveKnjige = [];
+        foreach($knjige as $knjiga){
+
+            $genres = $knjiga->getGenres();
+            foreach($genres as $genre){
+                if($genre->getName()== $selected)
+                    $noveKnjige[] = $knjiga;
+            }
+        }
+        $this->prikaz('Pocetna', ['knjige' => $noveKnjige]);  
+    }
+    
+    /*
+     * funkcija za sortiranje
+     * Nikola Krstic 18/0546
+     */
+    
+    public function sort(){
+        //$knjige = $this->session->get("knjige");//pocetni niz knjiga
+        $knjige = $this->doctrine->em->getRepository(Entities\Book::class)->findAll();
+        
+        if(isset($_POST['submit']))
+            $selected = $_POST['sort'];
+        
+        
+        switch ($selected){
+            case "A-Z":
+                usort($knjige, function($a, $b){
+                    return strcmp($a->getName(), $b->getName());
+                });
+                break;
+            case "Z-A":
+                usort($knjige, function($a, $b){
+                    return strcmp($b->getName(),$a->getName());
+                });
+                break;
+        }
+        
+        $this->prikaz('Pocetna', ['knjige' => $knjige]);
     }
    
 }
