@@ -49,7 +49,12 @@ class Book
      */
     private $image;
 
-    
+    /**
+     * @var \Doctrine\Common\Collections\Collection
+     *
+     * @ORM\OneToMany(targetEntity="App\Models\Entities\Userbooks", mappedBy="idb", orphanRemoval=true)
+     */
+    private $users; 
     
     /**
      * @var \Doctrine\Common\Collections\Collection
@@ -81,6 +86,7 @@ class Book
     public function __construct()
     {
         $this->genres = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->users = new \Doctrine\Common\Collections\ArrayCollection();
         $this->reviews = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
@@ -262,5 +268,49 @@ class Book
     public function getReviews()
     {
         return $this->reviews;
+    }
+    
+    /**
+     * Add users.
+     *
+     * @param \App\Models\Entities\Userbooks $user
+     *
+     * @return Book
+     */
+    public function addUsers(\App\Models\Entities\Userbooks $user)
+    {
+        if (!$this->users->contains($user)) {
+            $this->users[] = $user;
+            $user->setIdb($this);
+        }
+        return $this;
+    }
+
+    /**
+     * Remove users.
+     *
+     * @param \App\Models\Entities\Userbooks $user
+     *
+     * @return boolean TRUE if this collection contained the specified element, FALSE otherwise.
+     */
+    public function removeUsers(\App\Models\Entities\Userbooks $user)
+    {
+        if ($this->users->contains($user)) {
+            if ($user->getIdb() == $this) {
+                $user->setIdb(null);
+            }
+            return $this->users->removeElement($user);
+        }
+        return false;
+    }
+
+    /**
+     * Get users.
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getBooks()
+    {
+        return $this-users;
     }
 }
