@@ -20,7 +20,7 @@ class Privilegovani extends BaseController
             return redirect()->to(site_url('Korisnik/prikaziProfil'));
         }
       
-        $user = $this->doctrine->em->getRepository(Entities\User::class)->findOneBy(["username"=>$this->request->getVar('username')]);
+        $user = $this->doctrine->em->getRepository(Entities\User::class)->find(session()->get("korisnik")->getIdu());
         $user->setPersonalGoal($this->request->getVar('brojKnjiga'));
         $this->doctrine->em->flush();
         return redirect()->to(site_url('Korisnik/prikaziProfil'));

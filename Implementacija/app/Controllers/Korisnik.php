@@ -42,7 +42,8 @@ class Korisnik extends BaseController {
      */
 
     function dodajPretplatu() {
-        $user = $this->doctrine->em->getRepository(Entities\User::class)->findOneBy(["idu" => $this->request->getVar('idU')]);
+        //$user = $this->doctrine->em->getRepository(Entities\User::class)->findOneBy(["idu" => $this->request->getVar('idU')]);
+        $user = $this->doctrine->em->getRepository(Entities\User::class)->find(session()->get("korisnik")->getIdu());
         $selected = $this->request->getVar('list'); //Id zanra
         $genre = $this->doctrine->em->getRepository(Entities\Genre::class)->findOneBy(['idg' => $selected]);
 
@@ -77,11 +78,13 @@ class Korisnik extends BaseController {
 
     public function prikaziProfil() {
         $user = $this->doctrine->em->getRepository(Entities\User::class)->findOneBy(["idu" => session()->get("korisnik")->getIdu()]);
+        $brProcitanih = $this->doctrine->em->getRepository(Entities\User::class)->dohvatiBrojProcitanihKnjiga($user->getIdu());
+        
         $all = $this->doctrine->em->getRepository(Entities\Userbooks::class)->dohvatiSve($user->getIdu());
         $read = $this->doctrine->em->getRepository(Entities\Userbooks::class)->dohvatiProcitane($user->getIdu());
         $wantToRead = $this->doctrine->em->getRepository(Entities\Userbooks::class)->dohvatiWantToRead($user->getIdu());
 
-        $this->prikaz('Profil', ['korisnik' => $user, 'all' => $all, 'read' => $read, 'wantToRead' => $wantToRead]);
+        $this->prikaz('Profil', ['korisnik' => $user, 'brProcitanih'=> $brProcitanih, 'all' => $all, 'read' => $read, 'wantToRead' => $wantToRead]);
     }
 
     /*

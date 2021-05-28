@@ -12,7 +12,7 @@
         <?php
         foreach ($korisnici as $korisnik) {
             echo "<div class='row buttons'>";
-            echo "  <div class='col-lg-3 col-md-6 zahtev' style='background-color: #ffeedf; text-align: center;'>";
+            echo "  <div class='col-lg-3 col-md-6 zahtev' style='background-color: #ffeedf;'>";
             if ($korisnik->getImage() == null) {
                 echo '  <img src="\images\users\no_photo.jpg" class="mr-3" alt="No photo">';
             } else {
