@@ -10,7 +10,7 @@
         <div class="row bio">
 
             <div class="col-lg-4 col-md-6 col-sm-12" style="text-align: center;">
-                <img src="<?= $knjiga->getImage(); ?>" alt="" height="400" width="280">
+                <img src="/images/books/<?= $knjiga->getIdb(); ?>.jpg" alt="" height="400" width="280">
                 <br>&nbsp;<br>&nbsp;
                 <span class="fa fa-star checked"></span>
                 <span class="fa fa-star checked"></span>
