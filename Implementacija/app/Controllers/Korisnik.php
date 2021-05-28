@@ -118,7 +118,44 @@ class Korisnik extends BaseController {
         $this->doctrine->em->flush();
         return $this->prikaz('Knjiga', ['knjiga' => $book]);
     }
-    
+    /*
+     * dodavanje citata iz knjige
+     * Sara Kolarevic 2018/0388
+     */
+    public function addQuote($poruka=null){
+        $referer=$_SERVER['HTTP_REFERER'];
+        echo view("Stranice/Quote", ["poruka"=>$poruka,"referer"=>$referer,"controller"=>"korisnik"]);
+        
+    }
+    /*
+     * potvrdnjivanje dodavanja citata
+     * Sara Kolarevic 2018/0388
+     */
+    public function registerAddQuote(){
+        $user=$this->doctrine->em->getRepository(\App\Models\Entities\User::class)->find($this->session->get("korisnik")->getIdu());
+        $referer=$this->request->getVar("hiddenBook");
+        $text=$this->request->getVar("quote");
+        $args=explode("/",$referer);
+        $bookId=intval($args[count($args)-1]);
+        $book=$this->doctrine->em->getRepository(\App\Models\Entities\Book::class)->find($bookId);
+        $quote=new \App\Models\Entities\Quote();
+          $quote->setBook($book);
+          $quote->setUser($user);
+          $quote->setText($text);
+        $user->addQuote($quote);
+          $book->addQuote($quote);
+          $this->doctrine->em->persist($quote);      
+          $this->doctrine->em->flush();
+          $path="";
+        for($i=3;$i<count($args);$i++)
+        {   
+            
+            $path=$path."/".$args[$i];
+        }
+
+        return redirect()->to(site_url($path));
+
+    }
     /*
 
 
