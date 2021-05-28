@@ -287,7 +287,7 @@ class Book
     public function addQuote(\App\Models\Entities\Quote $quote)
     {
         $this->quotes[] = $quote;
-    
+    }
     /**
      * Add users.
      *
@@ -324,8 +324,8 @@ class Book
    public function getQuotes()
     {
         return $this->quotes;
-
-     * Remove users.
+    }
+     /** Remove users.
      *
      * @param \App\Models\Entities\Userbooks $user
      *
