@@ -41,7 +41,7 @@ class Userbooks
     /**
      * @var \App\Models\Entities\Book
      *
-     * @ORM\ManyToOne(targetEntity="App\Models\Entities\Book")
+     * @ORM\ManyToOne(targetEntity="App\Models\Entities\Book", inversedBy="users")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="IdB", referencedColumnName="IdB")
      * })

@@ -105,7 +105,7 @@ class User
     /**
      * @var \Doctrine\Common\Collections\Collection
      *
-     * @ORM\OneToMany(targetEntity="App\Models\Entities\Userbooks", mappedBy="IdU", orphanRemoval=true)
+     * @ORM\OneToMany(targetEntity="App\Models\Entities\Userbooks", mappedBy="idu", orphanRemoval=true)
      */
     private $books;    
     
