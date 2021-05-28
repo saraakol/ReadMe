@@ -1,3 +1,12 @@
+.zahtev-forma {
+    margin: 20px;
+}
+
+.zahtev h3 {
+    display: inline;
+    margin-left: 40px;
+}
+
 .komentari {
     padding: 40px;
 }
@@ -23,7 +32,7 @@
     margin-top: 8px;
 }
 
-.komentari img {
+.komentari img, .zahtev img {
     width: 70px;
     height: 70px;
 }
