@@ -65,6 +65,11 @@
                     <form id="dodajZanrForma" class="flex-centrirano" name="dodajZanr" method="get" action="<?= site_url("Korisnik/dodajPretplatu"); ?>">
                         <select name="list" id="dodajZanrLista">
                             <option value="disabled" selected disabled>Select genre</option>
+                            <?php 
+                            foreach ($nepretplaceni as $nepretplacen) {
+                                echo "<option value='{$nepretplacen->getIdg()}'>{$nepretplacen->getName()}</option>";
+                            }
+                            ?>
                         </select>
                         <div class="break-row"></div>
                         <input type="hidden" name="idU" class="idu" value="<?= $korisnik->getIdu(); ?>">
@@ -74,6 +79,11 @@
                     <form id="ukloniZanrForma" class="flex-centrirano" name="ukloniZanr" method="get" action=" <?= site_url("Korisnik/ukloniPretplatu"); ?>">
                         <select name="list" id="ukloniZanrLista">
                             <option value="disabled" selected disabled>Select genre</option>
+                            <?php 
+                            foreach ($pretplaceni as $pretplacen) {
+                                echo "<option value='{$pretplacen->getIdg()}'>{$pretplacen->getName()}</option>";
+                            }
+                            ?>
                         </select>
                         <div class="break-row"></div>
                         <input type="hidden" name="idU" class="idu" value="<?= $korisnik->getIdu(); ?>">

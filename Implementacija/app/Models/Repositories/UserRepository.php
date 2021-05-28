@@ -19,7 +19,8 @@ class UserRepository extends EntityRepository{
     /*
      * Funkcija dohvatiKandidateZaUnapredjenje() - sluzi za dohvatanje svih korisnika koji su procitali vise od 10 knjiga i kandidati su za unapredjenje
      * @author Andrej Jokic 18/0247
-     */public function dohvatiKandidateZaUnapredjenje() {
+     */
+    public function dohvatiKandidateZaUnapredjenje() {
         $dql = "SELECT u FROM App\Models\Entities\User u JOIN u.books b"
                 . " WHERE u.type=:tipKorisnika AND u.status=:statusKorisnika AND b.type=:tipKnjige"
                 . " GROUP BY u.idu"
