@@ -8,7 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
  * Genre
  *
  * @ORM\Table(name="genre")
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="App\Models\Repositories\GenreRepository")
  */
 class Genre
 {
@@ -36,8 +36,6 @@ class Genre
      * @ORM\ManyToMany(targetEntity="App\Models\Entities\Book", mappedBy="genres")
      */
     private $books;
-
-    
     
     
     /**

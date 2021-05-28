@@ -50,42 +50,6 @@ $(document).ready(function() {
         $("#dodajZanrDugme, #ukloniZanrDugme").show();
     });
     
-    //Kada se pritisne Add genre, pomocu ajax-a dohvatamo iz baze sve zanrove na koje korisnik jos nije pretplacen i prikazujemo ih
-    $("#dodajZanrForma").ready(function() {
-        let idU = $(this).find("input[type=hidden]").filter(".idu").val();
-        $.ajax({
-            type: "GET",
-            url: "\\php\\dohvatiZanrove.php?idU=" + idU + "&type=not-subscribed"
-        }).done(function(result) {
-            let zanrovi = result.split(';');
-            let lista = $("#dodajZanrLista");
-            for (let i = 0; i < zanrovi.length; i++) {
-                let zanr = zanrovi[i].split('-');
-                lista.append(
-                    $("<option></option>").attr("value", zanr[0]).append(zanr[1])
-                );
-            }
-        });
-    });
-    
-    //Kada se pritisne Remove genre, pomocu ajax-a dohvatamo iz baze sve zanrove na koje je korisnik pretplacen i prikazujemo ih
-    $("#ukloniZanrForma").ready(function() {
-        let idU = $(this).find("input[type=hidden]").filter(".idu").val();
-        $.ajax({
-            type: "GET",
-            url: "\\php\\dohvatiZanrove.php?idU=" + idU + "&type=subscribed"
-        }).done(function(result) {
-            let zanrovi = result.split(';');
-            let lista = $("#ukloniZanrLista");
-            for (let i = 0; i < zanrovi.length; i++) {
-                let zanr = zanrovi[i].split('-');
-                lista.append(
-                    $("<option></option>").attr("value", zanr[0]).append(zanr[1])
-                );
-            }
-        });
-    });
-    
     //Kada se pritisne prijava korisnika, dugme se disabluje
     $(".prijavaKorisnika").click(function () {
         $(this).prop("disabled", true);
