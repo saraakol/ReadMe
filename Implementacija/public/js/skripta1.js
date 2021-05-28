@@ -99,6 +99,20 @@ $(document).ready(function() {
             button.html("Reported");
         });
     });
+    
+    //Kada administrator prihvati zahtev, dugme se disabluje i nakon obrade zahteva, zahtev se uklanja
+    $(".acceptZahtev, .declineZahtev").click(function() {
+        $(this).prop("disabled", true);
+        $(this).val("Processing..");
+        let url = $(this).parent().find("input[type=hidden]").val();
+        let thisOne = $(this);
+        $.ajax({
+            type: "GET",
+            url: url
+        }).done(function(result) {
+            $(thisOne).parent().parent().parent().remove();
+        });
+    });
 });
 
 function kliknutalistawant() {
