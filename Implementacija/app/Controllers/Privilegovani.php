@@ -34,5 +34,19 @@ class Privilegovani extends BaseController
         $book=$this->doctrine->em->getRepository(Entities\Book::class)->find($id);
         $this->prikaz('Knjiga', ['knjiga'=>$book]);
     }
+    
+    /*
+     * Funkcija prijaviKorisnika() - Prijava korisnika se belezi u bazi podataka
+     * @author Andrej Jokic 18/0247
+     */
+    public function prijaviKorisnika($id) {
+        $user = $this->doctrine->em->getRepository(Entities\User::class)->find($id);
+        if ($user->getType() != 'administrator') {
+            $user->setStatus('reported');
+            $this->doctrine->em->flush();   
+        }
+        
+        return redirect()->to($_SERVER['HTTP_REFERER']);
+    }
 }
 
