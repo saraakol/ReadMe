@@ -17,7 +17,19 @@
                 <span class="fa fa-star checked"></span>
                 <span class="fa fa-star checked"></span>
                 <span class="fa fa-star"></span>
-                &nbsp;4,0
+                <?php
+                $numOfRates = sizeof($knjiga->getRates());
+                if($numOfRates!=0){
+                    $num=0;
+                    foreach($knjiga->getRates() as $rate){
+                        $num+=$rate->getRate();
+                    }
+                    $num=$num/$numOfRates;
+                    echo "<h4>Rate: $num</h4>";
+                }else{
+                    echo "No rates yet";
+                };
+                ?>
             </div>
             <div class="col-lg-5 col-md-6 col-sm-12" style="text-align: center;">
                 <p class="booktitle"><font class="booktitle"><?= $knjiga->getName(); ?> </font></p>

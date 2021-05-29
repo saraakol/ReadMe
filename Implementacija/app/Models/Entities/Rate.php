@@ -31,7 +31,7 @@ class Rate
     /**
      * @var \App\Models\Entities\User
      *
-     * @ORM\ManyToOne(targetEntity="App\Models\Entities\User")
+     * @ORM\ManyToOne(targetEntity="App\Models\Entities\User",inversedBy="rates")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="IdU", referencedColumnName="IdU")
      * })
@@ -41,7 +41,7 @@ class Rate
     /**
      * @var \App\Models\Entities\Book
      *
-     * @ORM\ManyToOne(targetEntity="App\Models\Entities\Book")
+     * @ORM\ManyToOne(targetEntity="App\Models\Entities\Book",inversedBy="rates")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="IdB", referencedColumnName="IdB")
      * })
