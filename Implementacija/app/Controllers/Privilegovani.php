@@ -46,6 +46,9 @@ class Privilegovani extends BaseController
         $user = $this->doctrine->em->getRepository(Entities\User::class)->find(session()->get("korisnik")->getIdu());
         $user->setPersonalGoal($this->request->getVar('brojKnjiga'));
         $this->doctrine->em->flush();
+        
+        session()->setFlashdata("poruka", "Personal goal successfully added!");
+        
         return redirect()->to(site_url('Korisnik/prikaziProfil'));
     }
     /*
@@ -90,6 +93,8 @@ class Privilegovani extends BaseController
             $this->doctrine->em->flush();  
             
         }
+        
+        
         
         return redirect()->to($_SERVER['HTTP_REFERER']);
     }
