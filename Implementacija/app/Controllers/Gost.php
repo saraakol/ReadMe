@@ -80,14 +80,14 @@ class Gost extends BaseController
             return $this->login(["errors"=>["User with given username and password doesnt exist"]]);
         $this->session->set("korisnik",$user);
         
-//        if($user->getType()==="administrator")
-//            return redirect()->to(site_url("Administrator"));
-//        else if($user->getType()==="privileged_user")
-//            return redirect()->to(site_url("Privilegovani"));
-//        else
-//            return redirect()->to(site_url("Korisnik"));
+        if($user->getType()==="administrator")
+            return redirect()->to(site_url("Administrator"));
+        else if($user->getType()==="privileged_user")
+            return redirect()->to(site_url("Privilegovani"));
+        else
+            return redirect()->to(site_url("Korisnik"));
         
-        return redirect()->to(site_url("Korisnik"));
+//        return redirect()->to(site_url("Korisnik"));
     }
     /*
      * funkcija za potvrdu zahteva za registraciju novog korisnika
@@ -148,11 +148,22 @@ class Gost extends BaseController
      * funkcija za prikaz knjige
      * Sara Kolarevic 2018/0388
      */
-   public function prikaziKnjigu($id){
+//   public function prikaziKnjigu($id){
+//        $book=$this->doctrine->em->getRepository(Entities\Book::class)->find($id);
+//        $this->prikaz('Knjiga', ['knjiga'=>$book, 'komentari' => $book->getReviews(),'citati' => $book->getQuotes()]);
+//    }
+
+     public function prikaziKnjigu($id){
+         
         $book=$this->doctrine->em->getRepository(Entities\Book::class)->find($id);
-        $this->prikaz('Knjiga', ['knjiga'=>$book, 'komentari' => $book->getReviews(),'citati' => $book->getQuotes()]);
+        $user = $this->doctrine->em->getRepository(Entities\User::class)->findOneBy(["idu" => session()->get("korisnik")->getIdu()]);
+        $reviews=[];
+        $moreReviews=$this->doctrine->em->getRepository(Entities\Review::class)->getReviewsFromAccountType("privileged_user");
+//        echo sizeof($moreReviews);
+        $reviews=array_merge($reviews,$moreReviews);
+        $reviews=array_merge($reviews,$this->doctrine->em->getRepository(Entities\Review::class)->getReviewsFromNotAccountType("privileged_user"));
+        $this->prikaz('Knjiga', ['knjiga'=>$book, 'komentari' => $reviews,'korisnik' => $user,'citati' => $book->getQuotes()]);
     }
-    
     /*
      * funkcija za filtriranje
      * Nikola Krstic 18/0546

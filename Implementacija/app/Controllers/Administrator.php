@@ -15,10 +15,45 @@ class Administrator extends BaseController
     /*
      * Funkcija index - pocetna stranica za gosta
      */
+//    public function index() {
+//        $genres=$this->doctrine->em->getRepository(Entities\Genre::class)->findAll();
+//        $this->prikaz('Pocetna', ['genres' => $genres]);
+//    }
     public function index() {
+        $books = $this->doctrine->em->getRepository(Entities\Book::class)->findAll();
         $genres=$this->doctrine->em->getRepository(Entities\Genre::class)->findAll();
-        $this->prikaz('Pocetna', ['genres' => $genres]);
+        $this->prikaz('Pocetna', ['knjige' => $books,'genres' => $genres]);
     }
+    
+    protected function prikaz($page, $data) {
+        $data['controller'] = 'Administrator';
+        $data['user_type'] = session()->get("korisnik")->getType();
+        
+        echo view('Sablon/header_korisnik');
+        echo view("Stranice/$page", $data);
+        echo view('Sablon/footer');
+    }
+    
+    
+    /*
+     * dodavanje citata iz knjige
+     * Sara Kolarevic 2018/0388
+     */
+    public function addQuote($poruka=null){
+        $referer=$_SERVER['HTTP_REFERER'];
+        echo view("Stranice/Quote", ["poruka"=>$poruka,"referer"=>$referer,"controller"=>"korisnik"]);
+        
+    }
+    /*
+     * komentarisanje knjige
+     * Andrej Veselinovic 2018/0221
+     */
+    public function addReview($poruka=null){
+        $referer=$_SERVER['HTTP_REFERER'];
+        echo view("Stranice/Review", ["poruka"=>$poruka,"referer"=>$referer,"controller"=>"korisnik"]);
+        
+    }
+    
     /*
      * Funkcija prikaziRegistracije() - sluzi za dohvatanje svih korisnika koji su poslali zahtev za registraciju
      * @author Andrej Jokic 18/0247
@@ -120,6 +155,7 @@ class Administrator extends BaseController
         echo view("Stranice/addBook", ["genres"=>$genres,"poruka"=>$data]);
         
     }
+     
     /*
      * funkcija za potvrdu zahteva za dodavanje nove knjige
      * Andrej Veselinovic 2018/0221
@@ -172,10 +208,21 @@ class Administrator extends BaseController
      * funkcija za prikaz knjige
      * Sara Kolarevic 2018/0388
      */
-      public function prikaziKnjigu($id){
+//      public function prikaziKnjigu($id){
+//        $book=$this->doctrine->em->getRepository(Entities\Book::class)->find($id);
+//        $user = $this->doctrine->em->getRepository(Entities\User::class)->findOneBy(["idu" => session()->get("korisnik")->getIdu()]);
+//        $this->prikaz('Knjiga', ['knjiga'=>$book, 'komentari' => $book->getReviews(),'korisnik' => $user,'citati' => $book->getQuotes()]);
+//    }
+     public function prikaziKnjigu($id){
+         
         $book=$this->doctrine->em->getRepository(Entities\Book::class)->find($id);
         $user = $this->doctrine->em->getRepository(Entities\User::class)->findOneBy(["idu" => session()->get("korisnik")->getIdu()]);
-        $this->prikaz('Knjiga', ['knjiga'=>$book, 'komentari' => $book->getReviews(),'korisnik' => $user,'citati' => $book->getQuotes()]);
+        $reviews=[];
+        $moreReviews=$this->doctrine->em->getRepository(Entities\Review::class)->getReviewsFromAccountType("privileged_user");
+//        echo sizeof($moreReviews);
+        $reviews=array_merge($reviews,$moreReviews);
+        $reviews=array_merge($reviews,$this->doctrine->em->getRepository(Entities\Review::class)->getReviewsFromNotAccountType("privileged_user"));
+        $this->prikaz('Knjiga', ['knjiga'=>$book, 'komentari' => $reviews,'korisnik' => $user,'citati' => $book->getQuotes()]);
     }
 }
 
