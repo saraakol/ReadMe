@@ -36,7 +36,6 @@
                                 <!-- normal options -->
                                 <option class="option" value="A-Z">A-Z</option>
                                 <option class="option" value="Z-A">Z-A</option>
-                                <option class="option" value="5">Option 5</option>
                             </select>
                             <input class="margin-medium" type="submit" name="submit" value="Confirm sort">
                         </form>
@@ -51,13 +50,12 @@
                             <option value=""
                                     hidden
                             >Filter</option>
-
-                            <!-- normal options -->
-                            <option class="option" value="Sci-Fi">Sci-Fi</option>
-                            <option class="option" value="Drama">Drama</option>
-                            <option class="option" value="Romance">Romance</option>
-                            <option class="option" value="Crime">Crime</option>
-                            <option class="option" value="">Option 5</option>
+                            
+                            <?php
+                            foreach($genres as $genre){
+                                echo "<option class='option' value='". $genre->getName()."'>".$genre->getName()."</option>";
+                            }
+                            ;?>
                         </select>
                         <input class="margin-medium" type="submit" name="submit" value="Confirm filter">
                     </form>
