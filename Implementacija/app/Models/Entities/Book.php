@@ -78,6 +78,14 @@ class Book
      * @ORM\OneToMany(targetEntity="App\Models\Entities\Review", mappedBy="book")
      */
     private $reviews;
+    
+    /**
+     * @var \Doctrine\Common\Collections\Collection
+     *
+     * @ORM\OneToMany(targetEntity="App\Models\Entities\Rate", mappedBy="idb")
+     */
+    private $rates;
+    
      /**
      * @var \Doctrine\Common\Collections\Collection
      *
@@ -93,6 +101,7 @@ class Book
         $this->users = new \Doctrine\Common\Collections\ArrayCollection();
         $this->reviews = new \Doctrine\Common\Collections\ArrayCollection();
         $this->quotes = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->rates = new \Doctrine\Common\Collections\ArrayCollection();
     }
  
 
@@ -350,5 +359,41 @@ class Book
     public function getBooks()
     {
         return $this-users;
+    }
+    
+    /**
+     * Add rate.
+     *
+     * @param \App\Models\Entities\Rate $rate
+     *
+     * @return Book
+     */
+    public function addRates(\App\Models\Entities\Rate $rate)
+    {
+        $this->rates[] = $rate;
+
+        return $this;
+    }
+
+    /**
+     * Remove rate.
+     *
+     * @param \App\Models\Entities\Rate $rate
+     *
+     * @return boolean TRUE if this collection contained the specified element, FALSE otherwise.
+     */
+    public function removeRate(\App\Models\Entities\Rate $rate)
+    {
+        return $this->rates->removeElement($rate);
+    }
+
+    /**
+     * Get rates.
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getRates()
+    {
+        return $this->rates;
     }
 }
