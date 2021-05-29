@@ -66,10 +66,10 @@ class User extends \App\Models\Entities\User implements \Doctrine\ORM\Proxy\Prox
     public function __sleep()
     {
         if ($this->__isInitialized__) {
-            return ['__isInitialized__', '' . "\0" . 'App\\Models\\Entities\\User' . "\0" . 'idu', '' . "\0" . 'App\\Models\\Entities\\User' . "\0" . 'username', '' . "\0" . 'App\\Models\\Entities\\User' . "\0" . 'password', '' . "\0" . 'App\\Models\\Entities\\User' . "\0" . 'firstname', '' . "\0" . 'App\\Models\\Entities\\User' . "\0" . 'lastname', '' . "\0" . 'App\\Models\\Entities\\User' . "\0" . 'email', '' . "\0" . 'App\\Models\\Entities\\User' . "\0" . 'image', '' . "\0" . 'App\\Models\\Entities\\User' . "\0" . 'type', '' . "\0" . 'App\\Models\\Entities\\User' . "\0" . 'status', '' . "\0" . 'App\\Models\\Entities\\User' . "\0" . 'personalgoal', '' . "\0" . 'App\\Models\\Entities\\User' . "\0" . 'genres', '' . "\0" . 'App\\Models\\Entities\\User' . "\0" . 'books', '' . "\0" . 'App\\Models\\Entities\\User' . "\0" . 'reviews'];
+            return ['__isInitialized__', '' . "\0" . 'App\\Models\\Entities\\User' . "\0" . 'idu', '' . "\0" . 'App\\Models\\Entities\\User' . "\0" . 'username', '' . "\0" . 'App\\Models\\Entities\\User' . "\0" . 'password', '' . "\0" . 'App\\Models\\Entities\\User' . "\0" . 'firstname', '' . "\0" . 'App\\Models\\Entities\\User' . "\0" . 'lastname', '' . "\0" . 'App\\Models\\Entities\\User' . "\0" . 'email', '' . "\0" . 'App\\Models\\Entities\\User' . "\0" . 'image', '' . "\0" . 'App\\Models\\Entities\\User' . "\0" . 'type', '' . "\0" . 'App\\Models\\Entities\\User' . "\0" . 'status', '' . "\0" . 'App\\Models\\Entities\\User' . "\0" . 'personalgoal', '' . "\0" . 'App\\Models\\Entities\\User' . "\0" . 'genres', '' . "\0" . 'App\\Models\\Entities\\User' . "\0" . 'books', '' . "\0" . 'App\\Models\\Entities\\User' . "\0" . 'reviews', '' . "\0" . 'App\\Models\\Entities\\User' . "\0" . 'quotes'];
         }
 
-        return ['__isInitialized__', '' . "\0" . 'App\\Models\\Entities\\User' . "\0" . 'idu', '' . "\0" . 'App\\Models\\Entities\\User' . "\0" . 'username', '' . "\0" . 'App\\Models\\Entities\\User' . "\0" . 'password', '' . "\0" . 'App\\Models\\Entities\\User' . "\0" . 'firstname', '' . "\0" . 'App\\Models\\Entities\\User' . "\0" . 'lastname', '' . "\0" . 'App\\Models\\Entities\\User' . "\0" . 'email', '' . "\0" . 'App\\Models\\Entities\\User' . "\0" . 'image', '' . "\0" . 'App\\Models\\Entities\\User' . "\0" . 'type', '' . "\0" . 'App\\Models\\Entities\\User' . "\0" . 'status', '' . "\0" . 'App\\Models\\Entities\\User' . "\0" . 'personalgoal', '' . "\0" . 'App\\Models\\Entities\\User' . "\0" . 'genres', '' . "\0" . 'App\\Models\\Entities\\User' . "\0" . 'books', '' . "\0" . 'App\\Models\\Entities\\User' . "\0" . 'reviews'];
+        return ['__isInitialized__', '' . "\0" . 'App\\Models\\Entities\\User' . "\0" . 'idu', '' . "\0" . 'App\\Models\\Entities\\User' . "\0" . 'username', '' . "\0" . 'App\\Models\\Entities\\User' . "\0" . 'password', '' . "\0" . 'App\\Models\\Entities\\User' . "\0" . 'firstname', '' . "\0" . 'App\\Models\\Entities\\User' . "\0" . 'lastname', '' . "\0" . 'App\\Models\\Entities\\User' . "\0" . 'email', '' . "\0" . 'App\\Models\\Entities\\User' . "\0" . 'image', '' . "\0" . 'App\\Models\\Entities\\User' . "\0" . 'type', '' . "\0" . 'App\\Models\\Entities\\User' . "\0" . 'status', '' . "\0" . 'App\\Models\\Entities\\User' . "\0" . 'personalgoal', '' . "\0" . 'App\\Models\\Entities\\User' . "\0" . 'genres', '' . "\0" . 'App\\Models\\Entities\\User' . "\0" . 'books', '' . "\0" . 'App\\Models\\Entities\\User' . "\0" . 'reviews', '' . "\0" . 'App\\Models\\Entities\\User' . "\0" . 'quotes'];
     }
 
     /**
@@ -458,6 +458,28 @@ class User extends \App\Models\Entities\User implements \Doctrine\ORM\Proxy\Prox
     /**
      * {@inheritDoc}
      */
+    public function addBook(\App\Models\Entities\Userbooks $book)
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'addBook', [$book]);
+
+        return parent::addBook($book);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function removeBook(\App\Models\Entities\Userbooks $book)
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'removeBook', [$book]);
+
+        return parent::removeBook($book);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
     public function addReview(\App\Models\Entities\Review $review)
     {
 
@@ -486,6 +508,39 @@ class User extends \App\Models\Entities\User implements \Doctrine\ORM\Proxy\Prox
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'getReviews', []);
 
         return parent::getReviews();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function addQuote(\App\Models\Entities\Quote $quote)
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'addQuote', [$quote]);
+
+        return parent::addQuote($quote);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function removeQuote(\App\Models\Entities\Quote $quote)
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'removeQuote', [$quote]);
+
+        return parent::removeQuote($quote);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getQuotes()
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getQuotes', []);
+
+        return parent::getQuotes();
     }
 
 }
