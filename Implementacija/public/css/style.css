@@ -442,5 +442,6 @@ outline: none;
   .buttons form {
       display: inline;
   }
-
-
+  .textdugme{
+      cursor: pointer;
+  }

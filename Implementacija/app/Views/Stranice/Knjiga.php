@@ -116,7 +116,7 @@
             <br>&nbsp;
             <div class="col-lg-3">&nbsp;</div>
         </div>
-<div class="row"><div class="col " style="margin-left: 15px ;"><h1 id="prikazireviews">Reviews</h1> </div> </div>
+<div class="row"><div class="col " style="margin-left: 15px ;"><h1 class="textdugme" id="prikazireviews">Reviews</h1> </div> </div>
 <div class="row" id="prikazkomentara">
             <div class="col komentari">
                 
@@ -143,7 +143,7 @@
                 ?>
             </div>
         </div>
-<div class="row"><div class="col " style="margin-left: 15px ;" >  <h1 id="prikaziquotes">Quotes</h1> </div> </div>
+<div class="row"><div class="col " style="margin-left: 15px ;" >  <h1 class="textdugme" id="prikaziquotes">Quotes</h1> </div> </div>
         <div class="row" id="prikazcitata">
           
             <div class="col komentari">
