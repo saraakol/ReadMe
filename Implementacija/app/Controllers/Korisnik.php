@@ -57,8 +57,9 @@ class Korisnik extends BaseController {
         $genre = $this->doctrine->em->getRepository(Entities\Genre::class)->findOneBy(['idg' => $selected]);
 
         $user->addGenre($genre);     //Owner strana asocijacije
-
         $this->doctrine->em->flush();
+        
+        session()->setFlashdata("poruka", "Subscription successfully added!");
 
         return redirect()->to(site_url('Korisnik/prikaziProfil'));
     }
@@ -74,8 +75,9 @@ class Korisnik extends BaseController {
         $genre = $this->doctrine->em->getRepository(Entities\Genre::class)->findOneBy(['idg' => $selected]);
 
         $user->removeGenre($genre);     //Owner strana asocijacije
-
         $this->doctrine->em->flush();
+        
+        session()->setFlashdata("poruka", "Subscription successfully removed!");
 
         return redirect()->to(site_url('Korisnik/prikaziProfil'));
     }
@@ -96,8 +98,14 @@ class Korisnik extends BaseController {
         $wantToRead = $this->doctrine->em->getRepository(Entities\Userbooks::class)->dohvatiWantToRead($user->getIdu());
         $knjige = $this->doctrine->em->getRepository(Entities\Book::class)->findAll();
         
-        $this->prikaz('Profil', ['korisnik' => $user, 'brProcitanih' => $brProcitanih, 'pretplaceni' => $pretplaceniZanrovi,
-            'nepretplaceni' => $nepretplaceniZanrovi, 'all' => $all, 'read' => $read, 'wantToRead' => $wantToRead, 'knjige' => $knjige]);
+        $data = ['korisnik' => $user, 'brProcitanih' => $brProcitanih, 'pretplaceni' => $pretplaceniZanrovi,
+            'nepretplaceni' => $nepretplaceniZanrovi, 'all' => $all, 'read' => $read, 'wantToRead' => $wantToRead, 'knjige' => $knjige];
+        
+        if (session()->getFlashdata('poruka') != null) {
+            $data['poruka'] = session()->getFlashdata('poruka');
+        }
+        
+        $this->prikaz('Profil', $data);
     }
 
     /*

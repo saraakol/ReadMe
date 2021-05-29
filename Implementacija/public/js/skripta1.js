@@ -75,6 +75,7 @@ $(document).ready(function() {
             url: url
         }).done(function(result) {
             $(thisOne).parent().parent().parent().remove();
+            $(".toast-zahtevi").toast("show");
         });
     });
     
