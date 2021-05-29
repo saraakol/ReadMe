@@ -20,9 +20,17 @@ class Administrator extends BaseController
 //        $this->prikaz('Pocetna', ['genres' => $genres]);
 //    }
     public function index() {
+        
+        $poruka=null;
+        
+        if(isset($_SESSION["displayNotificationMessage"]))
+        {
+            $poruka=$_SESSION["displayNotificationMessage"];
+            unset($_SESSION["displayNotificationMessage"]);
+        }
         $books = $this->doctrine->em->getRepository(Entities\Book::class)->findAll();
         $genres=$this->doctrine->em->getRepository(Entities\Genre::class)->findAll();
-        $this->prikaz('Pocetna', ['knjige' => $books,'genres' => $genres]);
+        $this->prikaz('Pocetna', ['knjige' => $books,'genres' => $genres,"poruka"=>$poruka]);
     }
     
     protected function prikaz($page, $data) {
@@ -50,10 +58,41 @@ class Administrator extends BaseController
      */
     public function addReview($poruka=null){
         $referer=$_SERVER['HTTP_REFERER'];
-        echo view("Stranice/Review", ["poruka"=>$poruka,"referer"=>$referer,"controller"=>"korisnik"]);
+//        echo $referer;
+        echo view("Stranice/Review", ["poruka"=>$poruka,"referer"=>$referer,"controller"=>"Administrator"]);
         
     }
-    
+    public function registerAddReview(){
+//        $user=$this->session->get("korisnik");
+        $user=$this->doctrine->em->getRepository(\App\Models\Entities\User::class)->find($this->session->get("korisnik")->getIdu());
+        $referer=$this->request->getVar("hiddenBook");
+        $text=$this->request->getVar("review");
+        $args=explode("/",$referer);
+        $bookId=intval($args[count($args)-1]);
+        $book=$this->doctrine->em->getRepository(\App\Models\Entities\Book::class)->find($bookId);
+        $review=new \App\Models\Entities\Review();
+        $review->setBook($book);
+        $review->setUser($user);
+        $review->setText($text);
+//        $user->addReview($review);
+//        $book->addReview($review);
+//        echo $review->getBook()->getIdb();
+//        echo $review->getUser()->getIdu();
+//        echo $review->getText();
+//        echo count($args);
+        $this->doctrine->em->persist($review);      
+        $this->doctrine->em->flush();
+        $path="";
+        for($i=3;$i<count($args);$i++)
+        {   
+            
+            $path=$path."/".$args[$i];
+        }
+//echo intval($args[count($args)-1]);
+        return $this->prikaziKnjigu(intval($args[sizeof($args)-1]),"Successfully added new review");
+//        return redirect()->to(site_url($path));
+
+    }
     /*
      * Funkcija prikaziRegistracije() - sluzi za dohvatanje svih korisnika koji su poslali zahtev za registraciju
      * @author Andrej Jokic 18/0247
@@ -184,14 +223,16 @@ class Administrator extends BaseController
             $book->addGenre($genre);
             
         }
-        if(isset($_FILES["img"])){
+//        if(isset($_FILES["img"])){
+        if($_FILES["img"]["tmp_name"]!=""){
             $book->setImage("yes");
         }
         $this->doctrine->em->persist($book);
         
         $this->doctrine->em->flush();
-        if(isset($_FILES["img"]))
-        {
+//        if(isset($_FILES["img"])){
+        if($_FILES["img"]["tmp_name"]!=""){
+        
             
             
             $myfile = fopen("images/books/".$book->getIdb().".jpg", "wb");
@@ -199,8 +240,8 @@ class Administrator extends BaseController
             fclose($myfile);
                    
         }
-        echo "<script>alert('Successfully created new book');</script>";
-
+//        echo "<script>alert('Successfully created new book');</script>";
+        $_SESSION["displayNotificationMessage"]="Successfully created new book";
         return redirect()->to("/Korisnik");
     }
     /*
@@ -213,16 +254,15 @@ class Administrator extends BaseController
 //        $user = $this->doctrine->em->getRepository(Entities\User::class)->findOneBy(["idu" => session()->get("korisnik")->getIdu()]);
 //        $this->prikaz('Knjiga', ['knjiga'=>$book, 'komentari' => $book->getReviews(),'korisnik' => $user,'citati' => $book->getQuotes()]);
 //    }
-     public function prikaziKnjigu($id){
-         
+     public function prikaziKnjigu($id,$poruka=null){
+        
         $book=$this->doctrine->em->getRepository(Entities\Book::class)->find($id);
         $user = $this->doctrine->em->getRepository(Entities\User::class)->findOneBy(["idu" => session()->get("korisnik")->getIdu()]);
-        $reviews=[];
-        $moreReviews=$this->doctrine->em->getRepository(Entities\Review::class)->getReviewsFromAccountType("privileged_user");
-//        echo sizeof($moreReviews);
-        $reviews=array_merge($reviews,$moreReviews);
+        $reviews=$this->doctrine->em->getRepository(Entities\Review::class)->getReviewsFromAccountType("privileged_user");
         $reviews=array_merge($reviews,$this->doctrine->em->getRepository(Entities\Review::class)->getReviewsFromNotAccountType("privileged_user"));
-        $this->prikaz('Knjiga', ['knjiga'=>$book, 'komentari' => $reviews,'korisnik' => $user,'citati' => $book->getQuotes()]);
+       
+//        $reviews=array_merge($reviews,$this->doctrine->em->getRepository(Entities\Review::class)->getReviewsFromNotAccountType("privileged_user"));
+        $this->prikaz('Knjiga', ["poruka"=>$poruka,'knjiga'=>$book, 'komentari' => $reviews,'korisnik' => $user,'citati' => $book->getQuotes()]);
     }
 }
 
