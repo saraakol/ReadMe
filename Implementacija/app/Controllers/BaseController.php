@@ -64,4 +64,6 @@ class BaseController extends Controller
             echo view('Sablon/footer');
         }
         
+        
+        
 }
