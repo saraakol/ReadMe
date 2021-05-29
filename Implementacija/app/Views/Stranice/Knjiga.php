@@ -1,19 +1,6 @@
 <?php
 ?>
 
-<div class="toast" data-autohide="false" role="alert" aria-live="assertive" aria-atomic="true" style="position:absolute;top:0;right:0;">
-  <div class="toast-header">
-    
-    <strong class="mr-auto">Bootstrap</strong>
-    <small>11 mins ago</small>
-    <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
-      <span aria-hidden="true">&times;</span>
-    </button>
-  </div>
-  <div class="toast-body">
-    Hello, world! This is a toast message.
-  </div>
-</div>
         <div class="row ">
             
             <div class="col naopackegradient">
@@ -191,20 +178,30 @@
             <div class="col gradient"><br>&nbsp;</div>
         </div>
 
-
-<!--<script>$(document).ready(function(){
-
- $('.toast').toast('show');
-
- });
-});</script>
--->
-<script>$(document).ready(function(){
- 
- $('.toast').toast('show');
- 
-});
-</script>
+        <!-- Ovo ispod (ukljucujuci javascript deo) treba dodati na svakoj stranici gde treba da se prikaze modal -->
+        <!-- U kontroleru koji prikazuje stranicu postaviti promenjivu poruka da ima vrednost teksta greske/uspeha -->
+        <?php 
+            if (isset($poruka)) {
+                echo '<div class="toast" data-autohide="false" role="alert" aria-live="assertive" aria-atomic="true" style="position:absolute;top:5%;right:42%;">';
+                echo '  <div class="toast-header">';
+                echo '      <strong class="mr-auto">Message</strong>';
+                echo '      <small>Now</small>';
+                echo '      <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">';
+                echo '          <span aria-hidden="true">&times;</span>';
+                echo '      </button>';
+                echo '  </div>';
+                echo "  <div class='toast-body'>$poruka</div>";
+                echo '</div>';
+            }
+        ?>
+        
+        <script>
+            $(document).ready(function(){
+                if ($('.toast')) {
+                    $('.toast').toast('show');
+                }
+            });
+        </script>
 
         
        
