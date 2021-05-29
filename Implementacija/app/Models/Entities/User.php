@@ -100,6 +100,7 @@ class User
      *   }
      * )
      */
+    
     private $genres;
 
     /**

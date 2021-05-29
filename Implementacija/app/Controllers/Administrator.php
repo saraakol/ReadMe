@@ -16,7 +16,8 @@ class Administrator extends BaseController
      * Funkcija index - pocetna stranica za gosta
      */
     public function index() {
-        $this->prikaz('Pocetna', []);
+        $genres=$this->doctrine->em->getRepository(Entities\Genre::class)->findAll();
+        $this->prikaz('Pocetna', ['genres' => $genres]);
     }
     /*
      * Funkcija prikaziRegistracije() - sluzi za dohvatanje svih korisnika koji su poslali zahtev za registraciju

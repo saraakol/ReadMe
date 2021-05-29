@@ -30,8 +30,9 @@ class Gost extends BaseController
      */
      
     public function index() {
-         $books = $this->doctrine->em->getRepository(Entities\Book::class)->findAll();
-         $this->prikaz('Pocetna', ['knjige'=>$books]);
+        $books = $this->doctrine->em->getRepository(Entities\Book::class)->findAll();
+        $genres=$this->doctrine->em->getRepository(Entities\Genre::class)->findAll();
+        $this->prikaz('Pocetna', ['knjige'=>$books,'genres' => $genres]);
     }
     
     /*
@@ -160,7 +161,7 @@ class Gost extends BaseController
     public function filter(){
         //$knjige = $this->session->get("knjige");//pocetni niz knjiga
         $knjige = $this->doctrine->em->getRepository(Entities\Book::class)->findAll();
-
+        $genres=$this->doctrine->em->getRepository(Entities\Genre::class)->findAll();
 
         if(isset($_POST['submit']))
             $selected = $_POST['filter']; 
@@ -175,7 +176,7 @@ class Gost extends BaseController
                     $noveKnjige[] = $knjiga;
             }
         }
-        $this->prikaz('Pocetna', ['knjige' => $noveKnjige]);  
+        $this->prikaz('Pocetna', ['knjige' => $noveKnjige,'genres' => $genres]);  
     }
     
     /*
@@ -186,7 +187,7 @@ class Gost extends BaseController
     public function sort(){
         //$knjige = $this->session->get("knjige");//pocetni niz knjiga
         $knjige = $this->doctrine->em->getRepository(Entities\Book::class)->findAll();
-        
+        $genres=$this->doctrine->em->getRepository(Entities\Genre::class)->findAll();
         if(isset($_POST['submit']))
             $selected = $_POST['sort'];
         
@@ -204,7 +205,7 @@ class Gost extends BaseController
                 break;
         }
         
-        $this->prikaz('Pocetna', ['knjige' => $knjige]);
+        $this->prikaz('Pocetna', ['knjige' => $knjige,'genres' => $genres]);
     }
    
 }

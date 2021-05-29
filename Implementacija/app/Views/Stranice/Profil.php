@@ -102,13 +102,18 @@
                     <p style="font-size: 4vh;">All (<?= sizeof($all);?>)<input type="checkbox" id="alllist" onclick="kliknutalisaall()" checked></p>
                     <div class="alllist">
                         <?php
+                        
                         foreach ($all as $item) {
+                            
                             echo '<figure class="figuree">';
                             echo anchor("$controller/prikaziKnjigu/".$item->getIdb()->getIdb()."","<img src='/images/books/". $item->getIdb()->getIdb() .
                                     ".jpg' style=' width: 200px; margin-left: 3vh;'>");
                             echo anchor("$controller/prikaziKnjigu/".$item->getIdb()->getIdb()."","<figcaption style='margin-top: 2vh;padding-right:2vh;'>".$item->getIdb()->getName()."</figcaption>");
                             echo '</figure>';
+                            
                         }
+                        echo '<figure class="breakfloat"';
+                        echo '</figure>';
                         ?>
                     </div>
 
@@ -116,13 +121,18 @@
                     <p style="font-size: 4vh;">Read (<?= sizeof($read);?>)<input type="checkbox" id="readlist" onclick="kliknutalistaread()"></p>
                     <div class="readlist" style="display: none;">
                         <?php
+                        
                         foreach ($read as $item) {
+                            
                             echo '<figure class="figuree">';
                             echo anchor("$controller/prikaziKnjigu/".$item->getIdb()->getIdb()."","<img src='/images/books/". $item->getIdb()->getIdb() .
                                     ".jpg' style=' width: 200px; margin-left: 3vh;'>");
                             echo anchor("$controller/prikaziKnjigu/".$item->getIdb()->getIdb()."","<figcaption style='margin-top: 2vh;padding-right:2vh;'>".$item->getIdb()->getName()."</figcaption>");
                             echo '</figure>';
+                            
                         }
+                        echo '<figure class="breakfloat"';
+                        echo '</figure>';
                         ?>
                     </div>
 
@@ -132,56 +142,42 @@
                     <div class="wantlist" style="display: none;">
 
                         <?php
+                        
                         foreach ($wantToRead as $item) {
+                            
                             echo '<figure class="figuree">';
                             echo anchor("$controller/prikaziKnjigu/".$item->getIdb()->getIdb()."","<img src='/images/books/". $item->getIdb()->getIdb() .
                                     ".jpg' style=' width: 200px; margin-left: 3vh;'>");
                             echo anchor("$controller/prikaziKnjigu/".$item->getIdb()->getIdb()."","<figcaption style='margin-top: 2vh;padding-right:2vh;'>".$item->getIdb()->getName()."</figcaption>");
                             echo '</figure>'; 
+                            
                         }   
+                        echo '<figure class="breakfloat"';
+                        echo '</figure>'; 
                         ?>
                     </div>
                     
-                    <p style="font-size: 4vh;">Subscribed genres <input type="checkbox" id="subscribedlist" onclick="kliknutalistasubscribed()"></p>
+                    <p style="font-size: 4vh;">Subscirbed genres <input type="checkbox" id="subscribedlist" onclick="kliknutalistasubscribed()"></p>
                     <div class="subscribe" style="display: none;">
 
                         <?php
                         $flag=false;
                         $zanroviKorisnika = $korisnik->getGenres();                                                         //pretplaceni zanrovi korisnika
-                        /*
-                        foreach ($knjige as $knjiga) {
+                        foreach ($knjige as $knjiga){
                             $zanroviKnjige = $knjiga->getGenres();
-                            //$presek=array_intersect($zanroviKnjige,$zanroviKorisnika);
-                            
-                            //$arr3 = array_uintersect($zanroviKorisnika, $zanroviKnjige, function($a, $b) {
-                                //return strcmp($a->getName(), $b->getName());
-                            //});
-                             
-                            
-                            
-                            //if(sizeof($arr3)>0){
-                                echo '<figure class="figuree">';
-                                echo anchor("$controller/prikaziKnjigu/".$knjiga->getIdb()."","<img src='/images/books/". $knjiga->getIdb().".jpg' style=' width: 200px; margin-left: 3vh;'>");
-                                echo anchor("$controller/prikaziKnjigu/".$knjiga->getIdb()."","<figcaption style='margin-top: 2vh;padding-right:2vh;'>".$knjiga->getName()."</figcaption>");
-                                echo '</figure>';
-                            //}
                             
                             foreach($zanroviKnjige as $zanrKnjige){
-                                foreach ($zanroviKorisnika as $zanrKorisnika){
-                                    if($zanrKnjige->getName()==$zanrKorisnika->getName()){
-                                        echo '<figure class="figuree">';
-                                        echo anchor("$controller/prikaziKnjigu/".$knjiga->getIdb()."","<img src='/images/books/". $knjiga->getIdb().".jpg' style=' width: 200px; margin-left: 3vh;'>");
-                                        echo anchor("$controller/prikaziKnjigu/".$knjiga->getIdb()."","<figcaption style='margin-top: 2vh;padding-right:2vh;'>".$knjiga->getName()."</figcaption>");
-                                        echo '</figure>';
-                                        $flag=true;
-                                    }
+                                if($zanroviKorisnika->contains($zanrKnjige)){
+                                    echo '<figure class="figuree">';
+                                    echo anchor("$controller/prikaziKnjigu/".$knjiga->getIdb()."","<img src='/images/books/". $knjiga->getIdb().".jpg' style=' width: 200px; margin-left: 3vh;'>");
+                                    echo anchor("$controller/prikaziKnjigu/".$knjiga->getIdb()."","<figcaption style='margin-top: 2vh;padding-right:2vh;'>".$knjiga->getName()."</figcaption>");
+                                    echo '</figure>';
+                                    break;
                                 }
                             }
-                            
-                             
-                        }   
-                         * 
-                         */
+                        }
+                        echo '<figure class="breakfloat"';
+                        echo '</figure>'; 
                         ?>
                     </div>
                 </div>   

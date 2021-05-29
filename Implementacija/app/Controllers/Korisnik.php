@@ -27,7 +27,8 @@ class Korisnik extends BaseController {
 
     public function index() {
         $books = $this->doctrine->em->getRepository(Entities\Book::class)->findAll();
-        $this->prikaz('Pocetna', ['knjige' => $books]);
+        $genres=$this->doctrine->em->getRepository(Entities\Genre::class)->findAll();
+        $this->prikaz('Pocetna', ['knjige' => $books,'genres' => $genres]);
     }
 
     public function logout() {
@@ -84,9 +85,10 @@ class Korisnik extends BaseController {
         $all = $this->doctrine->em->getRepository(Entities\Userbooks::class)->dohvatiSve($user->getIdu());
         $read = $this->doctrine->em->getRepository(Entities\Userbooks::class)->dohvatiProcitane($user->getIdu());
         $wantToRead = $this->doctrine->em->getRepository(Entities\Userbooks::class)->dohvatiWantToRead($user->getIdu());
-
+        $knjige = $this->doctrine->em->getRepository(Entities\Book::class)->findAll();
+        
         $this->prikaz('Profil', ['korisnik' => $user, 'brProcitanih' => $brProcitanih, 'pretplaceni' => $pretplaceniZanrovi,
-            'nepretplaceni' => $nepretplaceniZanrovi, 'all' => $all, 'read' => $read, 'wantToRead' => $wantToRead]);
+            'nepretplaceni' => $nepretplaceniZanrovi, 'all' => $all, 'read' => $read, 'wantToRead' => $wantToRead, 'knjige' => $knjige]);
     }
 
     /*
@@ -194,7 +196,7 @@ class Korisnik extends BaseController {
     public function filter(){
         //$knjige = $this->session->get("knjige");//pocetni niz knjiga
         $knjige = $this->doctrine->em->getRepository(Entities\Book::class)->findAll();
-
+        $genres=$this->doctrine->em->getRepository(Entities\Genre::class)->findAll();
 
         if(isset($_POST['submit']))
             $selected = $_POST['filter']; 
@@ -209,7 +211,7 @@ class Korisnik extends BaseController {
                     $noveKnjige[] = $knjiga;
             }
         }
-        $this->prikaz('Pocetna', ['knjige' => $noveKnjige]);  
+        $this->prikaz('Pocetna', ['knjige' => $noveKnjige,'genres' => $genres]);  
     }
     
     /*
@@ -220,7 +222,8 @@ class Korisnik extends BaseController {
     public function sort(){
         //$knjige = $this->session->get("knjige");//pocetni niz knjiga
         $knjige = $this->doctrine->em->getRepository(Entities\Book::class)->findAll();
-        
+        $genres=$this->doctrine->em->getRepository(Entities\Genre::class)->findAll();
+         
         if(isset($_POST['submit']))
             $selected = $_POST['sort'];
         
@@ -238,7 +241,7 @@ class Korisnik extends BaseController {
                 break;
         }
         
-        $this->prikaz('Pocetna', ['knjige' => $knjige]);
+        $this->prikaz('Pocetna', ['knjige' => $knjige,'genres' => $genres]);
     }
     
     /*
