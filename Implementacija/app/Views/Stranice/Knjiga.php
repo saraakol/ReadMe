@@ -1,6 +1,19 @@
 <?php
 ?>
 
+<div class="toast" data-autohide="false" role="alert" aria-live="assertive" aria-atomic="true" style="position:absolute;top:0;right:0;">
+  <div class="toast-header">
+    
+    <strong class="mr-auto">Bootstrap</strong>
+    <small>11 mins ago</small>
+    <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="toast-body">
+    Hello, world! This is a toast message.
+  </div>
+</div>
         <div class="row ">
             
             <div class="col naopackegradient">
@@ -36,7 +49,8 @@
         </div>
 
         
-        <div class="row">
+        
+
             <?php 
                 if ($controller == 'Administrator' || $controller == 'Privilegovani' || $controller == 'Korisnik') {
                     
@@ -178,9 +192,19 @@
         </div>
 
 
+<!--<script>$(document).ready(function(){
 
+ $('.toast').toast('show');
 
-
+ });
+});</script>
+-->
+<script>$(document).ready(function(){
+ 
+ $('.toast').toast('show');
+ 
+});
+</script>
 
         
        

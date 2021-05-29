@@ -156,7 +156,7 @@ class Gost extends BaseController
      public function prikaziKnjigu($id){
          
         $book=$this->doctrine->em->getRepository(Entities\Book::class)->find($id);
-        $user = $this->doctrine->em->getRepository(Entities\User::class)->findOneBy(["idu" => session()->get("korisnik")->getIdu()]);
+//        $user = $this->doctrine->em->getRepository(Entities\User::class)->findOneBy(["idu" => session()->get("korisnik")->getIdu()]);
         $reviews=[];
         $moreReviews=$this->doctrine->em->getRepository(Entities\Review::class)->getReviewsFromAccountType("privileged_user");
 //        echo sizeof($moreReviews);
