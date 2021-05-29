@@ -77,6 +77,28 @@ $(document).ready(function() {
             $(thisOne).parent().parent().parent().remove();
         });
     });
+    
+
+
+  $("#prikaziquotes").click(function(){
+        if($("#prikazcitata").is(":visible")){
+           $("#prikazcitata").hide(); 
+        }
+        else{
+            
+            $("#prikazcitata").show();
+        }
+    });
+    $("#prikazireviews").click(function(){
+        if($("#prikazkomentara").is(":visible")){
+           $("#prikazkomentara").hide();
+        }
+        else{
+            
+            $("#prikazkomentara").show();
+        }
+    });
+
 });
 
 function kliknutalistawant() {
