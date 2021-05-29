@@ -31,6 +31,7 @@ class ReviewRepository extends EntityRepository{
         return $query->getResult();
         
     }
+    
     public function getReviewsFromNotAccountType($type){
         $dql="SELECT r FROM App\Models\Entities\Review r JOIN r.user u WHERE u.type!=:type";
         $query=$this->getEntityManager()->createQuery($dql);
