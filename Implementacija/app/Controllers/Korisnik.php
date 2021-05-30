@@ -120,7 +120,7 @@ class Korisnik extends BaseController {
         $user = $this->doctrine->em->getRepository(Entities\User::class)->findOneBy(["idu" => session()->get("korisnik")->getIdu()]);
         $reviews=$this->doctrine->em->getRepository(Entities\Review::class)->getReviewsFromAccountType($id,"privileged_user");
         $reviews=array_merge($reviews,$this->doctrine->em->getRepository(Entities\Review::class)->getReviewsFromNotAccountType($id,"privileged_user"));
-       
+        
 //        $reviews=array_merge($reviews,$this->doctrine->em->getRepository(Entities\Review::class)->getReviewsFromNotAccountType("privileged_user"));
         $this->prikaz('Knjiga', ["poruka"=>$poruka,'knjiga'=>$book, 'komentari' => $reviews,'korisnik' => $user,'citati' => $book->getQuotes()]);
     }
@@ -160,8 +160,8 @@ class Korisnik extends BaseController {
             $path=$path."/".$args[$i];
         }
 
-        return redirect()->to(site_url($path));
-
+       // return redirect()->to(site_url($path));
+        return $this->prikaziKnjigu(intval($args[sizeof($args)-1]),"Successfully added new quote");
     }
 
     /*
