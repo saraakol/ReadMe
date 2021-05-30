@@ -66,10 +66,10 @@ class User extends \App\Models\Entities\User implements \Doctrine\ORM\Proxy\Prox
     public function __sleep()
     {
         if ($this->__isInitialized__) {
-            return ['__isInitialized__', '' . "\0" . 'App\\Models\\Entities\\User' . "\0" . 'idu', '' . "\0" . 'App\\Models\\Entities\\User' . "\0" . 'username', '' . "\0" . 'App\\Models\\Entities\\User' . "\0" . 'password', '' . "\0" . 'App\\Models\\Entities\\User' . "\0" . 'firstname', '' . "\0" . 'App\\Models\\Entities\\User' . "\0" . 'lastname', '' . "\0" . 'App\\Models\\Entities\\User' . "\0" . 'email', '' . "\0" . 'App\\Models\\Entities\\User' . "\0" . 'image', '' . "\0" . 'App\\Models\\Entities\\User' . "\0" . 'type', '' . "\0" . 'App\\Models\\Entities\\User' . "\0" . 'status', '' . "\0" . 'App\\Models\\Entities\\User' . "\0" . 'personalgoal', '' . "\0" . 'App\\Models\\Entities\\User' . "\0" . 'genres', '' . "\0" . 'App\\Models\\Entities\\User' . "\0" . 'books', '' . "\0" . 'App\\Models\\Entities\\User' . "\0" . 'reviews', '' . "\0" . 'App\\Models\\Entities\\User' . "\0" . 'quotes'];
+            return ['__isInitialized__', '' . "\0" . 'App\\Models\\Entities\\User' . "\0" . 'idu', '' . "\0" . 'App\\Models\\Entities\\User' . "\0" . 'username', '' . "\0" . 'App\\Models\\Entities\\User' . "\0" . 'password', '' . "\0" . 'App\\Models\\Entities\\User' . "\0" . 'firstname', '' . "\0" . 'App\\Models\\Entities\\User' . "\0" . 'lastname', '' . "\0" . 'App\\Models\\Entities\\User' . "\0" . 'email', '' . "\0" . 'App\\Models\\Entities\\User' . "\0" . 'image', '' . "\0" . 'App\\Models\\Entities\\User' . "\0" . 'type', '' . "\0" . 'App\\Models\\Entities\\User' . "\0" . 'status', '' . "\0" . 'App\\Models\\Entities\\User' . "\0" . 'personalgoal', '' . "\0" . 'App\\Models\\Entities\\User' . "\0" . 'genres', '' . "\0" . 'App\\Models\\Entities\\User' . "\0" . 'books', '' . "\0" . 'App\\Models\\Entities\\User' . "\0" . 'reviews', '' . "\0" . 'App\\Models\\Entities\\User' . "\0" . 'quotes', '' . "\0" . 'App\\Models\\Entities\\User' . "\0" . 'rates'];
         }
 
-        return ['__isInitialized__', '' . "\0" . 'App\\Models\\Entities\\User' . "\0" . 'idu', '' . "\0" . 'App\\Models\\Entities\\User' . "\0" . 'username', '' . "\0" . 'App\\Models\\Entities\\User' . "\0" . 'password', '' . "\0" . 'App\\Models\\Entities\\User' . "\0" . 'firstname', '' . "\0" . 'App\\Models\\Entities\\User' . "\0" . 'lastname', '' . "\0" . 'App\\Models\\Entities\\User' . "\0" . 'email', '' . "\0" . 'App\\Models\\Entities\\User' . "\0" . 'image', '' . "\0" . 'App\\Models\\Entities\\User' . "\0" . 'type', '' . "\0" . 'App\\Models\\Entities\\User' . "\0" . 'status', '' . "\0" . 'App\\Models\\Entities\\User' . "\0" . 'personalgoal', '' . "\0" . 'App\\Models\\Entities\\User' . "\0" . 'genres', '' . "\0" . 'App\\Models\\Entities\\User' . "\0" . 'books', '' . "\0" . 'App\\Models\\Entities\\User' . "\0" . 'reviews', '' . "\0" . 'App\\Models\\Entities\\User' . "\0" . 'quotes'];
+        return ['__isInitialized__', '' . "\0" . 'App\\Models\\Entities\\User' . "\0" . 'idu', '' . "\0" . 'App\\Models\\Entities\\User' . "\0" . 'username', '' . "\0" . 'App\\Models\\Entities\\User' . "\0" . 'password', '' . "\0" . 'App\\Models\\Entities\\User' . "\0" . 'firstname', '' . "\0" . 'App\\Models\\Entities\\User' . "\0" . 'lastname', '' . "\0" . 'App\\Models\\Entities\\User' . "\0" . 'email', '' . "\0" . 'App\\Models\\Entities\\User' . "\0" . 'image', '' . "\0" . 'App\\Models\\Entities\\User' . "\0" . 'type', '' . "\0" . 'App\\Models\\Entities\\User' . "\0" . 'status', '' . "\0" . 'App\\Models\\Entities\\User' . "\0" . 'personalgoal', '' . "\0" . 'App\\Models\\Entities\\User' . "\0" . 'genres', '' . "\0" . 'App\\Models\\Entities\\User' . "\0" . 'books', '' . "\0" . 'App\\Models\\Entities\\User' . "\0" . 'reviews', '' . "\0" . 'App\\Models\\Entities\\User' . "\0" . 'quotes', '' . "\0" . 'App\\Models\\Entities\\User' . "\0" . 'rates'];
     }
 
     /**
@@ -541,6 +541,39 @@ class User extends \App\Models\Entities\User implements \Doctrine\ORM\Proxy\Prox
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'getQuotes', []);
 
         return parent::getQuotes();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function addRate(\App\Models\Entities\Rate $rate)
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'addRate', [$rate]);
+
+        return parent::addRate($rate);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function removeRates(\App\Models\Entities\Rate $rate)
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'removeRates', [$rate]);
+
+        return parent::removeRates($rate);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getRates()
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getRates', []);
+
+        return parent::getRates();
     }
 
 }

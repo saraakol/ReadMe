@@ -26,13 +26,22 @@ class Korisnik extends BaseController {
      */
 
     public function index() {
+        
+        $poruka=null;
+        if(isset($_SESSION["displayNotificationMessage"]))
+        {
+            $poruka=$_SESSION["displayNotificationMessage"];
+            unset($_SESSION["displayNotificationMessage"]);
+        }
         $books = $this->doctrine->em->getRepository(Entities\Book::class)->findAll();
         $genres=$this->doctrine->em->getRepository(Entities\Genre::class)->findAll();
-        $this->prikaz('Pocetna', ['knjige' => $books,'genres' => $genres]);
+        $this->prikaz('Pocetna', ['knjige' => $books,'genres' => $genres,"poruka"=>$poruka]);
     }
 
     public function logout() {
+
         $this->session->destroy();
+        
         return redirect()->to(site_url("/"));
     }
 
@@ -48,8 +57,9 @@ class Korisnik extends BaseController {
         $genre = $this->doctrine->em->getRepository(Entities\Genre::class)->findOneBy(['idg' => $selected]);
 
         $user->addGenre($genre);     //Owner strana asocijacije
-
         $this->doctrine->em->flush();
+        
+        session()->setFlashdata("poruka", "Subscription successfully added!");
 
         return redirect()->to(site_url('Korisnik/prikaziProfil'));
     }
@@ -65,8 +75,9 @@ class Korisnik extends BaseController {
         $genre = $this->doctrine->em->getRepository(Entities\Genre::class)->findOneBy(['idg' => $selected]);
 
         $user->removeGenre($genre);     //Owner strana asocijacije
-
         $this->doctrine->em->flush();
+        
+        session()->setFlashdata("poruka", "Subscription successfully removed!");
 
         return redirect()->to(site_url('Korisnik/prikaziProfil'));
     }
@@ -87,8 +98,14 @@ class Korisnik extends BaseController {
         $wantToRead = $this->doctrine->em->getRepository(Entities\Userbooks::class)->dohvatiWantToRead($user->getIdu());
         $knjige = $this->doctrine->em->getRepository(Entities\Book::class)->findAll();
         
-        $this->prikaz('Profil', ['korisnik' => $user, 'brProcitanih' => $brProcitanih, 'pretplaceni' => $pretplaceniZanrovi,
-            'nepretplaceni' => $nepretplaceniZanrovi, 'all' => $all, 'read' => $read, 'wantToRead' => $wantToRead, 'knjige' => $knjige]);
+        $data = ['korisnik' => $user, 'brProcitanih' => $brProcitanih, 'pretplaceni' => $pretplaceniZanrovi,
+            'nepretplaceni' => $nepretplaceniZanrovi, 'all' => $all, 'read' => $read, 'wantToRead' => $wantToRead, 'knjige' => $knjige];
+        
+        if (session()->getFlashdata('poruka') != null) {
+            $data['poruka'] = session()->getFlashdata('poruka');
+        }
+        
+        $this->prikaz('Profil', $data);
     }
 
     /*
@@ -97,14 +114,15 @@ class Korisnik extends BaseController {
      * Sara Kolarevic 2018/0388
      */
 
-     public function prikaziKnjigu($id){
-         
+     public function prikaziKnjigu($id,$poruka=null){
+        
         $book=$this->doctrine->em->getRepository(Entities\Book::class)->find($id);
         $user = $this->doctrine->em->getRepository(Entities\User::class)->findOneBy(["idu" => session()->get("korisnik")->getIdu()]);
-        $reviews=[];
-        $reviews=array_merge($reviews,$this->doctrine->em->getRepository(Entities\Review::class)->getReviewsFromAccountType("privilegovani"));
-        $reviews=array_merge($reviews,$this->doctrine->em->getRepository(Entities\Review::class)->getReviewsFromNotAccountType("privilegovani"));
-        $this->prikaz('Knjiga', ['knjiga'=>$book, 'komentari' => $reviews,'korisnik' => $user,'citati' => $book->getQuotes()]);
+        $reviews=$this->doctrine->em->getRepository(Entities\Review::class)->getReviewsFromAccountType($id,"privileged_user");
+        $reviews=array_merge($reviews,$this->doctrine->em->getRepository(Entities\Review::class)->getReviewsFromNotAccountType($id,"privileged_user"));
+        
+//        $reviews=array_merge($reviews,$this->doctrine->em->getRepository(Entities\Review::class)->getReviewsFromNotAccountType("privileged_user"));
+        $this->prikaz('Knjiga', ["poruka"=>$poruka,'knjiga'=>$book, 'komentari' => $reviews,'korisnik' => $user,'citati' => $book->getQuotes()]);
     }
     
     /*
@@ -142,8 +160,8 @@ class Korisnik extends BaseController {
             $path=$path."/".$args[$i];
         }
 
-        return redirect()->to(site_url($path));
-
+       // return redirect()->to(site_url($path));
+        return $this->prikaziKnjigu(intval($args[sizeof($args)-1]),"Successfully added new quote");
     }
 
     /*
@@ -152,7 +170,8 @@ class Korisnik extends BaseController {
      */
     public function addReview($poruka=null){
         $referer=$_SERVER['HTTP_REFERER'];
-        echo view("Stranice/Review", ["poruka"=>$poruka,"referer"=>$referer,"controller"=>"korisnik"]);
+//        echo $referer;
+        echo view("Stranice/Review", ["poruka"=>$poruka,"referer"=>$referer,"controller"=>"Korisnik"]);
         
     }
     /*
@@ -171,8 +190,8 @@ class Korisnik extends BaseController {
         $review->setBook($book);
         $review->setUser($user);
         $review->setText($text);
-        $user->addReview($review);
-        $book->addReview($review);
+//        $user->addReview($review);
+//        $book->addReview($review);
 //        echo $review->getBook()->getIdb();
 //        echo $review->getUser()->getIdu();
 //        echo $review->getText();
@@ -185,8 +204,9 @@ class Korisnik extends BaseController {
             
             $path=$path."/".$args[$i];
         }
-
-        return redirect()->to(site_url($path));
+//echo intval($args[count($args)-1]);
+        return $this->prikaziKnjigu(intval($args[sizeof($args)-1]),"Successfully added new review");
+//        return redirect()->to(site_url($path));
 
     }
     

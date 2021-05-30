@@ -24,17 +24,20 @@ class ReviewRepository extends EntityRepository{
 //        return $query->getResult();
 //    }
 //    
-    public function getReviewsFromAccountType($type){
-        $dql="SELECT r FROM App\Models\Entities\Review r JOIN r.user u WHERE u.type=:type";
+    public function getReviewsFromAccountType($bookId,$type){
+        $dql="SELECT r FROM App\Models\Entities\Review r JOIN r.user u Join r.book b WHERE u.type=:type and b.idb=:bookId";
         $query=$this->getEntityManager()->createQuery($dql);
         $query->setParameter("type", $type);
+        $query->setParameter("bookId", $bookId);
         return $query->getResult();
         
     }
-    public function getReviewsFromNotAccountType($type){
-        $dql="SELECT r FROM App\Models\Entities\Review r JOIN r.user u WHERE u.type!=:type";
+    
+    public function getReviewsFromNotAccountType($bookId,$type){
+        $dql="SELECT r FROM App\Models\Entities\Review r JOIN r.user u Join r.book b WHERE u.type!=:type and b.idb=:bookId";
         $query=$this->getEntityManager()->createQuery($dql);
         $query->setParameter("type", $type);
+        $query->setParameter("bookId", $bookId);
         return $query->getResult();
     }
     

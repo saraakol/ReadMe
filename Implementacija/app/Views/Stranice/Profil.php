@@ -95,11 +95,11 @@
             
             <div class="row">
                 <div class="col" style="background-color: #ffeedf">
-                    <h3>My books</h3>
+                    <h3 style="margin-left: 30px;">My books</h3>
                     <br>
 
                     <br>
-                    <p style="font-size: 4vh;">All (<?= sizeof($all);?>)<input type="checkbox" id="alllist" onclick="kliknutalisaall()" checked></p>
+                    <p style="font-size: 4vh;margin-left: 35px;">All (<?= sizeof($all);?>)<input type="checkbox" id="alllist" onclick="kliknutalisaall()" checked></p>
                     <div class="alllist">
                         <?php
                         
@@ -107,18 +107,19 @@
                             
                             echo '<figure class="figuree">';
                             echo anchor("$controller/prikaziKnjigu/".$item->getIdb()->getIdb()."","<img src='/images/books/". $item->getIdb()->getIdb() .
-                                    ".jpg' style=' width: 200px; margin-left: 3vh;'>");
-                            echo anchor("$controller/prikaziKnjigu/".$item->getIdb()->getIdb()."","<figcaption style='margin-top: 2vh;padding-right:2vh;'>".$item->getIdb()->getName()."</figcaption>");
+                                    ".jpg' style=' width: 200px;height:300px; margin-left: 3vh;'>");
+                            echo anchor("$controller/prikaziKnjigu/".$item->getIdb()->getIdb()."","<figcaption style='margin-top: 2vh;width: 200px;margin-left: 3vh;padding-right:2vh;'>".$item->getIdb()->getName()."</figcaption>");
                             echo '</figure>';
                             
                         }
-                        echo '<figure class="breakfloat"';
+                        echo '<figure class="breakfloat">';
+                        echo '&nbsp;';
                         echo '</figure>';
                         ?>
                     </div>
 
                     <br>
-                    <p style="font-size: 4vh;">Read (<?= sizeof($read);?>)<input type="checkbox" id="readlist" onclick="kliknutalistaread()"></p>
+                    <p style="font-size: 4vh;margin-left: 35px;">Read (<?= sizeof($read);?>)<input type="checkbox" id="readlist" onclick="kliknutalistaread()"></p>
                     <div class="readlist" style="display: none;">
                         <?php
                         
@@ -126,19 +127,20 @@
                             
                             echo '<figure class="figuree">';
                             echo anchor("$controller/prikaziKnjigu/".$item->getIdb()->getIdb()."","<img src='/images/books/". $item->getIdb()->getIdb() .
-                                    ".jpg' style=' width: 200px; margin-left: 3vh;'>");
-                            echo anchor("$controller/prikaziKnjigu/".$item->getIdb()->getIdb()."","<figcaption style='margin-top: 2vh;padding-right:2vh;'>".$item->getIdb()->getName()."</figcaption>");
+                                    ".jpg' style=' width: 200px;height:300px; margin-left: 3vh;'>");
+                            echo anchor("$controller/prikaziKnjigu/".$item->getIdb()->getIdb()."","<figcaption style='margin-top: 2vh;width: 200px;margin-left: 3vh;padding-right:2vh;'>".$item->getIdb()->getName()."</figcaption>");
                             echo '</figure>';
                             
                         }
-                        echo '<figure class="breakfloat"';
+                        echo '<figure class="breakfloat">';
+                        echo '&nbsp;<br> ';
                         echo '</figure>';
                         ?>
                     </div>
 
 
                     <br>
-                    <p style="font-size: 4vh;">Want to read (<?= sizeof($wantToRead);?>)<input type="checkbox" id="wantlist" onclick="kliknutalistawant()"></p> 
+                    <p style="font-size: 4vh;margin-left: 35px;" >Want to read (<?= sizeof($wantToRead);?>)<input type="checkbox" id="wantlist" onclick="kliknutalistawant()"></p> 
                     <div class="wantlist" style="display: none;">
 
                         <?php
@@ -147,17 +149,18 @@
                             
                             echo '<figure class="figuree">';
                             echo anchor("$controller/prikaziKnjigu/".$item->getIdb()->getIdb()."","<img src='/images/books/". $item->getIdb()->getIdb() .
-                                    ".jpg' style=' width: 200px; margin-left: 3vh;'>");
-                            echo anchor("$controller/prikaziKnjigu/".$item->getIdb()->getIdb()."","<figcaption style='margin-top: 2vh;padding-right:2vh;'>".$item->getIdb()->getName()."</figcaption>");
+                                    ".jpg' style=' width: 200px; height:300px; margin-left: 3vh;'>");
+                            echo anchor("$controller/prikaziKnjigu/".$item->getIdb()->getIdb()."","<figcaption style='margin-top: 2vh;width: 200px;margin-left: 3vh;padding-right:2vh;'>".$item->getIdb()->getName()."</figcaption>");
                             echo '</figure>'; 
                             
                         }   
-                        echo '<figure class="breakfloat"';
-                        echo '</figure>'; 
+                       echo '<figure class="breakfloat">';
+                        echo '&nbsp;';
+                        echo '</figure>';
                         ?>
                     </div>
-                    
-                    <p style="font-size: 4vh;">Subscirbed genres <input type="checkbox" id="subscribedlist" onclick="kliknutalistasubscribed()"></p>
+                    <br>
+                    <p style="font-size: 4vh;margin-left: 35px;">Subscirbed genres <input type="checkbox" id="subscribedlist" onclick="kliknutalistasubscribed()"></p>
                     <div class="subscribe" style="display: none;">
 
                         <?php
@@ -169,19 +172,43 @@
                             foreach($zanroviKnjige as $zanrKnjige){
                                 if($zanroviKorisnika->contains($zanrKnjige)){
                                     echo '<figure class="figuree">';
-                                    echo anchor("$controller/prikaziKnjigu/".$knjiga->getIdb()."","<img src='/images/books/". $knjiga->getIdb().".jpg' style=' width: 200px; margin-left: 3vh;'>");
-                                    echo anchor("$controller/prikaziKnjigu/".$knjiga->getIdb()."","<figcaption style='margin-top: 2vh;padding-right:2vh;'>".$knjiga->getName()."</figcaption>");
+                                    echo anchor("$controller/prikaziKnjigu/".$knjiga->getIdb()."","<img src='/images/books/". $knjiga->getIdb().".jpg' style=' width: 200px;height:300px; margin-left: 3vh;'>");
+                                    echo anchor("$controller/prikaziKnjigu/".$knjiga->getIdb()."","<figcaption style='margin-top: 2vh;width: 200px;margin-left: 3vh;padding-right:2vh;'>".$knjiga->getName()."</figcaption>");
                                     echo '</figure>';
                                     break;
                                 }
                             }
                         }
-                        echo '<figure class="breakfloat"';
+                        echo '<figure class="breakfloat">';
+                        echo '&nbsp;';
                         echo '</figure>'; 
                         ?>
                     </div>
                 </div>   
             </div>
         </div>
+        <!-- Ovo ispod (ukljucujuci javascript deo) treba dodati na svakoj stranici gde treba da se prikaze modal -->
+        <!-- U kontroleru koji prikazuje stranicu postaviti promenjivu poruka da ima vrednost teksta greske/uspeha -->
+        <?php 
+            if (isset($poruka)) {
+                echo '<div class="toast" data-autohide="false" role="alert" aria-live="assertive" aria-atomic="true" style="position:absolute;top:5%;right:42%;">';
+                echo '  <div class="toast-header">';
+                echo '      <strong class="mr-auto">Message</strong>';
+                echo '      <small>Now</small>';
+                echo '      <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">';
+                echo '          <span aria-hidden="true">&times;</span>';
+                echo '      </button>';
+                echo '  </div>';
+                echo "  <div class='toast-body'>$poruka</div>";
+                echo '</div>';
+            }
+        ?>
         
+        <script>
+            $(document).ready(function(){
+                if ($('.toast')) {
+                    $('.toast').toast('show');
+                }
+            });
+        </script>
 

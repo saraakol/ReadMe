@@ -21,9 +21,16 @@ class Privilegovani extends BaseController
         echo view('Sablon/footer');
     }
     public function index() {
+        
+        $poruka=null;
+        if(isset($_SESSION["displayNotificationMessage"]))
+        {
+            $poruka=$_SESSION["displayNotificationMessage"];
+            unset($_SESSION["displayNotificationMessage"]);
+        }
         $books = $this->doctrine->em->getRepository(Entities\Book::class)->findAll();
         $genres=$this->doctrine->em->getRepository(Entities\Genre::class)->findAll();
-        $this->prikaz('Pocetna', ['knjige' => $books,'genres' => $genres]);
+        $this->prikaz('Pocetna', ['knjige' => $books,'genres' => $genres,"poruka"=>$poruka]);
     }
     /*
      * komentarisanje knjige
@@ -31,8 +38,39 @@ class Privilegovani extends BaseController
      */
     public function addReview($poruka=null){
         $referer=$_SERVER['HTTP_REFERER'];
-        echo view("Stranice/Review", ["poruka"=>$poruka,"referer"=>$referer,"controller"=>"korisnik"]);
+        echo view("Stranice/Review", ["poruka"=>$poruka,"referer"=>$referer,"controller"=>"Privilegovani"]);
         
+    }
+    public function registerAddReview(){
+//        $user=$this->session->get("korisnik");
+        $user=$this->doctrine->em->getRepository(\App\Models\Entities\User::class)->find($this->session->get("korisnik")->getIdu());
+        $referer=$this->request->getVar("hiddenBook");
+        $text=$this->request->getVar("review");
+        $args=explode("/",$referer);
+        $bookId=intval($args[count($args)-1]);
+        $book=$this->doctrine->em->getRepository(\App\Models\Entities\Book::class)->find($bookId);
+        $review=new \App\Models\Entities\Review();
+        $review->setBook($book);
+        $review->setUser($user);
+        $review->setText($text);
+//        $user->addReview($review);
+//        $book->addReview($review);
+//        echo $review->getBook()->getIdb();
+//        echo $review->getUser()->getIdu();
+//        echo $review->getText();
+//        echo count($args);
+        $this->doctrine->em->persist($review);      
+        $this->doctrine->em->flush();
+        $path="";
+        for($i=3;$i<count($args);$i++)
+        {   
+            
+            $path=$path."/".$args[$i];
+        }
+//echo intval($args[count($args)-1]);
+        return $this->prikaziKnjigu(intval($args[sizeof($args)-1]),"Successfully added new review");
+//        return redirect()->to(site_url($path));
+
     }
     /*
      * Funkcija dodajCilj() - Dodaje licni cilj korisniku
@@ -46,34 +84,27 @@ class Privilegovani extends BaseController
         $user = $this->doctrine->em->getRepository(Entities\User::class)->find(session()->get("korisnik")->getIdu());
         $user->setPersonalGoal($this->request->getVar('brojKnjiga'));
         $this->doctrine->em->flush();
+        
+        session()->setFlashdata("poruka", "Personal goal successfully added!");
+        
         return redirect()->to(site_url('Korisnik/prikaziProfil'));
     }
-    /*
-     * 
-     * funkcija za prikaz knjige
-     * Sara Kolarevic 2018/0388
-     */
-//     public function prikaziKnjigu($id){
-//        $book=$this->doctrine->em->getRepository(Entities\Book::class)->find($id);
-//        $user = $this->doctrine->em->getRepository(Entities\User::class)->findOneBy(["idu" => session()->get("korisnik")->getIdu()]);
-//        $this->prikaz('Knjiga', ['knjiga'=>$book, 'komentari' => $book->getReviews(),'korisnik' => $user,'citati' => $book->getQuotes()]);
-//    }
+    
     /*
      * 
      * funkcija za prikaz knjige
      * Sara Kolarevic 2018/0388
      */
 
-     public function prikaziKnjigu($id){
-         
+        public function prikaziKnjigu($id,$poruka=null){
+        
         $book=$this->doctrine->em->getRepository(Entities\Book::class)->find($id);
         $user = $this->doctrine->em->getRepository(Entities\User::class)->findOneBy(["idu" => session()->get("korisnik")->getIdu()]);
-        $reviews=[];
-        $moreReviews=$this->doctrine->em->getRepository(Entities\Review::class)->getReviewsFromAccountType("privileged_user");
-//        echo sizeof($moreReviews);
-        $reviews=array_merge($reviews,$moreReviews);
-        $reviews=array_merge($reviews,$this->doctrine->em->getRepository(Entities\Review::class)->getReviewsFromNotAccountType("privileged_user"));
-        $this->prikaz('Knjiga', ['knjiga'=>$book, 'komentari' => $reviews,'korisnik' => $user,'citati' => $book->getQuotes()]);
+        $reviews=$this->doctrine->em->getRepository(Entities\Review::class)->getReviewsFromAccountType($id,"privileged_user");
+        $reviews=array_merge($reviews,$this->doctrine->em->getRepository(Entities\Review::class)->getReviewsFromNotAccountType($id,"privileged_user"));
+       
+//        $reviews=array_merge($reviews,$this->doctrine->em->getRepository(Entities\Review::class)->getReviewsFromNotAccountType("privileged_user"));
+        $this->prikaz('Knjiga', ["poruka"=>$poruka,'knjiga'=>$book, 'komentari' => $reviews,'korisnik' => $user,'citati' => $book->getQuotes()]);
     }
     
     /*
@@ -91,8 +122,11 @@ class Privilegovani extends BaseController
             
         }
         
+        
+        
         return redirect()->to($_SERVER['HTTP_REFERER']);
     }
+
     
     /*
      * funkcija za filtriranje
@@ -218,6 +252,45 @@ class Privilegovani extends BaseController
         $this->doctrine->em->flush();
         
         return $this->prikaz('Knjiga', ['knjiga' => $book]);
+
+    /*
+     * dodavanje citata iz knjige
+     * Sara Kolarevic 2018/0388
+     */
+    public function addQuote($poruka=null){
+        $referer=$_SERVER['HTTP_REFERER'];
+        echo view("Stranice/Quote", ["poruka"=>$poruka,"referer"=>$referer,"controller"=>"korisnik"]);
+        
+    }
+    /*
+     * potvrdnjivanje dodavanja citata
+     * Sara Kolarevic 2018/0388
+     */
+    public function registerAddQuote(){
+        $user=$this->doctrine->em->getRepository(\App\Models\Entities\User::class)->find($this->session->get("korisnik")->getIdu());
+        $referer=$this->request->getVar("hiddenBook");
+        $text=$this->request->getVar("quote");
+        $args=explode("/",$referer);
+        $bookId=intval($args[count($args)-1]);
+        $book=$this->doctrine->em->getRepository(\App\Models\Entities\Book::class)->find($bookId);
+        $quote=new \App\Models\Entities\Quote();
+          $quote->setBook($book);
+          $quote->setUser($user);
+          $quote->setText($text);
+        $user->addQuote($quote);
+          $book->addQuote($quote);
+          $this->doctrine->em->persist($quote);      
+          $this->doctrine->em->flush();
+          $path="";
+        for($i=3;$i<count($args);$i++)
+        {   
+            
+            $path=$path."/".$args[$i];
+        }
+
+       // return redirect()->to(site_url($path));
+        return $this->prikaziKnjigu(intval($args[sizeof($args)-1]),"Successfully added new quote");
+
     }
 }
 

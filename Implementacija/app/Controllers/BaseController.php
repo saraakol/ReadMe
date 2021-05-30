@@ -28,7 +28,7 @@ class BaseController extends Controller
 	 * @var array
 	 */
 	protected $helpers = ['form', 'url'];
-
+        
 	/**
 	 * Constructor.
 	 *
@@ -63,5 +63,7 @@ class BaseController extends Controller
             echo view("Stranice/$page", $data);
             echo view('Sablon/footer');
         }
+        
+        
         
 }

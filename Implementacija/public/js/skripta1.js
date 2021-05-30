@@ -75,6 +75,7 @@ $(document).ready(function() {
             url: url
         }).done(function(result) {
             $(thisOne).parent().parent().parent().remove();
+            $(".toast-zahtevi").toast("show");
         });
     });
     
@@ -109,6 +110,8 @@ function kliknutalistawant() {
         $(".wantlist").hide();
     } else {
         $(".wantlist").show();
+        $(".alllist").hide();
+        document.getElementById("alllist").checked = false;
     }
 }
 
@@ -119,7 +122,13 @@ function kliknutalisaall() {
     if (checkBox.checked == false) {
         $(".alllist").hide();
     } else {
-        $(".alllist").show();
+       $(".alllist").show();
+        $(".readlist").hide();
+        $(".subscribedlist").hide();
+        $(".wantlist").hide();
+        document.getElementById("readlist").checked = false;
+        document.getElementById("subscribedlist").checked = false;
+        document.getElementById("wantlist").checked = false;
     }
 }
 
@@ -131,6 +140,8 @@ function kliknutalistaread() {
         $(".readlist").hide();
     } else {
         $(".readlist").show();
+        $(".alllist").hide();
+        document.getElementById("alllist").checked = false;
     }
 }
 
@@ -142,5 +153,7 @@ function kliknutalistasubscribed(){
         $(".subscribe").hide();
     } else {
         $(".subscribe").show();
+        $(".alllist").hide();
+        document.getElementById("alllist").checked = false;
     }
 }
