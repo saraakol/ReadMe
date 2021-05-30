@@ -60,6 +60,7 @@
                     
                     if($controller == 'Administrator' || $controller == 'Privilegovani') {
                        echo " <p class='quote' name='quote'><font style='font-size: 15px;'><a href='/{$controller}/addQuote'>Add quote</a></font></p>";
+                       
                     
                     }
                     echo "  </form>";
@@ -132,14 +133,14 @@
             <br>&nbsp;
             <div class="col-lg-3">&nbsp;</div>
         </div>
-<div class="row"><div class="col " style="margin-left: 15px ;"><h1 class="textdugme" id="prikazireviews">Reviews</h1> </div> </div>
+<div class="row"><div class="col " style="margin-left: 15px ; padding-left: 15px"><h1 class="textdugme" id="prikazireviews"  style="padding-left: 25px;">Reviews</h1> </div> </div>
 <div class="row" id="prikazkomentara">
             <div class="col komentari">
                 
                 <hr><br>
                 <?php 
                 foreach ($komentari as $komentar) {
-                    echo '<div class="media">';
+                    echo '<div class="media" style="padding-left: 30px;">';
                     if ($komentar->getUser()->getImage() == null) {
                         echo '<img src="\images\users\no_photo.jpg" class="mr-3" alt="No photo">';
                     } else {
@@ -159,7 +160,7 @@
                 ?>
             </div>
         </div>
-<div class="row"><div class="col " style="margin-left: 15px ;" >  <h1 class="textdugme" id="prikaziquotes">Quotes</h1> </div> </div>
+<div class="row"><div class="col " style="margin-left: 15px ;" >  <h1 class="textdugme" id="prikaziquotes"  style="padding-left: 25px;">Quotes</h1> </div> </div>
         <div class="row" id="prikazcitata">
           
             <div class="col komentari">
@@ -167,7 +168,7 @@
                 <hr><br>
                 <?php 
                 foreach ($citati as $citat) {
-                    echo '<div class="media">';
+                    echo '<div class="media" style="padding-left: 30px;">';
                     if ($citat->getUser()->getImage() == null) {
                         echo '<img src="\images\users\no_photo.jpg" class="mr-3" alt="No photo">';
                     } else {
