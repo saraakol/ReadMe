@@ -229,13 +229,13 @@ class Korisnik extends BaseController {
         $noveKnjige = [];
         foreach($knjige as $knjiga){
 
-            $genres = $knjiga->getGenres();
-            foreach($genres as $genre){
+            $bookGenres = $knjiga->getGenres();
+            foreach($bookGenres as $genre){
                 if($genre->getName()== $selected)
                     $noveKnjige[] = $knjiga;
             }
         }
-        $this->prikaz('Pocetna', ['knjige' => $noveKnjige,'genres' => $genres]);  
+        $this->prikaz('Pocetna', ['noveKnjige' => $noveKnjige,'knjige' => $knjige, 'genres' => $genres]);  
     }
     
     /*

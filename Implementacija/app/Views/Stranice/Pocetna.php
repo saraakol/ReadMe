@@ -71,9 +71,9 @@
             </div>
             
 <?php
-
-    foreach ($knjige as $knjiga) {
-        echo "<div class='row book'>";
+    if($noveKnjige!=null){
+        foreach ($noveKnjige as $knjiga) {
+            echo "<div class='row book'>";
               echo  "<div class='col-md-4 col-ld-4'>&nbsp;</div>";
               echo  "<div class='col-md-2 col-ld-2 col-sm-12'>";
               echo       anchor("$controller/prikaziKnjigu/".$knjiga->getIdb()."", "<img src='/images/books/".$knjiga->getIdb() .".jpg' alt='' >", ['class'=>'nav-link']);
@@ -85,6 +85,22 @@
                echo "</div>";
                echo "<div class='col-md-4 col-ld-4'>&nbsp;</div>";
             echo "</div> ";   
+        }
+    }else{
+        foreach ($knjige as $knjiga) {
+            echo "<div class='row book'>";
+                  echo  "<div class='col-md-4 col-ld-4'>&nbsp;</div>";
+                  echo  "<div class='col-md-2 col-ld-2 col-sm-12'>";
+                  echo       anchor("$controller/prikaziKnjigu/".$knjiga->getIdb()."", "<img src='/images/books/".$knjiga->getIdb() .".jpg' alt='' >", ['class'=>'nav-link']);
+                  echo  "</div>";
+                  echo  "<div class='col-md-2 col-ld-2 col-sm-12'>";
+                   echo    " <p class='floatleft'>";
+                   echo anchor("$controller/prikaziKnjigu/".$knjiga->getIdb()."", $knjiga->getName(), ['class'=>'nav-link']);
+                   echo "<br>". $knjiga->getAuthors() ."</p> ";
+                   echo "</div>";
+                   echo "<div class='col-md-4 col-ld-4'>&nbsp;</div>";
+                echo "</div> ";   
+        }
     }
 ?>
     <!-- Ovo ispod (ukljucujuci javascript deo) treba dodati na svakoj stranici gde treba da se prikaze modal -->
