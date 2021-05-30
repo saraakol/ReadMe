@@ -224,5 +224,131 @@ class Administrator extends BaseController
         $reviews=array_merge($reviews,$this->doctrine->em->getRepository(Entities\Review::class)->getReviewsFromNotAccountType("privileged_user"));
         $this->prikaz('Knjiga', ['knjiga'=>$book, 'komentari' => $reviews,'korisnik' => $user,'citati' => $book->getQuotes()]);
     }
+    
+    /*
+     * funkcija za filtriranje
+     * Nikola Krstic 18/0546
+     */
+    
+    public function filter(){
+        //$knjige = $this->session->get("knjige");//pocetni niz knjiga
+        $knjige = $this->doctrine->em->getRepository(Entities\Book::class)->findAll();
+        $genres=$this->doctrine->em->getRepository(Entities\Genre::class)->findAll();
+
+        if(isset($_POST['submit']))
+            $selected = $_POST['filter']; 
+
+
+        $noveKnjige = [];
+        foreach($knjige as $knjiga){
+
+            $bookGenres = $knjiga->getGenres();
+            foreach($bookGenres as $genre){
+                if($genre->getName()== $selected)
+                    $noveKnjige[] = $knjiga;
+            }
+        }
+        $this->prikaz('Pocetna', ['noveKnjige' => $noveKnjige,'knjige' => $knjige, 'genres' => $genres]);  
+    }
+    
+    /*
+     * funkcija za sortiranje
+     * Nikola Krstic 18/0546
+     */
+    
+    public function sort(){
+        //$knjige = $this->session->get("knjige");//pocetni niz knjiga
+        $knjige = $this->doctrine->em->getRepository(Entities\Book::class)->findAll();
+        $genres=$this->doctrine->em->getRepository(Entities\Genre::class)->findAll();
+         
+        if(isset($_POST['submit']))
+            $selected = $_POST['sort'];
+        
+        
+        switch ($selected){
+            case "A-Z":
+                usort($knjige, function($a, $b){
+                    return strcmp($a->getName(), $b->getName());
+                });
+                break;
+            case "Z-A":
+                usort($knjige, function($a, $b){
+                    return strcmp($b->getName(),$a->getName());
+                });
+                break;
+        }
+        
+        $this->prikaz('Pocetna', ['knjige' => $knjige,'genres' => $genres]);
+    }
+    
+    /*
+     * Funkicja za dodavanje na Want to read listu
+     * @author Nikola Krstic 18/0546
+     */
+
+    public function dodajNaWantListu() {
+        $user = $this->doctrine->em->getRepository(Entities\User::class)->findOneBy(["idu" => session()->get("korisnik")->getIdu()]);
+        $book = $this->doctrine->em->getRepository(Entities\Book::class)->findOneBy(["idb" => $this->request->getVar('idb')]);
+        $userBookk = $this->doctrine->em->getRepository(Entities\Userbooks::class)->findOneBy(["idu" => session()->get("korisnik")->getIdu(),"idb" => $book->getIdb()]);
+        if($userBookk==null){
+            //$user->setUsername("nikolakrstic");//nikolakrstic
+            //$book->setName("Harry Potter and the Philosopher's stone");//Harry Potter and the Philosopher's stone
+
+
+            $userbook = new Entities\Userbooks();
+
+            $userbook->setType("want-to-read");
+            $userbook->setIdb($book);
+            $userbook->setIdu($user);
+
+
+            $user->addBook($userbook); //ovde je greska
+            $this->doctrine->em->persist($userbook);
+            $this->doctrine->em->persist($user);
+            $this->doctrine->em->persist($book);
+            $this->doctrine->em->flush();
+        }
+        $this->prikaz('Knjiga', ['knjiga' => $book]);
+    }
+    
+    /*
+     * Funkcija za dodavanje na All listu
+     * Nikola Krstic 18/0546
+     */
+
+    public function dodajNaReadListu() {
+        $user = $this->doctrine->em->getRepository(Entities\User::class)->findOneBy(["idu" => session()->get("korisnik")->getIdu()]);
+        $book = $this->doctrine->em->getRepository(Entities\Book::class)->findOneBy(["idb" => $this->request->getVar('idb')]);
+        $userBookk = $this->doctrine->em->getRepository(Entities\Userbooks::class)->findOneBy(["idu" => session()->get("korisnik")->getIdu(),"idb" => $book->getIdb()]);
+        
+        if($userBookk!=null){
+            if($userBookk->getType()=="read"){//ukoliko postoji na read listi
+                return $this->prikaz('Knjiga', ['knjiga' => $book]);
+            }else{//ukoliko postoji na write listi treba je izbaciti sa te liste
+                $this->doctrine->em->remove($userBookk);
+            }
+        }
+        
+            #foreach($user->getBooks() as $userbooktmp){
+               # if($userbooktmp->getIdb()->getIdb()==$book->getIdb()){
+                #    if($userbooktmp->getType()=="want-to-read"){
+                 #       $this->doctrine->em->remove($userbooktmp);
+                  #  }
+                #}
+            #}
+        $userbook = new Entities\Userbooks();
+        $userbook->setType("read");
+        $userbook->setIdb($book);
+        $userbook->setIdu($user);
+
+
+        $user->addBook($userbook);//ovde je greska
+        $this->doctrine->em->persist($userbook);
+        $this->doctrine->em->persist($user);
+        $this->doctrine->em->persist($book);
+        $this->doctrine->em->flush();
+        
+        return $this->prikaz('Knjiga', ['knjiga' => $book]);
+    }
 }
 
