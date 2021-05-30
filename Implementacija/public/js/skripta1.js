@@ -52,15 +52,15 @@ $(document).ready(function() {
     
     //Kada se pritisne prijava korisnika, dugme se disabluje
     $(".prijavaKorisnika").click(function () {
-        $(this).prop("disabled", true);
-        $(this).html("Reporting..");
-        let button = $(this);
         let url = $(this).val();
+        let idu = url.charAt(url.length-1);
+        $("." + idu).prop("disabled", true);
+        $("." + idu).html("Reported");
         $.ajax({
             type: "GET",
             url: url
         }).done(function(result) {
-            button.html("Reported");
+            $("." + idu).html("Reported");
         });
     });
     

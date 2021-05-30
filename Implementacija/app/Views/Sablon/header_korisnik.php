@@ -15,7 +15,6 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.9.1/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-    <script src="/js/skripta.js"></script>
     <script src="/js/skripta1.js"></script>
 </head>
 <body>
@@ -45,13 +44,13 @@
                 <nav class="navbar navbar-expand-sm justify-content-center"">
                     <ul class="navbar-nav">
                         <li class="nav-item">
-                            <?= anchor("Korisnik/", "Browse", ['class'=>'nav-link']) ?> &nbsp;&nbsp;
+                            <?= anchor("$controller/", "Browse", ['class'=>'nav-link']) ?> &nbsp;&nbsp;
                         </li>
                         <li class="nav-item">
-                            <?= anchor("Korisnik/prikaziProfil", "My Profile", ['class'=>'nav-link']) ?> &nbsp;&nbsp;
+                            <?= anchor("$controller/prikaziProfil", "My Profile", ['class'=>'nav-link']) ?> &nbsp;&nbsp;
                         </li>
                         <?php
-                        if (session()->get("korisnik")->getType() == 'administrator') {
+                        if ($controller == 'Administrator') {
                             echo anchor("Administrator/prikaziRegistracije", "Registrations", ['class'=>'nav-link']) . "&nbsp;&nbsp;";
                             echo anchor("Administrator/prikaziPrijave", "Reports", ['class'=>'nav-link']) . "&nbsp;&nbsp;";
                             echo anchor("Administrator/prikaziUnapredjenja", "Upgrades", ['class'=>'nav-link']) .  "&nbsp;&nbsp;";
