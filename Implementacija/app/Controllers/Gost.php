@@ -217,6 +217,7 @@ class Gost extends BaseController
         //$knjige = $this->session->get("knjige");//pocetni niz knjiga
         $knjige = $this->doctrine->em->getRepository(Entities\Book::class)->findAll();
         $genres=$this->doctrine->em->getRepository(Entities\Genre::class)->findAll();
+         
         if(isset($_POST['submit']))
             $selected = $_POST['sort'];
         
@@ -235,6 +236,5 @@ class Gost extends BaseController
         }
         
         $this->prikaz('Pocetna', ['knjige' => $knjige,'genres' => $genres]);
-    }
-   
+    }   
 }
