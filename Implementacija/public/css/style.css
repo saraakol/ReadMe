@@ -8,6 +8,10 @@
     height: 70px;
 }
 
+.zahtev h3 {
+    display: inline;
+}
+
 .komentari {
     padding: 40px;
 }
