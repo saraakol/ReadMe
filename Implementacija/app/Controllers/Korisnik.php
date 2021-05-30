@@ -14,7 +14,7 @@ class Korisnik extends BaseController {
 
     protected function prikaz($page, $data) {
         $data['controller'] = 'Korisnik';
-        $data['user_type'] = session()->get("korisnik")->getType();
+        //$data['user_type'] = session()->get("korisnik")->getType();
         echo view('Sablon/header_korisnik');
         echo view("Stranice/$page", $data);
         echo view('Sablon/footer');

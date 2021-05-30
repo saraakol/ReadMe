@@ -35,9 +35,9 @@ class Administrator extends BaseController
     
     protected function prikaz($page, $data) {
         $data['controller'] = 'Administrator';
-        $data['user_type'] = session()->get("korisnik")->getType();
+        //$data['user_type'] = session()->get("korisnik")->getType();
         
-        echo view('Sablon/header_korisnik');
+        echo view('Sablon/header_korisnik', ['controller'=>'Administrator']);
         echo view("Stranice/$page", $data);
         echo view('Sablon/footer');
     }
@@ -413,6 +413,103 @@ class Administrator extends BaseController
         $this->doctrine->em->flush();
         
         return $this->prikaz('Knjiga', ['knjiga' => $book]);
+    }
+    
+        /*
+     * Funkcija dodajPretplatu() - Sluzi za dodavanje pretplate korisnika na odredjeni zanr
+     * @author Andrej Jokic 18/0247
+     */
+
+    function dodajPretplatu() {
+        //$user = $this->doctrine->em->getRepository(Entities\User::class)->findOneBy(["idu" => $this->request->getVar('idU')]);
+        $user = $this->doctrine->em->getRepository(Entities\User::class)->find(session()->get("korisnik")->getIdu());
+        $selected = $this->request->getVar('list'); //Id zanra
+        $genre = $this->doctrine->em->getRepository(Entities\Genre::class)->findOneBy(['idg' => $selected]);
+
+        $user->addGenre($genre);     //Owner strana asocijacije
+        $this->doctrine->em->flush();
+        
+        session()->setFlashdata("poruka", "Subscription successfully added!");
+
+        return redirect()->to(site_url('Administrator/prikaziProfil'));
+    }
+    
+        /*
+     * Funkcija ukloniPretplatu() - Sluzi za uklanjanje pretplate korisnika na odredjeni zanr
+     * @author Andrej Jokic 18/0247
+     */
+
+    function ukloniPretplatu() {
+        $user = $this->doctrine->em->getRepository(Entities\User::class)->findOneBy(["idu" => $this->request->getVar('idU')]);
+        $selected = $this->request->getVar('list'); //Id zanra
+        $genre = $this->doctrine->em->getRepository(Entities\Genre::class)->findOneBy(['idg' => $selected]);
+
+        $user->removeGenre($genre);     //Owner strana asocijacije
+        $this->doctrine->em->flush();
+        
+        session()->setFlashdata("poruka", "Subscription successfully removed!");
+
+        return redirect()->to(site_url('Administrator/prikaziProfil'));
+    }
+    
+    /*
+     * Funkcija prikazi Profil - Prikazuje p rofil korisnika
+     * @author Andrej Jokic 18/0247,Nikola Krstic 18/0546
+     */
+
+    public function prikaziProfil() {
+        $user = $this->doctrine->em->getRepository(Entities\User::class)->findOneBy(["idu" => session()->get("korisnik")->getIdu()]);
+        $brProcitanih = $this->doctrine->em->getRepository(Entities\User::class)->dohvatiBrojProcitanihKnjiga($user->getIdu());
+        $pretplaceniZanrovi = $this->doctrine->em->getRepository(Entities\Genre::class)->dohvatiPretplaceneZanroveKorisnika($user->getIdu());
+        $nepretplaceniZanrovi = $this->doctrine->em->getRepository(Entities\Genre::class)->dohvatiNepretplaceneZanroveKorisnika($user->getIdu());
+        
+        $all = $this->doctrine->em->getRepository(Entities\Userbooks::class)->dohvatiSve($user->getIdu());
+        $read = $this->doctrine->em->getRepository(Entities\Userbooks::class)->dohvatiProcitane($user->getIdu());
+        $wantToRead = $this->doctrine->em->getRepository(Entities\Userbooks::class)->dohvatiWantToRead($user->getIdu());
+        $knjige = $this->doctrine->em->getRepository(Entities\Book::class)->findAll();
+        
+        $data = ['korisnik' => $user, 'brProcitanih' => $brProcitanih, 'pretplaceni' => $pretplaceniZanrovi,
+            'nepretplaceni' => $nepretplaceniZanrovi, 'all' => $all, 'read' => $read, 'wantToRead' => $wantToRead, 'knjige' => $knjige];
+        
+        if (session()->getFlashdata('poruka') != null) {
+            $data['poruka'] = session()->getFlashdata('poruka');
+        }
+        
+        $this->prikaz('Profil', $data);
+    }
+    
+    /*
+     * Funkcija dodajCilj() - Dodaje licni cilj korisniku
+     * @author Andrej Jokic 18-0247
+     */
+    function dodajCilj() {
+        if ($this->request->getVar('brojKnjiga') <= 0) {
+            return redirect()->to(site_url('Korisnik/prikaziProfil'));
+        }
+      
+        $user = $this->doctrine->em->getRepository(Entities\User::class)->find(session()->get("korisnik")->getIdu());
+        $user->setPersonalGoal($this->request->getVar('brojKnjiga'));
+        $this->doctrine->em->flush();
+        
+        session()->setFlashdata("poruka", "Personal goal successfully added!");
+        
+        return redirect()->to(site_url('Administrator/prikaziProfil'));
+    }
+    
+        /*
+     * Funkcija prijaviKorisnika() - Prijava korisnika se belezi u bazi podataka
+     * @author Andrej Jokic 18/0247
+     */
+    public function prijaviKorisnika($id) {
+        
+        $user = $this->doctrine->em->getRepository(Entities\User::class)->find($id);
+        
+        if ($user->getType() != 'administrator') {
+            $user->setStatus('reported');
+            $this->doctrine->em->flush();  
+        }
+        
+        return redirect()->to($_SERVER['HTTP_REFERER']);
     }
 }
 
