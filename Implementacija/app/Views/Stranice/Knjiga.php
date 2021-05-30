@@ -32,15 +32,11 @@
                 ?>
             </div>
             <div class="col-lg-5 col-md-6 col-sm-12" style="text-align: center;">
-                
-                
-                
                 <p class="booktitle"><font class="booktitle"><?= $knjiga->getName(); ?> </font></p>
                 
                 <p class="bookbio">
                     <font class="bookauthor"><?= $knjiga->getName(); ?>  </font>
-                    <font class="bookgenre"><?= implode(', ', $zanrovi); ?></font> 
-                      <!-- ubaciti zanrove -->
+            <!-- ubaciti zanrove -->         <font class="bookgenre"><?= count($knjiga->getGenres()); ?></font>   <!-- ubaciti zanrove -->
                 </p>
 
                 <p class="booksynop" style="text-align: justify;"><font style="font-size: 15px;"> <?= $knjiga->getDescription(); ?>  </font></p>
@@ -51,20 +47,17 @@
 
         </div>
 
-        
-        
-
+        <div class="row">  
             <?php 
                 if ($controller == 'Administrator' || $controller == 'Privilegovani' || $controller == 'Korisnik') {
                     
                     echo '<div class="col-lg-4 col-md-12 col-sm-12 ratearea" style="text-align: center;">';
                     echo "  <form name='formazaciljkomentare' method='' action=''>";
-                    echo "<br><p class='rate' name='rate'><font style='font-size: 15px;'>Rate</font></p>";
+                    echo "<p class='review' name='review'><font style='font-size: 15px;'><a href='/{$controller}/addRate'>Add rate</a></font></p>";
                     echo "<p class='review' name='review'><font style='font-size: 15px;'><a href='/{$controller}/addReview'>Add review</a></font></p>";
                     
                     if($controller == 'Administrator' || $controller == 'Privilegovani') {
                        echo " <p class='quote' name='quote'><font style='font-size: 15px;'><a href='/{$controller}/addQuote'>Add quote</a></font></p>";
-                       
                     
                     }
                     echo "  </form>";
@@ -75,8 +68,6 @@
                 if ($controller == 'Administrator' || $controller == 'Privilegovani' || $controller == 'Korisnik') {
                     echo '<div class="col-lg-2 col-md-6 col-sm-12" style="text-align: center; margin-top: 2vh;">';
                     echo "  <form name='dodajNaWantListu' method='GET' action='". site_url("Korisnik/dodajNaWantListu")."'>";
-                    
-                    
                     
                     /*
                     $flag=false;
@@ -93,8 +84,6 @@
                         echo "<a href=''><button  class='addtolist'>Add to Want to Read</button></a> ";
                     */
                     
-                    
-                    
                     echo "<a href=''><button  class='addtolist'>Add to Want to Read</button></a> ";
                     echo "<input type='hidden' name='idb' value=".$knjiga->getIdb().">";
                     echo "  </form>";
@@ -105,7 +94,6 @@
                 if ($controller == 'Administrator' || $controller == 'Privilegovani' || $controller == 'Korisnik') {
                     echo '<div class="col-lg-3 col-md-6 col-sm-12" style="text-align: center; margin-top: 2vh;"">';
                     echo "  <form name='dodajNaReadListu' method='GET' action='". site_url("Korisnik/dodajNaReadListu")."'>";
-                    
                     
                     /*
                     $flag=false;
@@ -137,18 +125,14 @@
             <br>&nbsp;
             <div class="col-lg-3">&nbsp;</div>
         </div>
-        
-        <div class="row">
-            <div class="col " style="margin-left: 15px ; padding-left: 15px">
-                <h1 class="textdugme" id="prikazireviews"  style="padding-left: 25px;">Reviews</h1>
-            </div> 
-        </div>
-        <div class="row" id="prikazkomentara">
-            <div class="col komentari">              
+<div class="row"><div class="col " style="margin-left: 15px ;"><h1 class="textdugme" id="prikazireviews">Reviews</h1> </div> </div>
+<div class="row" id="prikazkomentara">
+            <div class="col komentari">
+                
                 <hr><br>
                 <?php 
                 foreach ($komentari as $komentar) {
-                    echo '<div class="media" style="padding-left: 30px;">';
+                    echo '<div class="media">';
                     if ($komentar->getUser()->getImage() == null) {
                         echo '<img src="\images\users\no_photo.jpg" class="mr-3" alt="No photo">';
                     } else {
@@ -156,8 +140,9 @@
                     }
                     echo '  <div class="media-body">';
                     echo '      <h4 class="mt-0">' . $komentar->getUser()->getUsername() . '</h4>';
-                    if ($controller == 'Privilegovani' || $controller == 'Administrator') {
-                        echo "  <button class='prijavaKorisnika {$komentar->getUser()->getIdu()}' value='" . site_url("$controller/prijaviKorisnika/" . $komentar->getUser()->getIdu()) . "'>Report user</button>";
+                    if ($user_type == 'privileged_user' || $user_type == 'administrator') {
+                        //echo    anchor("Privilegovani/prijaviKorisnika/{$komentar->getUser()->getIdu()}", "Report user", ['class'=>'prijavaKorisnika']);
+                        echo "  <button class='prijavaKorisnika' value='" . site_url("Privilegovani/prijaviKorisnika/" . $komentar->getUser()->getIdu()) . "'>Report user</button>";
                     }
                     echo '      <p class="komentar">' . $komentar->getText() . '</p>';
                     echo '  </div>';
@@ -167,7 +152,7 @@
                 ?>
             </div>
         </div>
-<div class="row"><div class="col " style="margin-left: 15px ;" >  <h1 class="textdugme" id="prikaziquotes"  style="padding-left: 25px;">Quotes</h1> </div> </div>
+<div class="row"><div class="col " style="margin-left: 15px ;" >  <h1 class="textdugme" id="prikaziquotes">Quotes</h1> </div> </div>
         <div class="row" id="prikazcitata">
           
             <div class="col komentari">
@@ -175,7 +160,7 @@
                 <hr><br>
                 <?php 
                 foreach ($citati as $citat) {
-                    echo '<div class="media" style="padding-left: 30px;">';
+                    echo '<div class="media">';
                     if ($citat->getUser()->getImage() == null) {
                         echo '<img src="\images\users\no_photo.jpg" class="mr-3" alt="No photo">';
                     } else {
@@ -183,6 +168,9 @@
                     }
                     echo '  <div class="media-body">';
                     echo '      <h4 class="mt-0">' . $citat->getUser()->getUsername() . '</h4>';
+                    if ($user_type == 'privileged_user' || $user_type == 'administrator') {
+                        echo "  <button class='prijavaKorisnika' value='" . site_url("Privilegovani/prijaviKorisnika/" . $citat->getUser()->getIdu()) . "'>Report user</button>";
+                    }
                     echo '      <p class="komentar">' . $citat->getText() . '</p>';
                     echo '  </div>';
                     echo '</div>';
