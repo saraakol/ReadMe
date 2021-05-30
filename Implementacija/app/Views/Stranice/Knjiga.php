@@ -32,11 +32,15 @@
                 ?>
             </div>
             <div class="col-lg-5 col-md-6 col-sm-12" style="text-align: center;">
+                
+                
+                
                 <p class="booktitle"><font class="booktitle"><?= $knjiga->getName(); ?> </font></p>
                 
                 <p class="bookbio">
                     <font class="bookauthor"><?= $knjiga->getName(); ?>  </font>
-            <!-- ubaciti zanrove -->         <font class="bookgenre"><?= count($knjiga->getGenres()); ?></font>   <!-- ubaciti zanrove -->
+                    <font class="bookgenre"><?= implode(', ', $zanrovi); ?></font> 
+                      <!-- ubaciti zanrove -->
                 </p>
 
                 <p class="booksynop" style="text-align: justify;"><font style="font-size: 15px;"> <?= $knjiga->getDescription(); ?>  </font></p>
