@@ -67,7 +67,7 @@
             
                 if ($controller == 'Administrator' || $controller == 'Privilegovani' || $controller == 'Korisnik') {
                     echo '<div class="col-lg-2 col-md-6 col-sm-12" style="text-align: center; margin-top: 2vh;">';
-                    echo "  <form name='dodajNaWantListu' method='GET' action='". site_url("Korisnik/dodajNaWantListu")."'>";
+                    echo "  <form name='dodajNaWantListu' method='GET' action='". site_url("{$controller}/dodajNaWantListu")."'>";
                     
                     /*
                     $flag=false;
@@ -93,7 +93,7 @@
                 
                 if ($controller == 'Administrator' || $controller == 'Privilegovani' || $controller == 'Korisnik') {
                     echo '<div class="col-lg-3 col-md-6 col-sm-12" style="text-align: center; margin-top: 2vh;"">';
-                    echo "  <form name='dodajNaReadListu' method='GET' action='". site_url("Korisnik/dodajNaReadListu")."'>";
+                    echo "  <form name='dodajNaReadListu' method='GET' action='". site_url("{$controller}/dodajNaReadListu")."'>";
                     
                     /*
                     $flag=false;
