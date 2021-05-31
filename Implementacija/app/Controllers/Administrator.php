@@ -81,6 +81,44 @@ class Administrator extends BaseController
        // return $this->prikaziKnjigu(intval($args[sizeof($args)-1]),"Successfully added new quote");
 
     }
+    
+    private function setMessageRate($text){
+        if(is_numeric($text)){
+            session()->setFlashdata("porukaa", "Successfully added new rate!");
+        }else{
+            session()->setFlashdata("porukaa", "Unsuccessfully added new rate!");
+        }
+        return;
+    }
+    
+    /*
+     * potvrdjivanje ocenjivanja knjige
+     * Nikola Krstic 18/0546
+     */
+    public function registerAddRate(){
+        $user=$this->doctrine->em->getRepository(\App\Models\Entities\User::class)->find($this->session->get("korisnik")->getIdu());
+        $text=$this->request->getVar("rate");
+        $this->setMessageRate($text);
+        $referer=$this->request->getVar("hiddenBook");
+            $args=explode("/",$referer);
+        if(is_numeric($text)){
+            $book=$this->doctrine->em->getRepository(\App\Models\Entities\Book::class)->find(intval($args[count($args)-1]));
+            $rate=new \App\Models\Entities\Rate();
+            $rate->setIdb($book);
+            $rate->setIdu($user);
+            $rate->setRate($text);
+            $book->addRates($rate);
+            $user->addRate($rate);
+            $this->doctrine->em->persist($rate); 
+            $this->doctrine->em->flush();
+        }
+        $path="";
+        for($i=3;$i<count($args);$i++){   
+            $path=$path."/".$args[$i];
+        }
+        return redirect()->to(site_url($path));
+    }
+    
     /*
      * komentarisanje knjige
      * Andrej Veselinovic 2018/0221
@@ -125,6 +163,15 @@ class Administrator extends BaseController
         return $this->prikaziKnjigu(intval($args[sizeof($args)-1]),"Successfully added new review");
 //        return redirect()->to(site_url($path));
 
+    }
+    
+    /*
+     * ocenjivanje knjige
+     * Nikola Krstic 18/0546
+     */
+    public function addRate($poruka=null){
+        $referer=$_SERVER['HTTP_REFERER'];
+        echo view("Stranice/Rate", ["poruka"=>$poruka,"referer"=>$referer,"controller"=>"Administrator"]);
     }
     
     /*
@@ -209,7 +256,7 @@ class Administrator extends BaseController
         return redirect()->to(site_url('Administrator/prikaziUnapredjenja')); 
     }
     
-        /*
+    /*
      * Funkcija acceptUpgrades() - sluzi za unapredjivanje korisnika u privilegovanog
      * @author Andrej Jokic 18/0247
      */
@@ -221,8 +268,7 @@ class Administrator extends BaseController
      * funkcijz za otvaranje stranice za dodavanje nove knjige
      * Andrej Veselinovic 2018/0221
      */
-    public function addBook($data=null)
-    {
+    public function addBook($data=null){
 //        $data['controller'] = 'Administrator';
        $genres=$this->doctrine->em->getRepository(Entities\Genre::class)->findAll();
         echo view("Stranice/addBook", ["genres"=>$genres,"poruka"=>$data]);
@@ -309,7 +355,6 @@ class Administrator extends BaseController
      * funkcija za filtriranje
      * Nikola Krstic 18/0546
      */
-    
     public function filter(){
         //$knjige = $this->session->get("knjige");//pocetni niz knjiga
         $knjige = $this->doctrine->em->getRepository(Entities\Book::class)->findAll();
@@ -336,7 +381,6 @@ class Administrator extends BaseController
      * funkcija za sortiranje
      * Nikola Krstic 18/0546
      */
-    
     public function sort(){
         //$knjige = $this->session->get("knjige");//pocetni niz knjiga
         $knjige = $this->doctrine->em->getRepository(Entities\Book::class)->findAll();
@@ -366,7 +410,6 @@ class Administrator extends BaseController
      * Funkicja za dodavanje na Want to read listu
      * @author Nikola Krstic 18/0546
      */
-
     public function dodajNaWantListu() {
         $user = $this->doctrine->em->getRepository(Entities\User::class)->findOneBy(["idu" => session()->get("korisnik")->getIdu()]);
         $book = $this->doctrine->em->getRepository(Entities\Book::class)->findOneBy(["idb" => $this->request->getVar('idb')]);
@@ -375,7 +418,6 @@ class Administrator extends BaseController
         if($userBookk==null){
 
             $userbook = new Entities\Userbooks();
-
             $userbook->setType("want-to-read");
             $userbook->setIdb($book);
             $userbook->setIdu($user);
@@ -418,7 +460,6 @@ class Administrator extends BaseController
      * Funkcija za dodavanje na read listu
      * Nikola Krstic 18/0546
      */
-
     public function dodajNaReadListu() {
         $user = $this->doctrine->em->getRepository(Entities\User::class)->findOneBy(["idu" => session()->get("korisnik")->getIdu()]);
         $book = $this->doctrine->em->getRepository(Entities\Book::class)->findOneBy(["idb" => $this->request->getVar('idb')]);
@@ -443,7 +484,7 @@ class Administrator extends BaseController
         return $this->prikaziKnjigu($book->getIdb());
     }
     
-        function dodajPretplatu() {
+    function dodajPretplatu() {
         //$user = $this->doctrine->em->getRepository(Entities\User::class)->findOneBy(["idu" => $this->request->getVar('idU')]);
         $user = $this->doctrine->em->getRepository(Entities\User::class)->find(session()->get("korisnik")->getIdu());
         $selected = $this->request->getVar('list'); //Id zanra
@@ -457,11 +498,10 @@ class Administrator extends BaseController
         return redirect()->to(site_url('Administrator/prikaziProfil'));
     }
     
-        /*
+    /*
      * Funkcija ukloniPretplatu() - Sluzi za uklanjanje pretplate korisnika na odredjeni zanr
      * @author Andrej Jokic 18/0247
      */
-
     function ukloniPretplatu() {
         $user = $this->doctrine->em->getRepository(Entities\User::class)->findOneBy(["idu" => $this->request->getVar('idU')]);
         $selected = $this->request->getVar('list'); //Id zanra
@@ -479,7 +519,6 @@ class Administrator extends BaseController
      * Funkcija prikazi Profil - Prikazuje p rofil korisnika
      * @author Andrej Jokic 18/0247,Nikola Krstic 18/0546
      */
-
     public function prikaziProfil() {
         $user = $this->doctrine->em->getRepository(Entities\User::class)->findOneBy(["idu" => session()->get("korisnik")->getIdu()]);
         $brProcitanih = $this->doctrine->em->getRepository(Entities\User::class)->dohvatiBrojProcitanihKnjiga($user->getIdu());
@@ -501,7 +540,7 @@ class Administrator extends BaseController
         $this->prikaz('Profil', $data);
     }
     
-        /*
+    /*
      * Funkcija dodajCilj() - Dodaje licni cilj korisniku
      * @author Andrej Jokic 18-0247
      */

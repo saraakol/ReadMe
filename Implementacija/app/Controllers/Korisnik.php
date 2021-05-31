@@ -145,7 +145,6 @@ class Korisnik extends BaseController {
     public function addRate($poruka=null){
         $referer=$_SERVER['HTTP_REFERER'];
         echo view("Stranice/Rate", ["poruka"=>$poruka,"referer"=>$referer,"controller"=>"korisnik"]);
-        
     }
     
     /*
@@ -247,7 +246,6 @@ class Korisnik extends BaseController {
      * Funkicja za dodavanje na Want to read listu
      * @author Nikola Krstic 18/0546
      */
-
     public function dodajNaWantListu() {
         $user = $this->doctrine->em->getRepository(Entities\User::class)->findOneBy(["idu" => session()->get("korisnik")->getIdu()]);
         $book = $this->doctrine->em->getRepository(Entities\Book::class)->findOneBy(["idb" => $this->request->getVar('idb')]);
@@ -299,7 +297,6 @@ class Korisnik extends BaseController {
      * Funkcija za dodavanje na read listu
      * Nikola Krstic 18/0546
      */
-
     public function dodajNaReadListu() {
         $user = $this->doctrine->em->getRepository(Entities\User::class)->findOneBy(["idu" => session()->get("korisnik")->getIdu()]);
         $book = $this->doctrine->em->getRepository(Entities\Book::class)->findOneBy(["idb" => $this->request->getVar('idb')]);
