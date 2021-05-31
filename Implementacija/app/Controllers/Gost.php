@@ -208,7 +208,8 @@ class Gost extends BaseController
                     $noveKnjige[] = $knjiga;
             }
         }
-        $this->prikaz('Pocetna', ['noveKnjige' => $noveKnjige,'knjige' => $knjige, 'genres' => $genres]);  
+        $filter=true;
+        $this->prikaz('Pocetna', ['noveKnjige' => $noveKnjige,'knjige' => $knjige, 'genres' => $genres,'filter' => $filter]);  
     }
     
     /*
@@ -239,5 +240,5 @@ class Gost extends BaseController
         }
         
         $this->prikaz('Pocetna', ['knjige' => $knjige,'genres' => $genres]);
-    }   
+    }
 }
