@@ -66,11 +66,13 @@ class Administrator extends BaseController
           $path="";
         for($i=3;$i<count($args);$i++)
         {   
-            
+
             $path=$path."/".$args[$i];
         }
-
+        
+        session()->setFlashdata("porukaa", "Successfully added new quote!");
         return redirect()->to(site_url($path));
+       // return $this->prikaziKnjigu(intval($args[sizeof($args)-1]),"Successfully added new quote");
 
     }
     /*
@@ -250,8 +252,14 @@ class Administrator extends BaseController
         foreach($book->getGenres() as $pom){
             array_push($nizz,$pom->getName());
        }
+       $data = ['knjiga'=>$book, 'komentari' => $reviews,'korisnik' => $user,'citati' => $book->getQuotes(),'zanrovi'=>$nizz];
+        
+       if (session()->getFlashdata('porukaa') != null) {
+            $data['poruka'] = session()->getFlashdata('porukaa');
+        }
+        
 //        $reviews=array_merge($reviews,$this->doctrine->em->getRepository(Entities\Review::class)->getReviewsFromNotAccountType("privileged_user"));
-        $this->prikaz('Knjiga', ["poruka"=>$poruka,'knjiga'=>$book, 'komentari' => $reviews,'korisnik' => $user,'citati' => $book->getQuotes(),'zanrovi'=>$nizz]);
+        $this->prikaz('Knjiga',$data );
     }
     
     /*
