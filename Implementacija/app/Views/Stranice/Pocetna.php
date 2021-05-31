@@ -24,7 +24,7 @@
                 <div class="col">
                     <div class="selects">
                         <form method="post" action="<?=site_url("/{$controller}/sort")?>">
-                            <select required class="select" name="sort" onchange="">
+                            <select required class="select" name="sort" onchange="" style="width: 150px;">
 
                                 <option value=""
                                         hidden
@@ -34,12 +34,12 @@
                                 <option class="option" value="A-Z">A-Z</option>
                                 <option class="option" value="Z-A">Z-A</option>
                             </select>
-                            <input class="margin-medium" type="submit" name="submit" value="Confirm sort">
+                            <input class="margin-medium" type="submit" name="submit" value="Confirm sort" style="width: 150px;">
                         </form>
                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                     
                     <form method="post" action="<?=site_url("/{$controller}/filter")?>">
-                        <select required class="select" name="filter">
+                        <select required class="select" name="filter" style="width: 150px;">
 
                             <option value=""
                                     hidden
@@ -51,7 +51,7 @@
                             }
                             ;?>
                         </select>
-                        <input class="margin-medium" type="submit" name="submit" value="Confirm filter">
+                        <input class="margin-medium" type="submit" name="submit" value="Confirm filter" style="width: 150px;">
                     </form>
                     <br>
                     <br>
@@ -64,7 +64,7 @@
             </div>
             
 <?php
-    if($noveKnjige!=null){
+    if($noveKnjige!=null && $filter!=null){             //postoji rezultat filtriranja
         foreach ($noveKnjige as $knjiga) {
             echo "<div class='row book'>";
               echo  "<div class='col-md-4 col-ld-4'>&nbsp;</div>";
@@ -79,21 +79,25 @@
                echo "<div class='col-md-4 col-ld-4'>&nbsp;</div>";
             echo "</div> ";   
         }
+    }else if($noveKnjige==null && $filter!=null){       //rezultat filtriranja prazna lista
+        echo "<div class='row book'>";
+        echo "<h2>No book for that filter</h2>";
+        echo "</div> "; 
     }else{
-        foreach ($knjige as $knjiga) {
+        foreach ($knjige as $knjiga) {                  //nema filtriranja
             echo "<div class='row book'>";
-                  echo  "<div class='col-md-4 col-ld-4'>&nbsp;</div>";
-                  echo  "<div class='col-md-2 col-ld-2 col-sm-12'>";
-                  echo       anchor("$controller/prikaziKnjigu/".$knjiga->getIdb()."", "<img src='/images/books/".$knjiga->getIdb() .".jpg' alt='' >", ['class'=>'nav-link']);
-                  echo  "</div>";
-                  echo  "<div class='col-md-2 col-ld-2 col-sm-12'>";
-                   echo    " <p class='floatleft'>";
-                   echo anchor("$controller/prikaziKnjigu/".$knjiga->getIdb()."", $knjiga->getName(), ['class'=>'nav-link']);
-                   echo "<br>". $knjiga->getAuthors() ."</p> ";
-                   echo "</div>";
-                   echo "<div class='col-md-4 col-ld-4'>&nbsp;</div>";
-                echo "</div> ";   
-        }
+              echo  "<div class='col-md-4 col-ld-4'>&nbsp;</div>";
+              echo  "<div class='col-md-2 col-ld-2 col-sm-12'>";
+              echo       anchor("$controller/prikaziKnjigu/".$knjiga->getIdb()."", "<img src='/images/books/".$knjiga->getIdb() .".jpg' alt='' >", ['class'=>'nav-link']);
+              echo  "</div>";
+              echo  "<div class='col-md-2 col-ld-2 col-sm-12'>";
+               echo    " <p class='floatleft'>";
+               echo anchor("$controller/prikaziKnjigu/".$knjiga->getIdb()."", $knjiga->getName(), ['class'=>'nav-link']);
+               echo "<br>". $knjiga->getAuthors() ."</p> ";
+               echo "</div>";
+               echo "<div class='col-md-4 col-ld-4'>&nbsp;</div>";
+            echo "</div> ";   
+        }  
     }
 ?>
           

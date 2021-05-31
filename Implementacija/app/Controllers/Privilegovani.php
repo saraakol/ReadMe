@@ -136,7 +136,8 @@ class Privilegovani extends BaseController
                     $noveKnjige[] = $knjiga;
             }
         }
-        $this->prikaz('Pocetna', ['noveKnjige' => $noveKnjige,'knjige' => $knjige, 'genres' => $genres]);  
+        $filter=true;
+        $this->prikaz('Pocetna', ['noveKnjige' => $noveKnjige,'knjige' => $knjige, 'genres' => $genres,'filter' => $filter]);  
     }
     
     /*
@@ -180,9 +181,6 @@ class Privilegovani extends BaseController
         $userBookk = $this->doctrine->em->getRepository(Entities\Userbooks::class)->findOneBy(["idu" => session()->get("korisnik")->getIdu(),"idb" => $book->getIdb()]);
         
         if($userBookk==null){
-            //$user->setUsername("nikolakrstic");//nikolakrstic
-            //$book->setName("Harry Potter and the Philosopher's stone");//Harry Potter and the Philosopher's stone
-
 
             $userbook = new Entities\Userbooks();
 
@@ -196,15 +194,36 @@ class Privilegovani extends BaseController
             $this->doctrine->em->persist($user);
             $this->doctrine->em->persist($book);
             $this->doctrine->em->flush();
+            session()->setFlashdata("porukaa","Book successfully added to want to read list");
+        }else{
+            session()->setFlashdata("porukaa","Book already exist on your lists");
         }
-        $reviews=[];
-        $reviews=array_merge($reviews,$this->doctrine->em->getRepository(Entities\Review::class)->getReviewsFromAccountType("privilegovani"));
-        $reviews=array_merge($reviews,$this->doctrine->em->getRepository(Entities\Review::class)->getReviewsFromNotAccountType("privilegovani"));
-        return $this->prikaz('Knjiga', ['knjiga' => $book, 'komentari' => $reviews,'korisnik' => $user,'citati' => $book->getQuotes()]);
+        $this->prikaziKnjigu($book->getIdb());
+    }
+    
+    private function setMessage($userBookk){
+        if($userBookk!=null){
+            if($userBookk->getType()=="read"){                  //ukoliko postoji na read listi
+                session()->setFlashdata("porukaa","Book alreay exist on read list");
+                return;
+            }else{                                              //ukoliko postoji na write listi treba je izbaciti sa te liste
+                session()->setFlashdata("porukaa","Book moved from want to read list to read list");
+                return;
+            }
+        }else{
+            session()->setFlashdata("porukaa","Book successfully added to read list");
+            return;
+        }
+    }
+    
+    private function makeUserBook(){
+        $userbook = new Entities\Userbooks();
+        $userbook->setType("read");
+        return $userbook;
     }
     
     /*
-     * Funkcija za dodavanje na All listu
+     * Funkcija za dodavanje na read listu
      * Nikola Krstic 18/0546
      */
 
@@ -212,38 +231,24 @@ class Privilegovani extends BaseController
         $user = $this->doctrine->em->getRepository(Entities\User::class)->findOneBy(["idu" => session()->get("korisnik")->getIdu()]);
         $book = $this->doctrine->em->getRepository(Entities\Book::class)->findOneBy(["idb" => $this->request->getVar('idb')]);
         $userBookk = $this->doctrine->em->getRepository(Entities\Userbooks::class)->findOneBy(["idu" => session()->get("korisnik")->getIdu(),"idb" => $book->getIdb()]);
-        
+        $this->setMessage($userBookk);
         if($userBookk!=null){
-            if($userBookk->getType()=="read"){//ukoliko postoji na read listi
-                return $this->prikaz('Knjiga', ['knjiga' => $book]);
-            }else{//ukoliko postoji na write listi treba je izbaciti sa te liste
+            if($userBookk->getType()=="read"){                  //ukoliko postoji na read listi
+                return $this->prikaziKnjigu($book->getIdb());
+            }else{                                              //ukoliko postoji na write listi treba je izbaciti sa te liste
                 $this->doctrine->em->remove($userBookk);
             }
         }
-        
-            #foreach($user->getBooks() as $userbooktmp){
-               # if($userbooktmp->getIdb()->getIdb()==$book->getIdb()){
-                #    if($userbooktmp->getType()=="want-to-read"){
-                 #       $this->doctrine->em->remove($userbooktmp);
-                  #  }
-                #}
-            #}
-        $userbook = new Entities\Userbooks();
-        $userbook->setType("read");
+        $userbook = $this->makeUserBook();
         $userbook->setIdb($book);
         $userbook->setIdu($user);
-
-
-        $user->addBook($userbook);//ovde je greska
+        $user->addBook($userbook);
+        
         $this->doctrine->em->persist($userbook);
         $this->doctrine->em->persist($user);
         $this->doctrine->em->persist($book);
         $this->doctrine->em->flush();
-        
-        $reviews=[];
-        $reviews=array_merge($reviews,$this->doctrine->em->getRepository(Entities\Review::class)->getReviewsFromAccountType("privilegovani"));
-        $reviews=array_merge($reviews,$this->doctrine->em->getRepository(Entities\Review::class)->getReviewsFromNotAccountType("privilegovani"));
-        return $this->prikaz('Knjiga', ['knjiga' => $book, 'komentari' => $reviews,'korisnik' => $user,'citati' => $book->getQuotes()]);
+        return $this->prikaziKnjigu($book->getIdb());
     }
     
         /*

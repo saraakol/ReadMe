@@ -111,8 +111,9 @@
                             echo anchor("$controller/prikaziKnjigu/".$item->getIdb()->getIdb()."","<figcaption style='margin-top: 2vh;padding-right:2vh;'>".$item->getIdb()->getName()."</figcaption>");
                             echo '</figure>';
                         }
-                        
                         ?>
+                        
+                        <div class="breakfloat">&nbsp;</div>
                     </div>
 
                     <br>
@@ -130,7 +131,7 @@
                        
                         
                         ?>
-                        <div class="breakfloat" style="display: none;">temp text</div>
+                        <div class="breakfloat">&nbsp;</div>
                     </div>
 
 
@@ -151,7 +152,7 @@
                         
                         ?>
                         
-                        <div class="breakfloat" style="display: none;">temp text</div>
+                        <div class="breakfloat">&nbsp;</div>
                     </div>
                     
                     <p style="font-size: 4vh;">Subsribed genres <input type="checkbox" id="subscribedlist" onclick="kliknutalistasubscribed()"></p>
