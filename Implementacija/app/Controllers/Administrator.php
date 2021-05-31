@@ -100,9 +100,9 @@ class Administrator extends BaseController
         $text=$this->request->getVar("rate");
         $this->setMessageRate($text);
         $referer=$this->request->getVar("hiddenBook");
-            $args=explode("/",$referer);
+        $args=explode("/",$referer);
+        $book=$this->doctrine->em->getRepository(\App\Models\Entities\Book::class)->find(intval($args[count($args)-1]));
         if(is_numeric($text)){
-            $book=$this->doctrine->em->getRepository(\App\Models\Entities\Book::class)->find(intval($args[count($args)-1]));
             $rate=new \App\Models\Entities\Rate();
             $rate->setIdb($book);
             $rate->setIdu($user);
