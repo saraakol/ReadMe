@@ -49,6 +49,11 @@ class UserRepository extends EntityRepository{
             'idu' => $idu,
             'tipKnjige' => 'read'
         ]);
-        return $query->getSingleScalarResult();
+        
+        try {
+            return $query->getSingleScalarResult();
+        } catch (\Doctrine\ORM\NoResultException $e) {
+            return 0;
+        }
     }
 }
