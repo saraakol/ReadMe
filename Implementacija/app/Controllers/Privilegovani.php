@@ -20,10 +20,16 @@ class Privilegovani extends BaseController
         echo view("Stranice/$page", $data);
         echo view('Sablon/footer');
     }
-    public function index() {
+    public function index($poruka=null) {
+        
+        if(isset($_SESSION["displayNotificationMessage"]))
+        {
+            $poruka=$_SESSION["displayNotificationMessage"];
+            unset($_SESSION["displayNotificationMessage"]);
+        }
         $books = $this->doctrine->em->getRepository(Entities\Book::class)->findAll();
         $genres=$this->doctrine->em->getRepository(Entities\Genre::class)->findAll();
-        $this->prikaz('Pocetna', ['knjige' => $books,'genres' => $genres]);
+        $this->prikaz('Pocetna', ['knjige' => $books,'genres' => $genres,"poruka"=>$poruka]);
     }
     /*
      * komentarisanje knjige
@@ -31,8 +37,39 @@ class Privilegovani extends BaseController
      */
     public function addReview($poruka=null){
         $referer=$_SERVER['HTTP_REFERER'];
-        echo view("Stranice/Review", ["poruka"=>$poruka,"referer"=>$referer,"controller"=>"korisnik"]);
+        echo view("Stranice/Review", ["poruka"=>$poruka,"referer"=>$referer,"controller"=>"Privilegovani"]);
         
+    }
+    public function registerAddReview(){
+//        $user=$this->session->get("korisnik");
+        $user=$this->doctrine->em->getRepository(\App\Models\Entities\User::class)->find($this->session->get("korisnik")->getIdu());
+        $referer=$this->request->getVar("hiddenBook");
+        $text=$this->request->getVar("review");
+        $args=explode("/",$referer);
+        $bookId=intval($args[count($args)-1]);
+        $book=$this->doctrine->em->getRepository(\App\Models\Entities\Book::class)->find($bookId);
+        $review=new \App\Models\Entities\Review();
+        $review->setBook($book);
+        $review->setUser($user);
+        $review->setText($text);
+//        $user->addReview($review);
+//        $book->addReview($review);
+//        echo $review->getBook()->getIdb();
+//        echo $review->getUser()->getIdu();
+//        echo $review->getText();
+//        echo count($args);
+        $this->doctrine->em->persist($review);      
+        $this->doctrine->em->flush();
+        $path="";
+        for($i=3;$i<count($args);$i++)
+        {   
+            
+            $path=$path."/".$args[$i];
+        }
+//echo intval($args[count($args)-1]);
+        return $this->prikaziKnjigu(intval($args[sizeof($args)-1]),"Successfully added new review");
+//        return redirect()->to(site_url($path));
+
     }
     
     /*
@@ -41,7 +78,7 @@ class Privilegovani extends BaseController
      */
     public function addRate($poruka=null){
         $referer=$_SERVER['HTTP_REFERER'];
-        echo view("Stranice/Rate", ["poruka"=>$poruka,"referer"=>$referer,"controller"=>"korisnik"]);
+        echo view("Stranice/Rate", ["poruka"=>$poruka,"referer"=>$referer,"controller"=>"Privilegovani"]);
     }
     
     /*

@@ -25,10 +25,16 @@ class Korisnik extends BaseController {
      * Sara Kolarevic 2018/0388
      */
 
-    public function index() {
+    public function index($poruka=null) {
+        
+        if(isset($_SESSION["displayNotificationMessage"]))
+        {
+            $poruka=$_SESSION["displayNotificationMessage"];
+            unset($_SESSION["displayNotificationMessage"]);
+        }
         $books = $this->doctrine->em->getRepository(Entities\Book::class)->findAll();
         $genres=$this->doctrine->em->getRepository(Entities\Genre::class)->findAll();
-        $this->prikaz('Pocetna', ['knjige' => $books,'genres' => $genres]);
+        $this->prikaz('Pocetna', ['knjige' => $books,'genres' => $genres,"poruka"=>$poruka]);
     }
 
     public function logout() {
@@ -131,6 +137,7 @@ class Korisnik extends BaseController {
         
     }
     
+    
     /*
      * ocenjivanje knjige
      * Nikola Krstic 18/0546
@@ -157,8 +164,8 @@ class Korisnik extends BaseController {
         $review->setBook($book);
         $review->setUser($user);
         $review->setText($text);
-        $user->addReview($review);
-        $book->addReview($review);
+//        $user->addReview($review);
+//        $book->addReview($review);
 //        echo $review->getBook()->getIdb();
 //        echo $review->getUser()->getIdu();
 //        echo $review->getText();
@@ -171,8 +178,9 @@ class Korisnik extends BaseController {
             
             $path=$path."/".$args[$i];
         }
-
-        return redirect()->to(site_url($path));
+//echo intval($args[count($args)-1]);
+        return $this->prikaziKnjigu(intval($args[sizeof($args)-1]),"Successfully added new review");
+//        return redirect()->to(site_url($path));
 
     }
     
