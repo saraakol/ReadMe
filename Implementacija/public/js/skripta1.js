@@ -52,20 +52,28 @@ $(document).ready(function() {
     
     //Kada se pritisne prijava korisnika, dugme se disabluje
     $(".prijavaKorisnika").click(function () {
+        
         let url = $(this).val();
-        let idu = url.charAt(url.length-1);
+//        let idu = url.charAt(url.length-1);
+        let args=url.split("/");
+        let idu=args[args.length-1];
+        
+        
         $("." + idu).prop("disabled", true);
         $("." + idu).html("Reported");
+        
         $.ajax({
             type: "GET",
             url: url
         }).done(function(result) {
             $("." + idu).html("Reported");
         });
+        
     });
     
     //Kada administrator prihvati zahtev, dugme se disabluje i nakon obrade zahteva, zahtev se uklanja
     $(".acceptZahtev, .declineZahtev").click(function() {
+        console.log("aa");
         $(this).prop("disabled", true);
         $(this).val("Processing..");
         let url = $(this).parent().find("input[type=hidden]").val();
