@@ -191,13 +191,11 @@ class Gost extends BaseController
      */
     
     public function filter(){
-        //$knjige = $this->session->get("knjige");//pocetni niz knjiga
         $knjige = $this->doctrine->em->getRepository(Entities\Book::class)->findAll();
         $genres=$this->doctrine->em->getRepository(Entities\Genre::class)->findAll();
 
         if(isset($_POST['submit']))
             $selected = $_POST['filter']; 
-
 
         $noveKnjige = [];
         foreach($knjige as $knjiga){
@@ -218,13 +216,11 @@ class Gost extends BaseController
      */
     
     public function sort(){
-        //$knjige = $this->session->get("knjige");//pocetni niz knjiga
         $knjige = $this->doctrine->em->getRepository(Entities\Book::class)->findAll();
         $genres=$this->doctrine->em->getRepository(Entities\Genre::class)->findAll();
          
         if(isset($_POST['submit']))
             $selected = $_POST['sort'];
-        
         
         switch ($selected){
             case "A-Z":
