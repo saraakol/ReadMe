@@ -36,7 +36,7 @@
                 
                 <p class="bookbio">
                     <font class="bookauthor"><?= $knjiga->getName(); ?>  </font>
-            <!-- ubaciti zanrove -->         <font class="bookgenre"><?= count($knjiga->getGenres()); ?></font>   <!-- ubaciti zanrove -->
+            <!-- ubaciti zanrove -->         <font class="bookgenre"><?= implode(', ', $zanrovi); ?></font>   <!-- ubaciti zanrove -->
                 </p>
 
                 <p class="booksynop" style="text-align: justify;"><font style="font-size: 15px;"> <?= $knjiga->getDescription(); ?>  </font></p>
