@@ -144,7 +144,7 @@
                     echo '  <div class="media-body">';
                     echo '      <h4 class="mt-0">' . $komentar->getUser()->getUsername() . '</h4>';
                     if ($controller == 'Privilegovani' || $controller == 'Administrator') {
-                        echo "  <button class='prijavaKorisnika' value='" . site_url("$controller/prijaviKorisnika/" . $komentar->getUser()->getIdu()) . "'>Report user</button>";
+                        echo "  <button class='prijavaKorisnika {$komentar->getUser()->getIdu()}' value='" . site_url("$controller/prijaviKorisnika/" . $komentar->getUser()->getIdu()) . "'>Report user</button>";
                     }
                     echo '      <p class="komentar">' . $komentar->getText() . '</p>';
                     echo '  </div>';
@@ -170,9 +170,6 @@
                     }
                     echo '  <div class="media-body">';
                     echo '      <h4 class="mt-0">' . $citat->getUser()->getUsername() . '</h4>';
-                    if ($controller == 'Privilegovani' || $controller == 'Administrator') {
-                        echo "  <button class='prijavaKorisnika' value='" . site_url("$controller/prijaviKorisnika/" . $citat->getUser()->getIdu()) . "'>Report user</button>";
-                    }
                     echo '      <p class="komentar">' . $citat->getText() . '</p>';
                     echo '  </div>';
                     echo '</div>';
