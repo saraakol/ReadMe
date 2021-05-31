@@ -41,7 +41,7 @@ class Privilegovani extends BaseController
      */
     public function addRate($poruka=null){
         $referer=$_SERVER['HTTP_REFERER'];
-        echo view("Stranice/Rate", ["poruka"=>$poruka,"referer"=>$referer,"controller"=>"korisnik"]);
+        echo view("Stranice/Rate", ["poruka"=>$poruka,"referer"=>$referer,"controller"=>"Privilegovani"]);
     }
     
     /*

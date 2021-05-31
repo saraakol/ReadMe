@@ -46,13 +46,25 @@
             <div class="col-lg-3">&nbsp;</div>
 
         </div>
+        
 
+<br>
+<br>
         <div class="row">  
             <?php 
                 if ($controller == 'Administrator' || $controller == 'Privilegovani' || $controller == 'Korisnik') {
                     
                     echo '<div class="col-lg-4 col-md-12 col-sm-12 ratearea" style="text-align: center;">';
                     echo "  <form name='formazaciljkomentare' method='' action=''>";
+                    /*
+                    $rate = $this->doctrine->em->getRepository(Entities\Rate::class)->dohvatiOcenu(session()->get("korisnik")->getIdu(),$knjiga->getIdb());
+                    if($rate!=null){
+                        echo "<p class='review' name='review'><font style='font-size: 15px;'><a href='/{$controller}/addRate'>Add rate</a></font></p>";
+                    }else{
+                        echo "<p class='review' name='review'><font style='font-size: 15px;'><a href='/{$controller}/addRate'>Rated</a></font></p>";
+                    }
+                     * 
+                     */
                     echo "<p class='review' name='review'><font style='font-size: 15px;'><a href='/{$controller}/addRate'>Add rate</a></font></p>";
                     echo "<p class='review' name='review'><font style='font-size: 15px;'><a href='/{$controller}/addReview'>Add review</a></font></p>";
                     
