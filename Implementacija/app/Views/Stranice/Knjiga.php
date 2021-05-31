@@ -125,10 +125,13 @@
             <br>&nbsp;
             <div class="col-lg-3">&nbsp;</div>
         </div>
-<div class="row"><div class="col " style="margin-left: 15px ;"><h1 class="textdugme" id="prikazireviews">Reviews</h1> </div> </div>
-<div class="row" id="prikazkomentara">
-            <div class="col komentari">
-                
+        <div class="row">
+            <div class="col " style="margin-left: 15px ;">
+                <h1 class="textdugme" id="prikazireviews">Reviews</h1>
+            </div> 
+        </div>
+        <div class="row" id="prikazkomentara">
+            <div class="col komentari">               
                 <hr><br>
                 <?php 
                 foreach ($komentari as $komentar) {
@@ -140,9 +143,8 @@
                     }
                     echo '  <div class="media-body">';
                     echo '      <h4 class="mt-0">' . $komentar->getUser()->getUsername() . '</h4>';
-                    if ($user_type == 'privileged_user' || $user_type == 'administrator') {
-                        //echo    anchor("Privilegovani/prijaviKorisnika/{$komentar->getUser()->getIdu()}", "Report user", ['class'=>'prijavaKorisnika']);
-                        echo "  <button class='prijavaKorisnika' value='" . site_url("Privilegovani/prijaviKorisnika/" . $komentar->getUser()->getIdu()) . "'>Report user</button>";
+                    if ($controller == 'Privilegovani' || $controller == 'Administrator') {
+                        echo "  <button class='prijavaKorisnika' value='" . site_url("$controller/prijaviKorisnika/" . $komentar->getUser()->getIdu()) . "'>Report user</button>";
                     }
                     echo '      <p class="komentar">' . $komentar->getText() . '</p>';
                     echo '  </div>';
@@ -168,8 +170,8 @@
                     }
                     echo '  <div class="media-body">';
                     echo '      <h4 class="mt-0">' . $citat->getUser()->getUsername() . '</h4>';
-                    if ($user_type == 'privileged_user' || $user_type == 'administrator') {
-                        echo "  <button class='prijavaKorisnika' value='" . site_url("Privilegovani/prijaviKorisnika/" . $citat->getUser()->getIdu()) . "'>Report user</button>";
+                    if ($controller == 'Privilegovani' || $controller == 'Administrator') {
+                        echo "  <button class='prijavaKorisnika' value='" . site_url("$controller/prijaviKorisnika/" . $citat->getUser()->getIdu()) . "'>Report user</button>";
                     }
                     echo '      <p class="komentar">' . $citat->getText() . '</p>';
                     echo '  </div>';
