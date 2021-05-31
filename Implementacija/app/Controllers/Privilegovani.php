@@ -56,6 +56,9 @@ class Privilegovani extends BaseController
         $user = $this->doctrine->em->getRepository(Entities\User::class)->find(session()->get("korisnik")->getIdu());
         $user->setPersonalGoal($this->request->getVar('brojKnjiga'));
         $this->doctrine->em->flush();
+        
+        session()->setFlashdata("poruka", "Personal goal successfully added!");
+        
         return redirect()->to(site_url('Privilegovani/prikaziProfil'));
     }
     /*
@@ -95,10 +98,8 @@ class Privilegovani extends BaseController
         $user = $this->doctrine->em->getRepository(Entities\User::class)->find($id);
         
         if ($user->getType() != 'administrator') {
-            $user->setStatus('reported');
-            
-            $this->doctrine->em->flush();  
-            
+            $user->setStatus('reported');        
+            $this->doctrine->em->flush();             
         }
         
         return redirect()->to($_SERVER['HTTP_REFERER']);
@@ -249,8 +250,9 @@ class Privilegovani extends BaseController
         $genre = $this->doctrine->em->getRepository(Entities\Genre::class)->findOneBy(['idg' => $selected]);
 
         $user->addGenre($genre);     //Owner strana asocijacije
-
         $this->doctrine->em->flush();
+        
+        session()->setFlashdata("poruka", "Subscription successfully added!");
 
         return redirect()->to(site_url('Privilegovani/prikaziProfil'));
     }
@@ -266,9 +268,10 @@ class Privilegovani extends BaseController
         $genre = $this->doctrine->em->getRepository(Entities\Genre::class)->findOneBy(['idg' => $selected]);
 
         $user->removeGenre($genre);     //Owner strana asocijacije
-
         $this->doctrine->em->flush();
 
+        session()->setFlashdata("poruka", "Subscription successfully removed!");
+        
         return redirect()->to(site_url('Privilegovani/prikaziProfil'));
     }
     
@@ -288,8 +291,14 @@ class Privilegovani extends BaseController
         $wantToRead = $this->doctrine->em->getRepository(Entities\Userbooks::class)->dohvatiWantToRead($user->getIdu());
         $knjige = $this->doctrine->em->getRepository(Entities\Book::class)->findAll();
         
-        $this->prikaz('Profil', ['korisnik' => $user, 'brProcitanih' => $brProcitanih, 'pretplaceni' => $pretplaceniZanrovi,
-            'nepretplaceni' => $nepretplaceniZanrovi, 'all' => $all, 'read' => $read, 'wantToRead' => $wantToRead, 'knjige' => $knjige]);
+        $data = ['korisnik' => $user, 'brProcitanih' => $brProcitanih, 'pretplaceni' => $pretplaceniZanrovi,
+            'nepretplaceni' => $nepretplaceniZanrovi, 'all' => $all, 'read' => $read, 'wantToRead' => $wantToRead, 'knjige' => $knjige];
+        
+        if (session()->getFlashdata('poruka') != null) {
+            $data['poruka'] = session()->getFlashdata('poruka');
+        }
+        
+        $this->prikaz('Profil', $data);
     }
 }
 
