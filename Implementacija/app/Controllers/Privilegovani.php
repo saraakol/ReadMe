@@ -374,8 +374,8 @@ class Privilegovani extends BaseController
           $quote->setBook($book);
           $quote->setUser($user);
           $quote->setText($text);
-        $user->addQuote($quote);
-          $book->addQuote($quote);
+            // $user->addQuote($quote);
+            // $book->addQuote($quote);
           $this->doctrine->em->persist($quote);      
           $this->doctrine->em->flush();
           $path="";
@@ -388,6 +388,43 @@ class Privilegovani extends BaseController
          return redirect()->to(site_url($path));
         //return $this->prikaziKnjigu(intval($args[sizeof($args)-1]),"Successfully added new quote");
 
+    }
+
+    /*
+     * potvrdjivanje ocenjivanja knjige
+     * Nikola Krstic 18/0546
+     */
+    public function registerAddRate(){
+        $user=$this->doctrine->em->getRepository(\App\Models\Entities\User::class)->find($this->session->get("korisnik")->getIdu());
+        $text=$this->request->getVar("rate");
+        $this->setMessageRate($text);
+        $referer=$this->request->getVar("hiddenBook");
+        $args=explode("/",$referer);
+        $book=$this->doctrine->em->getRepository(\App\Models\Entities\Book::class)->find(intval($args[count($args)-1]));
+        if(is_numeric($text)){
+            $rate=new \App\Models\Entities\Rate();
+            $rate->setIdb($book);
+            $rate->setIdu($user);
+            $rate->setRate($text);
+            // $book->addRates($rate);
+            // $user->addRate($rate);
+            $this->doctrine->em->persist($rate); 
+            $this->doctrine->em->flush();
+        }
+        $path="";
+        for($i=3;$i<count($args);$i++){   
+            $path=$path."/".$args[$i];
+        }
+        return redirect()->to(site_url($path));
+    }
+
+    private function setMessageRate($text){
+        if(is_numeric($text)){
+            session()->setFlashdata("porukaa", "Successfully added new rate!");
+        }else{
+            session()->setFlashdata("porukaa", "Unsuccessfully added new rate!");
+        }
+        return;
     }
 }
 

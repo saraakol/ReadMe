@@ -65,8 +65,8 @@ class Administrator extends BaseController
           $quote->setBook($book);
           $quote->setUser($user);
           $quote->setText($text);
-        $user->addQuote($quote);
-          $book->addQuote($quote);
+        //$user->addQuote($quote);
+          //$book->addQuote($quote);
           $this->doctrine->em->persist($quote);      
           $this->doctrine->em->flush();
           $path="";
@@ -107,8 +107,8 @@ class Administrator extends BaseController
             $rate->setIdb($book);
             $rate->setIdu($user);
             $rate->setRate($text);
-            $book->addRates($rate);
-            $user->addRate($rate);
+            // $book->addRates($rate);
+            // $user->addRate($rate);
             $this->doctrine->em->persist($rate); 
             $this->doctrine->em->flush();
         }
