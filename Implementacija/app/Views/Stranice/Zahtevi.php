@@ -43,7 +43,7 @@
         }
         ?>
         
-        <div class="toast toast-zahtevi" data-autohide="false" role="alert" aria-live="assertive" aria-atomic="true" style="position:absolute;top:80%;right:42%;">
+        <div class="toast toast-zahtevi" data-autohide="false" role="alert" aria-live="assertive" aria-atomic="true" style="position:absolute;top:30%;right:42%;">
             <div class="toast-header">
               <strong class="mr-auto">Message</strong>
               <small>Now</small>
