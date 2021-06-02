@@ -63,6 +63,10 @@ class BaseController extends Controller
             echo view("Stranice/$page", $data);
             echo view('Sablon/footer');
         }
+        public function logout() {
+        $this->session->destroy();
+        return redirect()->to(site_url("/"));
+    }
         
         
         

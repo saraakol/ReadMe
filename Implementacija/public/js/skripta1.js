@@ -58,15 +58,15 @@ $(document).ready(function() {
         let args=url.split("/");
         let idu=args[args.length-1];
         
-        
-        $("." + idu).prop("disabled", true);
-        $("." + idu).html("Reported");
+        let buttons=$(".prijavaKorisnika."+idu);
+        buttons.prop("disabled", true);
+        buttons.html("Reported");
         
         $.ajax({
             type: "GET",
             url: url
         }).done(function(result) {
-            $("." + idu).html("Reported");
+            buttons.html("Reported");
         });
         
     });

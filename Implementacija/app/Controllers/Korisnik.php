@@ -38,10 +38,10 @@ class Korisnik extends BaseController {
         $this->prikaz('Pocetna', ['knjige' => $books,'genres' => $genres,"poruka"=>$poruka]);
     }
 
-    public function logout() {
-        $this->session->destroy();
-        return redirect()->to(site_url("/"));
-    }
+//    public function logout() {
+//        $this->session->destroy();
+//        return redirect()->to(site_url("/"));
+//    }
 
     /*
      * Funkcija dodajPretplatu() - Sluzi za dodavanje pretplate korisnika na odredjeni zanr
