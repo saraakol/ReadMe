@@ -621,7 +621,8 @@ class Administrator extends BaseController
      */
     function dodajCilj() {
         if ($this->request->getVar('brojKnjiga') <= 0) {
-            return redirect()->to(site_url('Korisnik/prikaziProfil'));
+            session()->setFlashdata("poruka", "Entered number is not valid!");
+            return redirect()->to(site_url('Administrator/prikaziProfil'));
         }
       
         $user = $this->doctrine->em->getRepository(Entities\User::class)->find(session()->get("korisnik")->getIdu());
