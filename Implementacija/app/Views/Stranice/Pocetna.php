@@ -19,9 +19,9 @@
             </div>
         </div>
 
-<div class="knjigepozadina">
+
             <div class="row">
-                <div class="col">
+                <div class="col knjigepozadina">
                     <div class="selects">
                         <form method="post" action="<?=site_url("/{$controller}/sort")?>">
                             <select required class="select" name="sort" onchange="" style="width: 150px;">
@@ -62,8 +62,8 @@
                     </div>
                 </div>
             </div>
-    <div class='row book'>
-            
+    <div class='row book knjigepozadina '>
+             
 <?php
     if($noveKnjige!=null && $filter!=null){             //postoji rezultat filtriranja
         foreach ($noveKnjige as $item) {
@@ -114,7 +114,7 @@
         }  
     }
 ?>
-          
+        
 </div>
 
 

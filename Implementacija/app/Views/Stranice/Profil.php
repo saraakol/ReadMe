@@ -1,6 +1,11 @@
 <?php
 ?>
-
+        <div class="row ">
+            
+            <div class="col gradient">
+                <br>&nbsp;<br>&nbsp;<br>&nbsp;
+            </div>
+        </div>
         <div class="row profil">
             <div class="col-4 flex-centrirano">
                 <?php 
