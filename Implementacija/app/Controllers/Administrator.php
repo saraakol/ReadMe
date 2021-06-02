@@ -161,8 +161,8 @@ class Administrator extends BaseController
         
         
         
-        return $this->prikaziKnjigu($bookId,"Successfully added new review");
-//        return redirect()->to(site_url($path));
+//        return $this->prikaziKnjigu($bookId,"Successfully added new review");
+        return redirect()->to(site_url("/Administrator/prikaziKnjigu/{$bookId}"));
 
     }
     
