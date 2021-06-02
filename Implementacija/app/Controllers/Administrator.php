@@ -84,7 +84,10 @@ class Administrator extends BaseController
     
     private function setMessageRate($text){
         if(is_numeric($text)){
-            session()->setFlashdata("porukaa", "Successfully added new rate!");
+            if(intval($text)>0 && intval($text)<=5)
+                session()->setFlashdata("porukaa", "Successfully added new rate!");
+            else
+                session()->setFlashdata("porukaa", "Please enter number from 1 to 5!");
         }else{
             session()->setFlashdata("porukaa", "Unsuccessfully added new rate!");
         }
@@ -103,14 +106,16 @@ class Administrator extends BaseController
         $args=explode("/",$referer);
         $book=$this->doctrine->em->getRepository(\App\Models\Entities\Book::class)->find(intval($args[count($args)-1]));
         if(is_numeric($text)){
-            $rate=new \App\Models\Entities\Rate();
-            $rate->setIdb($book);
-            $rate->setIdu($user);
-            $rate->setRate($text);
-            // $book->addRates($rate);
-            // $user->addRate($rate);
-            $this->doctrine->em->persist($rate); 
-            $this->doctrine->em->flush();
+            if(intval($text)>0 && intval($text)<=5){
+                $rate=new \App\Models\Entities\Rate();
+                $rate->setIdb($book);
+                $rate->setIdu($user);
+                $rate->setRate($text);
+                $book->addRates($rate);
+                $user->addRate($rate);
+                $this->doctrine->em->persist($rate); 
+                $this->doctrine->em->flush();
+            }
         }
         $path="";
         for($i=3;$i<count($args);$i++){   
@@ -378,7 +383,12 @@ class Administrator extends BaseController
 
         if(isset($_POST['submit']))
             $selected = $_POST['filter']; 
-
+       
+        
+        if($selected == "Reset"){
+            $filter=false;
+            return $this->prikaz('Pocetna', ['noveKnjige' => $noveKnjige,'knjige' => $knjige, 'genres' => $genres,'filter' => $filter]);
+        }
 
         $noveKnjige = [];
         foreach($knjige as $knjiga){
@@ -415,6 +425,55 @@ class Administrator extends BaseController
             case "Z-A":
                 usort($knjige, function($a, $b){
                     return strcmp($b->getName(),$a->getName());
+                });
+                break;
+            case "Date":
+                usort($knjige, function($a, $b){
+                    return $a->getIdb()>$b->getIdb();
+                });
+                break;
+            case "Rate":
+                usort($knjige, function($a, $b){
+                    $ratesA=$a->getRates();
+                    $ratesB=$b->getRates();
+                    
+                    $numA=0;
+                    $numB=0;
+                    $numOfVotes=0;
+                    if(isset($ratesA)){
+                        foreach($ratesA as $rateA){
+                            if($rateA->getIdu()->getType()=="privileged_user" || $rateA->getIdu()->getType()=="administrator"){
+                                $numA+=$rateA->getRate()*1.5;
+                                $numOfVotes+=1.5;
+                            }else{
+                            $numA+=$rateA->getRate();
+                            $numOfVotes++;
+                            }
+                        }
+                        if($numOfVotes!=null)
+                            $numA/=$numOfVotes;
+                        else $numA=0;
+                    }else{
+                        $numA=0;
+                    }
+                    $numOfVotes=0;
+                    if(isset($ratesB)){
+                        foreach($ratesB as $rateB){
+                            if($rateB->getIdu()->getType()=="privileged_user" || $rateB->getIdu()->getType()=="administrator"){
+                                $numB+=$rateB->getRate()*1.5;
+                                $numOfVotes+=1.5;
+                            }else{
+                                $numB+=$rateB->getRate();
+                                $numOfVotes++;
+                            }
+                        }
+                        if($numOfVotes!=0)
+                            $numB/=$numOfVotes;
+                        else $numB=0;
+                    }else{
+                        $numB=0;
+                    }
+                    return $numA<$numB;
                 });
                 break;
         }

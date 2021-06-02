@@ -21,8 +21,15 @@
                 $numOfRates = sizeof($knjiga->getRates());
                 if($numOfRates!=0){
                     $num=0;
+                    $numOfRates=0;
                     foreach($knjiga->getRates() as $rate){
-                        $num+=$rate->getRate();
+                        if($rate->getIdu()->getType()=="privileged_user" || $rate->getIdu()->getType()=="administrator"){
+                            $num+=$rate->getRate()*1.5;
+                            $numOfRates+=1.5;
+                        }else{
+                            $num+=$rate->getRate();
+                            $numOfRates++;
+                        }
                     }
                     $num=$num/$numOfRates;
                     echo "<h4>Rate: $num</h4>";
@@ -57,14 +64,14 @@
                     echo '<div class="col-lg-4 col-md-12 col-sm-12 ratearea" style="text-align: center;">';
                     echo "  <form name='formazaciljkomentare' method='' action=''>";
                     /*
-                    $rate = $this->doctrine->em->getRepository(Entities\Rate::class)->dohvatiOcenu(session()->get("korisnik")->getIdu(),$knjiga->getIdb());
-                    if($rate!=null){
+                    $rate = $this->doctrine->em->getRepository(Entities\Rate::class)->dohvatiOcenu(session()->get('korisnik')->getIdu(),$knjiga->getIdb());
+                    if(isset($rate)){
                         echo "<p class='review' name='review'><font style='font-size: 15px;'><a href='/{$controller}/addRate'>Add rate</a></font></p>";
                     }else{
                         echo "<p class='review' name='review'><font style='font-size: 15px;'><a href='/{$controller}/addRate'>Rated</a></font></p>";
                     }
-                     * 
                      */
+                    
                     echo "<p class='review' name='review'><font style='font-size: 15px;'><a href='/{$controller}/addRate'>Add rate</a></font></p>";
                     echo "<p class='review' name='review'><font style='font-size: 15px;'><a href='/{$controller}/addReview/{$knjiga->getIdb()}'>Add review</a></font></p>";
                     

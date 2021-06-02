@@ -134,9 +134,11 @@ function kliknutalisaall() {
         $(".readlist").hide();
         $(".subscribedlist").hide();
         $(".wantlist").hide();
+        $(".recommendedlist").hide();
         document.getElementById("readlist").checked = false;
         document.getElementById("subscribedlist").checked = false;
         document.getElementById("wantlist").checked = false;
+        document.getElementById("recommendedlist").checked = false;
     }
 }
 
@@ -158,9 +160,22 @@ function kliknutalistasubscribed(){
 
     
     if (checkBox.checked == false) {
-        $(".subscribe").hide();
+        $(".subscribedlist").hide();
     } else {
-        $(".subscribe").show();
+        $(".subscribedlist").show();
+        $(".alllist").hide();
+        document.getElementById("alllist").checked = false;
+    }
+}
+
+function kliknutalistarecommended(){
+    let checkBox = document.getElementById("recommendedlist");
+
+    
+    if (checkBox.checked == false) {
+        $(".recommendedlist").hide();
+    } else {
+        $(".recommendedlist").show();
         $(".alllist").hide();
         document.getElementById("alllist").checked = false;
     }

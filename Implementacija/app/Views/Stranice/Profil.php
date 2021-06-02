@@ -161,10 +161,9 @@
                     </div>
                     <br>
                     <p style="font-size: 4vh;padding-left: 35px;">Subsribed genres <input type="checkbox" id="subscribedlist" onclick="kliknutalistasubscribed()"></p>
-                    <div class="subscribe" style="display: none;">
+                    <div class="subscribedlist" style="display: none;">
 
                         <?php
-                        echo '<figure class="breakfloat"';
                         $flag=false;
                         $zanroviKorisnika = $korisnik->getGenres();                                                         //pretplaceni zanrovi korisnika
                         foreach ($knjige as $knjiga){
@@ -180,9 +179,37 @@
                                 }
                             }
                         }
-                        echo '</figure>'; 
+                        echo '<div class="breakfloat">&nbsp;</div>'; 
                         ?>
                     </div>
+                    <?php
+                    if ($controller == 'Administrator' || $controller == 'Privilegovani') {
+                    
+                        echo '<br>';
+                        echo '<p style="font-size: 4vh;padding-left: 35px;">Recommended list <input type="checkbox" id="recommendedlist" onclick="kliknutalistarecommended()"></p>'; 
+                        echo '<div class="recommendedlist" style="display: none;">';
+
+                            //<?php   
+
+                            $num=0;
+                            foreach ($knjige as $knjiga) {
+                                $num++;
+                                if($num%3==0){
+                                    echo '<figure class="figuree">';
+                                    echo anchor("$controller/prikaziKnjigu/".$knjiga->getIdb()."","<img src='/images/books/". $knjiga->getIdb() .
+                                            ".jpg' style=' width: 200px;height:300px; margin-left: 4vh;'>");
+                                    echo anchor("$controller/prikaziKnjigu/".$knjiga->getIdb()."","<figcaption style='margin-top: 2vh;width: 200px;padding-right:2vh; margin-left: 4vh;'>".$knjiga->getName()."</figcaption>");
+                                    echo '</figure>';
+                                }
+                            }
+                            /*
+                            ?>
+                            */
+                            echo '<div class="breakfloat">&nbsp;</div>';
+                        echo '</div>';
+                    
+                    }
+                    ?>
                 </div>   
             </div>
         </div>
