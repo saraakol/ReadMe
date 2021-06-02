@@ -19,9 +19,8 @@
             </div>
         </div>
 
-
             <div class="row">
-                <div class="col knjigepozadina">
+                <div class="col">
                     <div class="selects">
                         <form method="post" action="<?=site_url("/{$controller}/sort")?>">
                             <select required class="select" name="sort" onchange="" style="width: 150px;">
@@ -33,6 +32,8 @@
                                 <!-- normal options -->
                                 <option class="option" value="A-Z">A-Z</option>
                                 <option class="option" value="Z-A">Z-A</option>
+                                <option class="option" value="Rate">Rate</option>
+                                <option class="option" value="Date">Date</option>
                             </select>
                             <input class="margin-medium" type="submit" name="submit" value="Confirm sort" style="width: 150px;">
                         </form>
@@ -46,6 +47,7 @@
                             >Filter</option>
                             
                             <?php
+                            echo "<option class='option' value='Reset'>Reset</option>";
                             foreach($genres as $genre){
                                 echo "<option class='option' value='". $genre->getName()."'>".$genre->getName()."</option>";
                             }
