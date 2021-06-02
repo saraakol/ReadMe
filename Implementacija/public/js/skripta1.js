@@ -73,7 +73,7 @@ $(document).ready(function() {
     
     //Kada administrator prihvati zahtev, dugme se disabluje i nakon obrade zahteva, zahtev se uklanja
     $(".acceptZahtev, .declineZahtev").click(function() {
-        console.log("aa");
+        
         $(this).prop("disabled", true);
         $(this).val("Processing..");
         let url = $(this).parent().find("input[type=hidden]").val();
@@ -84,6 +84,22 @@ $(document).ready(function() {
         }).done(function(result) {
             $(thisOne).parent().parent().parent().remove();
             $(".toast-zahtevi").toast("show");
+        });
+    });
+    
+    $(".brisanjeKomentara").click(function() {
+        
+        $(this).prop("disabled", true);
+        $(this).html("Processing..");
+        let url = $(this).val();
+        console.log(url);
+        let thisOne = $(this);
+        $.ajax({
+            type: "GET",
+            url: url
+        }).done(function(result) {
+            $(thisOne).parent().parent().remove();
+//            $(".toast-zahtevi").toast("show");
         });
     });
     

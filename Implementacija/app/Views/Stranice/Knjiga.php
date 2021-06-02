@@ -162,8 +162,8 @@
                     }
                     if($controller=="Administrator")
                     {
-                        echo "<a href=".site_url("/Administrator/deleteReview/".$komentar->getIdrev())."><button class='brisanjeKomentara'>Delete review</button></a>";
-//                        echo "<button class='brisanjeKomentara {$komentar->getUser()->getIdu()}' value='".site_url("/Administrator/deleteReview/".$komentar->getUser()->getIdu())."'>Delete review</button>";
+//                        echo "<a href=".site_url("/Administrator/deleteReview/".$komentar->getIdrev())."><button class='brisanjeKomentara'>Delete review</button></a>";
+                        echo "<button class='brisanjeKomentara {$komentar->getIdrev()}' value='".site_url("/Administrator/deleteReview/".$komentar->getIdrev())."'>Delete review</button>";
                     }
                     echo '      <p class="komentar">' . $komentar->getText() . '</p>';
                     echo '  </div>';

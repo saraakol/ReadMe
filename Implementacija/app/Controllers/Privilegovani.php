@@ -41,12 +41,14 @@ class Privilegovani extends BaseController
         
     }
     public function registerAddReview(){
+        
 //        $user=$this->session->get("korisnik");
         $user=$this->doctrine->em->getRepository(\App\Models\Entities\User::class)->find($this->session->get("korisnik")->getIdu());
-        $referer=$this->request->getVar("hiddenBook");
+        $bookId=$this->request->getVar("hiddenBook");
+        
         $text=$this->request->getVar("review");
-        $args=explode("/",$referer);
-        $bookId=intval($args[count($args)-1]);
+        
+        
         $book=$this->doctrine->em->getRepository(\App\Models\Entities\Book::class)->find($bookId);
         $review=new \App\Models\Entities\Review();
         $review->setBook($book);
@@ -61,14 +63,17 @@ class Privilegovani extends BaseController
         $this->doctrine->em->persist($review);      
         $this->doctrine->em->flush();
         $path="";
-        for($i=3;$i<count($args);$i++)
-        {   
-            
-            $path=$path."/".$args[$i];
-        }
+//        for($i=3;$i<count($args);$i++)
+//        {   
+//            
+//            $path=$path."/".$args[$i];
+//        }
 //echo intval($args[count($args)-1]);
-        return $this->prikaziKnjigu(intval($args[sizeof($args)-1]),"Successfully added new review");
-//        return redirect()->to(site_url($path));
+        
+        
+        
+//        return $this->prikaziKnjigu($bookId,"Successfully added new review");
+        return redirect()->to(site_url("/Administrator/prikaziKnjigu/{$bookId}"));
 
     }
     
