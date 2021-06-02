@@ -223,18 +223,19 @@ div.content select{
 }
 .book{
     
-    justify-content: center;
+    
     padding-top:20px;
     padding-bottom: 20px;
     
-    align-items: center;
-    text-align: center;
+    margin-left: 35px;
+    margin-right: 35px;
+   
     
 }
 .book img {
     align-self: center;
-    padding-bottom: 5vh;
-    margin-bottom: 5vh;
+   
+    
 }
 a:hover{
     text-decoration: none;
