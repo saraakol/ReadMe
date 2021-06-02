@@ -67,21 +67,21 @@
 
                     
                     <br><br>
-                    <input type="submit" data-toggle="modal" data-target="#exampleModal" value="Continue"></input>
-
+<!--                    <input type="button"  data-toggle="modal" data-target="#exampleModal2"  value="Continue"></input>-->
+                       <input type="submit" value="Continue"></input>
                     
                     &nbsp;
                     <a href="<?=$referer?>"><input type="button" value="Cancel"></input></a>
                     <br>&nbsp;<br>&nbsp;
-                    
 
                 </form>
-                            </div>
+            </div>
             <div class="col-md-4"></div>
         </div>
     </div>
     <script>
    $('#file-upload').change(function() {
+            console.log("a");
   var i = $(this).prev('label').clone();
   var file = $('#file-upload')[0].files[0].name;
   $(this).prev('label').text(file);
