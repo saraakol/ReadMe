@@ -28,8 +28,10 @@
         echo '<a href="/Gost/register"><button>Register</button></a>';              
         echo '</div>';
 
+
         echo '<a href="/"><img src="/img/logo.png" alt="Logo"></a>';
         echo '&nbsp; &nbsp;<span style="display: inline-block;font-size:30px;position: relative; top: 20px; margin-top: 20px;"> ReadMe</span>';
+
 
         echo ' <br>&nbsp;';            
         echo '</div>';      
@@ -45,8 +47,10 @@
         echo ' <a href="/Korisnik/logout"><button class="logoutbutton">Logout</button></a>';              
         echo ' </div>';        
 
+
         echo '<a href="/"><img src="/img/logo.png" alt="Logo"></a>';
         echo '&nbsp; &nbsp;<span style="display: inline-block;font-size:30px;position: relative; top: 20px; margin-top: 20px;"> ReadMe</span>';        
+
 
         echo '<br>&nbsp;';          
         echo '</div>';	
