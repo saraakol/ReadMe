@@ -62,41 +62,55 @@
                     </div>
                 </div>
             </div>
+    <div class='row book'>
             
 <?php
     if($noveKnjige!=null && $filter!=null){             //postoji rezultat filtriranja
-        foreach ($noveKnjige as $knjiga) {
-            echo "<div class='row book'>";
-              echo  "<div class='col-md-4 col-ld-4'>&nbsp;</div>";
-              echo  "<div class='col-md-2 col-ld-2 col-sm-12'>";
-              echo       anchor("$controller/prikaziKnjigu/".$knjiga->getIdb()."", "<img src='/images/books/".$knjiga->getIdb() .".jpg' alt='' >", ['class'=>'nav-link']);
-              echo  "</div>";
-              echo  "<div class='col-md-2 col-ld-2 col-sm-12'>";
-               echo    " <p class='floatleft'>";
-               echo anchor("$controller/prikaziKnjigu/".$knjiga->getIdb()."", $knjiga->getName(), ['class'=>'nav-link']);
-               echo "<br>". $knjiga->getAuthors() ."</p> ";
-               echo "</div>";
-               echo "<div class='col-md-4 col-ld-4'>&nbsp;</div>";
-            echo "</div> ";   
+        foreach ($noveKnjige as $item) {
+//            echo "<div class='row book'>";
+//              echo  "<div class='col-md-4 col-ld-4'>&nbsp;</div>";
+//              echo  "<div class='col-md-2 col-ld-2 col-sm-12'>";
+//              echo       anchor("$controller/prikaziKnjigu/".$knjiga->getIdb()."", "<img src='/images/books/".$knjiga->getIdb() .".jpg' alt='' >", ['class'=>'nav-link']);
+//              echo  "</div>";
+//              echo  "<div class='col-md-2 col-ld-2 col-sm-12'>";
+//               echo    " <p class='floatleft'>";
+//               echo anchor("$controller/prikaziKnjigu/".$knjiga->getIdb()."", $knjiga->getName(), ['class'=>'nav-link']);
+//               echo "<br>". $knjiga->getAuthors() ."</p> ";
+//               echo "</div>";
+//               echo "<div class='col-md-4 col-ld-4'>&nbsp;</div>";
+//            echo "</div> ";   
+             echo '<figure class="figure">';
+              echo anchor("$controller/prikaziKnjigu/".$item->getIdb()."","<img src='/images/books/". $item->getIdb() .
+                 ".jpg' style=' width: 200px;height:300px; margin-left: 6vh;'>");
+              echo anchor("$controller/prikaziKnjigu/".$item->getIdb()."","<figcaption style='margin-top: 2vh;width: 200px;padding-right:2vh; margin-left: 6vh;padding-bottom:5vh;'>".$item->getName()."</figcaption>");
+            echo '</figure>';
         }
     }else if($noveKnjige==null && $filter!=null){       //rezultat filtriranja prazna lista
         echo "<div class='row book'>";
         echo "<h2>No book for that filter</h2>";
         echo "</div> "; 
     }else{
-        foreach ($knjige as $knjiga) {                  //nema filtriranja
-            echo "<div class='row book'>";
-              echo  "<div class='col-md-4 col-ld-4'>&nbsp;</div>";
-              echo  "<div class='col-md-2 col-ld-2 col-sm-12'>";
-              echo       anchor("$controller/prikaziKnjigu/".$knjiga->getIdb()."", "<img src='/images/books/".$knjiga->getIdb() .".jpg' alt='' >", ['class'=>'nav-link']);
-              echo  "</div>";
-              echo  "<div class='col-md-2 col-ld-2 col-sm-12'>";
-               echo    " <p class='floatleft'>";
-               echo anchor("$controller/prikaziKnjigu/".$knjiga->getIdb()."", $knjiga->getName(), ['class'=>'nav-link']);
-               echo "<br>". $knjiga->getAuthors() ."</p> ";
-               echo "</div>";
-               echo "<div class='col-md-4 col-ld-4'>&nbsp;</div>";
-            echo "</div> ";   
+        foreach ($knjige as $item) {                  //nema filtriranja
+//            echo "<div class='row book'>";
+//              echo  "<div class='col-md-4 col-ld-4'>&nbsp;</div>";
+//              echo  "<div class='col-md-2 col-ld-2 col-sm-12'>";
+//              echo       anchor("$controller/prikaziKnjigu/".$knjiga->getIdb()."", "<img src='/images/books/".$knjiga->getIdb() .".jpg' alt='' >", ['class'=>'nav-link']);
+//              echo  "</div>";
+//              echo  "<div class='col-md-2 col-ld-2 col-sm-12'>";
+//               echo    " <p class='floatleft'>";
+//               echo anchor("$controller/prikaziKnjigu/".$knjiga->getIdb()."", $knjiga->getName(), ['class'=>'nav-link']);
+//               echo "<br>". $knjiga->getAuthors() ."</p> ";
+//               echo "</div>";
+//               echo "<div class='col-md-4 col-ld-4'>&nbsp;</div>";
+//            echo "</div> "; 
+           
+                            echo '<figure class="figure">';
+                            echo anchor("$controller/prikaziKnjigu/".$item->getIdb()."","<img src='/images/books/". $item->getIdb() .
+                                    ".jpg' style=' width: 200px;height:300px; margin-left: 6vh;'>");
+                            echo anchor("$controller/prikaziKnjigu/".$item->getIdb()."","<figcaption style='margin-top: 2vh;width: 200px;padding-right:2vh; margin-left: 6vh;padding-bottom:5vh;'>".$item->getName()."</figcaption>");
+                            echo '</figure>';
+                        
+                 
         }  
     }
 ?>
