@@ -25,7 +25,9 @@
                     <div class="col-md-12">
                         <a href="/Korisnik/logout"><button class="logoutbutton">Logout</button></a>
                     </div>
-                    <img src="/img/logo.png" alt="Logo">
+                    <a href="<?=site_url("/")?>">
+                        <img src="/img/logo.png" alt="Logo">
+                    </a>
                     <br>&nbsp;
 		</div>
             </div>

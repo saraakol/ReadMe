@@ -32,7 +32,9 @@
                         </form>-->
                         <a href="/Gost/register"><button>Register</button></a>
                     </div>
-                    <img src="/img/logo.png" alt="Logo">
+                    <a href="/">
+                        <img src="/img/logo.png" alt="Logo">
+                    </a>
                     <br>&nbsp;
 		</div>
             </div>

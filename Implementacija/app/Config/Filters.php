@@ -64,9 +64,9 @@ class Filters extends BaseConfig
 	 * @var array
 	 */
 	public $filters = [
-            'gost' => ['before' => ['Gost/*', 'Gost']],
-            'korisnik' => ['before' => ['Korisnik/*', 'Korisnik']],
-            'administrator' => ['before' => ['Administrator/*', 'Administrator']],
-            'privilegovani' => ['before' => ['Privilegovani/*', 'Privilegovani']]
+            'gost' => ['before' => ['Gost/*', 'Gost',"/"]],
+            'korisnik' => ['before' => ['Korisnik/*', 'Korisnik',"/"]],
+            'administrator' => ['before' => ['Administrator/*', 'Administrator',"/"]],
+            'privilegovani' => ['before' => ['Privilegovani/*', 'Privilegovani',"/"]]
         ];
 }
