@@ -123,20 +123,21 @@ class Administrator extends BaseController
      * komentarisanje knjige
      * Andrej Veselinovic 2018/0221
      */
-    public function addReview($poruka=null){
-        $referer=$_SERVER['HTTP_REFERER'];
-        echo view("Stranice/Review", ["poruka"=>$poruka,"referer"=>$referer,"controller"=>"Administrator"]);
+    public function addReview($id,$poruka=null){
+//        $referer=$_SERVER['HTTP_REFERER'];
+        
+        echo view("Stranice/Review", ["poruka"=>$poruka,"bookId"=>$id,"controller"=>"Administrator"]);
         
     }
     public function registerAddReview(){
         
 //        $user=$this->session->get("korisnik");
         $user=$this->doctrine->em->getRepository(\App\Models\Entities\User::class)->find($this->session->get("korisnik")->getIdu());
-        $referer=$this->request->getVar("hiddenBook");
+        $bookId=$this->request->getVar("hiddenBook");
         
         $text=$this->request->getVar("review");
-        $args=explode("/",$referer);
-        $bookId=intval($args[count($args)-1]);
+        
+        
         $book=$this->doctrine->em->getRepository(\App\Models\Entities\Book::class)->find($bookId);
         $review=new \App\Models\Entities\Review();
         $review->setBook($book);
@@ -151,16 +152,16 @@ class Administrator extends BaseController
         $this->doctrine->em->persist($review);      
         $this->doctrine->em->flush();
         $path="";
-        for($i=3;$i<count($args);$i++)
-        {   
-            
-            $path=$path."/".$args[$i];
-        }
+//        for($i=3;$i<count($args);$i++)
+//        {   
+//            
+//            $path=$path."/".$args[$i];
+//        }
 //echo intval($args[count($args)-1]);
         
         
         
-        return $this->prikaziKnjigu(intval($args[sizeof($args)-1]),"Successfully added new review");
+        return $this->prikaziKnjigu($bookId,"Successfully added new review");
 //        return redirect()->to(site_url($path));
 
     }
@@ -320,6 +321,21 @@ class Administrator extends BaseController
 //        echo "<script>alert('Successfully created new book');</script>";
         return $this->index("Successfully created new book!");
 //        return redirect()->to("/Korisnik");
+    }
+    public function deleteReview($id)
+    {
+
+        $review=$this->doctrine->em->getRepository(Entities\Review::class)->find($id);
+        $book=$review->getBook();
+        
+            $this->doctrine->em->remove($review);
+        $this->doctrine->em->flush();
+//        redirect($this->uri->uri_string());
+//        return redirect()->to(site_url("/Administrator/prikaziKnjigu/"+$id));
+        $this->prikaziKnjigu($book->getIdb(),"Successfully deleted review");
+//        return redirect()->to(site_url("/Administrator/prikaziKnjigu/".$book->getIdb()));
+
+
     }
     /*
      * 

@@ -66,7 +66,7 @@
                      * 
                      */
                     echo "<p class='review' name='review'><font style='font-size: 15px;'><a href='/{$controller}/addRate'>Add rate</a></font></p>";
-                    echo "<p class='review' name='review'><font style='font-size: 15px;'><a href='/{$controller}/addReview'>Add review</a></font></p>";
+                    echo "<p class='review' name='review'><font style='font-size: 15px;'><a href='/{$controller}/addReview/{$knjiga->getIdb()}'>Add review</a></font></p>";
                     
                     if($controller == 'Administrator' || $controller == 'Privilegovani') {
                        echo " <p class='quote' name='quote'><font style='font-size: 15px;'><a href='/{$controller}/addQuote'>Add quote</a></font></p>";
@@ -159,6 +159,11 @@
                         if (session()->get('korisnik')->getIdu() != $komentar->getUser()->getIdu()) {
                             echo "  <button class='prijavaKorisnika {$komentar->getUser()->getIdu()}' value='" . site_url("$controller/prijaviKorisnika/" . $komentar->getUser()->getIdu()) . "'>Report user</button>";
                         }
+                    }
+                    if($controller=="Administrator")
+                    {
+                        echo "<a href=".site_url("/Administrator/deleteReview/".$komentar->getIdrev())."><button class='brisanjeKomentara'>Delete review</button></a>";
+//                        echo "<button class='brisanjeKomentara {$komentar->getUser()->getIdu()}' value='".site_url("/Administrator/deleteReview/".$komentar->getUser()->getIdu())."'>Delete review</button>";
                     }
                     echo '      <p class="komentar">' . $komentar->getText() . '</p>';
                     echo '  </div>';

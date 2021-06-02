@@ -19,7 +19,8 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 
     
-    <script src="js/skripta.js"></script>
+    <!--<script src="/js/skripta.js"></script>-->
+    <script src="/js/veseliReview.js"></script>
     
 </head>
 
@@ -36,7 +37,7 @@
             <div class="col-md-4"></div>
             <div class="col-md-4 loginbox">
                 <br>&nbsp;
-                <img src="../img/logo.png" alt="" height="100" width="100" align="center">
+                <img src="/img/logo.png" alt="" height="100" width="100" align="center">
                 <br><br>
                 <font color="red">
                 <?php
@@ -53,11 +54,11 @@
                 
                 ?>
                 </font>
-                <form name="register" action="<?=site_url("/{$controller}/registerAddReview")?>" method="POST" enctype="multipart/form-data">
+                <form id="addReviewForm" action="<?=site_url("/{$controller}/registerAddReview")?>" method="POST" enctype="multipart/form-data">
 
 <!--                    <input type="text" name="firstname" placeholder="First Name">-->
-                    <textarea name="review"></textarea>
-                   <input type="hidden" name="hiddenBook" value="<?=$referer?>">
+                    <textarea name="review" id="reviewText"></textarea>
+                   <input type="hidden" name="hiddenBook" value="<?=$bookId?>">
 
                     <br><br>
 <!--                    <label for="img" class="custom-file-upload">
@@ -68,10 +69,10 @@
                     
                     <br><br>
 <!--                    <input type="button"  data-toggle="modal" data-target="#exampleModal2"  value="Continue"></input>-->
-                       <input type="submit" value="Continue"></input>
+                    <input type="button" onClick=checkAndSubmit() value="Continue" id="reviewSubmit"></input>
                     
                     &nbsp;
-                    <a href="<?=$referer?>"><input type="button" value="Cancel"></input></a>
+                    <a href="<?=site_url("/{$controller}/prikaziKnjigu/{$bookId}")?>"><input type="button" value="Cancel"></input></a>
                     <br>&nbsp;<br>&nbsp;
 
                 </form>
