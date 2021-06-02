@@ -1,12 +1,12 @@
 <?php
 ?>
 
-        <div class="row ">
+<!--        <div class="row ">
             
             <div class="col naopackegradient">
                 <br>&nbsp;<br>&nbsp;<br>&nbsp;
             </div>
-        </div>
+        </div>-->
         <div class="row bio">
 
             <div class="col-lg-4 col-md-6 col-sm-12" style="text-align: center;">

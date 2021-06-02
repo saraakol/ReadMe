@@ -1,6 +1,6 @@
 <?php
 ?>
-
+        
         <div class="row">
             <div class="col" style="background-color: #ffeedf;">
                 <br>

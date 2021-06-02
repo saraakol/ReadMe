@@ -2,8 +2,8 @@
 ?>
 
         <div class="row ">
-            <div class="col"> 
-                <div class="backtotop">
+            <div class="col backtotop"> 
+                <div class="">
                     <a href="#">
                     <button>Back to top</button>
                     </a> 
@@ -11,8 +11,8 @@
             </div>
         </div>     
         <div class="row">
-            <div class="col">
-                <div class="footer"> 
+            <div class="col footer">
+                <div class=""> 
                     ReadMe
                 </div>              
             </div>

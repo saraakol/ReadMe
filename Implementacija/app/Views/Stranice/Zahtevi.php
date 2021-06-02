@@ -1,6 +1,11 @@
 <?php
 ?>
-
+        <div class="row ">
+            
+            <div class="col gradient">
+                <br>&nbsp;<br>&nbsp;<br>&nbsp;
+            </div>
+        </div>
         <div class="row">
             <div class="col" style="background-color: #ffeedf;">
                 <br>

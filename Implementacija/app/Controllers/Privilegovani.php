@@ -15,8 +15,8 @@ class Privilegovani extends BaseController
     protected function prikaz($page, $data) {
         $data['controller'] = 'Privilegovani';
        // $data['user_type'] = session()->get("korisnik")->getType();
-        
-        echo view('Sablon/header_korisnik', ['controller'=>'Privilegovani']);
+        if ($page=='Pocetna') echo view('Sablon/header_korisnik', ['controller'=>'Privilegovani']);
+        else echo view('Sablon/header', ['controller'=>'Privilegovani']);
         echo view("Stranice/$page", $data);
         echo view('Sablon/footer');
     }

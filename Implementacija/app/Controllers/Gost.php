@@ -18,7 +18,8 @@ class Gost extends BaseController
      */
     protected function prikaz($page, $data) {
         $data['controller'] = 'Gost';
-        echo view('Sablon/header_gost');
+        if($page=='Pocetna')echo view('Sablon/header_gost', ['controller'=>'Gost']);
+        else  echo view('Sablon/header', ['controller'=>'Gost']);
         echo view("Stranice/$page", $data);
         echo view('Sablon/footer');
     }

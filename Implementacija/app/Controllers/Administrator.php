@@ -34,8 +34,8 @@ class Administrator extends BaseController
     protected function prikaz($page, $data) {
         $data['controller'] = 'Administrator';
         //$data['user_type'] = session()->get("korisnik")->getType();
-        
-        echo view('Sablon/header_korisnik', ['controller'=>'Administrator']);
+        if ($page=='Pocetna') echo view('Sablon/header_korisnik', ['controller'=>'Administrator']);
+        else echo view('Sablon/header', ['controller'=>'Administrator']);
         echo view("Stranice/$page", $data);
         echo view('Sablon/footer');
     }
