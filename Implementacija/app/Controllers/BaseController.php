@@ -65,8 +65,8 @@ class BaseController extends Controller
      * Sara Kolarevic 2018/0388
      */
     public function index($poruka=null) {
-        $books = $this->doctrine->em->getRepository(Entities\Book::class)->findAll();
-        $genres=$this->doctrine->em->getRepository(Entities\Genre::class)->findAll();
+        $books = $this->doctrine->em->getRepository(\App\Models\Entities\Book::class)->findAll();
+        $genres=$this->doctrine->em->getRepository(\App\Models\Entities\Genre::class)->findAll();
         $this->prikaz('Pocetna', ['knjige' => $books,'genres' => $genres,"poruka"=>$poruka]);
     }
     
