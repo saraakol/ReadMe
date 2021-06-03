@@ -32,10 +32,12 @@
             echo "          <input class='zahtev-forma acceptZahtev' type='submit' value='Accept'>";
             echo "      </form>";
             echo "      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;";
-            echo "      <form>";
-            echo "          <input type='hidden' name='username' value='" . site_url("Administrator/decline" . "$zahtev" . "?username=" . "{$korisnik->getUsername()}") . "'>";
-            echo "          <input type='submit' class='declineZahtev' value='Decline'>";
-            echo "      </form>";            
+            if ($zahtev != 'Upgrades') {
+                echo "      <form>";
+                echo "          <input type='hidden' name='username' value='" . site_url("Administrator/decline" . "$zahtev" . "?username=" . "{$korisnik->getUsername()}") . "'>";
+                echo "          <input type='submit' class='declineZahtev' value='Decline'>";
+                echo "      </form>";   
+            }            
             echo "  </div>";
             echo "  <br>";
             echo "  <div class='col' style='background-color: #ffeedf'><hr></div>";

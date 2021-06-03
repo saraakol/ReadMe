@@ -263,14 +263,6 @@ class Administrator extends BaseController
     }
     
     /*
-     * Funkcija acceptUpgrades() - sluzi za unapredjivanje korisnika u privilegovanog
-     * @author Andrej Jokic 18/0247
-     */
-    public function declineUpgrades() {
-        return redirect()->to(site_url('Administrator/prikaziUnapredjenja')); 
-    }
-    
-    /*
      * funkcijz za otvaranje stranice za dodavanje nove knjige
      * Andrej Veselinovic 2018/0221
      */
