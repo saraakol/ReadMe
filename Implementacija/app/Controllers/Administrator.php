@@ -9,7 +9,7 @@ use App\Models\Entities;
  * 
  *  @version 1.0
  */
-class Administrator extends BaseController
+class Administrator extends Privilegovani
 {      
     protected function prikaz($page, $data) {
         $data['controller'] = 'Administrator';

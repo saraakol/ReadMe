@@ -77,10 +77,10 @@ class BaseController extends Controller
      */
     public function prikaziKnjigu($id,$poruka=null){
         
-        $book=$this->doctrine->em->getRepository(Entities\Book::class)->find($id);
+        $book=$this->doctrine->em->getRepository(\App\Models\Entities\Book::class)->find($id);
 //        $user = $this->doctrine->em->getRepository(Entities\User::class)->findOneBy(["idu" => session()->get("korisnik")->getIdu()]);
-        $reviews=$this->doctrine->em->getRepository(Entities\Review::class)->getReviewsFromAccountType($id,"privileged_user");
-        $reviews=array_merge($reviews,$this->doctrine->em->getRepository(Entities\Review::class)->getReviewsFromNotAccountType($id,"privileged_user"));
+        $reviews=$this->doctrine->em->getRepository(\App\Models\Entities\Review::class)->getReviewsFromAccountType($id,"privileged_user");
+        $reviews=array_merge($reviews,$this->doctrine->em->getRepository(\App\Models\Entities\Review::class)->getReviewsFromNotAccountType($id,"privileged_user"));
        $nizz=array();
         foreach($book->getGenres() as $pom){
             array_push($nizz,$pom->getName());
@@ -95,8 +95,8 @@ class BaseController extends Controller
      */
     public function filter(){
         //$knjige = $this->session->get("knjige");//pocetni niz knjiga
-        $knjige = $this->doctrine->em->getRepository(Entities\Book::class)->findAll();
-        $genres=$this->doctrine->em->getRepository(Entities\Genre::class)->findAll();
+        $knjige = $this->doctrine->em->getRepository(\App\Models\Entities\Book::class)->findAll();
+        $genres=$this->doctrine->em->getRepository(\App\Models\Entities\Genre::class)->findAll();
 
         if(isset($_POST['submit']))
             $selected = $_POST['filter']; 
@@ -126,8 +126,8 @@ class BaseController extends Controller
      */
     public function sort(){
         //$knjige = $this->session->get("knjige");//pocetni niz knjiga
-        $knjige = $this->doctrine->em->getRepository(Entities\Book::class)->findAll();
-        $genres=$this->doctrine->em->getRepository(Entities\Genre::class)->findAll();
+        $knjige = $this->doctrine->em->getRepository(\App\Models\Entities\Book::class)->findAll();
+        $genres=$this->doctrine->em->getRepository(\App\Models\Entities\Genre::class)->findAll();
          
         if(isset($_POST['submit']))
             $selected = $_POST['sort'];

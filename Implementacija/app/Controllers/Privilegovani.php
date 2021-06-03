@@ -9,7 +9,7 @@ use App\Models\Entities;
  * 
  *  @version 1.0
  */
-class Privilegovani extends Korisnik1
+class Privilegovani extends Korisnik
 {   
     
     protected function prikaz($page, $data) {
