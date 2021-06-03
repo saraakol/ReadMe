@@ -14,7 +14,6 @@ class Korisnik extends BaseController {
 
     protected function prikaz($page, $data) {
         $data['controller'] = 'Korisnik';
-        //$data['user_type'] = session()->get("korisnik")->getType();
         if ($page=='Pocetna') echo view('Sablon/header_korisnik', ['controller'=>'Korisnik']);
         else echo view('Sablon/header', ['controller'=>'Korisnik']);
         echo view("Stranice/$page", $data);
@@ -25,7 +24,6 @@ class Korisnik extends BaseController {
      * funkcija za prikaz pocetne stranice
      * Sara Kolarevic 2018/0388
      */
-
     public function index($poruka=null) {
         
         if(isset($_SESSION["displayNotificationMessage"]))
@@ -33,9 +31,7 @@ class Korisnik extends BaseController {
             $poruka=$_SESSION["displayNotificationMessage"];
             unset($_SESSION["displayNotificationMessage"]);
         }
-        $books = $this->doctrine->em->getRepository(Entities\Book::class)->findAll();
-        $genres=$this->doctrine->em->getRepository(Entities\Genre::class)->findAll();
-        $this->prikaz('Pocetna', ['knjige' => $books,'genres' => $genres,"poruka"=>$poruka]);
+        parent::index($poruka);
     }
 
 //    public function logout() {
@@ -47,7 +43,6 @@ class Korisnik extends BaseController {
      * Funkcija dodajPretplatu() - Sluzi za dodavanje pretplate korisnika na odredjeni zanr
      * @author Andrej Jokic 18/0247
      */
-
     function dodajPretplatu() {
         //$user = $this->doctrine->em->getRepository(Entities\User::class)->findOneBy(["idu" => $this->request->getVar('idU')]);
         $user = $this->doctrine->em->getRepository(Entities\User::class)->find(session()->get("korisnik")->getIdu());
@@ -104,29 +99,7 @@ class Korisnik extends BaseController {
         }
         
         $this->prikaz('Profil', $data);
-    }
-
-    /*
-     * 
-     * funkcija za prikaz knjige
-     * Sara Kolarevic 2018/0388
-     */
-
-     public function prikaziKnjigu($id){
-         
-           $book=$this->doctrine->em->getRepository(Entities\Book::class)->find($id);
-//        $user = $this->doctrine->em->getRepository(Entities\User::class)->findOneBy(["idu" => session()->get("korisnik")->getIdu()]);
-        $reviews=$this->doctrine->em->getRepository(Entities\Review::class)->getReviewsFromAccountType($id,"privileged_user");
-        $reviews=array_merge($reviews,$this->doctrine->em->getRepository(Entities\Review::class)->getReviewsFromNotAccountType($id,"privileged_user"));
-       $nizz=array();
-        foreach($book->getGenres() as $pom){
-            array_push($nizz,$pom->getName());
-       }
-//        $reviews=array_merge($reviews,$this->doctrine->em->getRepository(Entities\Review::class)->getReviewsFromNotAccountType("privileged_user"));
-        $this->prikaz('Knjiga', ["poruka"=>$poruka,'knjiga'=>$book, 'komentari' => $reviews,'korisnik' => $user,'citati' => $book->getQuotes(),'zanrovi'=>$nizz]);
-    }
-    
-   
+    }   
 
     /*
      * komentarisanje knjige
@@ -187,117 +160,6 @@ class Korisnik extends BaseController {
 //        return $this->prikaziKnjigu($bookId,"Successfully added new review");
         return redirect()->to(site_url("/Administrator/prikaziKnjigu/{$bookId}"));
 
-    }
-    
-    
-    
-    /*
-     * funkcija za filtriranje
-     * Nikola Krstic 18/0546
-     */
-    public function filter(){
-        //$knjige = $this->session->get("knjige");//pocetni niz knjiga
-        $knjige = $this->doctrine->em->getRepository(Entities\Book::class)->findAll();
-        $genres=$this->doctrine->em->getRepository(Entities\Genre::class)->findAll();
-
-        if(isset($_POST['submit']))
-            $selected = $_POST['filter']; 
-       
-        
-        if($selected == "Reset"){
-            $filter=false;
-            return $this->prikaz('Pocetna', ['noveKnjige' => $noveKnjige,'knjige' => $knjige, 'genres' => $genres,'filter' => $filter]);
-        }
-
-        $noveKnjige = [];
-        foreach($knjige as $knjiga){
-
-            $bookGenres = $knjiga->getGenres();
-            foreach($bookGenres as $genre){
-                if($genre->getName()== $selected)
-                    $noveKnjige[] = $knjiga;
-            }
-        }
-        $filter=true;
-        $this->prikaz('Pocetna', ['noveKnjige' => $noveKnjige,'knjige' => $knjige, 'genres' => $genres,'filter' => $filter]);  
-    }
-    
-    /*
-     * funkcija za sortiranje
-     * Nikola Krstic 18/0546
-     */
-    public function sort(){
-        //$knjige = $this->session->get("knjige");//pocetni niz knjiga
-        $knjige = $this->doctrine->em->getRepository(Entities\Book::class)->findAll();
-        $genres=$this->doctrine->em->getRepository(Entities\Genre::class)->findAll();
-         
-        if(isset($_POST['submit']))
-            $selected = $_POST['sort'];
-        
-        
-        switch ($selected){
-            case "A-Z":
-                usort($knjige, function($a, $b){
-                    return strcmp($a->getName(), $b->getName());
-                });
-                break;
-            case "Z-A":
-                usort($knjige, function($a, $b){
-                    return strcmp($b->getName(),$a->getName());
-                });
-                break;
-            case "Date":
-                usort($knjige, function($a, $b){
-                    return $a->getIdb()>$b->getIdb();
-                });
-                break;
-            case "Rate":
-                usort($knjige, function($a, $b){
-                    $ratesA=$a->getRates();
-                    $ratesB=$b->getRates();
-                    
-                    $numA=0;
-                    $numB=0;
-                    $numOfVotes=0;
-                    if(isset($ratesA)){
-                        foreach($ratesA as $rateA){
-                            if($rateA->getIdu()->getType()=="privileged_user" || $rateA->getIdu()->getType()=="administrator"){
-                                $numA+=$rateA->getRate()*1.5;
-                                $numOfVotes+=1.5;
-                            }else{
-                            $numA+=$rateA->getRate();
-                            $numOfVotes++;
-                            }
-                        }
-                        if($numOfVotes!=null)
-                            $numA/=$numOfVotes;
-                        else $numA=0;
-                    }else{
-                        $numA=0;
-                    }
-                    $numOfVotes=0;
-                    if(isset($ratesB)){
-                        foreach($ratesB as $rateB){
-                            if($rateB->getIdu()->getType()=="privileged_user" || $rateB->getIdu()->getType()=="administrator"){
-                                $numB+=$rateB->getRate()*1.5;
-                                $numOfVotes+=1.5;
-                            }else{
-                                $numB+=$rateB->getRate();
-                                $numOfVotes++;
-                            }
-                        }
-                        if($numOfVotes!=0)
-                            $numB/=$numOfVotes;
-                        else $numB=0;
-                    }else{
-                        $numB=0;
-                    }
-                    return $numA<$numB;
-                });
-                break;
-        }
-        
-        $this->prikaz('Pocetna', ['knjige' => $knjige,'genres' => $genres]);
     }
     
     /*
