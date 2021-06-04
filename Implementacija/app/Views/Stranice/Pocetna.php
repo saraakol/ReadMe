@@ -19,7 +19,7 @@
             </div>
         </div>
 
-            <div class="row">
+<div class="row" style="background: #ffeedf;">
                 <div class="col">
                     <div class="selects">
                         <form method="post" action="<?=site_url("/{$controller}/sort")?>">
