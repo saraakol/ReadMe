@@ -19,25 +19,6 @@ class Privilegovani extends Korisnik
         echo view("Stranice/$page", $data);
         echo view('Sablon/footer');
     }
-
-    /*
-     * komentarisanje knjige
-     * Andrej Veselinovic 2018/0221
-     */
-    public function addReview($poruka=null){
-        $referer=$_SERVER['HTTP_REFERER'];
-        echo view("Stranice/Review", ["poruka"=>$poruka,"referer"=>$referer,"controller"=>"Privilegovani"]);
-        
-    }
-    
-    /*
-     * ocenjivanje knjige
-     * Nikola Krstic 18/0546
-     */
-    public function addRate($poruka=null){
-        $referer=$_SERVER['HTTP_REFERER'];
-        echo view("Stranice/Rate", ["poruka"=>$poruka,"referer"=>$referer,"controller"=>"Privilegovani"]);
-    }
     
     /*
      * Funkcija dodajCilj() - Dodaje licni cilj korisniku
@@ -46,7 +27,7 @@ class Privilegovani extends Korisnik
     function dodajCilj() {
         if ($this->request->getVar('brojKnjiga') <= 0) {
             session()->setFlashdata("poruka", "Entered number is not valid!");
-            return redirect()->to(site_url('Privilegovani/prikaziProfil'));
+            return redirect()->to(site_url("/{$this->getController()}/prikaziProfil"));
         }
       
         $user = $this->doctrine->em->getRepository(Entities\User::class)->find(session()->get("korisnik")->getIdu());
@@ -55,7 +36,7 @@ class Privilegovani extends Korisnik
         
         session()->setFlashdata("poruka", "Personal goal successfully added!");
         
-        return redirect()->to(site_url('Privilegovani/prikaziProfil'));
+        return redirect()->to(site_url("/{$this->getController()}/prikaziProfil"));
     }
     /*
      * 
@@ -81,7 +62,7 @@ class Privilegovani extends Korisnik
             $this->doctrine->em->flush();             
         }
         
-        return redirect()->to($_SERVER['HTTP_REFERER']);
+        //return redirect()->to($_SERVER['HTTP_REFERER']);
     }
     
      /*
@@ -90,7 +71,7 @@ class Privilegovani extends Korisnik
      */
     public function addQuote($poruka=null){
         $referer=$_SERVER['HTTP_REFERER'];
-        echo view("Stranice/Quote", ["poruka"=>$poruka,"referer"=>$referer,"controller"=>"Privilegovani"]);
+        echo view("Stranice/Quote", ["poruka"=>$poruka,"referer"=>$referer,"controller"=>$this->getController()]);
         
     }
     /*

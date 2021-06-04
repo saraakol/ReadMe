@@ -34,10 +34,20 @@ class Korisnik extends BaseController {
         parent::index($poruka);
     }
 
-//    public function logout() {
-//        $this->session->destroy();
-//        return redirect()->to(site_url("/"));
-//    }
+    public function logout() {
+        $this->session->destroy();
+        return redirect()->to(site_url("/"));
+    }
+    
+    protected function getController() {
+        if (session()->get('korisnik')->getType() == 'administrator') {
+            return 'Administrator';
+        } else if (session()->get('korisnik')->getType() == 'regular_user') {
+            return 'Korisnik';
+        } else {
+            return 'Privilegovani';
+        }
+    }
 
     /*
      * Funkcija dodajPretplatu() - Sluzi za dodavanje pretplate korisnika na odredjeni zanr
@@ -54,9 +64,9 @@ class Korisnik extends BaseController {
         
         session()->setFlashdata("poruka", "Subscription successfully added!");
 
-        return redirect()->to(site_url('Korisnik/prikaziProfil'));
+        return redirect()->to(site_url("/{$this->getController()}/prikaziProfil"));
     }
-
+    
     /*
      * Funkcija ukloniPretplatu() - Sluzi za uklanjanje pretplate korisnika na odredjeni zanr
      * @author Andrej Jokic 18/0247
@@ -72,9 +82,9 @@ class Korisnik extends BaseController {
 
         session()->setFlashdata("poruka", "Subscription successfully removed!");
         
-        return redirect()->to(site_url('Korisnik/prikaziProfil'));
+        return redirect()->to(site_url("/{$this->getController()}/prikaziProfil"));
     }
-
+   
     /*
      * Funkcija prikazi Profil - Prikazuje p rofil korisnika
      * @author Andrej Jokic 18/0247,Nikola Krstic 18/0546
@@ -105,10 +115,10 @@ class Korisnik extends BaseController {
      * komentarisanje knjige
      * Andrej Veselinovic 2018/0221
      */
-    public function addReview($poruka=null){
-        $referer=$_SERVER['HTTP_REFERER'];
-        echo view("Stranice/Review", ["poruka"=>$poruka,"referer"=>$referer,"controller"=>"korisnik"]);
+    public function addReview($id,$poruka=null){
+//        $referer=$_SERVER['HTTP_REFERER'];
         
+        echo view("Stranice/Review", ["poruka"=>$poruka,"bookId"=>$id,"controller"=>$this->getController()]);    
     }
     
     
@@ -118,7 +128,7 @@ class Korisnik extends BaseController {
      */
     public function addRate($poruka=null){
         $referer=$_SERVER['HTTP_REFERER'];
-        echo view("Stranice/Rate", ["poruka"=>$poruka,"referer"=>$referer,"controller"=>"korisnik"]);
+        echo view("Stranice/Rate", ["poruka"=>$poruka,"referer"=>$referer,"controller"=>$this->getController()]);
     }
     
     /*
@@ -158,7 +168,7 @@ class Korisnik extends BaseController {
         
         
 //        return $this->prikaziKnjigu($bookId,"Successfully added new review");
-        return redirect()->to(site_url("/Administrator/prikaziKnjigu/{$bookId}"));
+        return redirect()->to(site_url("/{$this->getController()}/prikaziKnjigu/{$bookId}"));
 
     }
     

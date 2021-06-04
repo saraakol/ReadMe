@@ -19,37 +19,6 @@ class Administrator extends Privilegovani
         echo view('Sablon/footer');
     }
     
-    
-     /*
-     * dodavanje citata iz knjige
-     * Sara Kolarevic 2018/0388
-     */
-    public function addQuote($poruka=null){
-        $referer=$_SERVER['HTTP_REFERER'];
-        echo view("Stranice/Quote", ["poruka"=>$poruka,"referer"=>$referer,"controller"=>"Administrator"]);
-        
-    }
-    
-    /*
-     * komentarisanje knjige
-     * Andrej Veselinovic 2018/0221
-     */
-    public function addReview($id,$poruka=null){
-//        $referer=$_SERVER['HTTP_REFERER'];
-        
-        echo view("Stranice/Review", ["poruka"=>$poruka,"bookId"=>$id,"controller"=>"Administrator"]);
-        
-    }
-    
-    /*
-     * ocenjivanje knjige
-     * Nikola Krstic 18/0546
-     */
-    public function addRate($poruka=null){
-        $referer=$_SERVER['HTTP_REFERER'];
-        echo view("Stranice/Rate", ["poruka"=>$poruka,"referer"=>$referer,"controller"=>"Administrator"]);
-    }
-    
     /*
      * Funkcija prikaziRegistracije() - sluzi za dohvatanje svih korisnika koji su poslali zahtev za registraciju
      * @author Andrej Jokic 18/0247
