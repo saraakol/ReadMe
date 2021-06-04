@@ -126,9 +126,9 @@ class Korisnik extends BaseController {
      * ocenjivanje knjige
      * Nikola Krstic 18/0546
      */
-    public function addRate($poruka=null){
-        $referer=$_SERVER['HTTP_REFERER'];
-        echo view("Stranice/Rate", ["poruka"=>$poruka,"referer"=>$referer,"controller"=>$this->getController()]);
+    public function addRate($id,$poruka=null){
+        //$referer=$_SERVER['HTTP_REFERER'];
+        echo view("Stranice/Rate", ["poruka"=>$poruka,"bookId"=>$id,"controller"=>$this->getController()]);
     }
     
     /*
@@ -189,33 +189,17 @@ class Korisnik extends BaseController {
             $userbook->setIdb($book);
             $userbook->setIdu($user);
 
-
             $user->addBook($userbook); //ovde je greska
             $this->doctrine->em->persist($userbook);
             $this->doctrine->em->persist($user);
             $this->doctrine->em->persist($book);
             $this->doctrine->em->flush();
-            session()->setFlashdata("porukaa","Book successfully added to want to read list");
+            return $this->prikaziKnjigu($book->getIdb(),"Book successfully added to want to read list");
         }else{
-            session()->setFlashdata("porukaa","Book already exist on your lists");
-        }
-        $this->prikaziKnjigu($book->getIdb());
-    }
-    
-    private function setMessage($userBookk){
-        if($userBookk!=null){
-            if($userBookk->getType()=="read"){                  //ukoliko postoji na read listi
-                session()->setFlashdata("porukaa","Book alreay exist on read list");
-                return;
-            }else{                                              //ukoliko postoji na write listi treba je izbaciti sa te liste
-                session()->setFlashdata("porukaa","Book moved from want to read list to read list");
-                return;
-            }
-        }else{
-            session()->setFlashdata("porukaa","Book successfully added to read list");
-            return;
+            return $this->prikaziKnjigu($book->getIdb(),"Book already exist on your lists");
         }
     }
+
     
     private function makeUserBook(){
         $userbook = new Entities\Userbooks();
@@ -231,11 +215,12 @@ class Korisnik extends BaseController {
         $user = $this->doctrine->em->getRepository(Entities\User::class)->findOneBy(["idu" => session()->get("korisnik")->getIdu()]);
         $book = $this->doctrine->em->getRepository(Entities\Book::class)->findOneBy(["idb" => $this->request->getVar('idb')]);
         $userBookk = $this->doctrine->em->getRepository(Entities\Userbooks::class)->findOneBy(["idu" => session()->get("korisnik")->getIdu(),"idb" => $book->getIdb()]);
-        $this->setMessage($userBookk);
+        $poruka="Book successfully added to read list";
         if($userBookk!=null){
             if($userBookk->getType()=="read"){                  //ukoliko postoji na read listi
-                return $this->prikaziKnjigu($book->getIdb());
-            }else{                                              //ukoliko postoji na write listi treba je izbaciti sa te liste
+                return $this->prikaziKnjigu($book->getIdb(),"Book already exist on read list");
+            }else{      
+                $poruka="Book moved from want to read list to read list";       //ukoliko postoji na write listi treba je izbaciti sa te liste
                 $this->doctrine->em->remove($userBookk);
             }
         }
@@ -248,19 +233,18 @@ class Korisnik extends BaseController {
         $this->doctrine->em->persist($user);
         $this->doctrine->em->persist($book);
         $this->doctrine->em->flush();
-        return $this->prikaziKnjigu($book->getIdb());
+        $this->prikaziKnjigu($book->getIdb(),$poruka);
     }
 
     private function setMessageRate($text){
         if(is_numeric($text)){
             if(intval($text)>0 && intval($text)<=5)
-                session()->setFlashdata("porukaa", "Successfully added new rate!");
+                return "Successfully added new rate!";
             else
-                session()->setFlashdata("porukaa", "Please enter number from 1 to 5!");
+                return "Please enter number from 1 to 5!";
         }else{
-            session()->setFlashdata("porukaa", "Unsuccessfully added new rate!");
+            return "Unsuccessfully added new rate!";
         }
-        return;
     }
     
     /*
@@ -269,27 +253,21 @@ class Korisnik extends BaseController {
      */
     public function registerAddRate(){
         $user=$this->doctrine->em->getRepository(\App\Models\Entities\User::class)->find($this->session->get("korisnik")->getIdu());
+        $bookId=$this->request->getVar("hiddenBook");
+        $book=$this->doctrine->em->getRepository(\App\Models\Entities\Book::class)->find($bookId);
         $text=$this->request->getVar("rate");
-        $this->setMessageRate($text);
-        $referer=$this->request->getVar("hiddenBook");
-        $args=explode("/",$referer);
-        $book=$this->doctrine->em->getRepository(\App\Models\Entities\Book::class)->find(intval($args[count($args)-1]));
+        $poruka=$this->setMessageRate($text);
+        
         if(is_numeric($text)){
             if(intval($text)>0 && intval($text)<=5){
                 $rate=new \App\Models\Entities\Rate();
                 $rate->setIdb($book);
                 $rate->setIdu($user);
                 $rate->setRate($text);
-                $book->addRates($rate);
-                $user->addRate($rate);
                 $this->doctrine->em->persist($rate); 
                 $this->doctrine->em->flush();
             }
         }
-        $path="";
-        for($i=3;$i<count($args);$i++){   
-            $path=$path."/".$args[$i];
-        }
-        return redirect()->to(site_url($path));
+        return $this->prikaziKnjigu($bookId,$poruka);
     }
 }

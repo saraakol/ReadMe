@@ -32,6 +32,7 @@
                         }
                     }
                     $num=$num/$numOfRates;
+                    $num= number_format($num,2);
                     echo "<h4>Rate: $num</h4>";
                 }else{
                     echo "No rates yet";
@@ -63,16 +64,20 @@
                     
                     echo '<div class="col-lg-4 col-md-12 col-sm-12 ratearea" style="text-align: center;">';
                     echo "  <form name='formazaciljkomentare' method='' action=''>";
-                    /*
-                    $rate = $this->doctrine->em->getRepository(Entities\Rate::class)->dohvatiOcenu(session()->get('korisnik')->getIdu(),$knjiga->getIdb());
-                    if(isset($rate)){
-                        echo "<p class='review' name='review'><font style='font-size: 15px;'><a href='/{$controller}/addRate'>Add rate</a></font></p>";
-                    }else{
-                        echo "<p class='review' name='review'><font style='font-size: 15px;'><a href='/{$controller}/addRate'>Rated</a></font></p>";
-                    }
-                     */
                     
-                    echo "<p class='review' name='review'><font style='font-size: 15px;'><a href='/{$controller}/addRate'>Add rate</a></font></p>";
+                    $rates=session()->get('korisnik')->getRates();
+                    $flag=false;
+                    foreach($rates as $rate){
+                        if($rate->getIdb()->getIdb()==$knjiga->getIdb()){
+                            echo "<p class='review' name='review'><font style='font-size: 15px;'>Rated</font></p>";
+                            $flag=true;
+                            echo "usao";
+                            break;
+                        }
+                    }
+                    if($flag==false){
+                        echo "<p class='review' name='review'><font style='font-size: 15px;'><a href='/{$controller}/addRate/{$knjiga->getIdb()}'>Add rate</a></font></p>";
+                    }
                     echo "<p class='review' name='review'><font style='font-size: 15px;'><a href='/{$controller}/addReview/{$knjiga->getIdb()}'>Add review</a></font></p>";
                     
                     if($controller == 'Administrator' || $controller == 'Privilegovani') {
@@ -87,22 +92,6 @@
                 if ($controller == 'Administrator' || $controller == 'Privilegovani' || $controller == 'Korisnik') {
                     echo '<div class="col-lg-2 col-md-6 col-sm-12" style="text-align: center; margin-top: 2vh;">';
                     echo "  <form name='dodajNaWantListu' method='GET' action='". site_url("{$controller}/dodajNaWantListu")."'>";
-                    
-                    /*
-                    $flag=false;
-                    foreach ($korisnik->getBooks() as $knjigatmp) {
-                        //if($knjiga->getIdb()==$knjigatmp->getIdb()->getIdb()){//
-                        //if($knjigatmp->getIdb()->getIdb()==2) {   
-                            echo "<a href=''><button disabled class='addtolist'>Add to Want to Read</button></a> ";
-                            echo "fsadfdsafas";
-                            $flag=true;
-                        //}                        
-                    }
-                    
-                    if($flag==false)
-                        echo "<a href=''><button  class='addtolist'>Add to Want to Read</button></a> ";
-                    */
-                    
                     echo "<a href=''><button  class='addtolist'>Add to Want to Read</button></a> ";
                     echo "<input type='hidden' name='idb' value=".$knjiga->getIdb().">";
                     echo "  </form>";
@@ -113,25 +102,6 @@
                 if ($controller == 'Administrator' || $controller == 'Privilegovani' || $controller == 'Korisnik') {
                     echo '<div class="col-lg-3 col-md-6 col-sm-12" style="text-align: center; margin-top: 2vh;"">';
                     echo "  <form name='dodajNaReadListu' method='GET' action='". site_url("{$controller}/dodajNaReadListu")."'>";
-                    
-                    /*
-                    $flag=false;
-                    foreach ($korisnik->getBooks() as $knjigatmp) {
-                        
-                        if($knjiga->getIdb()==$knjigatmp->getIdb()->getIdb()){
-                            if($knjigatmp->getType()=="want-to-read")
-                                echo "<a href=''><button class='addtolist'>Add to Read</button></a> ";
-                            else
-                                echo "<a href=''><button disabled class='addtolist'>Add to Read</button></a> ";
-                                
-                            $flag=true;
-                        } 
-                                              
-                    }
-                    if($flag==false)
-                        echo "<a href=''><button class='addtolist'>Add to Read</button></a> ";
-                     * */
-                    
                     echo "<a href=''><button class='addtolist'>Add to Read</button></a> ";
                     echo "<input type='hidden' name='idb' value=".$knjiga->getIdb().">";
                     echo "  </form>";

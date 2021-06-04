@@ -59,7 +59,7 @@
 
                         
                     <textarea name="rate"></textarea>
-                    <input type="hidden" name="hiddenBook" value="<?=$referer?>">
+                    <input type="hidden" name="hiddenBook" value="<?=$bookId?>">
 
                     <br><br>
 <!--                    <label for="img" class="custom-file-upload">
