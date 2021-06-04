@@ -99,7 +99,7 @@ class Privilegovani extends Korisnik
             
             $path=$path."/".$args[$i];
         }
-        session()->setFlashdata("porukaaa", "Successfully added new quote!");
+        session()->setFlashdata("displayNotificationMessage", "Successfully added new quote!");
          return redirect()->to(site_url($path));
         //return $this->prikaziKnjigu(intval($args[sizeof($args)-1]),"Successfully added new quote");
 
