@@ -154,8 +154,10 @@ class Administrator extends Privilegovani
             fclose($myfile);
                    
         }
+        $_SESSION["displayNotificationMessage"]="Successfully created new book";
 //        echo "<script>alert('Successfully created new book');</script>";
-        return $this->index("Successfully created new book!");
+//        return $this->index("Successfully created new book!");
+        return redirect()->to(site_url("/Administrator"));
 //        return redirect()->to("/Korisnik");
     }
     public function deleteReview($id)

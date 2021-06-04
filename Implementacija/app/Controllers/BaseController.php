@@ -65,6 +65,11 @@ class BaseController extends Controller
      * Sara Kolarevic 2018/0388
      */
     public function index($poruka=null) {
+        if(isset($_SESSION["displayNotificationMessage"]))
+       {
+           $poruka=$_SESSION["displayNotificationMessage"];
+           unset($_SESSION["displayNotificationMessage"]);
+       }
         $books = $this->doctrine->em->getRepository(\App\Models\Entities\Book::class)->findAll();
         $genres=$this->doctrine->em->getRepository(\App\Models\Entities\Genre::class)->findAll();
         $this->prikaz('Pocetna', ['knjige' => $books,'genres' => $genres,"poruka"=>$poruka]);
@@ -84,6 +89,12 @@ class BaseController extends Controller
        $nizz=array();
         foreach($book->getGenres() as $pom){
             array_push($nizz,$pom->getName());
+       }
+       
+       if(isset($_SESSION["displayNotificationMessage"]))
+       {
+           $poruka=$_SESSION["displayNotificationMessage"];
+           unset($_SESSION["displayNotificationMessage"]);
        }
 //        $reviews=array_merge($reviews,$this->doctrine->em->getRepository(Entities\Review::class)->getReviewsFromNotAccountType("privileged_user"));
         $this->prikaz('Knjiga', ["poruka"=>$poruka,'knjiga'=>$book, 'komentari' => $reviews,'korisnik' => $user,'citati' => $book->getQuotes(),'zanrovi'=>$nizz]);
