@@ -168,6 +168,7 @@ class Korisnik extends BaseController {
         
         
 //        return $this->prikaziKnjigu($bookId,"Successfully added new review");
+        $_SESSION["displayNotificationMessage"]="Successfully added new review";
         return redirect()->to(site_url("/{$this->getController()}/prikaziKnjigu/{$bookId}"));
 
     }

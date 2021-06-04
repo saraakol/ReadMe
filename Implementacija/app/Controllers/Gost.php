@@ -141,6 +141,7 @@ class Gost extends BaseController
 //        echo "<script>alert('Successfully created, wait for administrator approval.');</script>";
 //        return redirect()->to(site_url("Gost/index")); 
         $this->index("Successfully created, wait for administrator approval");
+//        return $this->prikaz("Pocetna", ["poruka"=>"Successfully created, wait for administrator approval"]);
     }
     /*
      * /*
