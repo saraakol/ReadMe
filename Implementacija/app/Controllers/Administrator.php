@@ -36,7 +36,7 @@ class Administrator extends Privilegovani
         $user = $this->doctrine->em->getRepository(Entities\User::class)->findOneBy(['username'=>$this->request->getVar('username')]);
         $user->setStatus('registered');
         $this->doctrine->em->flush();
-        return redirect()->to(site_url('Administrator/prikaziRegistracije'));
+        return 'User registration accepted!';
     }
     
     /*
@@ -47,7 +47,7 @@ class Administrator extends Privilegovani
         $user = $this->doctrine->em->getRepository(Entities\User::class)->findOneBy(['username'=>$this->request->getVar('username')]);
         $this->doctrine->em->remove($user);
         $this->doctrine->em->flush();
-        return redirect()->to(site_url('Administrator/prikaziRegistracije'));
+        return 'User registration declined';
     }
     
     /*
@@ -67,7 +67,7 @@ class Administrator extends Privilegovani
         $user = $this->doctrine->em->getRepository(Entities\User::class)->findOneBy(['username'=>$this->request->getVar('username')]);
         $this->doctrine->em->remove($user);
         $this->doctrine->em->flush();
-        return redirect()->to(site_url('Administrator/prikaziPrijave'));
+        return 'User report accepted!';
     }
     
     /*
@@ -78,7 +78,7 @@ class Administrator extends Privilegovani
         $user = $this->doctrine->em->getRepository(Entities\User::class)->findOneBy(['username'=>$this->request->getVar('username')]);
         $user->setStatus('registered');
         $this->doctrine->em->flush();
-        return redirect()->to(site_url('Administrator/prikaziPrijave'));
+        return 'User report declined!';
     }
     
     /*
@@ -98,7 +98,7 @@ class Administrator extends Privilegovani
         $user = $this->doctrine->em->getRepository(Entities\User::class)->findOneBy(['username'=>$this->request->getVar('username')]);
         $user->setType('privileged_user');
         $this->doctrine->em->flush();
-        return redirect()->to(site_url('Administrator/prikaziUnapredjenja')); 
+        return 'User upgrade accepted!';
     }
     
     /*
