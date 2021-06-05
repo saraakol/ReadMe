@@ -64,7 +64,7 @@
                     
                     echo '<div class="col-lg-4 col-md-12 col-sm-12 ratearea" style="text-align: center;">';
                     echo "  <form name='formazaciljkomentare' method='' action=''>";
-                    
+                    /*
                     $rates=session()->get('korisnik')->getRates();
                     $flag=false;
                     foreach($rates as $rate){
@@ -78,6 +78,35 @@
                     if($flag==false){
                         echo "<p class='review' name='review'><font style='font-size: 15px;'><a href='/{$controller}/addRate/{$knjiga->getIdb()}'>Add rate</a></font></p>";
                     }
+                    */
+                    $rates=$knjiga->getRates();
+                    $flag=false;
+                    $korisnikId=session()->get('korisnik')->getIdu();
+                    foreach($rates as $r){
+                        if($r->getIdu()->getIdu()==$korisnikId){
+                            $flag=true;
+                            break;
+                        }
+                    }
+                    if($flag==true){
+                        echo "<p class='review' name='review'><font style='font-size: 15px;'>Rated</font></p>";
+                    }else{
+                        echo "<p class='review' name='review'><font style='font-size: 15px;'><a href='/{$controller}/addRate/{$knjiga->getIdb()}'>Add rate</a></font></p>";
+                    }
+                    /*
+                    $flag=false;
+                    $korisnikId=session()->get('korisnik')->getIdu();
+                    foreach($rates as $rate){
+                        if($rate->getIdu().getIdu()==$korisnikId){
+                            $flag=true;
+                        }
+                    }
+                    if($flag==true){
+                        echo "<p class='review' name='review'><font style='font-size: 15px;'>Rated</font></p>";
+                    }else{
+                        echo "<p class='review' name='review'><font style='font-size: 15px;'><a href='/{$controller}/addRate/{$knjiga->getIdb()}'>Add rate</a></font></p>";
+                    }
+                    */
                     echo "<p class='review' name='review'><font style='font-size: 15px;'><a href='/{$controller}/addReview/{$knjiga->getIdb()}'>Add review</a></font></p>";
                     
                     if($controller == 'Administrator' || $controller == 'Privilegovani') {

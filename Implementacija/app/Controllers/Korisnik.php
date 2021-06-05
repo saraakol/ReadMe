@@ -269,6 +269,7 @@ class Korisnik extends BaseController {
                 $this->doctrine->em->flush();
             }
         }
-        return $this->prikaziKnjigu($bookId,$poruka);
+        return redirect()->to(site_url("/{$this->getController()}/prikaziKnjigu/{$bookId}"));
+        //return $this->prikaziKnjigu($bookId,$poruka);
     }
 }
