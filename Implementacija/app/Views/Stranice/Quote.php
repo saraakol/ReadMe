@@ -19,8 +19,9 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 
     
-    <script src="js/skripta.js"></script>
-    
+<!--    <script src="js/skripta.js"></script>
+    <script src="js/skripta1.js"></script>
+    --><script src="/js/veseliReview.js"></script>
 </head>
 
 
@@ -53,10 +54,10 @@
                 
                 ?>
                 </font>
-                <form name="register" action="<?=site_url("/{$controller}/registerAddQuote")?>" method="POST" enctype="multipart/form-data">
+                <form id="formaQuote" name="register" action="<?=site_url("/{$controller}/registerAddQuote")?>" method="POST" enctype="multipart/form-data">
 
 <!--                    <input type="text" name="firstname" placeholder="First Name">-->
-                    <textarea name="quote"></textarea>
+                    <textarea name="quote" id="quotetext"></textarea>
                    <input type="hidden" name="hiddenBook" value="<?=$referer?>">
 
                     <br><br>
@@ -68,7 +69,7 @@
                     
                     <br><br>
 <!--                    <input type="button"  data-toggle="modal" data-target="#exampleModal2"  value="Continue"></input>-->
-                       <input type="submit" value="Continue"></input>
+                    <input type="button" onClick="checkpom()" value="Continue" id="quotecontinue"></input>
                     
                     &nbsp;
                     <a href="<?=$referer?>"><input type="button" value="Cancel"></input></a>
