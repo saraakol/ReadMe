@@ -36,7 +36,7 @@
             <div class="col-md-4"></div>
             <div class="col-md-4 loginbox">
                 <br>&nbsp;
-                <img src="../img/logo.png" alt="" height="100" width="100" align="center">
+                <img src="\img\logo.png" alt="" height="100" width="100" align="center">
                 <br><br>
                 <font color="red">
                 <?php
