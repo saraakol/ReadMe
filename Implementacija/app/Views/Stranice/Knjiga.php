@@ -119,7 +119,7 @@
                 }
             
                 if ($controller == 'Administrator' || $controller == 'Privilegovani' || $controller == 'Korisnik') {
-                    echo '<div class="col-lg-2 col-md-6 col-sm-12" style="text-align: center; margin-top: 2vh;">';
+                    echo '<div class="col-lg-3 col-md-6 col-sm-12" style="text-align: center; margin-top: 2vh;">';
                     echo "  <form name='dodajNaWantListu' method='GET' action='". site_url("{$controller}/dodajNaWantListu")."'>";
                     echo "<a href=''><button  class='addtolist'>Add to Want to Read</button></a> ";
                     echo "<input type='hidden' name='idb' value=".$knjiga->getIdb().">";

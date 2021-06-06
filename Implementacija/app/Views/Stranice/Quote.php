@@ -34,8 +34,8 @@
             </div>
         </div>
         <div class="row loginrow2">
-            <div class="col-md-4"></div>
-            <div class="col-md-4 loginbox">
+            <div class="col-lg-4 col-md-3 col-sm-3 col-1"></div>
+            <div class="col-lg-4 col-md-6 col-sm-6 col-10 loginbox">
                 <br>&nbsp;
                 <img src="../img/logo.png" alt="" height="100" width="100" align="center">
                 <br><br>
@@ -69,7 +69,7 @@
                     
                     <br><br>
 <!--                    <input type="button"  data-toggle="modal" data-target="#exampleModal2"  value="Continue"></input>-->
-                    <input type="button" onClick="checkpom()" value="Continue" id="quotecontinue"></input>
+                    <input type="button" onClick="checkpom()" value="Add Quote" id="quotecontinue"></input>
                     
                     &nbsp;
                     <a href="<?=$referer?>"><input type="button" value="Cancel"></input></a>
@@ -77,7 +77,7 @@
 
                 </form>
             </div>
-            <div class="col-md-4"></div>
+            <div class="col-lg-4 col-md-3 col-sm-3 col-1"></div>
         </div>
     </div>
     <script>
