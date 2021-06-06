@@ -67,8 +67,9 @@
     <div class='row book knjigepozadina '>
              
 <?php
-    if($noveKnjige!=null && $filter!=null){             //postoji rezultat filtriranja
+    if($noveKnjige!=null && $filter!=null){              //postoji rezultat filtriranja
         foreach ($noveKnjige as $item) {
+            
 //            echo "<div class='row book'>";
 //              echo  "<div class='col-md-4 col-ld-4'>&nbsp;</div>";
 //              echo  "<div class='col-md-2 col-ld-2 col-sm-12'>";
@@ -82,8 +83,14 @@
 //               echo "<div class='col-md-4 col-ld-4'>&nbsp;</div>";
 //            echo "</div> ";   
              echo '<figure class="figure">';
-              echo anchor("$controller/prikaziKnjigu/".$item->getIdb()."","<img src='/images/books/". $item->getIdb() .
+             if ($item->getImage() == null) {
+                 echo anchor("$controller/prikaziKnjigu/".$item->getIdb()."","<img src='/images/books/no_photo.jpg' style=' width: 200px;height:300px; margin-left: 6vh;'>");
+                    
+                } else {
+                    echo anchor("$controller/prikaziKnjigu/".$item->getIdb()."","<img src='/images/books/". $item->getIdb() .
                  ".jpg' style=' width: 200px;height:300px; margin-left: 6vh;'>");
+                }
+              
               echo anchor("$controller/prikaziKnjigu/".$item->getIdb()."","<figcaption style='margin-top: 2vh;width: 200px;padding-right:2vh; margin-left: 6vh;padding-bottom:5vh;'>".$item->getName()."</figcaption>");
             echo '</figure>';
         }
@@ -93,6 +100,7 @@
         echo "</div> "; 
     }else{
         foreach ($knjige as $item) {                  //nema filtriranja
+        
 //            echo "<div class='row book'>";
 //              echo  "<div class='col-md-4 col-ld-4'>&nbsp;</div>";
 //              echo  "<div class='col-md-2 col-ld-2 col-sm-12'>";
@@ -107,8 +115,15 @@
 //            echo "</div> "; 
            
                             echo '<figure class="figure">';
-                            echo anchor("$controller/prikaziKnjigu/".$item->getIdb()."","<img src='/images/books/". $item->getIdb() .
-                                    ".jpg' style=' width: 200px;height:300px; margin-left: 6vh;'>");
+                            if ($item->getImage() == null) {
+                 echo anchor("$controller/prikaziKnjigu/".$item->getIdb()."","<img src='/images/books/no_photo.jpg' style=' width: 200px;height:300px; margin-left: 6vh;'>");
+                    
+                } else {
+                    echo anchor("$controller/prikaziKnjigu/".$item->getIdb()."","<img src='/images/books/". $item->getIdb() .
+                 ".jpg' style=' width: 200px;height:300px; margin-left: 6vh;'>");
+                }
+//                            echo anchor("$controller/prikaziKnjigu/".$item->getIdb()."","<img src='/images/books/". $item->getIdb() .
+//                                    ".jpg' style=' width: 200px;height:300px; margin-left: 6vh;'>");
                             echo anchor("$controller/prikaziKnjigu/".$item->getIdb()."","<figcaption style='margin-top: 2vh;width: 200px;padding-right:2vh; margin-left: 6vh;padding-bottom:5vh;'>".$item->getName()."</figcaption>");
                             echo '</figure>';
                         
