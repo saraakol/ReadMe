@@ -73,7 +73,8 @@
 
                     
                     &nbsp;
-                    <a href="<?=$referer?>"><input type="button" value="Cancel"></input></a>
+                    <a href="<?=site_url("/{$controller}/prikaziKnjigu/{$bookId}")?>"><input type="button" value="Cancel"></input></a>
+                    <!--<a href="<?=$referer?>"><input type="button" value="Cancel"></input></a>-->
                     <br>&nbsp;<br>&nbsp;
                     
 
