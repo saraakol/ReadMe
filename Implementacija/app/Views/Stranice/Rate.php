@@ -33,8 +33,8 @@
             </div>
         </div>
         <div class="row loginrow2">
-            <div class="col-md-4"></div>
-            <div class="col-md-4 loginbox">
+            <div class="col-lg-4 col-md-3 col-sm-3 col-1"></div>
+            <div class="col-lg-4 col-md-6 col-sm-6 col-10 loginbox">
                 <br>&nbsp;
                 <img src="\img\logo.png" alt="" height="100" width="100" align="center">
                 <br><br>
@@ -80,7 +80,7 @@
 
                 </form>
                             </div>
-            <div class="col-md-4"></div>
+            <div class="col-lg-4 col-md-3 col-sm-3 col-1"></div>
         </div>
     </div>
     <script>
