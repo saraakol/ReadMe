@@ -1,0 +1,260 @@
+{
+  "id": "425c6bd4-a5df-4833-b134-81662d35a000",
+  "version": "2.0",
+  "name": "Dodavanje knjige",
+  "url": "http://localhost:8080/Administrator",
+  "tests": [{
+    "id": "2555e3b0-f696-4f10-96aa-325e39d89539",
+    "name": "TP1 - Administrator uspesno dodaje knjigu",
+    "commands": [{
+      "id": "a92de950-cf17-47f8-9df7-449f76391352",
+      "comment": "",
+      "command": "open",
+      "target": "http://localhost:8080/Administrator",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "d8319222-3803-4ecf-8563-ba9a3bb88df6",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "918x770",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "038e714b-4e07-4b99-9d05-86fb85d40e7b",
+      "comment": "",
+      "command": "click",
+      "target": "linkText=Add Book",
+      "targets": [
+        ["linkText=Add Book", "linkText"],
+        ["css=.nav-link:nth-child(6)", "css:finder"],
+        ["xpath=//a[contains(text(),'Add Book')]", "xpath:link"],
+        ["xpath=//a[contains(@href, '/Administrator/addBook')]", "xpath:href"],
+        ["xpath=//a[4]", "xpath:position"],
+        ["xpath=//a[contains(.,'Add Book   ')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "bf59e27b-4a4c-4078-8827-12a5a6139172",
+      "comment": "",
+      "command": "click",
+      "target": "name=title",
+      "targets": [
+        ["name=title", "name"],
+        ["css=form > input:nth-child(1)", "css:finder"],
+        ["xpath=//input[@name='title']", "xpath:attributes"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "9234402f-1c23-4cc7-8748-6accc6e029a0",
+      "comment": "",
+      "command": "type",
+      "target": "name=title",
+      "targets": [
+        ["name=title", "name"],
+        ["css=form > input:nth-child(1)", "css:finder"],
+        ["xpath=//input[@name='title']", "xpath:attributes"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": "Knjiga naslov"
+    }, {
+      "id": "78c57f72-5845-4149-aa58-5a7e813f8c8d",
+      "comment": "",
+      "command": "type",
+      "target": "name=authors",
+      "targets": [
+        ["name=authors", "name"],
+        ["css=input:nth-child(4)", "css:finder"],
+        ["xpath=//input[@name='authors']", "xpath:attributes"],
+        ["xpath=//input[2]", "xpath:position"]
+      ],
+      "value": "Andrej Jokic"
+    }, {
+      "id": "e7194a15-e0cd-4319-b5da-39772780fb4d",
+      "comment": "",
+      "command": "addSelection",
+      "target": "name=genres[]",
+      "targets": [
+        ["name=genres[]", "name"],
+        ["css=select", "css:finder"],
+        ["xpath=//select[@id='']", "xpath:attributes"],
+        ["xpath=//select", "xpath:position"]
+      ],
+      "value": "label=Sci-Fi"
+    }, {
+      "id": "c2908c0b-f92a-4d4a-96fa-fe9c4aebc8d5",
+      "comment": "",
+      "command": "click",
+      "target": "name=synopsis",
+      "targets": [
+        ["name=synopsis", "name"],
+        ["css=textarea", "css:finder"],
+        ["xpath=//textarea[@name='synopsis']", "xpath:attributes"],
+        ["xpath=//textarea", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "74d11d78-6b55-4097-ac26-a807f943aa6a",
+      "comment": "",
+      "command": "type",
+      "target": "name=synopsis",
+      "targets": [
+        ["name=synopsis", "name"],
+        ["css=textarea", "css:finder"],
+        ["xpath=//textarea[@name='synopsis']", "xpath:attributes"],
+        ["xpath=//textarea", "xpath:position"]
+      ],
+      "value": "Opis knjige."
+    }, {
+      "id": "aef9be1a-0a7d-4fbc-9dfb-164f7501988f",
+      "comment": "",
+      "command": "click",
+      "target": "css=input:nth-child(8)",
+      "targets": [
+        ["css=input:nth-child(8)", "css:finder"],
+        ["xpath=//input[@value='Add']", "xpath:attributes"],
+        ["xpath=//div[2]/input[2]", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "6745e19f-74a7-409e-b2a8-d5e4ef673056",
+      "comment": "",
+      "command": "verifyText",
+      "target": "css=.toast-body",
+      "targets": [
+        ["css=.toast-body", "css:finder"],
+        ["xpath=//div[10]/div[2]", "xpath:position"]
+      ],
+      "value": "Successfully created new book"
+    }, {
+      "id": "d1fbd4d9-1af6-4bd2-b7f1-09baad986a70",
+      "comment": "",
+      "command": "verifyText",
+      "target": "css=.naslov",
+      "targets": [
+        ["css=.naslov", "css:finder"],
+        ["xpath=//p", "xpath:position"],
+        ["xpath=//p[contains(.,'ReadMe')]", "xpath:innerText"]
+      ],
+      "value": "ReadMe"
+    }]
+  }, {
+    "id": "0cdd2ad0-96a7-4957-99f1-6a9146f7c724",
+    "name": "TP2 - Administrator neuspesno dodaje knjigu jer nije uneo sva obavezna polja",
+    "commands": [{
+      "id": "f339f60f-170c-4776-8d19-74462e4f34cb",
+      "comment": "",
+      "command": "open",
+      "target": "http://localhost:8080/Administrator",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "e3b26798-1a09-4756-9ab5-a2cd8242fdf4",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "918x770",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "d7bbfd8d-fe02-4c7f-a669-fba2dcdc0a93",
+      "comment": "",
+      "command": "click",
+      "target": "linkText=Add Book",
+      "targets": [
+        ["linkText=Add Book", "linkText"],
+        ["css=.nav-link:nth-child(6)", "css:finder"],
+        ["xpath=//a[contains(text(),'Add Book')]", "xpath:link"],
+        ["xpath=//a[contains(@href, '/Administrator/addBook')]", "xpath:href"],
+        ["xpath=//a[4]", "xpath:position"],
+        ["xpath=//a[contains(.,'Add Book   ')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "76ab73f6-8cc0-401e-965b-464ec5a69dd4",
+      "comment": "",
+      "command": "click",
+      "target": "css=input:nth-child(8)",
+      "targets": [
+        ["css=input:nth-child(8)", "css:finder"],
+        ["xpath=//input[@value='Add']", "xpath:attributes"],
+        ["xpath=//div[2]/input[2]", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "70392abf-9a9b-4161-ae55-1356a2d0cbb4",
+      "comment": "",
+      "command": "assertText",
+      "target": "css=font",
+      "targets": [
+        ["css=font", "css:finder"],
+        ["xpath=//font", "xpath:position"]
+      ],
+      "value": "The title field is required.\\nThe authors field is required.\\nThe synopsis field is required.\\nThe genres field is required."
+    }]
+  }, {
+    "id": "8a929b9d-9bed-46ea-8a6d-b51df6f9c2b8",
+    "name": "TP3 - Administrator neuspesno dodaje knjigu jer je odustao",
+    "commands": [{
+      "id": "17a7a16f-8391-4b44-bc62-cd65dedb95b4",
+      "comment": "",
+      "command": "open",
+      "target": "http://localhost:8080/Administrator",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "a4910ac5-7336-4cc5-a5ea-b2a09a3e193d",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "918x770",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "bafd2612-8ba1-4741-8486-4509a3b3743d",
+      "comment": "",
+      "command": "click",
+      "target": "linkText=Add Book",
+      "targets": [
+        ["linkText=Add Book", "linkText"],
+        ["css=.nav-link:nth-child(6)", "css:finder"],
+        ["xpath=//a[contains(text(),'Add Book')]", "xpath:link"],
+        ["xpath=//a[contains(@href, '/Administrator/addBook')]", "xpath:href"],
+        ["xpath=//a[4]", "xpath:position"],
+        ["xpath=//a[contains(.,'Add Book   ')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "72d54e99-e6a8-4981-b79a-a4e0e9b62ec4",
+      "comment": "",
+      "command": "click",
+      "target": "css=a > input",
+      "targets": [
+        ["css=a > input", "css:finder"],
+        ["xpath=//input[@value='Cancel']", "xpath:attributes"],
+        ["xpath=//a/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "791a073e-4d35-42ad-9fd8-7b9ab8d6c7b9",
+      "comment": "",
+      "command": "verifyText",
+      "target": "css=.naslov",
+      "targets": [
+        ["css=.naslov", "css:finder"],
+        ["xpath=//p", "xpath:position"],
+        ["xpath=//p[contains(.,'ReadMe')]", "xpath:innerText"]
+      ],
+      "value": "ReadMe"
+    }]
+  }],
+  "suites": [{
+    "id": "86fdaf43-585b-4177-a437-93b4b76d8a9b",
+    "name": "Default Suite",
+    "persistSession": false,
+    "parallel": false,
+    "timeout": 300,
+    "tests": []
+  }],
+  "urls": [],
+  "plugins": []
+}

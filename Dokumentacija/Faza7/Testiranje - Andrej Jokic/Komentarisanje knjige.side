@@ -1,0 +1,736 @@
+{
+  "id": "62ac0f8b-8291-4f60-8277-0fc1581b0acb",
+  "version": "2.0",
+  "name": "Komentarisanje knjige",
+  "url": "http://localhost:8080/Administrator/prikaziKnjigu/1",
+  "tests": [{
+    "id": "a63cc4d1-38a9-446a-9cdd-684178696271",
+    "name": "TP1 - Korisnik uspesno komentarise knjigu",
+    "commands": [{
+      "id": "5a0ee4e2-6eb4-4bb6-ab3f-4798355581ce",
+      "comment": "",
+      "command": "open",
+      "target": "http://localhost:8080/Korisnik/prikaziKnjigu/1",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "afc23997-f278-4b25-9e98-230a930ce469",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "918x770",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "011929be-f879-4240-9256-25862e95730c",
+      "comment": "",
+      "command": "click",
+      "target": "linkText=Add review",
+      "targets": [
+        ["linkText=Add review", "linkText"],
+        ["css=font > a", "css:finder"],
+        ["xpath=//a[contains(text(),'Add review')]", "xpath:link"],
+        ["xpath=//a[contains(@href, '/Korisnik/addReview/1')]", "xpath:href"],
+        ["xpath=//font/a", "xpath:position"],
+        ["xpath=//a[contains(.,'Add review')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "73a70be3-b3ed-4e5d-8235-5a6ec49451d0",
+      "comment": "",
+      "command": "click",
+      "target": "id=reviewText",
+      "targets": [
+        ["id=reviewText", "id"],
+        ["name=review", "name"],
+        ["css=#reviewText", "css:finder"],
+        ["xpath=//textarea[@id='reviewText']", "xpath:attributes"],
+        ["xpath=//form[@id='addReviewForm']/textarea", "xpath:idRelative"],
+        ["xpath=//textarea", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "0d15b02f-9f7c-43fe-9e26-5d1ddd2377e1",
+      "comment": "",
+      "command": "type",
+      "target": "id=reviewText",
+      "targets": [
+        ["id=reviewText", "id"],
+        ["name=review", "name"],
+        ["css=#reviewText", "css:finder"],
+        ["xpath=//textarea[@id='reviewText']", "xpath:attributes"],
+        ["xpath=//form[@id='addReviewForm']/textarea", "xpath:idRelative"],
+        ["xpath=//textarea", "xpath:position"]
+      ],
+      "value": "Komentar"
+    }, {
+      "id": "672e0c07-9a12-4a3c-8b6a-999d4f577b86",
+      "comment": "",
+      "command": "click",
+      "target": "id=reviewSubmit",
+      "targets": [
+        ["id=reviewSubmit", "id"],
+        ["css=#reviewSubmit", "css:finder"],
+        ["xpath=//input[@id='reviewSubmit']", "xpath:attributes"],
+        ["xpath=//form[@id='addReviewForm']/input[2]", "xpath:idRelative"],
+        ["xpath=//input[2]", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "45d7699a-3459-431f-85d5-f7baaa347dca",
+      "comment": "",
+      "command": "verifyText",
+      "target": "css=.toast-body",
+      "targets": [
+        ["css=.toast-body", "css:finder"],
+        ["xpath=//div[14]/div[2]", "xpath:position"]
+      ],
+      "value": "Successfully added new review"
+    }]
+  }, {
+    "id": "e7d87b6d-7fd5-4df8-aeaf-5a001f11cfe0",
+    "name": "TP2 - Privilegovani korisnik uspesno komentarise knjigu",
+    "commands": [{
+      "id": "d0ac73cc-2087-4b02-8b3c-c06f0bdffe0a",
+      "comment": "",
+      "command": "open",
+      "target": "http://localhost:8080/Privilegovani/prikaziKnjigu/1",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "e3b75279-224e-49fb-8cc5-77eb96feebeb",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "918x770",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "5d01ce69-db5b-4865-b06a-9f879c24cf87",
+      "comment": "",
+      "command": "click",
+      "target": "linkText=Add review",
+      "targets": [
+        ["linkText=Add review", "linkText"],
+        ["css=.review a", "css:finder"],
+        ["xpath=//a[contains(text(),'Add review')]", "xpath:link"],
+        ["xpath=//a[contains(@href, '/Privilegovani/addReview/1')]", "xpath:href"],
+        ["xpath=//font/a", "xpath:position"],
+        ["xpath=//a[contains(.,'Add review')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "ddd48b57-d9de-482c-82f1-cde9edf473eb",
+      "comment": "",
+      "command": "click",
+      "target": "id=reviewText",
+      "targets": [
+        ["id=reviewText", "id"],
+        ["name=review", "name"],
+        ["css=#reviewText", "css:finder"],
+        ["xpath=//textarea[@id='reviewText']", "xpath:attributes"],
+        ["xpath=//form[@id='addReviewForm']/textarea", "xpath:idRelative"],
+        ["xpath=//textarea", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "904031d4-6097-4ce3-b5a8-b7864e62b158",
+      "comment": "",
+      "command": "type",
+      "target": "id=reviewText",
+      "targets": [
+        ["id=reviewText", "id"],
+        ["name=review", "name"],
+        ["css=#reviewText", "css:finder"],
+        ["xpath=//textarea[@id='reviewText']", "xpath:attributes"],
+        ["xpath=//form[@id='addReviewForm']/textarea", "xpath:idRelative"],
+        ["xpath=//textarea", "xpath:position"]
+      ],
+      "value": "Privilegovani komentar."
+    }, {
+      "id": "dab044a7-de2e-4bd4-a44f-4f618edf149c",
+      "comment": "",
+      "command": "click",
+      "target": "id=reviewSubmit",
+      "targets": [
+        ["id=reviewSubmit", "id"],
+        ["css=#reviewSubmit", "css:finder"],
+        ["xpath=//input[@id='reviewSubmit']", "xpath:attributes"],
+        ["xpath=//form[@id='addReviewForm']/input[2]", "xpath:idRelative"],
+        ["xpath=//input[2]", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "443541c8-39ff-4b4a-aecb-e33c148a4e74",
+      "comment": "",
+      "command": "verifyText",
+      "target": "css=.toast-body",
+      "targets": [
+        ["css=.toast-body", "css:finder"],
+        ["xpath=//div[14]/div[2]", "xpath:position"]
+      ],
+      "value": "Successfully added new review"
+    }]
+  }, {
+    "id": "6251a132-e4c4-47d2-8b85-6e578bee404e",
+    "name": "TP3 - Administrator uspesno komentarise knjigu",
+    "commands": [{
+      "id": "86eb6d30-4fde-4eb0-9d53-a18131fc3ca0",
+      "comment": "",
+      "command": "open",
+      "target": "http://localhost:8080/Administrator/prikaziKnjigu/1",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "423d8d1a-179a-43db-a293-286117463e65",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "918x770",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "a5da3644-9d84-40f3-84d7-94e481c0cd58",
+      "comment": "",
+      "command": "click",
+      "target": "linkText=Add review",
+      "targets": [
+        ["linkText=Add review", "linkText"],
+        ["css=.review a", "css:finder"],
+        ["xpath=//a[contains(text(),'Add review')]", "xpath:link"],
+        ["xpath=//a[contains(@href, '/Administrator/addReview/1')]", "xpath:href"],
+        ["xpath=//font/a", "xpath:position"],
+        ["xpath=//a[contains(.,'Add review')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "c99ae8ed-b154-4c89-847e-f3f274333d0b",
+      "comment": "",
+      "command": "click",
+      "target": "id=reviewText",
+      "targets": [
+        ["id=reviewText", "id"],
+        ["name=review", "name"],
+        ["css=#reviewText", "css:finder"],
+        ["xpath=//textarea[@id='reviewText']", "xpath:attributes"],
+        ["xpath=//form[@id='addReviewForm']/textarea", "xpath:idRelative"],
+        ["xpath=//textarea", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "cfa40da8-2bd0-4da4-9b70-65a08fcab723",
+      "comment": "",
+      "command": "type",
+      "target": "id=reviewText",
+      "targets": [
+        ["id=reviewText", "id"],
+        ["name=review", "name"],
+        ["css=#reviewText", "css:finder"],
+        ["xpath=//textarea[@id='reviewText']", "xpath:attributes"],
+        ["xpath=//form[@id='addReviewForm']/textarea", "xpath:idRelative"],
+        ["xpath=//textarea", "xpath:position"]
+      ],
+      "value": "Administrator komentar."
+    }, {
+      "id": "33f24ada-0e0a-4f32-8e97-e606d8a6c91a",
+      "comment": "",
+      "command": "click",
+      "target": "id=reviewSubmit",
+      "targets": [
+        ["id=reviewSubmit", "id"],
+        ["css=#reviewSubmit", "css:finder"],
+        ["xpath=//input[@id='reviewSubmit']", "xpath:attributes"],
+        ["xpath=//form[@id='addReviewForm']/input[2]", "xpath:idRelative"],
+        ["xpath=//input[2]", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "dc48c05b-9bae-46d5-9ad6-53780df30422",
+      "comment": "",
+      "command": "verifyText",
+      "target": "css=.toast-body",
+      "targets": [
+        ["css=.toast-body", "css:finder"],
+        ["xpath=//div[14]/div[2]", "xpath:position"]
+      ],
+      "value": "Successfully added new review"
+    }]
+  }, {
+    "id": "fd9eb84f-e8f7-4e44-b82f-f1540f41c7d7",
+    "name": "TP4 - Korisnik neuspesno komentarise knjigu jer je uneo prazan komentar",
+    "commands": [{
+      "id": "369aca75-8038-4c26-85fd-2dca32342c18",
+      "comment": "",
+      "command": "open",
+      "target": "http://localhost:8080/Korisnik/prikaziKnjigu/1",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "ccde48db-bf48-49cd-864b-477ca7a5928e",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "918x770",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "9c993948-3b77-4d18-8946-15b731a9d69a",
+      "comment": "",
+      "command": "click",
+      "target": "linkText=Add review",
+      "targets": [
+        ["linkText=Add review", "linkText"],
+        ["css=font > a", "css:finder"],
+        ["xpath=//a[contains(text(),'Add review')]", "xpath:link"],
+        ["xpath=//a[contains(@href, '/Korisnik/addReview/1')]", "xpath:href"],
+        ["xpath=//font/a", "xpath:position"],
+        ["xpath=//a[contains(.,'Add review')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "8008f6e8-7ab6-4461-873d-1fde3d0f8cae",
+      "comment": "",
+      "command": "click",
+      "target": "id=reviewSubmit",
+      "targets": [
+        ["id=reviewSubmit", "id"],
+        ["css=#reviewSubmit", "css:finder"],
+        ["xpath=//input[@id='reviewSubmit']", "xpath:attributes"],
+        ["xpath=//form[@id='addReviewForm']/input[2]", "xpath:idRelative"],
+        ["xpath=//input[2]", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "a211d3dc-abab-4485-ad41-fc1538ec0bb7",
+      "comment": "",
+      "command": "assertAlert",
+      "target": "Cannot submit empty review",
+      "targets": [],
+      "value": ""
+    }]
+  }, {
+    "id": "a49ba0cf-f163-44bb-877f-5c157165a6b9",
+    "name": "TP5 - Privilegovani korisnik neuspesno komentarise knjigu jer je uneo prazan komentar",
+    "commands": [{
+      "id": "80c360ce-510f-4b0d-a130-8909a7392028",
+      "comment": "",
+      "command": "open",
+      "target": "http://localhost:8080/Privilegovani/prikaziKnjigu/1",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "ccbb197a-dadd-4dd1-983a-9779e990c44a",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "918x770",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "9cdd2d7b-8ee1-46be-94f6-186fada032d0",
+      "comment": "",
+      "command": "click",
+      "target": "linkText=Add review",
+      "targets": [
+        ["linkText=Add review", "linkText"],
+        ["css=.review a", "css:finder"],
+        ["xpath=//a[contains(text(),'Add review')]", "xpath:link"],
+        ["xpath=//a[contains(@href, '/Privilegovani/addReview/1')]", "xpath:href"],
+        ["xpath=//font/a", "xpath:position"],
+        ["xpath=//a[contains(.,'Add review')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "a219ae28-2199-4f0a-9379-2ee26523f3b4",
+      "comment": "",
+      "command": "click",
+      "target": "id=reviewSubmit",
+      "targets": [
+        ["id=reviewSubmit", "id"],
+        ["css=#reviewSubmit", "css:finder"],
+        ["xpath=//input[@id='reviewSubmit']", "xpath:attributes"],
+        ["xpath=//form[@id='addReviewForm']/input[2]", "xpath:idRelative"],
+        ["xpath=//input[2]", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "54b21bfe-631d-47ce-be20-36f0beee749d",
+      "comment": "",
+      "command": "assertAlert",
+      "target": "Cannot submit empty review",
+      "targets": [],
+      "value": ""
+    }]
+  }, {
+    "id": "eba43157-f2cb-4917-bea2-0998faf03851",
+    "name": "TP6 - Administrator neuspesno komentarise knjigu jer je uneo prazan komentar",
+    "commands": [{
+      "id": "5b8c4d7c-a4c1-4cf9-bdd8-6ba207f9996c",
+      "comment": "",
+      "command": "open",
+      "target": "http://localhost:8080/Administrator/prikaziKnjigu/1",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "6ad0c70e-741f-498e-be05-7ba16d4aa25f",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "918x770",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "aba80a26-693f-42d9-8570-df0df063c9f9",
+      "comment": "",
+      "command": "click",
+      "target": "linkText=Add review",
+      "targets": [
+        ["linkText=Add review", "linkText"],
+        ["css=.review a", "css:finder"],
+        ["xpath=//a[contains(text(),'Add review')]", "xpath:link"],
+        ["xpath=//a[contains(@href, '/Administrator/addReview/1')]", "xpath:href"],
+        ["xpath=//font/a", "xpath:position"],
+        ["xpath=//a[contains(.,'Add review')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "d83aa740-93c8-43bb-b446-43ec9f5bf438",
+      "comment": "",
+      "command": "click",
+      "target": "id=reviewSubmit",
+      "targets": [
+        ["id=reviewSubmit", "id"],
+        ["css=#reviewSubmit", "css:finder"],
+        ["xpath=//input[@id='reviewSubmit']", "xpath:attributes"],
+        ["xpath=//form[@id='addReviewForm']/input[2]", "xpath:idRelative"],
+        ["xpath=//input[2]", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "43f1020b-660f-4bae-863c-39ef4dbed26c",
+      "comment": "",
+      "command": "assertAlert",
+      "target": "Cannot submit empty review",
+      "targets": [],
+      "value": ""
+    }]
+  }, {
+    "id": "1486bc6a-3081-4874-a0e3-b99a834722df",
+    "name": "TP7 - Korisnik neuspesno dodaje komentar jer je odustao",
+    "commands": [{
+      "id": "6a2d9471-6e73-4dc6-b3c8-823b67ffd110",
+      "comment": "",
+      "command": "open",
+      "target": "http://localhost:8080/Korisnik/prikaziKnjigu/1",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "9612ea23-42d0-47a3-be10-52b356937982",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "918x770",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "c2b8701a-f93f-4f60-ba18-066120c8c2a5",
+      "comment": "",
+      "command": "click",
+      "target": "linkText=Add review",
+      "targets": [
+        ["linkText=Add review", "linkText"],
+        ["css=font > a", "css:finder"],
+        ["xpath=//a[contains(text(),'Add review')]", "xpath:link"],
+        ["xpath=//a[contains(@href, '/Korisnik/addReview/1')]", "xpath:href"],
+        ["xpath=//font/a", "xpath:position"],
+        ["xpath=//a[contains(.,'Add review')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "825fc1f3-0de8-4695-a1be-661823dcb407",
+      "comment": "",
+      "command": "click",
+      "target": "css=input:nth-child(1)",
+      "targets": [
+        ["css=input:nth-child(1)", "css:finder"],
+        ["xpath=//input[@value='Cancel']", "xpath:attributes"],
+        ["xpath=//form[@id='addReviewForm']/a/input", "xpath:idRelative"],
+        ["xpath=//a/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "b2452e2a-e48b-4bc8-b7c5-b5825338f6f1",
+      "comment": "",
+      "command": "verifyText",
+      "target": "linkText=Browse",
+      "targets": [
+        ["linkText=Browse", "linkText"],
+        ["css=.nav-item:nth-child(1) > .nav-link", "css:finder"],
+        ["xpath=//a[contains(text(),'Browse')]", "xpath:link"],
+        ["xpath=//a[@href='http://localhost:8080/Korisnik']", "xpath:href"],
+        ["xpath=//li/a", "xpath:position"],
+        ["xpath=//a[contains(.,'Browse')]", "xpath:innerText"]
+      ],
+      "value": "Browse"
+    }, {
+      "id": "c69e7155-c3b5-41c5-812a-643932317cf7",
+      "comment": "",
+      "command": "verifyText",
+      "target": "linkText=My Profile",
+      "targets": [
+        ["linkText=My Profile", "linkText"],
+        ["css=.nav-item:nth-child(2) > .nav-link", "css:finder"],
+        ["xpath=//a[contains(text(),'My Profile')]", "xpath:link"],
+        ["xpath=//a[@href='http://localhost:8080/Korisnik/prikaziProfil']", "xpath:href"],
+        ["xpath=//li[2]/a", "xpath:position"],
+        ["xpath=//a[contains(.,'My Profile')]", "xpath:innerText"]
+      ],
+      "value": "My Profile"
+    }, {
+      "id": "b11a0eba-3be8-4248-b863-b8f546310387",
+      "comment": "",
+      "command": "verifyText",
+      "target": "linkText=Add review",
+      "targets": [
+        ["linkText=Add review", "linkText"],
+        ["css=font > a", "css:finder"],
+        ["xpath=//a[contains(text(),'Add review')]", "xpath:link"],
+        ["xpath=//a[contains(@href, '/Korisnik/addReview/1')]", "xpath:href"],
+        ["xpath=//font/a", "xpath:position"],
+        ["xpath=//a[contains(.,'Add review')]", "xpath:innerText"]
+      ],
+      "value": "Add review"
+    }]
+  }, {
+    "id": "273e6e48-1081-4e47-8cde-4a9f7868403a",
+    "name": "TP8 - Privilegovani korisnik neuspesno dodaje komentar jer je odustao",
+    "commands": [{
+      "id": "e2008813-e43b-44a2-ac5e-2d29520dbc18",
+      "comment": "",
+      "command": "open",
+      "target": "http://localhost:8080/Privilegovani/prikaziKnjigu/1",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "090bd356-88ac-4838-9db8-410242a2ce0f",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "918x770",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "e0b5f737-534c-4fc5-acfa-a08b639cb1ab",
+      "comment": "",
+      "command": "click",
+      "target": "linkText=Add review",
+      "targets": [
+        ["linkText=Add review", "linkText"],
+        ["css=.review a", "css:finder"],
+        ["xpath=//a[contains(text(),'Add review')]", "xpath:link"],
+        ["xpath=//a[contains(@href, '/Privilegovani/addReview/1')]", "xpath:href"],
+        ["xpath=//font/a", "xpath:position"],
+        ["xpath=//a[contains(.,'Add review')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "2c54ae03-0b8d-419e-869b-73a2298f2176",
+      "comment": "",
+      "command": "click",
+      "target": "css=input:nth-child(1)",
+      "targets": [
+        ["css=input:nth-child(1)", "css:finder"],
+        ["xpath=//input[@value='Cancel']", "xpath:attributes"],
+        ["xpath=//form[@id='addReviewForm']/a/input", "xpath:idRelative"],
+        ["xpath=//a/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "09e6b609-cf87-46ec-b8b1-6a62e5240e00",
+      "comment": "",
+      "command": "verifyText",
+      "target": "linkText=Browse",
+      "targets": [
+        ["linkText=Browse", "linkText"],
+        ["css=.nav-item:nth-child(1) > .nav-link", "css:finder"],
+        ["xpath=//a[contains(text(),'Browse')]", "xpath:link"],
+        ["xpath=//a[@href='http://localhost:8080/Privilegovani']", "xpath:href"],
+        ["xpath=//li/a", "xpath:position"],
+        ["xpath=//a[contains(.,'Browse')]", "xpath:innerText"]
+      ],
+      "value": "Browse"
+    }, {
+      "id": "5a63da29-f94e-4449-8281-42d7727e5b6f",
+      "comment": "",
+      "command": "verifyText",
+      "target": "linkText=My Profile",
+      "targets": [
+        ["linkText=My Profile", "linkText"],
+        ["css=.nav-item:nth-child(2) > .nav-link", "css:finder"],
+        ["xpath=//a[contains(text(),'My Profile')]", "xpath:link"],
+        ["xpath=//a[@href='http://localhost:8080/Privilegovani/prikaziProfil']", "xpath:href"],
+        ["xpath=//li[2]/a", "xpath:position"],
+        ["xpath=//a[contains(.,'My Profile')]", "xpath:innerText"]
+      ],
+      "value": "My Profile"
+    }, {
+      "id": "ff1f29de-66e0-4660-ab61-b9c151aa1b80",
+      "comment": "",
+      "command": "verifyText",
+      "target": "linkText=Add review",
+      "targets": [
+        ["linkText=Add review", "linkText"],
+        ["css=.review a", "css:finder"],
+        ["xpath=//a[contains(text(),'Add review')]", "xpath:link"],
+        ["xpath=//a[contains(@href, '/Privilegovani/addReview/1')]", "xpath:href"],
+        ["xpath=//font/a", "xpath:position"],
+        ["xpath=//a[contains(.,'Add review')]", "xpath:innerText"]
+      ],
+      "value": "Add review"
+    }]
+  }, {
+    "id": "92fff357-4fb9-4db4-bd91-72ea55ae6026",
+    "name": "TP9 - Administrator neuspesno dodaje komentar jer je odustao",
+    "commands": [{
+      "id": "eda41f05-b65c-49ce-9128-25e79550d088",
+      "comment": "",
+      "command": "open",
+      "target": "http://localhost:8080/Administrator/prikaziKnjigu/1",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "4b70d358-6830-4a6d-861e-e24c75b5d9ba",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "918x770",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "caf782c0-4079-42fa-84b7-f610800539fc",
+      "comment": "",
+      "command": "click",
+      "target": "linkText=Add review",
+      "targets": [
+        ["linkText=Add review", "linkText"],
+        ["css=.review a", "css:finder"],
+        ["xpath=//a[contains(text(),'Add review')]", "xpath:link"],
+        ["xpath=//a[contains(@href, '/Administrator/addReview/1')]", "xpath:href"],
+        ["xpath=//font/a", "xpath:position"],
+        ["xpath=//a[contains(.,'Add review')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "b72f1834-3679-4d04-9664-35b697c923b1",
+      "comment": "",
+      "command": "click",
+      "target": "css=input:nth-child(1)",
+      "targets": [
+        ["css=input:nth-child(1)", "css:finder"],
+        ["xpath=//input[@value='Cancel']", "xpath:attributes"],
+        ["xpath=//form[@id='addReviewForm']/a/input", "xpath:idRelative"],
+        ["xpath=//a/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "6329a6af-5067-469d-9456-8e28e8ef6e61",
+      "comment": "",
+      "command": "verifyText",
+      "target": "linkText=Browse",
+      "targets": [
+        ["linkText=Browse", "linkText"],
+        ["css=.nav-item:nth-child(1) > .nav-link", "css:finder"],
+        ["xpath=//a[contains(text(),'Browse')]", "xpath:link"],
+        ["xpath=//a[@href='http://localhost:8080/Administrator']", "xpath:href"],
+        ["xpath=//li/a", "xpath:position"],
+        ["xpath=//a[contains(.,'Browse')]", "xpath:innerText"]
+      ],
+      "value": "Browse"
+    }, {
+      "id": "5adf0604-547c-460c-bc56-ec3bfc222d16",
+      "comment": "",
+      "command": "verifyText",
+      "target": "linkText=My Profile",
+      "targets": [
+        ["linkText=My Profile", "linkText"],
+        ["css=.nav-item:nth-child(2) > .nav-link", "css:finder"],
+        ["xpath=//a[contains(text(),'My Profile')]", "xpath:link"],
+        ["xpath=//a[@href='http://localhost:8080/Administrator/prikaziProfil']", "xpath:href"],
+        ["xpath=//li[2]/a", "xpath:position"],
+        ["xpath=//a[contains(.,'My Profile')]", "xpath:innerText"]
+      ],
+      "value": "My Profile"
+    }, {
+      "id": "f23e2a11-7cd5-4559-951c-90837e05867a",
+      "comment": "",
+      "command": "verifyText",
+      "target": "linkText=Registrations",
+      "targets": [
+        ["linkText=Registrations", "linkText"],
+        ["css=.nav-link:nth-child(3)", "css:finder"],
+        ["xpath=//a[contains(text(),'Registrations')]", "xpath:link"],
+        ["xpath=//a[@href='http://localhost:8080/Administrator/prikaziRegistracije']", "xpath:href"],
+        ["xpath=//ul/a", "xpath:position"],
+        ["xpath=//a[contains(.,'Registrations')]", "xpath:innerText"]
+      ],
+      "value": "Registrations"
+    }, {
+      "id": "9cc81a0a-f53f-4ca5-b280-662d12be308f",
+      "comment": "",
+      "command": "verifyText",
+      "target": "linkText=Reports",
+      "targets": [
+        ["linkText=Reports", "linkText"],
+        ["css=.nav-link:nth-child(4)", "css:finder"],
+        ["xpath=//a[contains(text(),'Reports')]", "xpath:link"],
+        ["xpath=//a[@href='http://localhost:8080/Administrator/prikaziPrijave']", "xpath:href"],
+        ["xpath=//a[2]", "xpath:position"],
+        ["xpath=//a[contains(.,'Reports')]", "xpath:innerText"]
+      ],
+      "value": "Reports"
+    }, {
+      "id": "f17a7b2f-9bd7-433d-8065-abe7fdc64b55",
+      "comment": "",
+      "command": "verifyText",
+      "target": "linkText=Upgrades",
+      "targets": [
+        ["linkText=Upgrades", "linkText"],
+        ["css=.nav-link:nth-child(5)", "css:finder"],
+        ["xpath=//a[contains(text(),'Upgrades')]", "xpath:link"],
+        ["xpath=//a[@href='http://localhost:8080/Administrator/prikaziUnapredjenja']", "xpath:href"],
+        ["xpath=//a[3]", "xpath:position"],
+        ["xpath=//a[contains(.,'Upgrades')]", "xpath:innerText"]
+      ],
+      "value": "Upgrades"
+    }, {
+      "id": "7890432d-79eb-46a7-b320-4ba2b1dcbaf9",
+      "comment": "",
+      "command": "verifyText",
+      "target": "linkText=Add Book",
+      "targets": [
+        ["linkText=Add Book", "linkText"],
+        ["css=.nav-link:nth-child(6)", "css:finder"],
+        ["xpath=//a[contains(text(),'Add Book')]", "xpath:link"],
+        ["xpath=//a[contains(@href, '/Administrator/addBook')]", "xpath:href"],
+        ["xpath=//a[4]", "xpath:position"],
+        ["xpath=//a[contains(.,'Add Book   ')]", "xpath:innerText"]
+      ],
+      "value": "Add Book   "
+    }, {
+      "id": "e5951acc-2c0b-4041-a035-290b673fca3a",
+      "comment": "",
+      "command": "verifyText",
+      "target": "linkText=Add review",
+      "targets": [
+        ["linkText=Add review", "linkText"],
+        ["css=.review a", "css:finder"],
+        ["xpath=//a[contains(text(),'Add review')]", "xpath:link"],
+        ["xpath=//a[contains(@href, '/Administrator/addReview/1')]", "xpath:href"],
+        ["xpath=//font/a", "xpath:position"],
+        ["xpath=//a[contains(.,'Add review')]", "xpath:innerText"]
+      ],
+      "value": "Add review"
+    }]
+  }],
+  "suites": [{
+    "id": "ca2533f3-aaf7-4147-a9bf-a3325d84e0c5",
+    "name": "Default Suite",
+    "persistSession": false,
+    "parallel": false,
+    "timeout": 300,
+    "tests": []
+  }],
+  "urls": ["http://localhost:8080/Korisnik/prikaziKnjigu/1", "http://localhost:8080/Administrator/prikaziKnjigu/1"],
+  "plugins": []
+}
