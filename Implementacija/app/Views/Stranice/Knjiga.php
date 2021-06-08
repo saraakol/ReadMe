@@ -12,9 +12,9 @@
             <div class="col-lg-4 col-md-6 col-sm-12" style="text-align: center;">
                 <?php 
                 if ($knjiga->getImage() == null) {
-                    echo '<img src="\images\books\no_photo.jpg" class="img-thumbnail" alt="No photo">';
+                    echo '<img src="\images\books\no_photo.jpg" class="img-thumbnail knjigaslika" alt="No photo">';
                 } else {
-                    echo '<img src="\images\books\\' . $knjiga->getIdb() . '.jpg" class="img-thumbnail" alt="Photo">';
+                    echo '<img src="\images\books\\' . $knjiga->getIdb() . '.jpg" class="img-thumbnail knjigaslika" alt="Photo">';
                 }
                 ?>
                 <!--<img src="/images/books/<?= $knjiga->getIdb(); ?>.jpg" alt="" height="400" width="280">-->

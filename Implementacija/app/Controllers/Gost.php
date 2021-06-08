@@ -89,12 +89,24 @@ class Gost extends BaseController
     {
         
         
-        if(!$this->validate(['firstname'=>'required','lastname'=>'required','username'=>'required','email'=>'required',
-            'password'=>'required','repeatpassword'=>'required']))
+        if(!$this->validate(['firstname'=>'required','lastname'=>'required','username'=>'required|min_length[5]','email'=>'required',
+            'password'=>'required|min_length[5]','repeatpassword'=>'required']))
         {
             return $this->register(["errors"=>$this->validator->getErrors()]);
             
 //            return $this->prikaz("register",["errors"=>$this->validator->getErrors()]);
+        }
+        
+        if (preg_match("/^[a-zA-Z]{1}[a-zA-Z0-9]+$/", $this->request->getVar('username')) == 0) {
+            return $this->register(["errors"=>["Username is not in proper format!"]]);
+        }
+        
+        if (preg_match("/^\w+@[a-z]+\.[a-z]{2,3}$/", $this->request->getVar('email')) == 0) {
+            return $this->register(["errors"=>["Email is not in proper format!"]]);
+        }
+        
+        if (preg_match("/[a-zA-Z]+/", $this->request->getVar('password')) == 0 || preg_match("/[0-9]+/", $this->request->getVar('password')) == 0) {
+            return $this->register(["errors"=>["Password must contain at least 1 letter and 1 digit!"]]);
         }
         
         if($this->request->getVar("password")!==$this->request->getVar("repeatpassword"))
