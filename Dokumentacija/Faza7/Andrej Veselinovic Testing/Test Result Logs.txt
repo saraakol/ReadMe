@@ -1,0 +1,628 @@
+Running 'TP1'
+00:07:25
+1.
+open on http://localhost:8080/Gost OK
+00:07:25
+2.
+setWindowSize on 1206x1020 OK
+00:07:25
+3.
+click on css=.loggingLinks > a:nth-child(1) > button OK
+00:07:26
+4.
+click on name=username OK
+00:07:27
+5.
+type on name=username with value andrejjokic OK
+00:07:28
+6.
+type on name=password with value andrej123 OK
+00:07:29
+7.
+click on css=input:nth-child(7) OK
+00:07:30
+8.
+click on linkText=My Profile OK
+00:07:30
+9.
+click on id=dodajZanrDugme OK
+00:07:32
+10.
+click on id=dodajZanrLista OK
+00:07:34
+11.
+select on id=dodajZanrLista with value label=Classics OK
+00:07:34
+12.
+click on css=#dodajZanrForma > .margin-medium:nth-child(4) OK
+00:07:35
+13.
+assertElementPresent on css=.mr-auto OK
+00:07:36
+14.
+click on css=.logoutbutton OK
+00:07:38
+15.
+close OK
+00:07:39
+'TP1' completed successfully
+
+Running 'TP2'
+00:12:48
+1.
+open on http://localhost:8080/Gost OK
+00:12:48
+2.
+setWindowSize on 1206x1020 OK
+00:12:49
+3.
+click on css=.loggingLinks > a:nth-child(1) > button OK
+00:12:49
+4.
+click on name=username OK
+00:12:50
+5.
+type on name=username with value andrejjokic OK
+00:12:51
+6.
+type on name=password with value andrej123 OK
+00:12:52
+7.
+click on css=input:nth-child(7) OK
+00:12:53
+8.
+click on linkText=My Profile OK
+00:12:54
+9.
+click on id=dodajZanrDugme OK
+00:12:56
+10.
+click on css=#dodajZanrForma > .prekiniZanr OK
+00:12:57
+11.
+assertElementNotPresent on css=.mr-auto OK
+00:12:58
+12.
+click on css=.logoutbutton OK
+00:12:59
+13.
+close OK
+00:12:59
+'TP2' completed successfully
+00:12:59
+Running 'TP3'
+00:13:16
+1.
+open on http://localhost:8080/Gost OK
+00:13:16
+2.
+setWindowSize on 1206x1020 OK
+00:13:17
+3.
+click on css=.loggingLinks > a:nth-child(1) > button OK
+00:13:18
+4.
+click on name=username OK
+00:13:18
+5.
+type on name=username with value andrejjokic OK
+00:13:20
+6.
+type on name=password with value andrej123 OK
+00:13:20
+7.
+click on css=input:nth-child(7) OK
+00:13:21
+8.
+click on css=.figure:nth-child(1) img OK
+00:13:22
+9.
+click on css=.\33 OK
+00:13:24
+10.
+assertNotEditable on css=.\33 OK
+00:13:25
+11.
+click on css=.logoutbutton OK
+00:13:26
+12.
+close OK
+00:13:27
+'TP3' completed successfully
+00:13:27
+Running 'TP4'
+00:13:51
+1.
+open on http://localhost:8080/Gost OK
+00:13:51
+2.
+setWindowSize on 1206x1020 OK
+00:13:52
+3.
+click on css=.loggingLinks > a:nth-child(1) > button OK
+00:13:52
+4.
+click on name=username OK
+00:13:53
+5.
+type on name=username with value andrejjokic OK
+00:13:54
+6.
+type on name=password with value andrej123 OK
+00:13:55
+7.
+click on css=input:nth-child(7) OK
+00:13:56
+8.
+click on css=.figure:nth-child(1) img OK
+00:13:56
+9.
+assertElementNotPresent on xpath=//div[3]/div/button[2] OK
+00:13:58
+10.
+click on css=.logoutbutton OK
+00:14:00
+11.
+close OK
+00:14:00
+'TP4' completed successfully
+00:14:00
+Running 'TP5'
+00:14:05
+1.
+open on http://localhost:8080/Gost OK
+00:14:05
+2.
+setWindowSize on 1206x1020 OK
+00:14:06
+3.
+click on css=.loggingLinks > a:nth-child(1) > button OK
+00:14:07
+4.
+click on name=username OK
+00:14:07
+5.
+type on name=username with value andrejjokic OK
+00:14:08
+6.
+type on name=password with value andrej123 OK
+00:14:09
+7.
+click on css=input:nth-child(7) OK
+00:14:10
+8.
+click on css=.figure:nth-child(1) img OK
+00:14:11
+9.
+click on css=.\33 OK
+00:14:12
+10.
+assertNotEditable on css=.\33 OK
+00:14:14
+11.
+click on css=.logoutbutton OK
+00:14:15
+12.
+close OK
+00:14:15
+'TP5' completed successfully
+00:14:16
+Running 'TP6'
+00:14:18
+1.
+open on http://localhost:8080/Gost OK
+00:14:18
+2.
+setWindowSize on 1206x1020 OK
+00:14:19
+3.
+click on css=.loggingLinks > a:nth-child(1) > button OK
+00:14:19
+4.
+click on name=username OK
+00:14:20
+5.
+type on name=username with value andrejjokic OK
+00:14:21
+6.
+type on name=password with value andrej123 OK
+00:14:22
+7.
+click on css=input:nth-child(7) OK
+00:14:23
+8.
+click on linkText=My Profile OK
+00:14:24
+9.
+click on id=dodajCiljDugme OK
+00:14:26
+10.
+click on name=brojKnjiga OK
+00:14:27
+11.
+type on name=brojKnjiga with value 5 OK
+00:14:28
+12.
+click on id=acceptCilj OK
+00:14:29
+13.
+click on css=.mr-auto OK
+00:14:29
+14.
+assertElementPresent on css=.mr-auto OK
+00:14:31
+15.
+click on css=.logoutbutton OK
+00:14:32
+16.
+close OK
+00:14:33
+'TP6' completed successfully
+00:14:33
+Running 'TP7'
+00:15:00
+1.
+open on http://localhost:8080/Gost OK
+00:15:01
+2.
+setWindowSize on 1206x1020 OK
+00:15:01
+3.
+click on css=.loggingLinks > a:nth-child(1) > button OK
+00:15:02
+4.
+click on name=username OK
+00:15:03
+5.
+type on name=username with value andrejjokic OK
+00:15:04
+6.
+click on name=password OK
+00:15:05
+7.
+type on name=password with value andrej123 OK
+00:15:06
+8.
+click on css=input:nth-child(7) OK
+00:15:06
+9.
+click on linkText=My Profile OK
+00:15:07
+10.
+click on id=dodajCiljDugme OK
+00:15:09
+11.
+type on name=brojKnjiga with value ab OK
+00:15:10
+12.
+assertValue on name=brojKnjiga OK
+00:15:11
+13.
+click on css=.logoutbutton OK
+00:15:12
+14.
+close OK
+00:15:13
+'TP7' completed successfully
+00:15:13
+Running 'TP8'
+00:15:18
+1.
+open on http://localhost:8080/Gost OK
+00:15:18
+2.
+setWindowSize on 1206x1020 OK
+00:15:19
+3.
+click on css=.loggingLinks > a:nth-child(1) > button OK
+00:15:20
+4.
+click on name=username OK
+00:15:21
+5.
+type on name=username with value andrejjokic OK
+00:15:22
+6.
+click on name=password OK
+00:15:23
+7.
+type on name=password with value andrej123 OK
+00:15:23
+8.
+click on css=input:nth-child(7) OK
+00:15:24
+9.
+click on linkText=My Profile OK
+00:15:25
+10.
+click on id=dodajCiljDugme OK
+00:15:27
+11.
+click on id=prekiniCilj OK
+00:15:28
+12.
+assertElementNotPresent on css=button[style="display: none;"][id="dodajCiljDugme"] OK
+00:15:29
+13.
+click on css=.logoutbutton OK
+00:15:30
+14.
+close OK
+00:15:31
+'TP8' completed successfully
+00:15:31
+Running 'TP9'
+00:15:42
+1.
+open on http://localhost:8080/Gost OK
+00:15:42
+2.
+setWindowSize on 1206x1020 OK
+00:15:43
+3.
+click on css=.loggingLinks > a:nth-child(1) > button OK
+00:15:44
+4.
+click on name=username OK
+00:15:45
+5.
+type on name=username with value andrejjokic OK
+00:15:46
+6.
+click on name=password OK
+00:15:46
+7.
+type on name=password with value andrej123 OK
+00:15:47
+8.
+click on css=input:nth-child(7) OK
+00:15:48
+9.
+click on linkText=My Profile OK
+00:15:49
+10.
+click on id=dodajCiljDugme OK
+00:15:50
+11.
+type on name=brojKnjiga with value 1.2 OK
+00:15:52
+12.
+assertElementPresent on css=button[style="display: none;"][id="dodajCiljDugme"] OK
+00:15:53
+13.
+click on css=.logoutbutton OK
+00:15:54
+14.
+close OK
+00:15:54
+'TP9' completed successfully
+00:15:54
+Running 'TP10'
+00:16:23
+1.
+open on http://localhost:8080/Gost OK
+00:16:23
+2.
+setWindowSize on 1206x1020 OK
+00:16:23
+3.
+click on css=.loggingLinks > a:nth-child(1) > button OK
+00:16:24
+4.
+click on name=username OK
+00:16:33
+5.
+type on name=username with value andrejjokic OK
+00:16:34
+6.
+type on name=password with value andrej123 OK
+00:16:35
+7.
+click on css=input:nth-child(7) OK
+00:16:36
+8.
+click on linkText=Registrations OK
+00:16:37
+9.
+click on css=.row:nth-child(7) .zahtev-forma OK
+00:16:38
+10.
+click on css=.mr-auto OK
+00:16:40
+11.
+click on css=.toast-body OK
+00:16:40
+12.
+click on css=.toast-body OK
+00:16:41
+13.
+assertElementPresent on css=.toast-body OK
+00:16:42
+14.
+assertText on css=.toast-body with value User registration accepted! OK
+00:16:43
+15.
+click on css=.logoutbutton OK
+00:16:44
+16.
+close OK
+00:16:44
+'TP10' completed successfully
+00:16:45
+Running 'TP11'
+00:16:49
+1.
+open on http://localhost:8080/Gost OK
+00:16:50
+2.
+setWindowSize on 1206x1020 OK
+00:16:50
+3.
+click on css=.loggingLinks > a:nth-child(1) > button OK
+00:16:51
+4.
+click on name=username OK
+00:16:52
+5.
+type on name=username with value andrejjokic OK
+00:16:53
+6.
+type on name=password with value andrej123 OK
+00:16:54
+7.
+sendKeys on name=password with value ${KEY_ENTER} OK
+00:16:55
+8.
+click on linkText=Registrations OK
+00:16:56
+9.
+click on css=.row:nth-child(6) .declineZahtev OK
+00:16:57
+10.
+click on css=.toast-body OK
+00:16:58
+11.
+assertText on css=.toast-body with value User registration declined OK
+00:16:59
+12.
+click on css=.logoutbutton OK
+00:17:00
+13.
+close OK
+00:17:01
+'TP11' completed successfully
+00:17:01
+Running 'TP12'
+00:17:33
+1.
+open on http://localhost:8080/Gost OK
+00:17:33
+2.
+setWindowSize on 1206x1020 OK
+00:17:34
+3.
+click on css=.loggingLinks > a:nth-child(1) > button OK
+00:17:35
+4.
+click on name=username OK
+00:17:35
+5.
+type on name=username with value andrejjokic OK
+00:17:36
+6.
+type on name=password with value andrej123 OK
+00:17:37
+7.
+sendKeys on name=password with value ${KEY_ENTER} OK
+00:17:38
+8.
+click on linkText=Upgrades OK
+00:17:39
+9.
+click on css=.zahtev-forma OK
+00:17:40
+10.
+click on css=.toast-body OK
+00:17:42
+11.
+assertText on css=.toast-body with value User upgrade accepted! OK
+00:17:42
+12.
+click on css=.logoutbutton OK
+00:17:43
+13.
+close OK
+00:17:44
+'TP12' completed successfully
+00:17:44
+Running 'TP15'
+00:18:30
+1.
+open on http://localhost:8080/Gost OK
+00:18:30
+2.
+setWindowSize on 1206x1020 OK
+00:18:31
+3.
+click on css=.loggingLinks > a:nth-child(1) > button OK
+00:18:31
+4.
+click on name=username OK
+00:18:32
+5.
+type on name=username with value andrejjokic OK
+00:18:33
+6.
+click on name=password OK
+00:18:34
+7.
+type on name=password with value andrej123 OK
+00:18:35
+8.
+click on css=input:nth-child(7) OK
+00:18:36
+9.
+click on linkText=Reports OK
+00:18:37
+10.
+click on css=.declineZahtev OK
+00:18:38
+11.
+click on css=.toast-body OK
+00:18:39
+12.
+assertText on css=.toast-body with value User report declined! OK
+00:18:40
+13.
+click on css=.logoutbutton OK
+00:18:41
+14.
+close OK
+00:18:42
+'TP15' completed successfully
+00:18:42
+Running 'TP14'
+00:18:48
+1.
+open on http://localhost:8080/Gost OK
+00:18:48
+2.
+setWindowSize on 1206x1020 OK
+00:18:49
+3.
+click on css=.loggingLinks > a:nth-child(1) > button OK
+00:18:50
+4.
+click on name=username OK
+00:18:50
+5.
+type on name=username with value andrejjokic OK
+00:18:52
+6.
+type on name=password with value andrej123 OK
+00:18:52
+7.
+click on css=input:nth-child(7) OK
+00:18:53
+8.
+click on linkText=Reports OK
+00:18:54
+9.
+click on css=.zahtev-forma OK
+00:18:56
+10.
+click on css=.toast-body OK
+00:18:57
+11.
+click on css=.toast-body OK
+00:18:58
+12.
+assertText on css=.toast-body with value User report accepted! OK
+00:18:59
+13.
+click on css=.logoutbutton OK
+00:19:00
+14.
+close OK
+00:19:00
+'TP14' completed successfully
