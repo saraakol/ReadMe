@@ -24,7 +24,7 @@ class UserRepository extends EntityRepository{
         $dql = "SELECT u FROM App\Models\Entities\User u JOIN u.books b"
                 . " WHERE u.type=:tipKorisnika AND u.status=:statusKorisnika AND b.type=:tipKnjige"
                 . " GROUP BY u.idu"
-                . " HAVING COUNT(b.idb) > :brojKnjiga";
+                . " HAVING COUNT(b.idb) >= :brojKnjiga";
         $query = $this->getEntityManager()->createQuery($dql);
         $query->setParameters([
             'tipKorisnika' => 'regular_user',
