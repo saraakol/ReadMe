@@ -104,8 +104,14 @@
                     <br>
 
                     <br>
-                    <p style="font-size: 4vh;padding-left: 35px;">All (<?= sizeof($all);?>)<input type="checkbox" id="alllist" onclick="kliknutalisaall()" checked></p>
-                    <div class="alllist">
+                    <div style="align-items: center; text-align: center">
+                    <span style="font-size: 4vh;padding-left: 35px;">All (<?= sizeof($all);?>)<input type="checkbox" id="alllist" onclick="kliknutalisaall()" checked></span>
+                    <span style="font-size: 4vh;padding-left: 35px;">Read (<?= sizeof($read);?>)<input type="checkbox" id="readlist" onclick="kliknutalistaread()"></span>
+                    <span style="font-size: 4vh;padding-left: 35px;">Want to read (<?= sizeof($wantToRead);?>)<input type="checkbox" id="wantlist" onclick="kliknutalistawant()"></span> 
+                    <span style="font-size: 4vh;padding-left: 35px;">Subsribed genres <input type="checkbox" id="subscribedlist" onclick="kliknutalistasubscribed()"></span>
+                   </div>
+                    <br><br>
+                    <div class="alllist" >
                         
                         <?php
                         
@@ -118,11 +124,11 @@
                         }
                         ?>
                         
-                        <div class="breakfloat">&nbsp;</div>
+<!--                        <div class="breakfloat">&nbsp;</div>-->
                     </div>
 
                     <br>
-                    <p style="font-size: 4vh;padding-left: 35px;">Read (<?= sizeof($read);?>)<input type="checkbox" id="readlist" onclick="kliknutalistaread()"></p>
+                    
                     <div class="readlist" style="display: none;">
                         <?php
                         
@@ -136,12 +142,11 @@
                        
                         
                         ?>
-                        <div class="breakfloat">&nbsp;</div>
+<!--                        <div class="breakfloat">&nbsp;</div>-->
                     </div>
 
 
                     <br>
-                    <p style="font-size: 4vh;padding-left: 35px;">Want to read (<?= sizeof($wantToRead);?>)<input type="checkbox" id="wantlist" onclick="kliknutalistawant()"></p> 
                     <div class="wantlist" style="display: none;">
 
                         <?php   
@@ -157,10 +162,9 @@
                         
                         ?>
                         
-                        <div class="breakfloat">&nbsp;</div>
+<!--                        <div class="breakfloat">&nbsp;</div>-->
                     </div>
                     <br>
-                    <p style="font-size: 4vh;padding-left: 35px;">Subsribed genres <input type="checkbox" id="subscribedlist" onclick="kliknutalistasubscribed()"></p>
                     <div class="subscribedlist" style="display: none;">
 
                         <?php
@@ -179,7 +183,7 @@
                                 }
                             }
                         }
-                        echo '<div class="breakfloat">&nbsp;</div>'; 
+//                        echo '<div class="breakfloat">&nbsp;</div>'; 
                         ?>
                     </div>
                     <?php
@@ -205,7 +209,7 @@
                             /*
                             ?>
                             */
-                            echo '<div class="breakfloat">&nbsp;</div>';
+//                            echo '<div class="breakfloat">&nbsp;</div>';
                         echo '</div>';
                     
                     }

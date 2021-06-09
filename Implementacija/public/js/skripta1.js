@@ -136,7 +136,14 @@ function kliknutalistawant() {
     } else {
         $(".wantlist").show();
         $(".alllist").hide();
+        $(".readlist").hide();
+        $(".subscribedlist").hide(); 
+        $(".recommendedlist").hide();
         document.getElementById("alllist").checked = false;
+        document.getElementById("readlist").checked = false;
+        document.getElementById("subscribedlist").checked = false;
+        document.getElementById("recommendedlist").checked = false;
+        
     }
 }
 
@@ -168,7 +175,13 @@ function kliknutalistaread() {
     } else {
         $(".readlist").show();
         $(".alllist").hide();
+        $(".subscribedlist").hide();
+        $(".wantlist").hide();
+        $(".recommendedlist").hide();
         document.getElementById("alllist").checked = false;
+        document.getElementById("subscribedlist").checked = false;
+        document.getElementById("wantlist").checked = false;
+        document.getElementById("recommendedlist").checked = false;
     }
 }
 
@@ -181,7 +194,13 @@ function kliknutalistasubscribed(){
     } else {
         $(".subscribedlist").show();
         $(".alllist").hide();
+         $(".readlist").show();
+        $(".wantlist").hide();
+        $(".recommendedlist").hide();
         document.getElementById("alllist").checked = false;
+        document.getElementById("readlist").checked = false; 
+        document.getElementById("wantlist").checked = false;
+        document.getElementById("recommendedlist").checked = false;
     }
 }
 
@@ -194,6 +213,12 @@ function kliknutalistarecommended(){
     } else {
         $(".recommendedlist").show();
         $(".alllist").hide();
-        document.getElementById("alllist").checked = false;
+         $(".readlist").show(); 
+        $(".subscribedlist").hide();
+        $(".wantlist").hide(); 
+        document.getElementById("alllist").checked = false; 
+        document.getElementById("readlist").checked = false; 
+        document.getElementById("subscribedlist").checked = false;
+        document.getElementById("wantlist").checked = false; 
     }
 }
