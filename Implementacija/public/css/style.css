@@ -387,7 +387,7 @@ outline: none;
     outline: none;   
 }
 .figuree{
-    float: left;
+    display: inline-grid;
 }
 .breakfloat{
     float: none;
