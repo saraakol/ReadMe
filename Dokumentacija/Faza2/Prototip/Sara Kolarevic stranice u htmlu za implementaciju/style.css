@@ -1,0 +1,301 @@
+div.header{
+    background: linear-gradient(to bottom, #ffeedf , white);
+    /*background-color: #ffeedf; /*FFE5CC*/
+    
+    margin-bottom: -16px;
+}
+div.header button{ 
+    
+width: 65px;
+height: 38px;
+outline: none;
+background: #FFCCCC;
+box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+border-radius: 1000px;
+border: none;
+}
+.navbar a{
+    color: #ff007f;
+}
+.navbar a:hover{
+    color: #660033;
+}
+div.loggingLinks{
+    padding-top: 20px;
+    padding-right: 20px;
+    float:right;
+}
+.naslov{
+    text-align: center;
+    font-size: 15vh;
+    color: #99004C;
+}
+
+.ispodnaslova{
+    text-align: center;
+    font-size: 7vh;
+    color: #99004C;
+}
+.naslov2{
+    text-align: center;
+    font-size: 6vh;
+    color: black;
+    margin-top: 30vh;
+    margin-bottom: 30vh;
+}
+div.header img{
+    margin-top: 20px;
+    margin-left: 40px;
+    width:50px;
+    height:50px;
+}
+
+
+.newreleases{
+    text-align: center;
+    font-size: 6vh;
+     
+    color: black;
+    margin-top: 5vh;
+    margin-bottom: 5vh;
+}
+.select{
+    border-radius: 15px;
+    border-color: lightpink;
+
+}
+html,body{
+    height:100%;
+    width:100%;
+    margin: 0;
+    
+}
+div.content{
+    padding-top: 20px;
+    height:100%;
+    
+    
+}
+.belapozadina{
+    background-color: white;
+}
+.gradient{
+    background: linear-gradient(to top, #ffeedf , white);
+}
+.selects{
+    padding-left: 20px;
+    margin-left: 3vh;
+    margin-top: 8vh;
+}
+hr{
+    
+    border:1px solid;
+    margin-left: -5vh;
+    margin-right: -2vh;
+}
+div.content select{
+    width:100px;
+}
+.book{
+    
+    justify-content: center;
+    padding-top:20px;
+    padding-bottom: 20px;
+    
+    align-items: center;
+    text-align: center;
+    
+}
+.book img {
+    align-self: center;
+    padding-bottom: 5vh;
+    margin-bottom: 5vh;
+}
+a:hover{
+    text-decoration: none;
+}
+a{
+    color: black;
+}
+.col-md-6 p{
+    
+    font-size: 4vh;
+}
+.book img{
+    height:300px;
+    width:200px;
+}
+.knjigepozadina{
+    background:  #ffeedf ; 
+    padding: 0%;
+}
+.footer{
+    height: 5vh;
+    text-align: center;
+    align-items: center;
+    font-size: 2vh;
+    font-style: italic;
+    color: black;
+    background-color: #FFCCCC;
+}
+.backtotop{
+    text-align: center;
+    background-color: #ffeedf;
+}
+.backtotop button{
+      
+width: 120px;
+height: 38px;
+outline: none;
+background: #FFCCCC;
+box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+border-radius: 1000px;
+border: none;
+}
+
+/*                  LOGIN                           */
+
+.login{
+    background-image: url(sketch-vintage-books-seamless-pattern_53562-9593.jpg);
+}
+.loginrow2{
+    text-align: center;
+    align-items: center;
+}
+.loginrow2 p1{
+    font-size: 7vh;
+    padding-top: 25px;
+    margin-top: 25px;
+}
+.loginrow2 p{
+    font-size: 5vh;
+}
+.loginbox{
+    background-color: #F5F5DC;
+    border-radius: 180px;
+}
+
+/*                  REGISTER                           */
+
+.loginrow2 button{
+width: 120px;
+height: 38px;
+outline: none;
+background: #cfb997;
+box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+border-radius: 1000px;
+border: none;
+}
+
+/*                  MY BOOKS                           */
+
+.headermybooks{
+
+}
+.headermybooks img{
+    margin-top: 20px;
+    margin-left: 40px;
+    width:50px;
+    height:50px;
+    margin-bottom: 5vh;
+}
+.bio button{
+    width: 120px;
+height: 38px;
+
+background: #FFCCCC;
+box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+border-radius: 1000px;
+border: none;
+margin-bottom: 2vh;
+outline: none;
+}
+.logoutbutton{
+    width: 60px;
+    height: 20px;
+    font-size: 15px;
+    background: #FFCCCC;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 1000px;
+    border: none;
+    margin-bottom: 2vh;
+    margin-right: 2vh;
+    margin-top: 4vh;
+    float: right;
+    outline: none;   
+}
+.figuree{
+    float: left;
+}
+.breakfloat{
+    float: none;
+}
+
+/*                  BOOK                           */
+
+.booktitle{
+    font-size: 30px;
+    text-align: left;
+}
+.bookbio{
+    text-align: left;
+}
+.bookauthor{
+    font-size: 20px;
+}
+.bookgenre{
+    font-size: 15px;
+    font-style: italic;
+}
+.booksynop{
+    
+}
+.checked {
+    color: orange;
+  }
+  .addtolist{
+    width: 220px;
+    height: 60px;
+    font-size: 15px;
+    background: #FFCCCC;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 1000px;
+    border: none;
+    
+    outline: none;  
+  }
+  .ratearea{
+      margin-top: 0vh;
+  }
+  .ratearea p{
+      margin-top: -2vh;
+  }
+
+  /*                ADD  BOOK                           */
+  .bigbutton{
+    width: 280px;
+    height: 120px;
+    font-size: 15px;
+    background: #FFCCCC;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 1000px;
+    border: none;
+    
+    outline: none;  
+  }
+
+  .buttons button{
+    width: 90px;
+    height: 30px;
+    font-size: 15px;
+    background: #FFCCCC;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 1000px;
+    border: none;
+    
+    outline: none;  
+  }
+  
+
+
+
