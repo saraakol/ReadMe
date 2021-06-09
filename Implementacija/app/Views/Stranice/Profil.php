@@ -104,12 +104,18 @@
                     <br>
 
                     <br>
-                    <div style="align-items: center; text-align: center">
+                    <div class="row">
+                        
+                    <div class="col-sm-8 offset-2"style="align-items: center; text-align: center">
                     <span style="font-size: 4vh;padding-left: 35px;">All (<?= sizeof($all);?>)<input type="checkbox" id="alllist" onclick="kliknutalisaall()" checked></span>
                     <span style="font-size: 4vh;padding-left: 35px;">Read (<?= sizeof($read);?>)<input type="checkbox" id="readlist" onclick="kliknutalistaread()"></span>
                     <span style="font-size: 4vh;padding-left: 35px;">Want to read (<?= sizeof($wantToRead);?>)<input type="checkbox" id="wantlist" onclick="kliknutalistawant()"></span> 
                     <span style="font-size: 4vh;padding-left: 35px;">Subsribed genres <input type="checkbox" id="subscribedlist" onclick="kliknutalistasubscribed()"></span>
-                   </div>
+                    </div>
+                    <div class="col-sm-2">
+                        &nbsp;
+                    </div>
+                    </div>
                     <br><br>
                     <div class="alllist" >
                         
