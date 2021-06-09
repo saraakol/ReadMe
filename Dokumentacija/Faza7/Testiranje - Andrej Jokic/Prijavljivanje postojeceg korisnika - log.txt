@@ -1,0 +1,210 @@
+Running 'TP1 - Korisnik se uspesno prijavljuje'
+00:32:11
+1.
+open on http://localhost:8080/Gost OK
+00:32:11
+2.
+setWindowSize on 918x770 OK
+00:32:11
+3.
+click on css=.loggingLinks > a:nth-child(1) > button OK
+00:32:11
+4.
+click on name=username OK
+00:32:12
+5.
+type on name=username with value nikolakrstic OK
+00:32:13
+6.
+type on name=password with value nikola123 OK
+00:32:13
+7.
+click on css=input:nth-child(7) OK
+00:32:13
+8.
+verifyText on css=.toast-body with value Successfully logged in OK
+00:32:14
+9.
+verifyText on css=.logoutbutton with value Logout OK
+00:32:15
+10.
+verifyText on css=.naslov with value ReadMe OK
+00:32:15
+11.
+verifyText on linkText=Browse with value Browse OK
+00:32:15
+12.
+verifyText on linkText=My Profile with value My Profile OK
+00:32:15
+'TP1 - Korisnik se uspesno prijavljuje' completed successfully
+00:32:15
+Running 'TP2 - Privilegovani korisnik se uspesno prijavljuje'
+00:32:22
+1.
+open on http://localhost:8080/Gost OK
+00:32:22
+2.
+setWindowSize on 918x770 OK
+00:32:22
+3.
+click on css=.loggingLinks > a:nth-child(1) > button OK
+00:32:22
+4.
+click on name=username OK
+00:32:24
+5.
+type on name=username with value andrej123 OK
+00:32:24
+6.
+type on name=password with value andrej123 OK
+00:32:24
+7.
+click on css=input:nth-child(7) OK
+00:32:24
+8.
+verifyText on css=.toast-body with value Successfully logged in OK
+00:32:24
+9.
+verifyText on css=.logoutbutton with value Logout OK
+00:32:25
+10.
+verifyText on css=.naslov with value ReadMe OK
+00:32:25
+11.
+verifyText on linkText=Browse with value Browse OK
+00:32:26
+12.
+verifyText on linkText=My Profile with value My Profile OK
+00:32:26
+'TP2 - Privilegovani korisnik se uspesno prijavljuje' completed successfully
+00:32:26
+Running 'TP3 - Administrator se uspesno prijavljuje'
+00:32:37
+1.
+open on http://localhost:8080/Gost OK
+00:32:37
+2.
+setWindowSize on 918x770 OK
+00:32:37
+3.
+click on css=.loggingLinks > a:nth-child(1) > button OK
+00:32:37
+4.
+click on name=username OK
+00:32:38
+5.
+type on name=username with value andrejjokic OK
+00:32:39
+6.
+type on name=password with value andrej123 OK
+00:32:39
+7.
+click on css=input:nth-child(7) OK
+00:32:39
+8.
+verifyText on css=.toast-body with value Successfully logged in OK
+00:32:39
+9.
+verifyText on css=.logoutbutton with value Logout OK
+00:32:40
+10.
+verifyText on css=.naslov with value ReadMe OK
+00:32:40
+11.
+verifyText on linkText=Browse with value Browse OK
+00:32:41
+12.
+verifyText on linkText=My Profile with value My Profile OK
+00:32:41
+13.
+verifyText on linkText=Registrations with value Registrations OK
+00:32:41
+14.
+verifyText on linkText=Reports with value Reports OK
+00:32:41
+15.
+verifyText on linkText=Upgrades with value Upgrades OK
+00:32:41
+16.
+verifyText on linkText=Add Book with value Add Book OK
+00:32:42
+'TP3 - Administrator se uspesno prijavljuje' completed successfully
+00:32:42
+Running 'TP4 - Korisnik se neuspesno prijavljuje jer nije uneo sva obavezna polja'
+00:35:42
+1.
+open on http://localhost:8080/Gost OK
+00:35:42
+2.
+setWindowSize on 918x770 OK
+00:35:42
+3.
+click on css=.loggingLinks > a:nth-child(1) > button OK
+00:35:42
+4.
+click on css=input:nth-child(7) OK
+00:35:43
+5.
+assertText on css=font:nth-child(4) with value The username field is required.\nThe password field is required. OK
+00:35:44
+'TP4 - Korisnik se neuspesno prijavljuje jer nije uneo sva obavezna polja' completed successfully
+00:35:44
+Running 'TP5 - Korisnik se neuspesno prijavljuje jer je uneo nepostojece korisnicko ime'
+00:35:47
+1.
+open on http://localhost:8080/Gost OK
+00:35:48
+2.
+setWindowSize on 918x770 OK
+00:35:48
+3.
+click on css=.loggingLinks > a:nth-child(1) > button OK
+00:35:48
+4.
+click on name=username OK
+00:35:49
+5.
+type on name=username with value sadasdasd OK
+00:35:50
+6.
+click on name=password OK
+00:35:50
+7.
+type on name=password with value adsada OK
+00:35:50
+8.
+click on css=input:nth-child(7) OK
+00:35:51
+9.
+assertText on css=font:nth-child(4) with value User with given username and password doesnt exist OK
+00:35:51
+'TP5 - Korisnik se neuspesno prijavljuje jer je uneo nepostojece korisnicko ime' completed successfully
+00:35:51
+Running 'TP6 - Korisnik se neuspesno prijavljuje jer je uneo netacnu lozinku'
+00:35:55
+1.
+open on http://localhost:8080/Gost OK
+00:35:55
+2.
+setWindowSize on 920x772 OK
+00:35:55
+3.
+click on css=.loggingLinks > a:nth-child(1) > button OK
+00:35:55
+4.
+click on name=username OK
+00:35:57
+5.
+type on name=username with value andrejjokic OK
+00:35:57
+6.
+type on name=password with value sadad OK
+00:35:57
+7.
+click on css=input:nth-child(7) OK
+00:35:58
+8.
+assertText on css=font:nth-child(4) with value User with given username and password doesnt exist OK
+00:35:58
+'TP6 - Korisnik se neuspesno prijavljuje jer je uneo netacnu lozinku' completed successfully
+00:35:58

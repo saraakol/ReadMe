@@ -515,7 +515,7 @@
         ["css=font:nth-child(4)", "css:finder"],
         ["xpath=//font", "xpath:position"]
       ],
-      "value": "The username field is required.\\nThe password field is required.\\n\\n\\n\\n\\n \\n \\n "
+      "value": "The username field is required.\\nThe password field is required."
     }]
   }, {
     "id": "bf7e9c0d-2348-4e9f-9760-a71da4455b1a",
@@ -613,7 +613,7 @@
         ["css=font:nth-child(4)", "css:finder"],
         ["xpath=//font", "xpath:position"]
       ],
-      "value": "User with given username and password doesnt exist\\n\\n\\n\\n\\n \\n \\n "
+      "value": "User with given username and password doesnt exist"
     }]
   }, {
     "id": "d1f0ea9d-a2ba-4e17-b73c-d62d49ced647",
@@ -699,7 +699,7 @@
         ["css=font:nth-child(4)", "css:finder"],
         ["xpath=//font", "xpath:position"]
       ],
-      "value": "User with given username and password doesnt exist\\n\\n\\n\\n\\n \\n \\n "
+      "value": "User with given username and password doesnt exist"
     }]
   }],
   "suites": [{
