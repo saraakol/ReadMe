@@ -1,0 +1,875 @@
+
+********************************************************************
+Running '1.uspesnoOcenjivanjeObicanKorisnik'
+00:16:32
+1.
+open on /Gost OK
+00:16:32
+2.
+setWindowSize on 1164x616 OK
+00:16:32
+3.
+click on css=.loggingLinks > a:nth-child(1) > button OK
+00:16:32
+4.
+click on name=username OK
+00:16:35
+5.
+type on name=username with value nikolakrstic OK
+00:16:36
+6.
+click on name=password OK
+00:16:36
+7.
+type on name=password with value nikola123 OK
+00:16:36
+8.
+sendKeys on name=password with value ${KEY_ENTER} OK
+00:16:36
+9.
+click on css=.figure:nth-child(7) img OK
+00:16:36
+10.
+click on linkText=Add rate OK
+00:16:37
+11.
+click on name=rate OK
+00:16:38
+12.
+type on name=rate with value 5 OK
+00:16:39
+13.
+click on css=input:nth-child(8) OK
+00:16:39
+14.
+assertText on css=.toast-body with value Successfully added new rate! OK
+00:16:39
+'1.uspesnoOcenjivanjeObicanKorisnik' completed successfully
+
+********************************************************************
+Running '2.uspesnoOcenjivanjePrivilegovanKorisnik'
+00:25:56
+1.
+open on /Gost OK
+00:25:56
+2.
+setWindowSize on 1164x616 OK
+00:25:56
+3.
+click on css=.loggingLinks > a:nth-child(1) > button OK
+00:25:56
+4.
+click on name=username OK
+00:25:59
+5.
+type on name=username with value andrej123 OK
+00:26:00
+6.
+click on name=password OK
+00:26:00
+7.
+type on name=password with value andrej123 OK
+00:26:00
+8.
+sendKeys on name=password with value ${KEY_ENTER} OK
+00:26:00
+9.
+click on css=.figure:nth-child(7) img OK
+00:26:01
+10.
+click on linkText=Add rate OK
+00:26:02
+11.
+click on name=rate OK
+00:26:04
+12.
+type on name=rate with value 4 OK
+00:26:06
+13.
+click on css=input:nth-child(8) OK
+00:26:06
+14.
+assertText on css=.toast-body with value Successfully added new rate! OK
+00:26:06
+'2.uspesnoOcenjivanjePrivilegovanKorisnik' completed successfully
+
+********************************************************************
+
+Running '3.uspesnoOcenjivanjeAdmin'
+00:34:47
+1.
+open on /Gost OK
+00:34:47
+2.
+setWindowSize on 1164x616 OK
+00:34:47
+3.
+click on css=.loggingLinks > a:nth-child(1) > button OK
+00:34:47
+4.
+click on name=username OK
+00:34:50
+5.
+type on name=username with value andrejjokic OK
+00:34:50
+6.
+click on name=password OK
+00:34:50
+7.
+type on name=password with value andrej123 OK
+00:34:50
+8.
+click on css=input:nth-child(7) OK
+00:34:51
+9.
+click on css=.figure:nth-child(7) img OK
+00:34:51
+10.
+click on linkText=Add rate OK
+00:34:52
+11.
+click on name=rate OK
+00:34:53
+12.
+type on name=rate with value 3 OK
+00:34:54
+13.
+click on css=input:nth-child(8) OK
+00:34:54
+14.
+assertText on css=.toast-body with value Successfully added new rate! OK
+00:34:54
+'3.uspesnoOcenjivanjeAdmin' completed successfully
+
+********************************************************************
+
+Running '4.neuspesnoOcenjivanjeunosenjeslova'
+00:36:25
+1.
+open on /Gost OK
+00:36:25
+2.
+setWindowSize on 1164x616 OK
+00:36:25
+3.
+click on css=.loggingLinks > a:nth-child(1) > button OK
+00:36:25
+4.
+click on name=username OK
+00:36:28
+5.
+type on name=username with value andrej123 OK
+00:36:29
+6.
+click on name=password OK
+00:36:29
+7.
+type on name=password with value andrej123 OK
+00:36:29
+8.
+click on css=input:nth-child(7) OK
+00:36:29
+9.
+click on css=.figure:nth-child(6) img OK
+00:36:29
+10.
+click on linkText=Add rate OK
+00:36:31
+11.
+click on name=rate OK
+00:36:32
+12.
+type on name=rate with value lala OK
+00:36:32
+13.
+click on css=input:nth-child(8) OK
+00:36:32
+14.
+assertText on css=.toast-body with value Unsuccessfully added new rate! OK
+00:36:33
+'4.neuspesnoOcenjivanjeunosenjeslova' completed successfully
+
+
+********************************************************************
+
+Running '5.neuspesnoOcenjivanjeunosenjenule'
+00:37:26
+1.
+open on /Gost OK
+00:37:27
+2.
+setWindowSize on 1164x616 OK
+00:37:27
+3.
+click on css=.loggingLinks > a:nth-child(1) > button OK
+00:37:27
+4.
+click on name=username OK
+00:37:31
+5.
+type on name=username with value andrejjokic OK
+00:37:31
+6.
+click on name=password OK
+00:37:31
+7.
+type on name=password with value andrej123 OK
+00:37:32
+8.
+sendKeys on name=password with value ${KEY_ENTER} OK
+00:37:32
+9.
+click on css=.figure:nth-child(12) img OK
+00:37:32
+10.
+click on linkText=Add rate OK
+00:37:33
+11.
+click on name=rate OK
+00:37:34
+12.
+type on name=rate with value 0 OK
+00:37:34
+13.
+click on css=input:nth-child(8) OK
+00:37:35
+14.
+assertText on css=.toast-body with value Please enter number from 1 to 5! OK
+00:37:35
+'5.neuspesnoOcenjivanjeunosenjenule' completed successfully
+
+
+********************************************************************
+
+
+Running '6.neuspesnoOcenjivanjeunosenjebrojavecegod5'
+00:38:27
+1.
+open on /Gost OK
+00:38:27
+2.
+setWindowSize on 1164x616 OK
+00:38:27
+3.
+click on css=.loggingLinks > a:nth-child(1) > button OK
+00:38:28
+4.
+click on name=username OK
+00:38:30
+5.
+type on name=username with value andrej123 OK
+00:38:31
+6.
+click on name=password OK
+00:38:31
+7.
+type on name=password with value andrej123 OK
+00:38:31
+8.
+sendKeys on name=password with value ${KEY_ENTER} OK
+00:38:31
+9.
+click on css=.figure:nth-child(5) img OK
+00:38:31
+10.
+click on linkText=Add rate OK
+00:38:33
+11.
+click on name=rate OK
+00:38:33
+12.
+type on name=rate with value 25 OK
+00:38:34
+13.
+click on css=input:nth-child(8) OK
+00:38:34
+14.
+assertText on css=.toast-body with value Please enter number from 1 to 5! OK
+00:38:34
+'6.neuspesnoOcenjivanjeunosenjebrojavecegod5' completed successfully
+
+
+********************************************************************
+
+Running '7.dodavanjeNaReadListuKorisnik'
+00:46:49
+1.
+open on /Gost OK
+00:46:50
+2.
+setWindowSize on 1164x616 OK
+00:46:50
+3.
+click on css=.loggingLinks > a:nth-child(1) > button OK
+00:46:50
+4.
+click on name=username OK
+00:46:52
+5.
+type on name=username with value nikolakrstic OK
+00:46:52
+6.
+click on name=password OK
+00:46:53
+7.
+type on name=password with value nikola123 OK
+00:46:53
+8.
+click on css=input:nth-child(7) OK
+00:46:53
+9.
+click on css=.figure:nth-child(14) img OK
+00:46:53
+10.
+click on css=.col-lg-3:nth-child(3) .addtolist OK
+00:46:54
+11.
+assertText on css=.toast-body with value Book successfully added to read list OK
+00:46:55
+'7.dodavanjeNaReadListuKorisnik' completed successfully
+
+********************************************************************
+
+Running '8.dodavanjeNaReadListuPrivileg'
+00:48:05
+1.
+open on /Gost OK
+00:48:06
+2.
+setWindowSize on 1164x616 OK
+00:48:06
+3.
+click on css=.loggingLinks > a:nth-child(1) > button OK
+00:48:06
+4.
+click on name=username OK
+00:48:08
+5.
+type on name=username with value andrej123 OK
+00:48:09
+6.
+click on name=password OK
+00:48:09
+7.
+type on name=password with value andrej123 OK
+00:48:09
+8.
+click on css=input:nth-child(7) OK
+00:48:09
+9.
+click on css=.figure:nth-child(14) img OK
+00:48:09
+10.
+click on css=.col-lg-3:nth-child(3) .addtolist OK
+00:48:11
+11.
+assertText on css=.toast-body with value Book successfully added to read list OK
+00:48:11
+'8.dodavanjeNaReadListuPrivileg' completed successfully
+
+********************************************************************
+
+Running '9.dodavanjeNaReadListuAdmin'
+00:49:18
+1.
+open on /Gost OK
+00:49:18
+2.
+setWindowSize on 1164x616 OK
+00:49:18
+3.
+click on css=.loggingLinks > a:nth-child(1) > button OK
+00:49:18
+4.
+click on name=username OK
+00:49:21
+5.
+type on name=username with value andrejjokic OK
+00:49:21
+6.
+click on name=password OK
+00:49:21
+7.
+type on name=password with value andrej123 OK
+00:49:21
+8.
+click on css=input:nth-child(7) OK
+00:49:22
+9.
+click on css=.figure:nth-child(14) img OK
+00:49:22
+10.
+click on css=.col-lg-3:nth-child(3) .addtolist OK
+00:49:23
+11.
+assertText on css=.toast-body with value Book successfully added to read list OK
+00:49:24
+'9.dodavanjeNaReadListuAdmin' completed successfully
+
+********************************************************************
+
+Running '10.dodavanjeNaWantToReadListuKorisnik'
+00:53:16
+1.
+open on /Gost OK
+00:53:16
+2.
+setWindowSize on 1165x617 OK
+00:53:16
+3.
+click on css=.loggingLinks > a:nth-child(1) > button OK
+00:53:16
+4.
+click on name=username OK
+00:53:19
+5.
+type on name=username with value nikolakrstic OK
+00:53:19
+6.
+click on name=password OK
+00:53:19
+7.
+type on name=password with value nikola123 OK
+00:53:20
+8.
+click on css=input:nth-child(7) OK
+00:53:20
+9.
+click on css=.figure:nth-child(13) img OK
+00:53:20
+10.
+click on css=.col-lg-3:nth-child(2) .addtolist OK
+00:53:21
+11.
+assertText on css=.toast-body with value Book successfully added to want to read list OK
+00:53:22
+'10.dodavanjeNaWantToReadListuKorisnik' completed successfully
+
+********************************************************************
+
+Running '11.dodavanjeNaWantToReadListuPrivileg'
+00:55:36
+1.
+open on /Gost OK
+00:55:36
+2.
+setWindowSize on 1164x616 OK
+00:55:36
+3.
+click on css=.loggingLinks > a:nth-child(1) > button OK
+00:55:36
+4.
+click on name=username OK
+00:55:38
+5.
+type on name=username with value andrej123 OK
+00:55:39
+6.
+click on name=password OK
+00:55:39
+7.
+type on name=password with value andrej123 OK
+00:55:39
+8.
+click on css=input:nth-child(7) OK
+00:55:39
+9.
+click on css=.figure:nth-child(13) img OK
+00:55:40
+10.
+click on css=.col-lg-3:nth-child(2) .addtolist OK
+00:55:41
+11.
+assertText on css=.toast-body with value Book successfully added to want to read list OK
+00:55:41
+'11.dodavanjeNaWantToReadListuPrivileg' completed successfully
+
+********************************************************************
+
+Running '12.dodavanjeNaWantToReadListuAdmin'
+00:57:04
+1.
+open on /Gost OK
+00:57:04
+2.
+setWindowSize on 1164x616 OK
+00:57:04
+3.
+click on css=.loggingLinks > a:nth-child(1) > button OK
+00:57:04
+4.
+click on name=username OK
+00:57:05
+5.
+type on name=username with value andrejjokic OK
+00:57:05
+6.
+click on name=password OK
+00:57:05
+7.
+type on name=password with value andrej123 OK
+00:57:05
+8.
+click on css=input:nth-child(7) OK
+00:57:06
+9.
+click on css=.figure:nth-child(13) img OK
+00:57:06
+10.
+click on css=.col-lg-3:nth-child(2) .addtolist OK
+00:57:07
+11.
+assertText on css=.toast-body with value Book successfully added to want to read list OK
+00:57:08
+'12.dodavanjeNaWantToReadListuAdmin' completed successfully
+
+********************************************************************
+
+Running '13.prebacivanjeSaWantNaReadListu'
+00:57:42
+1.
+open on /Gost OK
+00:57:42
+2.
+setWindowSize on 924x612 OK
+00:57:42
+3.
+click on css=.loggingLinks > a:nth-child(1) > button OK
+00:57:42
+4.
+click on name=username OK
+00:57:45
+5.
+type on name=username with value nikolakrstic OK
+00:57:45
+6.
+click on name=password OK
+00:57:45
+7.
+type on name=password with value nikola123 OK
+00:57:45
+8.
+sendKeys on name=password with value ${KEY_ENTER} OK
+00:57:46
+9.
+click on css=.figure:nth-child(13) img OK
+00:57:46
+10.
+click on css=.col-lg-3:nth-child(3) .addtolist OK
+00:57:47
+11.
+assertText on css=.toast-body with value Book moved from want to read list to read list OK
+00:57:48
+'13.prebacivanjeSaWantNaReadListu' completed successfully
+
+********************************************************************
+
+Running '14.prebacivanjeSaReadNaWantListu'
+00:58:43
+1.
+open on /Gost OK
+00:58:43
+2.
+setWindowSize on 924x612 OK
+00:58:43
+3.
+click on css=.loggingLinks > a:nth-child(1) > button OK
+00:58:44
+4.
+click on name=username OK
+00:58:46
+5.
+type on name=username with value nikolakrstic OK
+00:58:46
+6.
+click on name=password OK
+00:58:47
+7.
+type on name=password with value nikola123 OK
+00:58:47
+8.
+sendKeys on name=password with value ${KEY_ENTER} OK
+00:58:47
+9.
+click on css=.figure:nth-child(1) img OK
+00:58:47
+10.
+click on css=.col-lg-3:nth-child(2) .addtolist OK
+00:58:48
+11.
+assertText on css=.toast-body with value Book already exist on your lists OK
+00:58:49
+'14.prebacivanjeSaReadNaWantListu' completed successfully
+
+********************************************************************
+
+Running '15.dodavanjeVecDodateKnjigeWant'
+00:59:20
+1.
+open on /Gost OK
+00:59:21
+2.
+setWindowSize on 1050x660 OK
+00:59:21
+3.
+click on css=.loggingLinks > a:nth-child(1) > button OK
+00:59:21
+4.
+click on name=username OK
+00:59:23
+5.
+type on name=username with value andrejjokic OK
+00:59:24
+6.
+click on name=password OK
+00:59:24
+7.
+type on name=password with value andrej123 OK
+00:59:24
+8.
+click on css=input:nth-child(7) OK
+00:59:24
+9.
+click on css=.figure:nth-child(13) img OK
+00:59:24
+10.
+click on css=.col-lg-3:nth-child(2) .addtolist OK
+00:59:25
+11.
+assertText on css=.toast-body with value Book already exist on your lists OK
+00:59:26
+'15.dodavanjeVecDodateKnjigeWant' completed successfully
+
+********************************************************************
+
+Running '16.dodavanjeVecDodateKnjigeRead'
+00:59:52
+1.
+open on /Gost OK
+00:59:52
+2.
+setWindowSize on 924x612 OK
+00:59:52
+3.
+click on css=.loggingLinks > a:nth-child(1) > button OK
+00:59:53
+4.
+click on name=username OK
+00:59:55
+5.
+type on name=username with value andrejjokic OK
+00:59:55
+6.
+click on name=password OK
+00:59:56
+7.
+type on name=password with value andrej123 OK
+00:59:56
+8.
+click on name=login OK
+00:59:56
+9.
+click on css=input:nth-child(7) OK
+00:59:56
+10.
+click on css=.figure:nth-child(14) img OK
+00:59:56
+11.
+click on css=.col-lg-3:nth-child(3) .addtolist OK
+00:59:57
+12.
+assertText on css=.toast-body with value Book already exist on read list OK
+00:59:59
+'16.dodavanjeVecDodateKnjigeRead' completed successfully
+
+********************************************************************
+
+Running '17.KorisnikAllList'
+01:00:26
+1.
+open on /Gost OK
+01:00:26
+2.
+setWindowSize on 924x612 OK
+01:00:26
+3.
+click on css=.loggingLinks > a:nth-child(1) > button OK
+01:00:26
+4.
+click on name=username OK
+01:00:29
+5.
+type on name=username with value nikolakrstic OK
+01:00:29
+6.
+click on name=password OK
+01:00:30
+7.
+type on name=password with value nikola123 OK
+01:00:30
+8.
+type on name=password with value nikola123 OK
+01:00:30
+9.
+click on css=input:nth-child(7) OK
+01:00:30
+10.
+click on linkText=My Profile OK
+01:00:30
+11.
+assertText on css=span:nth-child(1) with value All (12) OK
+01:00:31
+'17.KorisnikAllList' completed successfully
+
+********************************************************************
+
+Running '18.KorisnikWantList'
+01:03:25
+1.
+open on /Gost OK
+01:03:26
+2.
+setWindowSize on 1164x616 OK
+01:03:26
+3.
+click on css=.loggingLinks > a:nth-child(1) > button OK
+01:03:26
+4.
+click on css=.loginbox OK
+01:03:30
+5.
+click on css=.loginbox OK
+01:03:31
+6.
+click on name=username OK
+01:03:31
+7.
+type on name=username with value nikolakrstic OK
+01:03:31
+8.
+click on name=password OK
+01:03:31
+9.
+type on name=password with value nikola123 OK
+01:03:31
+10.
+sendKeys on name=password with value ${KEY_ENTER} OK
+01:03:31
+11.
+click on linkText=My Profile OK
+01:03:31
+12.
+assertText on css=.col-sm-8 > span:nth-child(3) with value Want to read (0) OK
+01:03:33
+'18.KorisnikWantList' completed successfully
+
+********************************************************************
+
+Running '19.KorisnikReadList'
+01:07:51
+1.
+open on /Gost OK
+01:07:52
+2.
+setWindowSize on 1164x616 OK
+01:07:52
+3.
+click on css=.loggingLinks > a:nth-child(1) > button OK
+01:07:52
+4.
+click on name=login OK
+01:07:54
+5.
+click on name=username OK
+01:07:55
+6.
+type on name=username with value nikolakrstic OK
+01:07:55
+7.
+click on name=password OK
+01:07:55
+8.
+type on name=password with value nikola123 OK
+01:07:55
+9.
+click on css=input:nth-child(7) OK
+01:07:55
+10.
+click on linkText=My Profile OK
+01:07:55
+11.
+assertText on css=span:nth-child(2) with value Read (12) OK
+01:07:56
+'19.KorisnikReadList' completed successfully
+
+********************************************************************
+
+Running '20.KorisnikSubList'
+01:09:18
+1.
+open on /Gost OK
+01:09:19
+2.
+setWindowSize on 1164x616 OK
+01:09:19
+3.
+click on css=.loggingLinks > a:nth-child(1) > button OK
+01:09:19
+4.
+click on name=username OK
+01:09:21
+5.
+type on name=username with value nikolakrstic OK
+01:09:21
+6.
+click on name=password OK
+01:09:22
+7.
+type on name=password with value nikola123 OK
+01:09:22
+8.
+click on css=input:nth-child(7) OK
+01:09:22
+9.
+click on linkText=My Profile OK
+01:09:22
+10.
+assertText on css=span:nth-child(4) with value Subscribed genres OK
+01:09:23
+'20.KorisnikSubList' completed successfully
+
+********************************************************************
+Running '21.PrivilegovanRecList'
+01:11:28
+1.
+open on /Gost OK
+01:11:29
+2.
+setWindowSize on 1164x616 OK
+01:11:29
+3.
+click on css=.loggingLinks > a:nth-child(1) > button OK
+01:11:29
+4.
+click on name=username OK
+01:11:31
+5.
+type on name=username with value andrej123 OK
+01:11:32
+6.
+click on name=password OK
+01:11:32
+7.
+type on name=password with value andrej123 OK
+01:11:32
+8.
+click on css=input:nth-child(7) OK
+01:11:32
+9.
+click on linkText=My Profile OK
+01:11:32
+10.
+assertText on css=span:nth-child(5) with value Recommended list OK
+01:11:34
+'21.PrivilegovanRecList' completed successfully
+
