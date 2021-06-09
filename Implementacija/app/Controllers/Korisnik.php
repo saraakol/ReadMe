@@ -269,7 +269,7 @@ class Korisnik extends BaseController {
                 $this->doctrine->em->flush();
             }
         }
+        session()->setFlashdata("displayNotificationMessage", $poruka);
         return redirect()->to(site_url("/{$this->getController()}/prikaziKnjigu/{$bookId}"));
-        //return $this->prikaziKnjigu($bookId,$poruka);
     }
 }
