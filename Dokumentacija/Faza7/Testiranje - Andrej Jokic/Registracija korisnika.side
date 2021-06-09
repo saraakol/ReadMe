@@ -321,7 +321,7 @@
         ["xpath=//input[@name='password']", "xpath:attributes"],
         ["xpath=//input[5]", "xpath:position"]
       ],
-      "value": "andrej"
+      "value": "andrej123"
     }, {
       "id": "9cbcbaf3-657f-4bf2-a834-76a97da5d7f9",
       "comment": "",
@@ -333,7 +333,7 @@
         ["xpath=//input[@name='repeatpassword']", "xpath:attributes"],
         ["xpath=//input[6]", "xpath:position"]
       ],
-      "value": "andrej"
+      "value": "andrej123"
     }, {
       "id": "8860739a-fc32-4a5e-b6f0-51f7ae3402be",
       "comment": "",
@@ -455,7 +455,7 @@
         ["xpath=//input[@name='password']", "xpath:attributes"],
         ["xpath=//input[5]", "xpath:position"]
       ],
-      "value": "petar"
+      "value": "petar123"
     }, {
       "id": "4f873dfe-6bca-485e-bcd5-d98f39dafb57",
       "comment": "",
@@ -467,7 +467,7 @@
         ["xpath=//input[@name='repeatpassword']", "xpath:attributes"],
         ["xpath=//input[6]", "xpath:position"]
       ],
-      "value": "pera"
+      "value": "pera123"
     }, {
       "id": "7e31670e-8b98-4a4b-8c56-0a0bd20fc246",
       "comment": "",
@@ -2354,6 +2354,6 @@
     "timeout": 300,
     "tests": []
   }],
-  "urls": ["http://localhost:8080/Gost"],
+  "urls": ["http://localhost:8080/Gost", "http://localhost:8080/Gost/register"],
   "plugins": []
 }
