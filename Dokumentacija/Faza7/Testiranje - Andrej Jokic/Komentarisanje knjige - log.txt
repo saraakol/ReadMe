@@ -1,0 +1,219 @@
+Running 'TP1 - Korisnik uspesno komentarise knjigu'
+00:40:29
+1.
+open on http://localhost:8080/Korisnik/prikaziKnjigu/1 OK
+00:40:29
+2.
+setWindowSize on 918x770 OK
+00:40:29
+3.
+click on linkText=Add review OK
+00:40:29
+4.
+click on id=reviewText OK
+00:40:30
+5.
+type on id=reviewText with value Komentar OK
+00:40:31
+6.
+click on id=reviewSubmit OK
+00:40:31
+7.
+verifyText on css=.toast-body with value Successfully added new review OK
+00:40:31
+'TP1 - Korisnik uspesno komentarise knjigu' completed successfully
+00:40:32
+Running 'TP2 - Privilegovani korisnik uspesno komentarise knjigu'
+00:41:13
+1.
+open on http://localhost:8080/Privilegovani/prikaziKnjigu/1 OK
+00:41:13
+2.
+setWindowSize on 918x770 OK
+00:41:13
+3.
+click on linkText=Add review OK
+00:41:13
+4.
+click on id=reviewText OK
+00:41:14
+5.
+type on id=reviewText with value Privilegovani komentar. OK
+00:41:14
+6.
+click on id=reviewSubmit OK
+00:41:15
+7.
+verifyText on css=.toast-body with value Successfully added new review OK
+00:41:15
+'TP2 - Privilegovani korisnik uspesno komentarise knjigu' completed successfully
+00:41:16
+Running 'TP3 - Administrator uspesno komentarise knjigu'
+00:41:37
+1.
+open on http://localhost:8080/Administrator/prikaziKnjigu/1 OK
+00:41:37
+2.
+setWindowSize on 918x770 OK
+00:41:37
+3.
+click on linkText=Add review OK
+00:41:37
+4.
+click on id=reviewText OK
+00:41:38
+5.
+type on id=reviewText with value Administrator komentar. OK
+00:41:38
+6.
+click on id=reviewSubmit OK
+00:41:38
+7.
+verifyText on css=.toast-body with value Successfully added new review OK
+00:41:39
+'TP3 - Administrator uspesno komentarise knjigu' completed successfully
+00:41:40
+Running 'TP4 - Korisnik neuspesno komentarise knjigu jer je uneo prazan komentar'
+00:42:02
+1.
+open on http://localhost:8080/Korisnik/prikaziKnjigu/1 OK
+00:42:03
+2.
+setWindowSize on 918x770 OK
+00:42:03
+3.
+click on linkText=Add review OK
+00:42:03
+4.
+click on id=reviewSubmit OK
+00:42:04
+5.
+assertAlert on Cannot submit empty review OK
+00:42:04
+'TP4 - Korisnik neuspesno komentarise knjigu jer je uneo prazan komentar' completed successfully
+00:42:05
+Running 'TP5 - Privilegovani korisnik neuspesno komentarise knjigu jer je uneo prazan komentar'
+00:42:26
+1.
+open on http://localhost:8080/Privilegovani/prikaziKnjigu/1 OK
+00:42:26
+2.
+setWindowSize on 918x770 OK
+00:42:26
+3.
+click on linkText=Add review OK
+00:42:26
+4.
+click on id=reviewSubmit OK
+00:42:27
+5.
+assertAlert on Cannot submit empty review OK
+00:42:28
+'TP5 - Privilegovani korisnik neuspesno komentarise knjigu jer je uneo prazan komentar' completed successfully
+00:42:28
+Running 'TP6 - Administrator neuspesno komentarise knjigu jer je uneo prazan komentar'
+00:42:54
+1.
+open on http://localhost:8080/Administrator/prikaziKnjigu/1 OK
+00:42:54
+2.
+setWindowSize on 918x770 OK
+00:42:54
+3.
+click on linkText=Add review OK
+00:42:54
+4.
+click on id=reviewSubmit OK
+00:42:55
+5.
+assertAlert on Cannot submit empty review OK
+00:42:56
+'TP6 - Administrator neuspesno komentarise knjigu jer je uneo prazan komentar' completed successfully
+00:42:56
+Running 'TP7 - Korisnik neuspesno dodaje komentar jer je odustao'
+00:43:11
+1.
+open on http://localhost:8080/Korisnik/prikaziKnjigu/1 OK
+00:43:12
+2.
+setWindowSize on 918x770 OK
+00:43:12
+3.
+click on linkText=Add review OK
+00:43:12
+4.
+click on css=input:nth-child(1) OK
+00:43:13
+5.
+verifyText on linkText=Browse with value Browse OK
+00:43:14
+6.
+verifyText on linkText=My Profile with value My Profile OK
+00:43:14
+7.
+verifyText on linkText=Add review with value Add review OK
+00:43:14
+'TP7 - Korisnik neuspesno dodaje komentar jer je odustao' completed successfully
+00:43:15
+Running 'TP8 - Privilegovani korisnik neuspesno dodaje komentar jer je odustao'
+00:43:38
+1.
+open on http://localhost:8080/Privilegovani/prikaziKnjigu/1 OK
+00:43:39
+2.
+setWindowSize on 918x770 OK
+00:43:39
+3.
+click on linkText=Add review OK
+00:43:39
+4.
+click on css=input:nth-child(1) OK
+00:43:40
+5.
+verifyText on linkText=Browse with value Browse OK
+00:43:41
+6.
+verifyText on linkText=My Profile with value My Profile OK
+00:43:42
+7.
+verifyText on linkText=Add review with value Add review OK
+00:43:42
+'TP8 - Privilegovani korisnik neuspesno dodaje komentar jer je odustao' completed successfully
+00:43:43
+Running 'TP9 - Administrator neuspesno dodaje komentar jer je odustao'
+00:44:00
+1.
+open on http://localhost:8080/Administrator/prikaziKnjigu/1 OK
+00:44:01
+2.
+setWindowSize on 918x770 OK
+00:44:01
+3.
+click on linkText=Add review OK
+00:44:01
+4.
+click on css=input:nth-child(1) OK
+00:44:02
+5.
+verifyText on linkText=Browse with value Browse OK
+00:44:03
+6.
+verifyText on linkText=My Profile with value My Profile OK
+00:44:03
+7.
+verifyText on linkText=Registrations with value Registrations OK
+00:44:04
+8.
+verifyText on linkText=Reports with value Reports OK
+00:44:04
+9.
+verifyText on linkText=Upgrades with value Upgrades OK
+00:44:04
+10.
+verifyText on linkText=Add Book with value Add Book OK
+00:44:04
+11.
+verifyText on linkText=Add review with value Add review OK
+00:44:04
+'TP9 - Administrator neuspesno dodaje komentar jer je odustao' completed successfully
+00:44:05

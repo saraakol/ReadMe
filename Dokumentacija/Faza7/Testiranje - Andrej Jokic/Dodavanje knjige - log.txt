@@ -1,0 +1,78 @@
+Running 'TP1 - Administrator uspesno dodaje knjigu'
+00:38:23
+1.
+open on http://localhost:8080/Administrator OK
+00:38:23
+2.
+setWindowSize on 918x770 OK
+00:38:23
+3.
+click on linkText=Add Book OK
+00:38:23
+4.
+click on name=title OK
+00:38:25
+5.
+type on name=title with value Knjiga naslov OK
+00:38:25
+6.
+type on name=authors with value Andrej Jokic OK
+00:38:26
+7.
+addSelection on name=genres[] with value label=Sci-Fi OK
+00:38:26
+8.
+click on name=synopsis OK
+00:38:26
+9.
+type on name=synopsis with value Opis knjige. OK
+00:38:26
+10.
+click on css=input:nth-child(8) OK
+00:38:26
+11.
+verifyText on css=.toast-body with value Successfully created new book OK
+00:38:27
+12.
+verifyText on css=.naslov with value ReadMe OK
+00:38:28
+'TP1 - Administrator uspesno dodaje knjigu' completed successfully
+00:38:28
+Running 'TP2 - Administrator neuspesno dodaje knjigu jer nije uneo sva obavezna polja'
+00:38:28
+1.
+open on http://localhost:8080/Administrator OK
+00:38:28
+2.
+setWindowSize on 918x770 OK
+00:38:28
+3.
+click on linkText=Add Book OK
+00:38:28
+4.
+click on css=input:nth-child(8) OK
+00:38:29
+5.
+assertText on css=font with value The title field is required.\nThe authors field is required.\nThe synopsis field is required.\nThe genres field is required. OK
+00:38:30
+'TP2 - Administrator neuspesno dodaje knjigu jer nije uneo sva obavezna polja' completed successfully
+00:38:31
+Running 'TP3 - Administrator neuspesno dodaje knjigu jer je odustao'
+00:38:31
+1.
+open on http://localhost:8080/Administrator OK
+00:38:32
+2.
+setWindowSize on 918x770 OK
+00:38:32
+3.
+click on linkText=Add Book OK
+00:38:32
+4.
+click on css=a > input OK
+00:38:33
+5.
+verifyText on css=.naslov with value ReadMe OK
+00:38:34
+'TP3 - Administrator neuspesno dodaje knjigu jer je odustao' completed successfully
+00:38:35
