@@ -1,0 +1,109 @@
+Running '1. Stranica se prikazuje-Gost'
+00:42:36
+1.
+open on /Gost OK
+00:42:36
+2.
+setWindowSize on 516x614 OK
+00:42:36
+3.
+assertElementPresent on css=.figure:nth-child(1) figcaption OK
+00:42:36
+'1. Stranica se prikazuje-Gost' completed successfully
+00:42:37
+
+
+
+Running '2. Stranica se prikazuje-Ulogovan korisnik'
+00:44:15
+1.
+open on /Gost OK
+00:44:16
+2.
+setWindowSize on 516x614 OK
+00:44:16
+3.
+click on css=.loggingLinks > a:nth-child(1) > button OK
+00:44:16
+4.
+click on name=username OK
+00:44:39
+5.
+type on name=username with value andrejjokic OK
+00:44:40
+6.
+click on name=password OK
+00:44:40
+7.
+type on name=password with value andrej123 OK
+00:44:40
+8.
+click on css=input:nth-child(7) OK
+00:44:40
+9.
+assertElementPresent on css=.figure:nth-child(1) figcaption OK
+00:44:40
+'2. Stranica se prikazuje-Ulogovan korisnik' completed successfully
+00:44:41
+
+
+
+Running '3. Testiranje dodavanja komentara kao privilegovan korisnik'
+00:45:07
+1.
+open on /Administrator OK
+00:45:08
+2.
+setWindowSize on 516x614 OK
+00:45:08
+3.
+click on css=.figure:nth-child(1) img OK
+00:45:08
+4.
+click on linkText=Add quote OK
+00:45:09
+5.
+click on id=quotetext OK
+00:45:09
+6.
+type on id=quotetext with value selenium citat OK
+00:45:09
+7.
+click on id=quotecontinue OK
+00:45:10
+8.
+assertText on css=.toast-body with value Successfully added new quote! OK
+00:45:10
+'3. Testiranje dodavanja komentara kao privilegovan korisnik' completed successfully
+00:45:11
+
+
+
+Running '4. Testiranje dodavanja komentara kao administrator'
+00:45:55
+1.
+open on /Administrator OK
+00:45:56
+2.
+setWindowSize on 516x614 OK
+00:45:56
+3.
+click on css=.figure:nth-child(1) img OK
+00:45:56
+4.
+click on linkText=Add quote OK
+00:45:57
+5.
+click on id=quotetext OK
+00:45:57
+6.
+type on id=quotetext with value selenium citat OK
+00:45:58
+7.
+click on id=quotecontinue OK
+00:45:58
+8.
+assertText on css=.toast-body with value Successfully added new quote! OK
+00:45:58
+'4. Testiranje dodavanja komentara kao administrator' completed successfully
+00:45:59
