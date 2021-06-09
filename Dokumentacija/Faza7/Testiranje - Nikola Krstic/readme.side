@@ -1,0 +1,336 @@
+{
+  "id": "d2b44fe7-0ada-4214-8ebf-a301d48bce43",
+  "version": "2.0",
+  "name": "readme",
+  "url": "http://localhost:8080",
+  "tests": [{
+    "id": "7f277a83-1555-4f06-b7e1-82aad5551747",
+    "name": "1. Stranica se prikazuje-Gost",
+    "commands": [{
+      "id": "1be66811-5a1a-461c-ad28-190888b697de",
+      "comment": "",
+      "command": "open",
+      "target": "/Gost",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "3a1ceda4-0f8a-4959-92a3-29625b746520",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "516x614",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "7eaddf02-0f25-44de-ad1e-e08eb48c0e38",
+      "comment": "",
+      "command": "assertElementPresent",
+      "target": "css=.figure:nth-child(1) figcaption",
+      "targets": [
+        ["css=.figure:nth-child(1) figcaption", "css:finder"],
+        ["xpath=//figcaption", "xpath:position"]
+      ],
+      "value": ""
+    }]
+  }, {
+    "id": "697ea1a2-6866-45a6-bab6-409253570484",
+    "name": "2. Stranica se prikazuje-Ulogovan korisnik",
+    "commands": [{
+      "id": "f32da1ba-6235-427a-9538-bf857fe66808",
+      "comment": "",
+      "command": "open",
+      "target": "/Gost",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "7072e8f4-0535-4f01-8dae-93bf98f3f96b",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "516x614",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "8ad38d6a-dd1a-435a-bb44-ee1e655b505f",
+      "comment": "",
+      "command": "click",
+      "target": "css=.loggingLinks > a:nth-child(1) > button",
+      "targets": [
+        ["css=.loggingLinks > a:nth-child(1) > button", "css:finder"],
+        ["xpath=//button", "xpath:position"],
+        ["xpath=//button[contains(.,'Login')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "7dc3ce6a-c34e-4a24-981e-e6e9a20336c9",
+      "comment": "",
+      "command": "click",
+      "target": "name=username",
+      "targets": [
+        ["name=username", "name"],
+        ["css=form > input:nth-child(1)", "css:finder"],
+        ["xpath=//input[@name='username']", "xpath:attributes"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "4e149149-bc36-4604-b75b-16ffc51919a7",
+      "comment": "",
+      "command": "type",
+      "target": "name=username",
+      "targets": [
+        ["name=username", "name"],
+        ["css=form > input:nth-child(1)", "css:finder"],
+        ["xpath=//input[@name='username']", "xpath:attributes"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": "andrejjokic"
+    }, {
+      "id": "b2d2d279-58fa-45f8-ad53-78de4bd7f6ae",
+      "comment": "",
+      "command": "click",
+      "target": "name=password",
+      "targets": [
+        ["name=password", "name"],
+        ["css=input:nth-child(4)", "css:finder"],
+        ["xpath=//input[@name='password']", "xpath:attributes"],
+        ["xpath=//input[2]", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "5f8f99b7-18e9-456d-96d9-0b9fbbbf1ed6",
+      "comment": "",
+      "command": "type",
+      "target": "name=password",
+      "targets": [
+        ["name=password", "name"],
+        ["css=input:nth-child(4)", "css:finder"],
+        ["xpath=//input[@name='password']", "xpath:attributes"],
+        ["xpath=//input[2]", "xpath:position"]
+      ],
+      "value": "andrej123"
+    }, {
+      "id": "cbb25b10-2550-476c-b15e-550facc9646d",
+      "comment": "",
+      "command": "click",
+      "target": "css=input:nth-child(7)",
+      "targets": [
+        ["css=input:nth-child(7)", "css:finder"],
+        ["xpath=//input[@value='Continue']", "xpath:attributes"],
+        ["xpath=//input[3]", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "ac702b85-99d3-44da-b16d-fa584cd894b5",
+      "comment": "",
+      "command": "assertElementPresent",
+      "target": "css=.figure:nth-child(1) figcaption",
+      "targets": [
+        ["css=.figure:nth-child(1) figcaption", "css:finder"],
+        ["xpath=//figcaption", "xpath:position"]
+      ],
+      "value": ""
+    }]
+  }, {
+    "id": "aa2821fa-b204-4f76-a85f-7e09dcee4f28",
+    "name": "4. Testiranje dodavanja komentara kao administrator",
+    "commands": [{
+      "id": "78ddb606-c92d-46a3-b9df-a615c1c8d2a7",
+      "comment": "",
+      "command": "open",
+      "target": "/Administrator",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "3de185e5-d104-4e52-ba92-de21825ef79f",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "516x614",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "a8a3c72d-c81d-4d7a-9d81-71477de19a41",
+      "comment": "",
+      "command": "click",
+      "target": "css=.figure:nth-child(1) img",
+      "targets": [
+        ["css=.figure:nth-child(1) img", "css:finder"],
+        ["xpath=//figure/a/img", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "7967e687-fee3-4c38-ac48-48e983853aa0",
+      "comment": "",
+      "command": "click",
+      "target": "linkText=Add quote",
+      "targets": [
+        ["linkText=Add quote", "linkText"],
+        ["css=.quote a", "css:finder"],
+        ["xpath=//a[contains(text(),'Add quote')]", "xpath:link"],
+        ["xpath=//a[contains(@href, '/Administrator/addQuote')]", "xpath:href"],
+        ["xpath=//p[3]/font/a", "xpath:position"],
+        ["xpath=//a[contains(.,'Add quote')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "a6d2492d-b4cf-41f0-b359-b20532eb694c",
+      "comment": "",
+      "command": "click",
+      "target": "id=quotetext",
+      "targets": [
+        ["id=quotetext", "id"],
+        ["name=quote", "name"],
+        ["css=#quotetext", "css:finder"],
+        ["xpath=//textarea[@id='quotetext']", "xpath:attributes"],
+        ["xpath=//form[@id='formaQuote']/textarea", "xpath:idRelative"],
+        ["xpath=//textarea", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "2c3c4db6-5228-4a06-9d20-a2fa360a163f",
+      "comment": "",
+      "command": "type",
+      "target": "id=quotetext",
+      "targets": [
+        ["id=quotetext", "id"],
+        ["name=quote", "name"],
+        ["css=#quotetext", "css:finder"],
+        ["xpath=//textarea[@id='quotetext']", "xpath:attributes"],
+        ["xpath=//form[@id='formaQuote']/textarea", "xpath:idRelative"],
+        ["xpath=//textarea", "xpath:position"]
+      ],
+      "value": "selenium citat"
+    }, {
+      "id": "5c9e5dda-9de5-4fe8-bc75-1e2dc2515d33",
+      "comment": "",
+      "command": "click",
+      "target": "id=quotecontinue",
+      "targets": [
+        ["id=quotecontinue", "id"],
+        ["css=#quotecontinue", "css:finder"],
+        ["xpath=//input[@id='quotecontinue']", "xpath:attributes"],
+        ["xpath=//form[@id='formaQuote']/input[2]", "xpath:idRelative"],
+        ["xpath=//input[2]", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "809c2259-c951-474b-94c5-45580dbaf1aa",
+      "comment": "",
+      "command": "assertText",
+      "target": "css=.toast-body",
+      "targets": [
+        ["css=.toast-body", "css:finder"],
+        ["xpath=//div[14]/div[2]", "xpath:position"]
+      ],
+      "value": "Successfully added new quote!"
+    }]
+  }, {
+    "id": "d4bda03a-c023-4a87-a0d0-fbbbe40c3ab7",
+    "name": "3. Testiranje dodavanja komentara kao privilegovan korisnik",
+    "commands": [{
+      "id": "51678016-5b43-4a06-b06d-7ce501dab18d",
+      "comment": "",
+      "command": "open",
+      "target": "/Administrator",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "efff9d75-55cd-4ede-a14e-55052b821686",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "516x614",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "c6942a60-81b6-45cc-a850-368418d5ad73",
+      "comment": "",
+      "command": "click",
+      "target": "css=.figure:nth-child(1) img",
+      "targets": [
+        ["css=.figure:nth-child(1) img", "css:finder"],
+        ["xpath=//figure/a/img", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "f8114340-0dc9-487c-8bc9-b09b1b2af7ed",
+      "comment": "",
+      "command": "click",
+      "target": "linkText=Add quote",
+      "targets": [
+        ["linkText=Add quote", "linkText"],
+        ["css=.quote a", "css:finder"],
+        ["xpath=//a[contains(text(),'Add quote')]", "xpath:link"],
+        ["xpath=//a[contains(@href, '/Administrator/addQuote')]", "xpath:href"],
+        ["xpath=//p[3]/font/a", "xpath:position"],
+        ["xpath=//a[contains(.,'Add quote')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "3aa77dfb-f7a0-494f-a0ad-26dac088f9e4",
+      "comment": "",
+      "command": "click",
+      "target": "id=quotetext",
+      "targets": [
+        ["id=quotetext", "id"],
+        ["name=quote", "name"],
+        ["css=#quotetext", "css:finder"],
+        ["xpath=//textarea[@id='quotetext']", "xpath:attributes"],
+        ["xpath=//form[@id='formaQuote']/textarea", "xpath:idRelative"],
+        ["xpath=//textarea", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "1ad89207-8ee3-4ff9-945b-5751116c35c3",
+      "comment": "",
+      "command": "type",
+      "target": "id=quotetext",
+      "targets": [
+        ["id=quotetext", "id"],
+        ["name=quote", "name"],
+        ["css=#quotetext", "css:finder"],
+        ["xpath=//textarea[@id='quotetext']", "xpath:attributes"],
+        ["xpath=//form[@id='formaQuote']/textarea", "xpath:idRelative"],
+        ["xpath=//textarea", "xpath:position"]
+      ],
+      "value": "selenium citat"
+    }, {
+      "id": "a91a0f66-551e-4a26-8534-38bd6efe6900",
+      "comment": "",
+      "command": "click",
+      "target": "id=quotecontinue",
+      "targets": [
+        ["id=quotecontinue", "id"],
+        ["css=#quotecontinue", "css:finder"],
+        ["xpath=//input[@id='quotecontinue']", "xpath:attributes"],
+        ["xpath=//form[@id='formaQuote']/input[2]", "xpath:idRelative"],
+        ["xpath=//input[2]", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "951112b0-0a58-4c13-8846-5e89b37a676e",
+      "comment": "",
+      "command": "assertText",
+      "target": "css=.toast-body",
+      "targets": [
+        ["css=.toast-body", "css:finder"],
+        ["xpath=//div[14]/div[2]", "xpath:position"]
+      ],
+      "value": "Successfully added new quote!"
+    }]
+  }],
+  "suites": [{
+    "id": "a081e6f9-875d-439b-86e6-c28a4f6737be",
+    "name": "Funkcionalnost 1",
+    "persistSession": false,
+    "parallel": false,
+    "timeout": 300,
+    "tests": ["7f277a83-1555-4f06-b7e1-82aad5551747", "697ea1a2-6866-45a6-bab6-409253570484"]
+  }, {
+    "id": "220f8ea3-91e8-4dc8-b765-f3cfc06558cf",
+    "name": "Funkcionalnost 12",
+    "persistSession": false,
+    "parallel": false,
+    "timeout": 300,
+    "tests": ["d4bda03a-c023-4a87-a0d0-fbbbe40c3ab7", "aa2821fa-b204-4f76-a85f-7e09dcee4f28"]
+  }],
+  "urls": ["http://localhost:8080/"],
+  "plugins": []
+}
