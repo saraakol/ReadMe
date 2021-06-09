@@ -104,24 +104,26 @@
                     <br>
 
                     <br>
-                    <div class="row">
                         
                     <div class="col-sm-8 offset-2"style="align-items: center; text-align: center">
                     <span style="font-size: 4vh;padding-left: 35px;">All (<?= sizeof($all);?>)<input type="checkbox" id="alllist" onclick="kliknutalisaall()" checked></span>
                     <span style="font-size: 4vh;padding-left: 35px;">Read (<?= sizeof($read);?>)<input type="checkbox" id="readlist" onclick="kliknutalistaread()"></span>
                     <span style="font-size: 4vh;padding-left: 35px;">Want to read (<?= sizeof($wantToRead);?>)<input type="checkbox" id="wantlist" onclick="kliknutalistawant()"></span> 
-                    <span style="font-size: 4vh;padding-left: 35px;">Subsribed genres <input type="checkbox" id="subscribedlist" onclick="kliknutalistasubscribed()"></span>
+                    <span style="font-size: 4vh;padding-left: 35px;">Subscribed genres <input type="checkbox" id="subscribedlist" onclick="kliknutalistasubscribed()"></span>
+                    <?php 
+                    if ($controller == 'Administrator' || $controller == 'Privilegovani') {
+                    echo '<span style="font-size: 4vh;padding-left: 35px;">Recommended list <input type="checkbox" id="recommendedlist" onclick="kliknutalistarecommended()"></span>';
+                    }
+                     ?>
                     </div>
-                    <div class="col-sm-2">
-                        &nbsp;
-                    </div>
-                    </div>
+                    
                     <br><br>
                     <div class="alllist" >
                         
                         <?php
-                        
+                        $niz=array();
                         foreach ($all as $item) {
+                            $niz[]=$item->getIdb()->getIdb();
                             echo '<figure class="figuree">';
                             echo anchor("$controller/prikaziKnjigu/".$item->getIdb()->getIdb()."","<img src='/images/books/". $item->getIdb()->getIdb() .
                                     ".jpg' style=' width: 200px;height:300px; margin-left: 4vh;'>");
@@ -130,7 +132,6 @@
                         }
                         ?>
                         
-<!--                        <div class="breakfloat">&nbsp;</div>-->
                     </div>
 
                     <br>
@@ -194,28 +195,22 @@
                     </div>
                     <?php
                     if ($controller == 'Administrator' || $controller == 'Privilegovani') {
-                    
-                        echo '<br>';
-                        echo '<p style="font-size: 4vh;padding-left: 35px;">Recommended list <input type="checkbox" id="recommendedlist" onclick="kliknutalistarecommended()"></p>'; 
                         echo '<div class="recommendedlist" style="display: none;">';
-
-                            //<?php   
 
                             $num=0;
                             foreach ($knjige as $knjiga) {
                                 $num++;
-                                if($num%3==0){
+                                if(in_array($knjiga->getIdb(),$niz)==false && $num%2==0){
                                     echo '<figure class="figuree">';
-                                    echo anchor("$controller/prikaziKnjigu/".$knjiga->getIdb()."","<img src='/images/books/". $knjiga->getIdb() .
+                                    if($knjiga->getImage()!=null)
+                                        echo anchor("$controller/prikaziKnjigu/".$knjiga->getIdb()."","<img src='/images/books/". $knjiga->getIdb() .
                                             ".jpg' style=' width: 200px;height:300px; margin-left: 4vh;'>");
+                                    else
+                                        echo anchor("$controller/prikaziKnjigu/".$knjiga->getIdb()."","<img src='/images/books/no_photo.jpg' style=' width: 200px;height:300px; margin-left: 4vh;'>");
                                     echo anchor("$controller/prikaziKnjigu/".$knjiga->getIdb()."","<figcaption style='margin-top: 2vh;width: 200px;padding-right:2vh; margin-left: 4vh;'>".$knjiga->getName()."</figcaption>");
                                     echo '</figure>';
                                 }
                             }
-                            /*
-                            ?>
-                            */
-//                            echo '<div class="breakfloat">&nbsp;</div>';
                         echo '</div>';
                     
                     }

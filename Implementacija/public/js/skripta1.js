@@ -213,7 +213,7 @@ function kliknutalistarecommended(){
     } else {
         $(".recommendedlist").show();
         $(".alllist").hide();
-         $(".readlist").show(); 
+        $(".readlist").hide(); 
         $(".subscribedlist").hide();
         $(".wantlist").hide(); 
         document.getElementById("alllist").checked = false; 
