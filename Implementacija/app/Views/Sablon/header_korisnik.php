@@ -20,8 +20,8 @@
 <body>
     <div class="container-fluid">
         <div class="row">
-            <div class="col-12">
-                <div class="header">           
+            <div class="col-12 header">
+                <div class="">           
                     <div class="col-md-12">
                         <a href="/Korisnik/logout"><button class="logoutbutton">Logout</button></a>
                     </div>
@@ -33,8 +33,8 @@
             </div>
 	</div>
         <div class="row">
-            <div class="col-12">
-		<div class="natpis">
+            <div class="col-12 natpis">
+		<div class="">
                     <p class="naslov"> ReadMe</p>
                     <p class="ispodnaslova"> Gateway to Getaway</p>
 		</div>

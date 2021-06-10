@@ -7,14 +7,25 @@
             </div>
         </div>
         <div class="row">
-            <div class="col" style="background-color: #ffeedf;">
-                <br>
-                <p style="font-size: 4vh;"><?= $zahtev; ?> </p>
-                <hr>
+            <div class="col" style="background-color: #ffeedf; ">
+                <!--<br>-->
+                <div style="width: 100%;text-align: center"><p style="font-size: 5vh;align-self: center"><?= $zahtev; ?> </p></div>
+                <br><br>
+                <!--<hr>-->
             </div>
         </div>
         
         <?php
+        echo '<div class="row ">'; 
+         echo '<div class="col naopackegradient">';
+            echo ' <br>&nbsp;';
+            echo '</div>';
+            echo '</div>'; 
+            echo '<div class="row ">'; 
+            echo '<div class="col gradient">';
+            echo ' <br>&nbsp;';
+            echo '</div>';
+            echo '</div>'; 
         foreach ($korisnici as $korisnik) {
             echo "<div class='row buttons'>";
             echo "  <div class='col-lg-3 col-md-6 zahtev' style='background-color: #ffeedf;'>";
@@ -40,8 +51,18 @@
             }            
             echo "  </div>";
             echo "  <br>";
-            echo "  <div class='col' style='background-color: #ffeedf'><hr></div>";
+            echo "  <div class='col' style='background-color: #ffeedf'> </div>";
             echo "</div>";
+            echo '<div class="row ">'; 
+            echo '<div class="col naopackegradient">';
+            echo ' <br>&nbsp;';
+            echo '</div>';
+            echo '</div>'; 
+            echo '<div class="row ">'; 
+            echo '<div class="col gradient">';
+            echo ' <br>&nbsp;';
+            echo '</div>';
+            echo '</div>'; 
         }
         ?>
         
