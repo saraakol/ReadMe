@@ -50,7 +50,7 @@
                 <p class="booktitle"><font class="booktitle"><?= $knjiga->getName(); ?> </font></p>
                 
                 <p class="bookbio">
-                    <font class="bookauthor"><?= $knjiga->getName(); ?>  </font>
+                    <font class="bookauthor"><?= $knjiga->getAuthors(); ?>  </font>
             <!-- ubaciti zanrove -->         <font class="bookgenre"><?= implode(', ', $zanrovi); ?></font>   <!-- ubaciti zanrove -->
                 </p>
 
