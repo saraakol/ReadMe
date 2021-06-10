@@ -29,12 +29,12 @@
     <div class="container-fluid ">
         <div class="row loginrow2">
             <div class="col ">
-                <br>&nbsp;<br>&nbsp;<br>&nbsp;
+                <br>&nbsp;<br>&nbsp;
             </div>
         </div>
         <div class="row loginrow2">
-            <div class="col-md-4"></div>
-            <div class="col-md-4 loginbox">
+            <div class="col-lg-3 col-md-2 col-sm-1 col-1"></div>
+            <div class="col-lg-6 col-md-8 col-sm-10 col-10 loginbox">
                 <br>&nbsp;
                 <img src="../img/logo.png" alt="" height="100" width="100" align="center">
                 <br><br>
@@ -88,7 +88,12 @@
                     <br>&nbsp;<br>&nbsp;
                 </form>
             </div>
-            <div class="col-md-4"></div>
+            <div class="col-lg-3 col-md-2 col-sm-1 col-1"></div>
+        </div>
+         <div class="row loginrow2">
+            <div class="col ">
+                <br>&nbsp;<br>&nbsp;<br>&nbsp;
+            </div>
         </div>
     </div>
     <script>

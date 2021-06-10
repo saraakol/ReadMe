@@ -21,8 +21,8 @@
 <body>
     <div class="container-fluid">
         <div class="row">
-            <div class="col-12">
-                <div class="header">           
+            <div class="col-12 header">
+                <div class="">           
                     <div class="loggingLinks">
 
                         <a href="/Gost/login"><button>Login</button></a> &nbsp; &nbsp;
@@ -40,8 +40,8 @@
             </div>
 	</div>
         <div class="row">
-            <div class="col-12">
-		<div class="natpis">
+            <div class="col-12 natpis">
+		<div class="">
                     <p class="naslov"> ReadMe</p>
                     <p class="ispodnaslova"> Gateway to Getaway</p>
 		</div>

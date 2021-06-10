@@ -105,18 +105,18 @@
 
                     <br>
                         
-                    <div class="col-sm-8 offset-2"style="align-items: center; text-align: center">
-                    <span style="font-size: 4vh;padding-left: 35px;">All (<?= sizeof($all);?>)<input type="checkbox" id="alllist" onclick="kliknutalisaall()" checked></span>
-                    <span style="font-size: 4vh;padding-left: 35px;">Read (<?= sizeof($read);?>)<input type="checkbox" id="readlist" onclick="kliknutalistaread()"></span>
-                    <span style="font-size: 4vh;padding-left: 35px;">Want to read (<?= sizeof($wantToRead);?>)<input type="checkbox" id="wantlist" onclick="kliknutalistawant()"></span> 
-                    <span style="font-size: 4vh;padding-left: 35px;">Subscribed genres <input type="checkbox" id="subscribedlist" onclick="kliknutalistasubscribed()"></span>
+                    <div class="col-12 " style="width:100%;">
+                    <span style="font-size: 4vh;padding-left: 30px;">All (<?= sizeof($all);?>)<input type="checkbox" id="alllist" onclick="kliknutalisaall()" checked></span>
+                    <span style="font-size: 4vh;padding-left: 30px;">Read (<?= sizeof($read);?>)<input type="checkbox" id="readlist" onclick="kliknutalistaread()"></span>
+                    <span style="font-size: 4vh;padding-left: 30px;">Want to read (<?= sizeof($wantToRead);?>)<input type="checkbox" id="wantlist" onclick="kliknutalistawant()"></span> 
+                    <span style="font-size: 4vh;padding-left: 30px;">Subscribed genres <input type="checkbox" id="subscribedlist" onclick="kliknutalistasubscribed()"></span>
                     <?php 
                     if ($controller == 'Administrator' || $controller == 'Privilegovani') {
-                    echo '<span style="font-size: 4vh;padding-left: 35px;">Recommended list <input type="checkbox" id="recommendedlist" onclick="kliknutalistarecommended()"></span>';
+                    echo '<span style="font-size: 4vh;padding-left: 30px;">Recommended list <input type="checkbox" id="recommendedlist" onclick="kliknutalistarecommended()"></span>';
                     }
                      ?>
                     </div>
-                    
+                    <!--<div style="width:100%;">&nbsp;</div>-->
                     <br><br>
                     <div class="alllist" >
                         

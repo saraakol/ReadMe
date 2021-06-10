@@ -31,8 +31,8 @@ redirect()->to(site_url("Gost/index"));
             </div>
         </div>
         <div class="row loginrow2">
-            <div class="col-md-4"></div>
-            <div class="col-md-4 loginbox">
+            <div class="col-lg-4 col-md-3 col-sm-3 col-1"></div>
+            <div class="col-lg-4 col-md-6 col-sm-6 col-10 loginbox">
                 <br>&nbsp;
                 <div class="row">
                     <div class="col">
@@ -78,7 +78,7 @@ redirect()->to(site_url("Gost/index"));
                 <br>&nbsp;<br>&nbsp;
                 </form>
             </div>
-            <div class="col-md-4"></div>
+            <div class="col-lg-4 col-md-3 col-sm-3 col-1"></div>
         </div>
     </div>
 </body>

@@ -194,7 +194,7 @@ function kliknutalistasubscribed(){
     } else {
         $(".subscribedlist").show();
         $(".alllist").hide();
-         $(".readlist").show();
+         $(".readlist").hide();
         $(".wantlist").hide();
         $(".recommendedlist").hide();
         document.getElementById("alllist").checked = false;
