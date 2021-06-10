@@ -157,7 +157,7 @@ class BaseController extends Controller
                 break;
             case "Date":
                 usort($knjige, function($a, $b){
-                    return $a->getIdb()>$b->getIdb();
+                    return $a->getIdb()<$b->getIdb();
                 });
                 break;
             case "Rate":

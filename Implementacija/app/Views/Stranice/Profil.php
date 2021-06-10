@@ -125,8 +125,11 @@
                         foreach ($all as $item) {
                             $niz[]=$item->getIdb()->getIdb();
                             echo '<figure class="figuree">';
-                            echo anchor("$controller/prikaziKnjigu/".$item->getIdb()->getIdb()."","<img src='/images/books/". $item->getIdb()->getIdb() .
+                            if($item->getIdb()->getImage()!=null)
+                                echo anchor("$controller/prikaziKnjigu/".$item->getIdb()->getIdb()."","<img src='/images/books/". $item->getIdb()->getIdb() .
                                     ".jpg' style=' width: 200px;height:300px; margin-left: 4vh;'>");
+                            else
+                                echo anchor("$controller/prikaziKnjigu/".$item->getIdb()->getIdb()."","<img src='/images/books/no_photo.jpg' style=' width: 200px;height:300px; margin-left: 4vh;'>");
                             echo anchor("$controller/prikaziKnjigu/".$item->getIdb()->getIdb()."","<figcaption style='margin-top: 2vh;width: 200px;padding-right:2vh; margin-left: 4vh;'>".$item->getIdb()->getName()."</figcaption>");
                             echo '</figure>';
                         }
@@ -141,8 +144,11 @@
                         
                         foreach ($read as $item) {
                             echo '<figure class="figuree">';
-                            echo anchor("$controller/prikaziKnjigu/".$item->getIdb()->getIdb()."","<img src='/images/books/". $item->getIdb()->getIdb() .
+                            if($item->getIdb()->getImage()!=null)
+                                echo anchor("$controller/prikaziKnjigu/".$item->getIdb()->getIdb()."","<img src='/images/books/". $item->getIdb()->getIdb() .
                                     ".jpg' style=' width: 200px;height:300px; margin-left: 4vh;'>");
+                            else
+                                echo anchor("$controller/prikaziKnjigu/".$item->getIdb()->getIdb()."","<img src='/images/books/no_photo.jpg' style=' width: 200px;height:300px; margin-left: 4vh;'>");
                             echo anchor("$controller/prikaziKnjigu/".$item->getIdb()->getIdb()."","<figcaption style='margin-top: 2vh;width: 200px;padding-right:2vh; margin-left: 4vh;'>".$item->getIdb()->getName()."</figcaption>");
                             echo '</figure>';
                         }
@@ -161,8 +167,11 @@
                         
                         foreach ($wantToRead as $item) {
                             echo '<figure class="figuree">';
-                            echo anchor("$controller/prikaziKnjigu/".$item->getIdb()->getIdb()."","<img src='/images/books/". $item->getIdb()->getIdb() .
+                            if($item->getIdb()->getImage()!=null)
+                                echo anchor("$controller/prikaziKnjigu/".$item->getIdb()->getIdb()."","<img src='/images/books/". $item->getIdb()->getIdb() .
                                     ".jpg' style=' width: 200px;height:300px; margin-left: 4vh;'>");
+                            else
+                                echo anchor("$controller/prikaziKnjigu/".$item->getIdb()->getIdb()."","<img src='/images/books/no_photo.jpg' style=' width: 200px;height:300px; margin-left: 4vh;'>");
                             echo anchor("$controller/prikaziKnjigu/".$item->getIdb()->getIdb()."","<figcaption style='margin-top: 2vh;width: 200px;padding-right:2vh; margin-left: 4vh;'>".$item->getIdb()->getName()."</figcaption>");
                             echo '</figure>';
                         }
@@ -183,7 +192,11 @@
                             foreach($zanroviKnjige as $zanrKnjige){
                                 if($zanroviKorisnika->contains($zanrKnjige)){
                                     echo '<figure class="figuree">';
-                                    echo anchor("$controller/prikaziKnjigu/".$knjiga->getIdb()."","<img src='/images/books/". $knjiga->getIdb().".jpg' style=' width: 200px;height:300px; margin-left: 4vh;'>");
+                                    if($knjiga->getImage()!=null)
+                                        echo anchor("$controller/prikaziKnjigu/".$knjiga->getIdb()."","<img src='/images/books/". $knjiga->getIdb() .
+                                            ".jpg' style=' width: 200px;height:300px; margin-left: 4vh;'>");
+                                    else
+                                        echo anchor("$controller/prikaziKnjigu/".$knjiga->getIdb()."","<img src='/images/books/no_photo.jpg' style=' width: 200px;height:300px; margin-left: 4vh;'>");
                                     echo anchor("$controller/prikaziKnjigu/".$knjiga->getIdb()."","<figcaption style='mmargin-top: 2vh;width: 200px;padding-right:2vh; margin-left: 4vh;'>".$knjiga->getName()."</figcaption>");
                                     echo '</figure>';
                                     break;
